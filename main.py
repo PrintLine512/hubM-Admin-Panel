@@ -31,11 +31,11 @@ api_version = "v1"
 
 console = Console()
 
-log_file = open("C:\\Users\\mv.alekseev\\Documents\\projects\\hubM Admin Panel\\capture2.txt","a")
+log_file = open("C:\\Users\\mv.alekseev\\Documents\\projects\\hubM Admin Panel\\log2.log","a")
 console_file = Console(force_terminal=False,file=log_file)
 
 
-install(show_locals=True, width=300, code_width=288, extra_lines=5, locals_max_length=2000, locals_max_string=500, word_wrap=False)
+install(show_locals=True, console=console_file, width=300, code_width=288, extra_lines=5, locals_max_length=2000, locals_max_string=500, word_wrap=False)
 
 
 
@@ -48,7 +48,7 @@ logging.basicConfig(
         RichHandler(rich_tracebacks=True, console=console_file, locals_max_string=5000, locals_max_length=2000, show_time=True,
                     tracebacks_width=100000, tracebacks_extra_lines=10, tracebacks_word_wrap=False,
                     tracebacks_show_locals=True),
-        logging.FileHandler("log.txt")
+        logging.FileHandler("log.log")
     ]
 )
 
