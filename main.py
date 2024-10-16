@@ -19,15 +19,16 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.traceback import install
 
-from CreatePolicies import CreatePolicies
-from CreateUser import CreateUser
-from UserExport import UserExport
+from User.CreatePolicies import CreatePolicies
+from User.CreateUser import CreateUser
+from User.UserExport import UserExport
+from User.User import User
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
+from utils.utils import api_request, get_registry_value
 from version import panel_version
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
-api_version = "v1"
 
 console = Console()
 
@@ -54,39 +55,7 @@ logging.basicConfig(
 
 log = logging.getLogger("rich")
 
-def api_request(uri, new_headers=None, new_data=None, method="GET", request="basic"):
-    if new_data is None:
-        new_data = {}
-    if new_headers is None:
-        new_headers = {}
-    url = f"http://{server}{api_base_dir}/{uri}"
-    print(url)
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": TOKEN,
-        **new_headers
-    }
-    # data = {
-    #    **new_data
-    # }
-    if method == "GET":
-        response = requests.get(url, headers=headers, data=new_data)
-    elif method == "PUT":
-        response = requests.put(url, headers=headers, data=new_data)
-    elif method == "POST":
-        response = requests.post(url, headers=headers, data=new_data)
-    elif method == "DELETE":
-        response = requests.delete(url, headers=headers, data=new_data)
-    else:
-        return
 
-    if request == "basic":
-        return response.text
-    elif request == "full":
-        return response
-    else:
-        return response.text
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
@@ -104,15 +73,6 @@ def create_or_open_key(parent_key, sub_key):
     except FileNotFoundError:
         key = winreg.CreateKey(parent_key, sub_key)
     return key
-
-def get_registry_value(parent_key, sub_key, name):
-    try:
-        key = winreg.OpenKey(parent_key, sub_key, 0, winreg.KEY_READ)
-        value, _ = winreg.QueryValueEx(key, name)
-        winreg.CloseKey(key)
-        return value
-    except FileNotFoundError:
-        return None
 
 def set_registry_value(key, name, value, value_type=winreg.REG_SZ):
     winreg.SetValueEx(key, name, 0, value_type, value)
@@ -197,72 +157,6 @@ class PolicyTableWidgetItem(QTableWidgetItem):
         else:
             return None
 
-class User:
-    def __init__(self, user):
-        user_data_raw = api_request(f"users/{user}")
-        user_data = json.loads(user_data_raw)
-        self.active = user_data.get("active")
-        self.cn = user_data.get("cn")
-        self.password = user_data.get("password")
-        self.comment = user_data.get("comment")
-        self.email = user_data.get("email")
-        self.ip = user_data.get("ip")
-        self.name = user_data.get("name")
-        self.tg_id = user_data.get("tg_id")
-
-        self.dict = {
-            "cn": self.cn,
-            "name": self.name,
-            "ip": self.ip,
-            "password": self.password,
-            "email": self.email,
-            "comment": self.comment,
-            "tg_id": self.tg_id,
-            "active": self.active,
-        }
-
-        self.group_policies = []
-        self.__init_group_policies__(user)
-
-
-    def __init_group_policies__(self, user):
-        response = api_request(f"users/{user}/policies", request="full")
-        try:
-            if response.status_code == 200:
-
-                policies = json.loads(response.text)
-                if policies:
-                    print(policies)
-
-                    for item in policies:
-
-                        server_id = str(item[ "server_id" ])
-                        server_raw = api_request(f"servers/{server_id}")
-                        server_name = json.loads(server_raw)["server_info"]["name"]
-
-                        policy = Policy(
-                            access=item["access"],
-                            auth_method=item["auth_method"],
-                            ip=item["ip"],
-                            ips=item["ips"],
-                            timeout_session=item["timeout_session"],
-                            until=item["until"],
-                            kick=item["kick"],
-                            kickable=item["kickable"],
-                            usb_filter=item["usb_filter"],
-                            password=item["password"],
-                            otp_secret=item["otp_secret"],
-                            server_name=server_name
-
-                    )
-                        self.group_policies.append(policy)
-
-        except Exception:
-            print("Exception in user code:")
-            print("-" * 60)
-            traceback.print_exc(file=sys.stdout)
-            print("-" * 60)
-
     def render_group_policies(self, main):
         main.tbl_user_policies.setRowCount(0)
         column_list = json.loads(main.EnumPolicies.get_all_names())
@@ -315,14 +209,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
 
-        global TOKEN
-        TOKEN = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_token")
-        global server
-        server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
-        global api_port
-        api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
-        global api_base_dir
-        api_base_dir = f":{api_port}/api/{api_version}"
         icon = QtGui.QIcon(resource_path("res/icon.png"))
         self.setWindowIcon(icon)
         self.user = None
@@ -471,6 +357,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 f'Версия - {panel_version}\n'
                                 f'@PrintLine512')
     def check_version(self, startup):
+        server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
+        api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
         url = f"http://{server}:{api_port}/download/check-version"
         response = requests.get(url)
         actual_version = response.text
@@ -693,7 +581,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             response = api_request(f"users/{user_name}/policies/{srv}", {}, json.dumps(row_data), "PUT", request="full")
 
             if response.status_code == 200:
-                #QMessageBox.information(self, "Информация", f"Политика успешно изменена.")
                 pass
             elif response.status_code == 401:
                 QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
@@ -827,13 +714,7 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
 
 
         try:
-            url = f"http://{address}:{tcp_port}/api/{api_version}/users"
-            headers = {
-                "accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": token,
-            }
-            response = requests.get(url, headers=headers)
+            response = api_request("users/", request="full")
             # Проверяем успешность запроса по статусу ответа
             if response.status_code == 200:
                 #MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)
