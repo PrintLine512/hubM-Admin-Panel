@@ -157,6 +157,72 @@ class PolicyTableWidgetItem(QTableWidgetItem):
         else:
             return None
 
+class User:
+    def __init__(self, user):
+        user_data_raw = api_request(f"users/{user}")
+        user_data = json.loads(user_data_raw)
+        self.active = user_data.get("active")
+        self.cn = user_data.get("cn")
+        self.password = user_data.get("password")
+        self.comment = user_data.get("comment")
+        self.email = user_data.get("email")
+        self.ip = user_data.get("ip")
+        self.name = user_data.get("name")
+        self.tg_id = user_data.get("tg_id")
+
+        self.dict = {
+            "cn": self.cn,
+            "name": self.name,
+            "ip": self.ip,
+            "password": self.password,
+            "email": self.email,
+            "comment": self.comment,
+            "tg_id": self.tg_id,
+            "active": self.active,
+        }
+
+        self.group_policies = []
+        self.__init_group_policies__(user)
+
+
+    def __init_group_policies__(self, user):
+        response = api_request(f"users/{user}/policies", request="full")
+        try:
+            if response.status_code == 200:
+
+                policies = json.loads(response.text)
+                if policies:
+                    print(policies)
+
+                    for item in policies:
+
+                        server_id = str(item[ "server_id" ])
+                        server_raw = api_request(f"servers/{server_id}")
+                        server_name = json.loads(server_raw)["server_info"]["name"]
+
+                        policy = Policy(
+                            access=item["access"],
+                            auth_method=item["auth_method"],
+                            ip=item["ip"],
+                            ips=item["ips"],
+                            timeout_session=item["timeout_session"],
+                            until=item["until"],
+                            kick=item["kick"],
+                            kickable=item["kickable"],
+                            usb_filter=item["usb_filter"],
+                            password=item["password"],
+                            otp_secret=item["otp_secret"],
+                            server_name=server_name
+
+                    )
+                        self.group_policies.append(policy)
+
+        except Exception:
+            print("Exception in user code:")
+            print("-" * 60)
+            traceback.print_exc(file=sys.stdout)
+            print("-" * 60)
+
     def render_group_policies(self, main):
         main.tbl_user_policies.setRowCount(0)
         column_list = json.loads(main.EnumPolicies.get_all_names())
