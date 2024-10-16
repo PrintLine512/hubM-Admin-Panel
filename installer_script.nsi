@@ -1,7 +1,8 @@
 !include "MUI2.nsh"
 !include LogicLib.nsh
 
-!define SOURCE_DIR "dist\hubM Admin Panel"
+; !define SOURCE_DIR "dist\hubM Admin Panel"
+!define SOURCE_DIR "${__FILEDIR__}\dist\hubM Admin Panel"
 !define APP_NAME "hubM Admin Panel"
 
 
@@ -9,7 +10,8 @@
 Name "${APP_NAME}"
 
 ; The file to write
-OutFile "dist/hubM Admin Panel Installer.exe"
+; OutFile "dist/hubM Admin Panel Installer.exe"
+OutFile "${__FILEDIR__}\dist\hubM Admin Panel Installer.exe"
 
 ; Request application privileges for Windows Vista
 RequestExecutionLevel user

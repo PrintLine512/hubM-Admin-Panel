@@ -8,3 +8,4 @@ main.spec
 /.idea/
 /.idea/runConfigurations/
 hubM Admin Panel.spec
+/build-with-click.py

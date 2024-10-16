@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'ui_new_policies.ui'
+# Form implementation generated from reading ui file 'C:\Users\mv.alekseev\Documents\projects\hubM Admin Panel\ui\ui_new_policies.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #

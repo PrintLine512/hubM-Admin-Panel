@@ -1,48 +1,34 @@
 import os
 import shutil
 import subprocess
-import click
+import argparse
+
 import PyInstaller.__main__
+from ui.convert import convert
+
+nsis_path = "C:\\Program Files (x86)\\NSIS"
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
-nsis_path = "C:\\Program Files (x86)\\NSIS"
 os.chdir(current_directory)
 
-@click.command()
-@click.option("--installer/--no-installer", "-I/-i", is_flag=True, show_default=True, default=False, help="Create installer",
-              prompt="Do you want to create installer?")
-@click.option("--reconvert-ui/--no-reconvert-ui", "-U/-u", is_flag=True, show_default=True, default=False, help="Reconvert the UI",
-              prompt="Do you want to re-convert the UI?")
-def cli(reconvert_ui, installer):
+def main(reconvert_ui, installer):
     if reconvert_ui:
-        click.echo("Re-converting UI...")
-        result = subprocess.run(
-            ['python', 'convert.py'],
-            capture_output=True,
-            text=True,
-            cwd=os.path.join(current_directory, "ui"),
-                       )
-        if result.returncode != 0:
-            click.echo(f"Error during converting! {result.stderr}")
-            return
+        convert()
 
-        click.echo(f"Result:\n{result.stdout}")
-
-    print(os.path.join(current_directory, 'installer_script.nsi'))
-
-
-    if os.path.exists("build"):
-        shutil.rmtree("build")
-    if os.path.exists("dist"):
-        shutil.rmtree("dist")
+    #if os.path.exists("build"):
+    #    shutil.rmtree("build")
+    #if os.path.exists("dist"):
+    #    shutil.rmtree("dist")
+    res_path = os.path.join(current_directory, 'res')
+    icon_path = os.path.join(res_path, 'icon.ico')
 
     pyinstaller_args = [
         '--name=hubM Admin Panel',
         '--onedir',
         '--noconfirm',
         '--windowed',
-        '--icon=res/icon.ico',
-        '--add-data=res;res/',
+        f'--icon={icon_path}',
+        f'--add-data={res_path};res/',
         '--exclude-module=PySide6',
         '--exclude-module=PyQt5',
         '--contents-directory=.',
@@ -51,18 +37,25 @@ def cli(reconvert_ui, installer):
     PyInstaller.__main__.run(pyinstaller_args)
 
     if installer:
-        click.echo("Creating installer...")
+        print("Creating installer...")
         result = subprocess.run(
             [os.path.join(nsis_path, 'makensis.exe'), 'installer_script.nsi'],
             capture_output=True,
             text=True,
-                       )
+            cwd=current_directory,
+        )
 
         if result.returncode != 0:
-            click.echo(f"Error during creating installer! {result.stderr}")
+            print(f"Error during creating installer! {result.stderr}")
             return
 
-        click.echo(f"Result:\n{result.stdout}")
+        print(f"Result:\n{result.stdout}")
 
 if __name__ == '__main__':
-    cli()
+    parser = argparse.ArgumentParser(description='Build and optionally create an installer.')
+    parser.add_argument('-U', '--reconvert-ui', action='store_true', help='Reconvert the UI')
+    parser.add_argument('-I', '--installer', action='store_true', help='Create installer')
+
+    args = parser.parse_args()
+
+    main(args.reconvert_ui, args.installer)

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'ui_main.ui'
+# Form implementation generated from reading ui file 'C:\Users\mv.alekseev\Documents\projects\hubM Admin Panel\ui\ui_main.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
