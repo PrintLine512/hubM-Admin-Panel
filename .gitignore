@@ -2,6 +2,6 @@ __pycache__/
 venv/
 build/
 dist/
-.idea/
+.idea
 main.spec
 *.log
