@@ -1,29 +1,29 @@
-import sys, traceback
+import json
 import logging
-from rich.logging import RichHandler
-from rich.console import Console
-from rich.traceback import install
-import re
-import pandas as pd
 import os  # Отсюда нам понадобятся методы для отображения содержимого директорий
+import re
+import sys
+import traceback
+import winreg
 from enum import Enum
 
-import winreg
-import requests
-import json
+import pandas as pd
 import qdarktheme
-
+import requests
 from PyQt6 import QtWidgets, QtGui
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QTreeWidgetItem, QTableWidgetItem, QMessageBox, QDialog
 )
-from PyQt6.QtCore import Qt
+from rich.console import Console
+from rich.logging import RichHandler
+from rich.traceback import install
 
-from ui.ui_main import Ui_MainWindow
-from ui.ui_launch import Ui_Launch
 from CreatePolicies import CreatePolicies
 from CreateUser import CreateUser
 from UserExport import UserExport
+from ui.ui_launch import Ui_Launch
+from ui.ui_main import Ui_MainWindow
 from version import panel_version
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
