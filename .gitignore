@@ -5,3 +5,5 @@ dist/
 .idea/
 main.spec
 *.log
+/.idea/
+
