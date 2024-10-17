@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog
 from PyQt6 import QtWidgets, QtGui
-from ui.ui_user_export import Ui_win_user_export
+from ..ui.ui_user_export import Ui_win_user_export
 import os
 
 def resource_path(relative):

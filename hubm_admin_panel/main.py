@@ -19,14 +19,14 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.traceback import install
 
-from User.CreatePolicies import CreatePolicies
-from User.CreateUser import CreateUser
-from User.UserExport import UserExport
+from .User.CreatePolicies import CreatePolicies
+from .User.CreateUser import CreateUser
+from .User.UserExport import UserExport
 #from User.User import User
-from ui.ui_launch import Ui_Launch
-from ui.ui_main import Ui_MainWindow
-from utils.utils import api_request, get_registry_value
-from version import panel_version
+from .ui.ui_launch import Ui_Launch
+from .ui.ui_main import Ui_MainWindow
+from .utils.utils import api_request, get_registry_value
+from .version import panel_version
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 

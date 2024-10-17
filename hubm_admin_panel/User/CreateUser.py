@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QDialog
 from PyQt6 import QtWidgets, QtGui
-from ui.ui_new_user import Ui_win_new_user
+from ..ui.ui_new_user import Ui_win_new_user
 from re import match as re_match
 import os
 
