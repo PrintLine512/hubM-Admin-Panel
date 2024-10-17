@@ -1,9 +1,15 @@
 [tool.poetry]
 name = "hubm-admin-panel"
-version = "0.0.2"
+version = "0.0.21"
 description = ""
 authors = ["PrintLine512 <paralet.games@gmail.com>"]
 readme = "README.md"
+package-mode = true
+packages = [
+    { include = "hubm_admin_panel\\User" }
+]
+repository = "https://github.com/python-poetry/poetry"
+documentation = "https://python-poetry.org/docs/"
 
 [tool.poetry.dependencies]
 python = "~3.11"

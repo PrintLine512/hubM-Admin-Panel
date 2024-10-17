@@ -9,7 +9,7 @@ from hubm_admin_panel.ui.convert import convert
 nsis_path = "C:\\Program Files (x86)\\NSIS"
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
-os.chdir(current_directory)
+previous_dir = os.path.join(current_directory, "..")
 
 def main(reconvert_ui, installer):
     if reconvert_ui:
@@ -19,10 +19,13 @@ def main(reconvert_ui, installer):
     #    shutil.rmtree("build")
     #if os.path.exists("dist"):
     #    shutil.rmtree("dist")
-    res_path = os.path.join(current_directory, 'res')
+    main_path = os.path.join(current_directory, "main.py")
+    dist_path = os.path.join(previous_dir, 'dist')
+    work_path = os.path.join(previous_dir, 'build')
+    #spec_path = os.path.join(previous_dir, 'spec')
+    res_path = os.path.join(previous_dir, 'res')
     icon_path = os.path.join(res_path, 'icon.ico')
-    package_path = os.path.join(current_directory, 'hubm_admin_panel')
-    main_path = os.path.join(package_path, 'main.py')
+
 
 
     pyinstaller_args = [
@@ -32,6 +35,9 @@ def main(reconvert_ui, installer):
         '--windowed',
         f'--icon={icon_path}',
         f'--add-data={res_path};res/',
+        f'--distpath={dist_path}',
+        f'--workpath={work_path}',
+        f'--specpath={work_path}',
         '--exclude-module=PySide6',
         '--exclude-module=PyQt5',
         '--contents-directory=.',
@@ -41,8 +47,9 @@ def main(reconvert_ui, installer):
 
     if installer:
         print("Creating installer...")
+        installer_script_path = os.path.join(previous_dir, "installer_script.nsi")
         result = subprocess.run(
-            [os.path.join(nsis_path, 'makensis.exe'), 'installer_script.nsi'],
+            [os.path.join(nsis_path, 'makensis.exe'), installer_script_path],
             capture_output=True,
             text=True,
             cwd=current_directory,

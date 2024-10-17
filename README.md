@@ -1,5 +1,5 @@
-If you want to create installer, please check before "nsis_path" in build.py
-Run build only in venv
+If you want to create installer, please check before "nsis_path" in hubm_admin_panel/build.py
+Run hubm_admin_panel/build.py only in venv
 Built would be in dist
 
 ```````````````````````````````````
