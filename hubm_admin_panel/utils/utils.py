@@ -1,7 +1,7 @@
 import winreg
 import requests
-from version import api_version
 
+api_version = "v1"
 
 def get_registry_value(parent_key, sub_key, name):
     try:

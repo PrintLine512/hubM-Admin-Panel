@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QDialog
-from PyQt6 import QtWidgets, QtGui
+from PyQt6 import QtGui
 from ui.ui_user_export import Ui_win_user_export
 import os
 
