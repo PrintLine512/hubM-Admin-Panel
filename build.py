@@ -4,7 +4,7 @@ import subprocess
 import argparse
 
 import PyInstaller.__main__
-from ui.convert import convert
+from hubm_admin_panel.ui.convert import convert
 
 nsis_path = "C:\\Program Files (x86)\\NSIS"
 
@@ -21,6 +21,9 @@ def main(reconvert_ui, installer):
     #    shutil.rmtree("dist")
     res_path = os.path.join(current_directory, 'res')
     icon_path = os.path.join(res_path, 'icon.ico')
+    package_path = os.path.join(current_directory, 'hubm_admin_panel')
+    main_path = os.path.join(package_path, 'main.py')
+
 
     pyinstaller_args = [
         '--name=hubM Admin Panel',
@@ -32,7 +35,7 @@ def main(reconvert_ui, installer):
         '--exclude-module=PySide6',
         '--exclude-module=PyQt5',
         '--contents-directory=.',
-        'main.py'
+        f'{main_path}'
     ]
     PyInstaller.__main__.run(pyinstaller_args)
 
