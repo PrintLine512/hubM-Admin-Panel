@@ -5,8 +5,8 @@ import re
 import sys
 import traceback
 import winreg
-import tomllib
 from enum import Enum
+from version import panel_version
 
 import pandas as pd
 import qdarktheme
@@ -28,6 +28,7 @@ from User.CreateUser import CreateUser
 from User.UserExport import UserExport
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
+
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 
@@ -56,10 +57,6 @@ logging.basicConfig(
 
 log = logging.getLogger("rich")
 
-with open("pyproject.toml", "rb") as f:
-    data = tomllib.load(f)
-
-panel_version = data["tool"]["poetry"]["version"]
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """

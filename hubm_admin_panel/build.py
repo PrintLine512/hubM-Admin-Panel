@@ -2,6 +2,8 @@ import os
 #import shutil
 import subprocess
 import argparse
+import tomllib
+from xml.sax.expatreader import version
 
 import PyInstaller.__main__
 from hubm_admin_panel.ui.convert import convert
@@ -10,6 +12,8 @@ nsis_path = "C:\\Program Files (x86)\\NSIS"
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
 previous_dir = os.path.join(current_directory, "..")
+
+
 
 def main(reconvert_ui, installer):
     if reconvert_ui:
@@ -25,7 +29,15 @@ def main(reconvert_ui, installer):
     #spec_path = os.path.join(previous_dir, 'spec')
     res_path = os.path.join(previous_dir, 'res')
     icon_path = os.path.join(res_path, 'icon.ico')
+    toml_path = os.path.join(previous_dir, 'pyproject.toml')
+    version_path = os.path.join(current_directory, 'version.py')
 
+    with open(toml_path, "rb") as f:
+        data = tomllib.load(f)
+
+    version = data[ "tool" ][ "poetry" ][ "version" ]
+    with open(version_path, "w") as f:
+        f.write(f"panel_version=\"{version}\"")
 
 
     pyinstaller_args = [
