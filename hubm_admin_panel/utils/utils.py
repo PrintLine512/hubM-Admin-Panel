@@ -12,6 +12,19 @@ def get_registry_value(parent_key, sub_key, name):
     except FileNotFoundError:
         return None
 
+def create_or_open_key(parent_key, sub_key):
+    try:
+        key = winreg.OpenKey(parent_key, sub_key, 0, winreg.KEY_WRITE)
+    except FileNotFoundError:
+        key = winreg.CreateKey(parent_key, sub_key)
+    return key
+
+def set_registry_value(key, name, value, value_type=winreg.REG_SZ):
+    winreg.SetValueEx(key, name, 0, value_type, value)
+
+def close_registry_key(key):
+    winreg.CloseKey(key)
+
 
 TOKEN = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_token")
 server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")

@@ -79,7 +79,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -156,7 +156,7 @@
            </sizepolicy>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
@@ -824,7 +824,7 @@
          <widget class="QGroupBox" name="users_list_layout">
           <property name="maximumSize">
            <size>
-            <width>400</width>
+            <width>350</width>
             <height>16777215</height>
            </size>
           </property>
@@ -838,6 +838,9 @@
               <widget class="QLineEdit" name="le_search_user">
                <property name="placeholderText">
                 <string>Поиск</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -934,44 +937,72 @@
       </widget>
       <widget class="QWidget" name="tab_groups">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <attribute name="title">
         <string>Группы</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_14">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="lw_groups">
+         <widget class="QGroupBox" name="groupBox_19">
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>350</width>
             <height>16777215</height>
            </size>
           </property>
           <property name="title">
            <string>Группы</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_11">
-           <item row="0" column="0">
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayout_17">
              <item>
-              <widget class="QLineEdit" name="lineEdit_9">
+              <widget class="QLineEdit" name="le_search_group">
+               <property name="text">
+                <string/>
+               </property>
                <property name="placeholderText">
                 <string>Поиск</string>
+               </property>
+               <property name="clearButtonEnabled">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_20">
+              <widget class="QPushButton" name="btn_refresh_groups_tab">
                <property name="text">
-                <string>Найти</string>
+                <string>Обновить</string>
                </property>
               </widget>
              </item>
             </layout>
            </item>
-           <item row="1" column="0">
-            <widget class="QListWidget" name="listWidget_2">
+           <item>
+            <widget class="QTreeWidget" name="list_groups">
+             <property name="tabletTracking">
+              <bool>false</bool>
+             </property>
+             <property name="tabKeyNavigation">
+              <bool>true</bool>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <attribute name="headerShowSortIndicator" stdset="0">
+              <bool>true</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Системное имя</string>
+              </property>
+             </column>
+             <item>
+              <property name="text">
+               <string>Unistroy-Region</string>
+              </property>
+             </item>
              <item>
               <property name="text">
                <string>Smart</string>
@@ -979,52 +1010,12 @@
              </item>
              <item>
               <property name="text">
-               <string>USKStandart</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>UKUnistroy</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>UnistroyRegion</string>
+               <string>Sever-Volzh</string>
               </property>
              </item>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QGroupBox" name="groupBox_17">
-             <property name="title">
-              <string>Взаимодействие</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <item>
-               <widget class="QPushButton" name="pushButton_19">
-                <property name="text">
-                 <string>Новая группа</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_group_delete">
-                <property name="text">
-                 <string>Удалить группу</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_group_export">
-                <property name="text">
-                 <string>Экспорт</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="3" column="0">
+           <item>
             <widget class="QGroupBox" name="groupBox_13">
              <property name="title">
               <string>Изменить представление</string>
@@ -1041,6 +1032,43 @@
                <widget class="QPushButton" name="pushButton_18">
                 <property name="text">
                  <string>TCP порт</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="groupBox_17">
+             <property name="title">
+              <string>Взаимодействие</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <widget class="QPushButton" name="btn_group_new">
+                <property name="text">
+                 <string>Новая группа</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_group_delete">
+                <property name="text">
+                 <string>Удалить группу</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_group_restart">
+                <property name="text">
+                 <string>Перезагрузить группу</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_group_export">
+                <property name="text">
+                 <string>Экспорт</string>
                 </property>
                </widget>
               </item>
@@ -1099,12 +1127,12 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit">
+                   <widget class="QLineEdit" name="le_group_port">
                     <property name="text">
-                     <string>7501</string>
+                     <string/>
                     </property>
                     <property name="placeholderText">
-                     <string>7501-7599</string>
+                     <string>7501</string>
                     </property>
                    </widget>
                   </item>
@@ -1113,6 +1141,9 @@
                </item>
                <item row="2" column="0">
                 <widget class="QGroupBox" name="groupBox_28">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_33">
                   <item>
                    <widget class="QLabel" name="label_36">
@@ -1128,12 +1159,15 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_12">
+                   <widget class="QLineEdit" name="le_group_login">
                     <property name="text">
-                     <string>Smart</string>
+                     <string/>
                     </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Normal</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Login</string>
                     </property>
                    </widget>
                   </item>
@@ -1157,9 +1191,12 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_36">
+                   <widget class="QLineEdit" name="le_group_name">
                     <property name="text">
-                     <string>Smart</string>
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Group Name</string>
                     </property>
                    </widget>
                   </item>
@@ -1175,6 +1212,9 @@
                </item>
                <item row="3" column="0">
                 <widget class="QGroupBox" name="groupBox_23">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <layout class="QHBoxLayout" name="horizontalLayout_26">
                   <item>
                    <widget class="QLabel" name="label_22">
@@ -1190,12 +1230,15 @@
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_11">
+                   <widget class="QLineEdit" name="le_group_password">
                     <property name="text">
-                     <string>aAiuhb1i!8sj!sf</string>
+                     <string/>
                     </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Normal</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Password</string>
                     </property>
                    </widget>
                   </item>
@@ -1206,6 +1249,11 @@
              </widget>
             </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_group_usb">
+           <attribute name="title">
+            <string>USB-порты</string>
+           </attribute>
           </widget>
           <widget class="QWidget" name="tab_group_access">
            <attribute name="title">
@@ -1228,7 +1276,7 @@
          <widget class="QGroupBox" name="lw_users">
           <property name="maximumSize">
            <size>
-            <width>250</width>
+            <width>350</width>
             <height>16777215</height>
            </size>
           </property>
@@ -1291,55 +1339,66 @@
              </layout>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QListWidget" name="listWidget">
-             <item>
-              <property name="text">
-               <string>1.1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>1.2</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>1.3</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>1.4</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>2.1</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>2.2</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>2.3</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>2.4</string>
-              </property>
-             </item>
-            </widget>
-           </item>
            <item row="4" column="0">
             <widget class="QPushButton" name="pushButton_15">
              <property name="text">
               <string>Удалить порт</string>
              </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTreeWidget" name="treeWidget">
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <column>
+              <property name="text">
+               <string>Имя</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>VID</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Group</string>
+              </property>
+             </column>
+             <item>
+              <property name="text">
+               <string>Иксон Девелопмент Булатова</string>
+              </property>
+              <property name="text">
+               <string>1.1</string>
+              </property>
+              <property name="text">
+               <string>Smart</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Иксон Девелопмент Ахтямов</string>
+              </property>
+              <property name="text">
+               <string>1.2</string>
+              </property>
+              <property name="text">
+               <string>Smart</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="text">
+               <string>1.3</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>
@@ -1968,8 +2027,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

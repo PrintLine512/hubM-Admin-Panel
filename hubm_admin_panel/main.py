@@ -1,16 +1,17 @@
 import json
 import logging
-import os  # Отсюда нам понадобятся методы для отображения содержимого директорий
 import re
-import sys
 import traceback
 import winreg
-from enum import Enum
-from version import panel_version
-
-import pandas as pd
-import qdarktheme
+import sys
+import os
 import requests
+import pandas as pd
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+
+import qdarktheme
 from PyQt6 import QtWidgets, QtGui
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
@@ -20,12 +21,15 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.traceback import install
 
-
-from utils.utils import api_request, get_registry_value
+from version import panel_version
+from enum import Enum
+from utils.utils import api_request, get_registry_value, set_registry_value, close_registry_key, create_or_open_key
 from User.User import User
 from User.CreatePolicies import CreatePolicies
 from User.CreateUser import CreateUser
 from User.UserExport import UserExport
+from Groups.master import Groups, Group, group_search
+
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
 
@@ -38,7 +42,7 @@ log_file = open("C:\\Users\\mv.alekseev\\Documents\\projects\\hubM Admin Panel\\
 console_file = Console(force_terminal=False,file=log_file)
 
 
-install(show_locals=True, console=console_file, width=300, code_width=288, extra_lines=5, locals_max_length=2000, locals_max_string=500, word_wrap=False)
+install(show_locals=True, console=console, width=300, code_width=288, extra_lines=5, locals_max_length=2000, locals_max_string=500, word_wrap=False)
 
 
 
@@ -68,18 +72,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-def create_or_open_key(parent_key, sub_key):
-    try:
-        key = winreg.OpenKey(parent_key, sub_key, 0, winreg.KEY_WRITE)
-    except FileNotFoundError:
-        key = winreg.CreateKey(parent_key, sub_key)
-    return key
 
-def set_registry_value(key, name, value, value_type=winreg.REG_SZ):
-    winreg.SetValueEx(key, name, 0, value_type, value)
-
-def close_registry_key(key):
-    winreg.CloseKey(key)
 
 def is_valid_ip(self, ip):
     # Паттерн для проверки корректности IP-адреса
@@ -115,6 +108,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tabs_ports.tabBarClicked.connect(self.tabs_ports_clicked)
         self.list_users.itemSelectionChanged.connect(self.entry_update_user_info)
         self.le_search_user.textChanged.connect(self.search)
+        self.le_search_group.textChanged.connect(lambda: group_search(self))
         self.btn_user_policies_save.clicked.connect(self.save_user_policies)
         self.btn_user_save_params.clicked.connect(self.save_user_params)
         self.btn_user_policies_create.clicked.connect(self.win_new_create_policies)
@@ -124,7 +118,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_user_create.clicked.connect(self.win_user_create)
         self.btn_about_program.triggered.connect(self.win_about_program)
         self.btn_check_update.triggered.connect(lambda: self.check_version(False))
-
+        #self.btn_group_restart.clicked.connect()
         ###
 
         self.list_users.setColumnWidth(0, 200)
@@ -297,7 +291,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.clear_user_info()
                 self.get_list_users()
             case 2:
-                print("Группы")    
+                print("Группы")
+                groups = Groups(self)
             case 3:
                 print("Порты")   
             case 4:
@@ -337,22 +332,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print("Некорректная вкладка")
 
 
-
     def get_users_json(self):
         users_raw = api_request("users")
         data = json.loads(users_raw)
         users = data["users"]
         return users
-    
-    def get_user_json(self, name):
-        user_raw = api_request(f"users/{name}")
-        user = json.loads(user_raw)
-        return user
 
-    def get_user_policies_json(self, name):
-        policies_raw = api_request(f"users/{name}/policies")
-        policies = json.loads(policies_raw)
-        return policies
 
     def get_list_users(self):
         users_raw = self.get_users_json()
@@ -399,14 +384,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.update_user_info(item.text(1))
             else:
                 self.clear_user_info()
-
-    def get_user_policies(self, name):
-        policies = self.get_user_policies_json(name)
-        if not policies:
-            return
-        return policies
-
-
 
     class EnumPolicies(Enum):
         access = (0, "bool")
@@ -483,14 +460,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QMessageBox.information(self, "Информация", f"Завершено.")
 
 
-
-    def browse_folder(self):
-        directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Выберите папку", "C:/")
-
-        if directory:  # не продолжать выполнение, если пользователь не выбрал директорию
-            for file_name in os.listdir(directory):  # для каждого файла в директории
-                self.listWidget.addItem(file_name)   # добавить файл в listWidget
-
     def update_user_info(self, item):
 
         self.user = User(item)
@@ -499,8 +468,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         #policies = self.get_user_policies(item)
         #self.apply_user_policies(policies)
-
-
 
     def win_new_create_policies(self):
 
@@ -536,9 +503,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             return
 
         name = item.text(1)
-
-
-
         self.update_user_info(name)
 
     def clear_user_info(self):
