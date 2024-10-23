@@ -684,6 +684,32 @@ class Ui_MainWindow(object):
         self.groupBox_21.setSizePolicy(sizePolicy3)
         self.gridLayout_8 = QGridLayout(self.groupBox_21)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
+        self.groupBox_23 = QGroupBox(self.groupBox_21)
+        self.groupBox_23.setObjectName(u"groupBox_23")
+        self.groupBox_23.setEnabled(False)
+        self.horizontalLayout_26 = QHBoxLayout(self.groupBox_23)
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.label_22 = QLabel(self.groupBox_23)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_26.addWidget(self.label_22)
+
+        self.le_group_password = QLineEdit(self.groupBox_23)
+        self.le_group_password.setObjectName(u"le_group_password")
+        self.le_group_password.setEchoMode(QLineEdit.EchoMode.Normal)
+
+        self.horizontalLayout_26.addWidget(self.le_group_password)
+
+
+        self.gridLayout_8.addWidget(self.groupBox_23, 4, 0, 1, 1)
+
+        self.users_save_button_2 = QPushButton(self.groupBox_21)
+        self.users_save_button_2.setObjectName(u"users_save_button_2")
+        self.users_save_button_2.setEnabled(False)
+
+        self.gridLayout_8.addWidget(self.users_save_button_2, 5, 0, 1, 1)
+
         self.groupBox_25 = QGroupBox(self.groupBox_21)
         self.groupBox_25.setObjectName(u"groupBox_25")
         self.horizontalLayout_28 = QHBoxLayout(self.groupBox_25)
@@ -701,26 +727,6 @@ class Ui_MainWindow(object):
 
 
         self.gridLayout_8.addWidget(self.groupBox_25, 1, 0, 1, 1)
-
-        self.groupBox_28 = QGroupBox(self.groupBox_21)
-        self.groupBox_28.setObjectName(u"groupBox_28")
-        self.groupBox_28.setEnabled(False)
-        self.horizontalLayout_33 = QHBoxLayout(self.groupBox_28)
-        self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
-        self.label_36 = QLabel(self.groupBox_28)
-        self.label_36.setObjectName(u"label_36")
-        self.label_36.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_33.addWidget(self.label_36)
-
-        self.le_group_login = QLineEdit(self.groupBox_28)
-        self.le_group_login.setObjectName(u"le_group_login")
-        self.le_group_login.setEchoMode(QLineEdit.EchoMode.Normal)
-
-        self.horizontalLayout_33.addWidget(self.le_group_login)
-
-
-        self.gridLayout_8.addWidget(self.groupBox_28, 2, 0, 1, 1)
 
         self.groupBox_24 = QGroupBox(self.groupBox_21)
         self.groupBox_24.setObjectName(u"groupBox_24")
@@ -740,31 +746,43 @@ class Ui_MainWindow(object):
 
         self.gridLayout_8.addWidget(self.groupBox_24, 0, 0, 1, 1)
 
-        self.users_save_button_2 = QPushButton(self.groupBox_21)
-        self.users_save_button_2.setObjectName(u"users_save_button_2")
-        self.users_save_button_2.setEnabled(False)
+        self.groupBox_28 = QGroupBox(self.groupBox_21)
+        self.groupBox_28.setObjectName(u"groupBox_28")
+        self.groupBox_28.setEnabled(False)
+        self.horizontalLayout_33 = QHBoxLayout(self.groupBox_28)
+        self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
+        self.label_36 = QLabel(self.groupBox_28)
+        self.label_36.setObjectName(u"label_36")
+        self.label_36.setMinimumSize(QSize(150, 0))
 
-        self.gridLayout_8.addWidget(self.users_save_button_2, 4, 0, 1, 1)
+        self.horizontalLayout_33.addWidget(self.label_36)
 
-        self.groupBox_23 = QGroupBox(self.groupBox_21)
-        self.groupBox_23.setObjectName(u"groupBox_23")
-        self.groupBox_23.setEnabled(False)
-        self.horizontalLayout_26 = QHBoxLayout(self.groupBox_23)
-        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
-        self.label_22 = QLabel(self.groupBox_23)
-        self.label_22.setObjectName(u"label_22")
-        self.label_22.setMinimumSize(QSize(150, 0))
+        self.le_group_login = QLineEdit(self.groupBox_28)
+        self.le_group_login.setObjectName(u"le_group_login")
+        self.le_group_login.setEchoMode(QLineEdit.EchoMode.Normal)
 
-        self.horizontalLayout_26.addWidget(self.label_22)
-
-        self.le_group_password = QLineEdit(self.groupBox_23)
-        self.le_group_password.setObjectName(u"le_group_password")
-        self.le_group_password.setEchoMode(QLineEdit.EchoMode.Normal)
-
-        self.horizontalLayout_26.addWidget(self.le_group_password)
+        self.horizontalLayout_33.addWidget(self.le_group_login)
 
 
-        self.gridLayout_8.addWidget(self.groupBox_23, 3, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.groupBox_28, 3, 0, 1, 1)
+
+        self.groupBox_26 = QGroupBox(self.groupBox_21)
+        self.groupBox_26.setObjectName(u"groupBox_26")
+        self.horizontalLayout_29 = QHBoxLayout(self.groupBox_26)
+        self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
+        self.label_27 = QLabel(self.groupBox_26)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_29.addWidget(self.label_27)
+
+        self.le_group_ip = QLineEdit(self.groupBox_26)
+        self.le_group_ip.setObjectName(u"le_group_ip")
+
+        self.horizontalLayout_29.addWidget(self.le_group_ip)
+
+
+        self.gridLayout_8.addWidget(self.groupBox_26, 2, 0, 1, 1)
 
 
         self.gridLayout_15.addWidget(self.groupBox_21, 0, 0, 1, 1)
@@ -1325,19 +1343,22 @@ class Ui_MainWindow(object):
         self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.btn_group_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
         self.groupBox_21.setTitle("")
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"TCP \u043f\u043e\u0440\u0442", None))
-        self.le_group_port.setText("")
-        self.le_group_port.setPlaceholderText(QCoreApplication.translate("MainWindow", u"7501", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
-        self.le_group_login.setText("")
-        self.le_group_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.le_group_name.setText("")
-        self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
-        self.users_save_button_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.le_group_password.setText("")
         self.le_group_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.users_save_button_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"TCP \u043f\u043e\u0440\u0442", None))
+        self.le_group_port.setText("")
+        self.le_group_port.setPlaceholderText(QCoreApplication.translate("MainWindow", u"7501", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
+        self.le_group_name.setText("")
+        self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
+        self.le_group_login.setText("")
+        self.le_group_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"IP/Hostname", None))
+        self.le_group_ip.setText("")
+        self.le_group_ip.setPlaceholderText(QCoreApplication.translate("MainWindow", u"10.10.8.161", None))
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params), QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.groupBox_20.setTitle("")
         self.groupBox_22.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))

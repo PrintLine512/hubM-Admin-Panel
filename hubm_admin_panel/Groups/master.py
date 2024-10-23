@@ -59,6 +59,7 @@ class Groups:
         ui.btn_group_restart.clicked.connect(lambda: self.restart_selected(ui))
 
 
+
     def update_list(self, ui):
         print("Updating list")
         response = api_request(uri="servers", method="GET", request="full")
@@ -102,6 +103,7 @@ class Groups:
         ui.le_group_port.setText(str(group.tcp_port))
         ui.le_group_login.setText(group.login)
         ui.le_group_password.setText(group.password)
+        ui.le_group_ip.setText(group.ip)
 
     def restart_selected(self, ui: 'MainWindow'):
         dialog = QMessageBox.question(ui, 'Перезагрузка группы',

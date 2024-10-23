@@ -1158,6 +1158,51 @@
                <string/>
               </property>
               <layout class="QGridLayout" name="gridLayout_8">
+               <item row="4" column="0">
+                <widget class="QGroupBox" name="groupBox_23">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                  <item>
+                   <widget class="QLabel" name="label_22">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Пароль</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="le_group_password">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="echoMode">
+                     <enum>QLineEdit::EchoMode::Normal</enum>
+                    </property>
+                    <property name="placeholderText">
+                     <string>Password</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QPushButton" name="users_save_button_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Сохранить</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="0">
                 <widget class="QGroupBox" name="groupBox_25">
                  <layout class="QHBoxLayout" name="horizontalLayout_28">
@@ -1181,41 +1226,6 @@
                     </property>
                     <property name="placeholderText">
                      <string>7501</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QGroupBox" name="groupBox_28">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_33">
-                  <item>
-                   <widget class="QLabel" name="label_36">
-                    <property name="minimumSize">
-                     <size>
-                      <width>150</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string>Логин</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="le_group_login">
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="echoMode">
-                     <enum>QLineEdit::EchoMode::Normal</enum>
-                    </property>
-                    <property name="placeholderText">
-                     <string>Login</string>
                     </property>
                    </widget>
                   </item>
@@ -1251,24 +1261,14 @@
                  </layout>
                 </widget>
                </item>
-               <item row="4" column="0">
-                <widget class="QPushButton" name="users_save_button_2">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="text">
-                  <string>Сохранить</string>
-                 </property>
-                </widget>
-               </item>
                <item row="3" column="0">
-                <widget class="QGroupBox" name="groupBox_23">
+                <widget class="QGroupBox" name="groupBox_28">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_26">
+                 <layout class="QHBoxLayout" name="horizontalLayout_33">
                   <item>
-                   <widget class="QLabel" name="label_22">
+                   <widget class="QLabel" name="label_36">
                     <property name="minimumSize">
                      <size>
                       <width>150</width>
@@ -1276,12 +1276,12 @@
                      </size>
                     </property>
                     <property name="text">
-                     <string>Пароль</string>
+                     <string>Логин</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLineEdit" name="le_group_password">
+                   <widget class="QLineEdit" name="le_group_login">
                     <property name="text">
                      <string/>
                     </property>
@@ -1289,7 +1289,36 @@
                      <enum>QLineEdit::EchoMode::Normal</enum>
                     </property>
                     <property name="placeholderText">
-                     <string>Password</string>
+                     <string>Login</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="groupBox_26">
+                 <layout class="QHBoxLayout" name="horizontalLayout_29">
+                  <item>
+                   <widget class="QLabel" name="label_27">
+                    <property name="minimumSize">
+                     <size>
+                      <width>150</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>IP/Hostname</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="le_group_ip">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>10.10.8.161</string>
                     </property>
                    </widget>
                   </item>
