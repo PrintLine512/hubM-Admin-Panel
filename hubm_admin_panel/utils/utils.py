@@ -1,4 +1,5 @@
 import winreg
+
 import requests
 
 api_version = "v1"

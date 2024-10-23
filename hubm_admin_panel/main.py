@@ -1,21 +1,22 @@
 import json
 import logging
+import os
 import re
+import sys
 import traceback
 import winreg
-import sys
-import os
-import requests
+from urllib.request import urlopen
+
 import pandas as pd
+import qdarktheme
+import requests
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-
-import qdarktheme
-from PyQt6 import QtWidgets, QtGui
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox, QDialog
+from PySide6 import QtWidgets, QtGui
+from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtWidgets import (
+    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog
 )
 from rich.console import Console
 from rich.logging import RichHandler
@@ -28,7 +29,7 @@ from User.User import User
 from User.CreatePolicies import CreatePolicies
 from User.CreateUser import CreateUser
 from User.UserExport import UserExport
-from Groups.master import Groups, Group, group_search
+from Groups.master import Groups, group_search
 
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
@@ -85,6 +86,54 @@ def is_valid_ip(self, ip):
         return False
 
 
+class Downloader(QThread):
+
+    # Signal for the window to establish the maximum value
+    # of the progress bar.
+    setTotalProgress = Signal(int)
+    # Signal to increase the progress.
+    setCurrentProgress = Signal(int)
+    # Signal to be emitted when the file has been downloaded successfully.
+    succeeded = Signal()
+
+    def __init__(self, url, filename):
+        super().__init__()
+        self.url = url
+        self.filename = filename
+
+    def run(self):
+        #url = "https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe"
+        #filename = "python-3.7.2.exe"
+        readBytes = 0
+        chunkSize = 1024
+        # Open the URL address.
+        with urlopen(self.url) as r:
+            print(self.url)
+            # Tell the window the amount of bytes to be downloaded.
+            self.setTotalProgress.emit(int(r.info()["Content-Length"]))
+            with open(self.filename, "ab") as f:
+                while True:
+                    # Read a piece of the file we are downloading.
+                    chunk = r.read(chunkSize)
+                    # If the result is `None`, that means data is not
+                    # downloaded yet. Just keep waiting.
+                    if chunk is None:
+                        continue
+                    # If the result is an empty `bytes` instance, then
+                    # the file is complete.
+                    elif chunk == b"":
+                        break
+                    # Write into the local file the downloaded chunk.
+                    f.write(chunk)
+                    readBytes += chunkSize
+                    # Tell the window how many bytes we have received.
+                    self.setCurrentProgress.emit(readBytes)
+        # If this line is reached then no exception has ocurred in
+        # the previous lines.
+
+
+        self.succeeded.emit()
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, obj=None, **kwargs):
 
@@ -93,7 +142,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
 
-        icon = QtGui.QIcon(resource_path("res/icon.png"))
+        icon_path = resource_path("res/icon.png")
+        icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
         self.user = None
 
@@ -155,7 +205,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             traceback.print_exc(file=sys.stdout)
             print("-" * 60)
 
-
+    
 
     def win_user_create(self):
         win_create_user = CreateUser()
@@ -179,10 +229,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         username = self.user.name
 
+
         dialog = QMessageBox.question(self, 'Удалить пользователя',
                                    'Вы уверены что хотите удалить пользователя?',
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                   QMessageBox.StandardButton.Yes)
+                                   QMessageBox.StandardButton.No)
         if dialog == QMessageBox.StandardButton.Yes:
 
 
@@ -241,6 +292,45 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QMessageBox.information(self, 'О программе',
                                 f'Версия - {panel_version}\n'
                                 f'@PrintLine512')
+
+    def initDownload(self, url, filename):
+
+        pd = QProgressDialog("Operation in progress.", "Cancel", 0, 100)
+        #pd.canceled.connect(self.cancel)
+        # Run the download in a new thread.
+        self.downloader = Downloader(url, filename)
+
+        # Connect the signals which send information about the download
+        # progress with the proper methods of the progress bar.
+        self.downloader.setTotalProgress.connect(pd.setMaximum)
+        self.downloader.setCurrentProgress.connect(pd.setValue)
+        # Qt will invoke the `succeeded()` method when the file has been
+        # downloaded successfully and `downloadFinished()` when the
+        # child thread finishes.
+        self.downloader.succeeded.connect(lambda: self.progressBar.setValue(pd.maximum()))
+        self.downloader.finished.connect(lambda: self.downloadFinished(filename))
+        self.downloader.start()
+
+
+
+
+    def downloadSucceeded(self, pd):
+        # Set the progress at 100%.
+        self.progressBar.setValue(pd.maximum())
+
+    def downloadFinished(self, filename):
+        # Restore the button.
+        # Delete the thread when no longer needed.
+        dlg2 = QMessageBox.question(self, 'Обновление',
+                                    'Обновление успешно загружено.\nПерезапустить?',
+                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                    QMessageBox.StandardButton.Yes)
+        if dlg2 == QMessageBox.StandardButton.Yes:
+            os.startfile(filename)
+            sys.exit(0)
+        del self.downloader
+
+
     def check_version(self, startup):
         server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
         api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
@@ -596,14 +686,20 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
 
 
 
-app = QtWidgets.QApplication(sys.argv)
 
-qdarktheme.setup_theme()
+if False:
+    #from wow_style import Style
+    from apl_style import Style
+    from qtmodernredux6 import QtModernRedux
+    app = QtModernRedux.QApplication(sys.argv, style=Style)
+    window = QtModernRedux.wrap(Launch())
+    window.show()
 
-window = Launch()
+else:
+    app = QtWidgets.QApplication(sys.argv)
+    qdarktheme.setup_theme()
+    window = Launch()
+    window.show()
 
 
-#app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt6'))
-
-window.show()
 app.exec()

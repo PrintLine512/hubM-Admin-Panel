@@ -2,11 +2,12 @@ import json
 import sys
 import traceback
 
-from PyQt6 import QtWidgets
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QTableWidgetItem
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QTableWidgetItem
+from PySide6 import QtWidgets
 
 from utils.utils import api_request
+
 
 class Policy:
     def __init__(self, access, auth_method, ip, ips, timeout_session, until, usb_filter, otp_secret, password, server_name, kick, kickable):

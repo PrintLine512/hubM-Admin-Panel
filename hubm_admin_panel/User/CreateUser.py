@@ -1,8 +1,11 @@
-from PyQt6.QtWidgets import QDialog
-from PyQt6 import QtWidgets, QtGui
-from ui.ui_new_user import Ui_win_new_user
-from re import match as re_match
 import os
+from re import match as re_match
+
+from PySide6 import QtWidgets, QtGui
+from PySide6.QtWidgets import QDialog
+
+from ui.ui_new_user import Ui_win_new_user
+
 
 def resource_path(relative):
     return os.path.join(

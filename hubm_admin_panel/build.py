@@ -1,11 +1,11 @@
-import os
-#import shutil
-import subprocess
 import argparse
+import os
+# import shutil
+import subprocess
 import tomllib
-from xml.sax.expatreader import version
 
 import PyInstaller.__main__
+
 from hubm_admin_panel.ui.convert import convert
 
 nsis_path = "C:\\Program Files (x86)\\NSIS"
@@ -50,7 +50,7 @@ def main(reconvert_ui, installer):
         f'--distpath={dist_path}',
         f'--workpath={work_path}',
         f'--specpath={work_path}',
-        '--exclude-module=PySide6',
+        '--exclude-module=PyQt6',
         '--exclude-module=PyQt5',
         '--contents-directory=.',
         f'{main_path}'

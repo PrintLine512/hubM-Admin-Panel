@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0" idbasedtr="true">
+<ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1189</width>
-    <height>718</height>
+    <width>1175</width>
+    <height>732</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -45,13 +45,13 @@
    </size>
   </property>
   <property name="toolButtonStyle">
-   <enum>Qt::ToolButtonIconOnly</enum>
+   <enum>Qt::ToolButtonStyle::ToolButtonIconOnly</enum>
   </property>
   <property name="documentMode">
    <bool>false</bool>
   </property>
   <property name="tabShape">
-   <enum>QTabWidget::Rounded</enum>
+   <enum>QTabWidget::TabShape::Rounded</enum>
   </property>
   <property name="dockNestingEnabled">
    <bool>false</bool>
@@ -60,8 +60,8 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_7">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_11">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabs_general">
       <property name="enabled">
        <bool>true</bool>
@@ -73,13 +73,13 @@
        </sizepolicy>
       </property>
       <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
+       <enum>QTabWidget::TabPosition::North</enum>
       </property>
       <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
+       <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -156,7 +156,7 @@
            </sizepolicy>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
@@ -330,7 +330,7 @@
                          <string/>
                         </property>
                         <property name="echoMode">
-                         <enum>QLineEdit::PasswordEchoOnEdit</enum>
+                         <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
                         </property>
                         <property name="placeholderText">
                          <string>MyTopP@ssw0rd</string>
@@ -486,19 +486,19 @@
                          </size>
                         </property>
                         <property name="layoutDirection">
-                         <enum>Qt::LeftToRight</enum>
+                         <enum>Qt::LayoutDirection::LeftToRight</enum>
                         </property>
                         <property name="text">
                          <string>Статус</string>
                         </property>
                         <property name="textFormat">
-                         <enum>Qt::AutoText</enum>
+                         <enum>Qt::TextFormat::AutoText</enum>
                         </property>
                         <property name="scaledContents">
                          <bool>true</bool>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -757,6 +757,9 @@
            </layout>
           </widget>
           <widget class="QWidget" name="users_tab_usb_policices">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <attribute name="title">
             <string>Политики USB-портов</string>
            </attribute>
@@ -814,6 +817,9 @@
            </layout>
           </widget>
           <widget class="QWidget" name="tab">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <attribute name="title">
             <string>Активность</string>
            </attribute>
@@ -847,7 +853,16 @@
              <item>
               <widget class="QPushButton" name="btn_refresh_users_tab">
                <property name="text">
-                <string>Обновить</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -973,7 +988,13 @@
              <item>
               <widget class="QPushButton" name="btn_refresh_groups_tab">
                <property name="text">
-                <string>Обновить</string>
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
+               </property>
+               <property name="flat">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -1017,6 +1038,9 @@
            </item>
            <item>
             <widget class="QGroupBox" name="groupBox_13">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="title">
               <string>Изменить представление</string>
              </property>
@@ -1046,13 +1070,25 @@
              <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
                <widget class="QPushButton" name="btn_group_new">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Новая группа</string>
+                </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="btn_group_delete">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Удалить группу</string>
                 </property>
@@ -1063,10 +1099,19 @@
                 <property name="text">
                  <string>Перезагрузить группу</string>
                 </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="btn_group_export">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Экспорт</string>
                 </property>
@@ -1080,6 +1125,9 @@
         </item>
         <item row="0" column="1">
          <widget class="QTabWidget" name="tabs_group">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="currentIndex">
            <number>0</number>
           </property>
@@ -1091,10 +1139,10 @@
             <item row="1" column="0">
              <widget class="QFrame" name="frame_2">
               <property name="frameShape">
-               <enum>QFrame::StyledPanel</enum>
+               <enum>QFrame::Shape::StyledPanel</enum>
               </property>
               <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
+               <enum>QFrame::Shadow::Raised</enum>
               </property>
              </widget>
             </item>
@@ -1164,7 +1212,7 @@
                      <string/>
                     </property>
                     <property name="echoMode">
-                     <enum>QLineEdit::Normal</enum>
+                     <enum>QLineEdit::EchoMode::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Login</string>
@@ -1205,6 +1253,9 @@
                </item>
                <item row="4" column="0">
                 <widget class="QPushButton" name="users_save_button_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Сохранить</string>
                  </property>
@@ -1235,7 +1286,7 @@
                      <string/>
                     </property>
                     <property name="echoMode">
-                     <enum>QLineEdit::Normal</enum>
+                     <enum>QLineEdit::EchoMode::Normal</enum>
                     </property>
                     <property name="placeholderText">
                      <string>Password</string>
@@ -1251,14 +1302,77 @@
            </layout>
           </widget>
           <widget class="QWidget" name="tab_group_usb">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <attribute name="title">
             <string>USB-порты</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_24">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_20">
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_23">
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_22">
+                 <property name="title">
+                  <string>Взаимодействие</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <widget class="QPushButton" name="pushButton_6">
+                    <property name="text">
+                     <string>Добавить порт</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="pushButton_4">
+                    <property name="text">
+                     <string>Удалить порт</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QListWidget" name="listWidget">
+                 <property name="sortingEnabled">
+                  <bool>true</bool>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>УнРег2</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>УнРег1</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Смарт Ахтямов</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="tab_group_access">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <attribute name="title">
             <string>Доступы</string>
            </attribute>
+           <layout class="QGridLayout" name="gridLayout_25"/>
           </widget>
          </widget>
         </item>
@@ -1429,7 +1543,7 @@
                </size>
               </property>
               <property name="contextMenuPolicy">
-               <enum>Qt::DefaultContextMenu</enum>
+               <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
               </property>
               <property name="acceptDrops">
                <bool>false</bool>
@@ -1438,7 +1552,7 @@
                <string/>
               </property>
               <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
               </property>
               <property name="flat">
                <bool>false</bool>
@@ -1913,7 +2027,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1189</width>
+     <width>1175</width>
      <height>22</height>
     </rect>
    </property>

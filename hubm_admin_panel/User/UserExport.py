@@ -1,7 +1,10 @@
-from PyQt6.QtWidgets import QDialog
-from PyQt6 import QtGui
-from ui.ui_user_export import Ui_win_user_export
 import os
+
+from PySide6 import QtGui
+from PySide6.QtWidgets import QDialog
+
+from ui.ui_user_export import Ui_win_user_export
+
 
 def resource_path(relative):
     return os.path.join(

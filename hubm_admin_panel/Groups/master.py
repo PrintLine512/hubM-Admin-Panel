@@ -1,13 +1,13 @@
 import json
 import os
+from typing import TYPE_CHECKING
 
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QTableWidgetItem, QTreeWidgetItem
-from pandas.core.sorting import get_group_index
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import (
+    QTreeWidgetItem, QMessageBox
+)
 
 from utils.utils import api_request
-
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from main import MainWindow
@@ -51,21 +51,22 @@ def group_search(ui: 'MainWindow'):
         #    self.clear_user_info()
 
 class Groups:
-    def __init__(self, ui):
+    def __init__(self, ui: 'MainWindow'):
         self.groups = []
-        self.update_list()
+        self.update_list(ui)
         self.render_groups(ui)
         ui.list_groups.itemSelectionChanged.connect(lambda: Groups.render_group(self, ui))
+        ui.btn_group_restart.clicked.connect(lambda: self.restart_selected(ui))
 
 
-    def update_list(self):
+    def update_list(self, ui):
         print("Updating list")
         response = api_request(uri="servers", method="GET", request="full")
         if response.status_code == 200:
             groups = json.loads(response.text)['servers']
+            print(groups)
 
             for group in groups:
-                print(group)
                 new_group = Group(
                     id=group["id"],
                     ip=group["ip"],
@@ -73,8 +74,13 @@ class Groups:
                     login=group["login"],
                     name=group["name"],
                     tcp_port=group["tcp_port"],
+                    password=group["password"]
                 )
                 self.groups.append(new_group)
+        else:
+            QMessageBox.critical(ui, "Ошибка",
+                                 f"Ошибка: {response.status_code}"
+                                 f"\n{response.text}")
 
     def render_groups(self, ui: 'MainWindow'):
         ui.list_groups.clear()
@@ -95,6 +101,25 @@ class Groups:
         ui.le_group_name.setText(group.name)
         ui.le_group_port.setText(str(group.tcp_port))
         ui.le_group_login.setText(group.login)
+        ui.le_group_password.setText(group.password)
+
+    def restart_selected(self, ui: 'MainWindow'):
+        dialog = QMessageBox.question(ui, 'Перезагрузка группы',
+                                   'Вы уверены что хотите перезагрузить группу?',
+                                   QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                   QMessageBox.StandardButton.Yes)
+
+        if dialog == QMessageBox.StandardButton.Yes:
+            group = self.get_group(ui.list_groups.currentItem().text(0))
+            response = group.restart()
+
+            if response.status_code == 200:
+                QMessageBox.information(ui, 'Перезагрузка группы',
+                                        f'Запрос на перезагрузку отправлен.')
+            else:
+                QMessageBox.critical(ui, 'Перезагрузка группы',
+                                     f"Ошибка: {response.status_code}"
+                                     f"\n{response.text}")
 
 
 
@@ -105,10 +130,15 @@ class Groups:
 
 
 class Group:
-    def __init__(self, id, ip, ip_check, login, name, tcp_port):
+    def __init__(self, id, ip, ip_check, login, name, tcp_port, password):
         self.id = id
         self.ip = ip
         self.ip_check = ip_check
         self.login = login
         self.name = name
         self.tcp_port = tcp_port
+        self.password = password
+
+    def restart(self):
+        response = api_request(uri=f"servers/{self.name}/restart", request="full")
+        return response
