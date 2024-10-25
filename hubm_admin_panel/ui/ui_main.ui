@@ -79,7 +79,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -87,8 +87,11 @@
       <property name="tabsClosable">
        <bool>false</bool>
       </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
       <property name="tabBarAutoHide">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <widget class="QWidget" name="tab_dashboard">
        <property name="acceptDrops">
@@ -114,6 +117,32 @@
                <property name="title">
                 <string/>
                </property>
+               <layout class="QGridLayout" name="gridLayout_26">
+                <item row="1" column="1">
+                 <widget class="QPushButton" name="DevButton2">
+                  <property name="text">
+                   <string>DevButton2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QPushButton" name="DevButton1">
+                  <property name="text">
+                   <string>DevButton1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QFrame" name="frame_3">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
@@ -155,13 +184,22 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="tabShape">
+           <enum>QTabWidget::TabShape::Rounded</enum>
+          </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
           </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
           <property name="movable">
+           <bool>false</bool>
+          </property>
+          <property name="tabBarAutoHide">
            <bool>false</bool>
           </property>
           <widget class="QWidget" name="users_tab_info">
@@ -913,6 +951,11 @@
                <string>Системное имя</string>
               </property>
              </column>
+             <item>
+              <property name="text">
+               <string>Новый элемент</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item>
@@ -1008,7 +1051,16 @@
              <property name="tabKeyNavigation">
               <bool>true</bool>
              </property>
+             <property name="showDropIndicator" stdset="0">
+              <bool>true</bool>
+             </property>
+             <property name="rootIsDecorated">
+              <bool>false</bool>
+             </property>
              <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <property name="animated">
               <bool>true</bool>
              </property>
              <attribute name="headerShowSortIndicator" stdset="0">

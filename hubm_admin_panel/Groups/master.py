@@ -1,5 +1,6 @@
 import json
 import os
+import weakref
 from typing import TYPE_CHECKING
 
 from PySide6.QtCore import Qt
@@ -53,20 +54,28 @@ def group_search(ui: 'MainWindow'):
 class Groups:
     def __init__(self, ui: 'MainWindow'):
         self.groups = []
-        self.update_list(ui)
-        self.render_groups(ui)
+        #self.update_list(ui)
+        #self.render_groups(ui)
         ui.list_groups.itemSelectionChanged.connect(lambda: Groups.render_group(self, ui))
         ui.btn_group_restart.clicked.connect(lambda: self.restart_selected(ui))
+        ui.btn_refresh_groups_tab.clicked.connect(lambda: self.refresh(ui))
 
 
+
+
+    def __del__(self):
+        print(f"{__class__} del")
+
+    def refresh(self, ui: 'MainWindow'):
+        self.update_list(ui)
+        self.render_groups(ui)
 
     def update_list(self, ui):
         print("Updating list")
         response = api_request(uri="servers", method="GET", request="full")
         if response.status_code == 200:
             groups = json.loads(response.text)['servers']
-            print(groups)
-
+            self.groups = []
             for group in groups:
                 new_group = Group(
                     id=group["id"],
@@ -84,7 +93,9 @@ class Groups:
                                  f"\n{response.text}")
 
     def render_groups(self, ui: 'MainWindow'):
+        print("Render groups")
         ui.list_groups.clear()
+
         items = []
         for group in self.groups:
             item = QTreeWidgetItem([group.name])
@@ -97,7 +108,7 @@ class Groups:
         ui.le_group_port.clear()
         ui.le_group_login.clear()
         ui.le_group_password.clear()
-        #group_selection = ui.list_groups.currentItem()
+        ui.le_group_ip.clear()
         group = self.get_group(ui.list_groups.currentItem().text(0))
         ui.le_group_name.setText(group.name)
         ui.le_group_port.setText(str(group.tcp_port))
@@ -106,12 +117,17 @@ class Groups:
         ui.le_group_ip.setText(group.ip)
 
     def restart_selected(self, ui: 'MainWindow'):
+        if not ui.list_groups.currentItem():
+            QMessageBox.information(ui, 'Перезагрузка группы',
+                                    f'Сначала выберите группу!')
+            return
         dialog = QMessageBox.question(ui, 'Перезагрузка группы',
                                    'Вы уверены что хотите перезагрузить группу?',
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                    QMessageBox.StandardButton.Yes)
 
         if dialog == QMessageBox.StandardButton.Yes:
+
             group = self.get_group(ui.list_groups.currentItem().text(0))
             response = group.restart()
 

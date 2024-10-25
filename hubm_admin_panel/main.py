@@ -1,3 +1,4 @@
+import gc
 import json
 import logging
 import os
@@ -38,7 +39,7 @@ reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 
 console = Console()
 
-log_file = open("C:\\Users\\mv.alekseev\\Documents\\projects\\hubM Admin Panel\\log2.log", "a")
+log_file = open("log2.log", "a")
 console_file = Console(force_terminal=False, file=log_file)
 
 install(show_locals=True, console=console, width=300, code_width=288, extra_lines=5, locals_max_length=2000,
@@ -135,18 +136,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         super(MainWindow, self).__init__(*args, **kwargs)
 
+
         self.setupUi(self)
 
         icon_path = resource_path("res/icon.png")
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
         self.user = None
+        #self.groups = None
+        self.groups = Groups(self)
 
         # self.tbl_user_policies = PolicyTableWidget(parent=self.users_tab_group_policies)
         # self.tbl_user_policies = QtWidgets.QTableWidget(parent=self.users_tab_group_policies)
 
         ### Connections
-        self.tabs_general.tabBarClicked.connect(self.tabs_general_clicked)
+        self.tabs_general.currentChanged.connect(self.tabs_general_clicked)
         self.tabs_group.tabBarClicked.connect(self.tabs_group_clicked)
         self.tabs_users.tabBarClicked.connect(self.tabs_users_clicked)
         self.tabs_ports.tabBarClicked.connect(self.tabs_ports_clicked)
@@ -159,17 +163,27 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_user_export.clicked.connect(self.win_user_export)
         self.btn_user_delete.clicked.connect(self.user_delete)
         self.btn_refresh_users_tab.clicked.connect(self.get_list_users)
-        self.btn_refresh_groups_tab.clicked.connect(self.group_init)
+        #self.btn_refresh_groups_tab.clicked.connect(self.group_init)
         self.btn_user_create.clicked.connect(self.win_user_create)
         self.btn_about_program.triggered.connect(self.win_about_program)
         self.btn_check_update.triggered.connect(lambda: self.check_version(False))
-        # self.btn_group_restart.clicked.connect()
+        self.DevButton1.clicked.connect(self.get_class)
+        self.DevButton2.clicked.connect(self.get_class2)
+        #self.list_groups.itemSelectionChanged.connect(self.group_render)
+        #self.btn_group_restart.clicked.connect(self.group_restart)
         ###
 
         self.list_users.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
         self.check_version(startup=True)
+
+    def group_restart(self):
+        self.groups.restart_selected(self)
+
+    def group_render(self):
+        print("2112")
+        self.groups.render_groups(self)
 
     def save_user_params(self):
         try:
@@ -346,7 +360,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                                     QMessageBox.StandardButton.Yes)
                         if dlg2 == QMessageBox.StandardButton.Yes:
                             os.startfile(directory[ 0 ])
-                            sys.exit(0)
+                            print("Exit")
+
+                            #sys.exit()
                     else:
                         print('Ошибка при скачивании файла:', response.status_code)
                 else:
@@ -357,20 +373,53 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 QMessageBox.information(self, 'Информация',
                                         f'Обновление не требуется.\n'
                                         f'Последняя версия - {actual_version}.')
+
+
+    def get_class(self):
+        try:
+            all_objects = [ obj for obj in gc.get_objects() if isinstance(obj, Groups) ]
+            for obj in all_objects:
+                print(obj.__class__)
+                refs = gc.get_referrers(obj)
+                print(refs)
+                print(refs.__class__)
+                print(refs.__class__.__name__)
+        except:
+            pass
+
+    def get_class2(self):
+        try:
+            all_objects = [ obj for obj in gc.get_objects() if isinstance(obj, User) ]
+            for obj in all_objects:
+                print(obj.__class__)
+                refs = gc.get_referrers(obj)
+                print(refs)
+                print(refs.__class__)
+                print(refs.__class__.__name__)
+        except:
+            pass
+        
     def group_init(self):
-        groups = Groups(self)
+        #if self.groups is not None:
+        #    print("DELETE")
+        #    del self.groups
+        #self.groups = Groups(self)
+        self.groups.render_groups(self)
 
     def tabs_general_clicked(self, index):
         match index:
             case 0:
                 print("Дэшборд")
+                #print(self.tabs_general.currentWidget().objectName())
             case 1:
                 print("Пользователи")
+                #print(self.tabs_general.currentWidget().objectName())
                 self.clear_user_info()
                 self.get_list_users()
             case 2:
                 print("Группы")
-                self.group_init()
+                #print(self.tabs_general.currentWidget().objectName())
+                self.groups.refresh(self)
             case 3:
                 print("Порты")
             case 4:
@@ -665,19 +714,10 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
             QMessageBox.critical(self, "Ошибка", "Проверьте сетевое соединение!")
 
 
-if False:
-    # from wow_style import Style
-    from apl_style import Style
-    from qtmodernredux6 import QtModernRedux
 
-    app = QtModernRedux.QApplication(sys.argv, style=Style)
-    window = QtModernRedux.wrap(Launch())
-    window.show()
-
-else:
-    app = QtWidgets.QApplication(sys.argv)
-    qdarktheme.setup_theme()
-    window = Launch()
-    window.show()
+app = QtWidgets.QApplication(sys.argv)
+qdarktheme.setup_theme()
+window = Launch()
+window.show()
 
 app.exec()

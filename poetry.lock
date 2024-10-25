@@ -566,20 +566,6 @@ files = [
 ]
 
 [[package]]
-name = "qtmodernredux6"
-version = "0.9.15"
-description = "a modern UI style for Python 3.x / PySide6 applications"
-optional = false
-python-versions = ">=3.9.4"
-files = [
-    {file = "QtModernRedux6-0.9.15-py3-none-any.whl", hash = "sha256:ccd44e7081d338534f95bb5988694ee9df77eb91b892aadc24759e6bbe438fb6"},
-    {file = "QtModernRedux6-0.9.15.tar.gz", hash = "sha256:1c871f69177004c897d2a08dde9b38c723dbcf4efbc252e810489d80dcf78e39"},
-]
-
-[package.dependencies]
-PySide6 = ">=6.3.0"
-
-[[package]]
 name = "requests"
 version = "2.32.3"
 description = "Python HTTP for Humans."
@@ -693,4 +679,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "~3.11"
-content-hash = "7a87b419c7aefdcfb3070e50a8f03201a4d4903f1804c84bcbac9787ab9d9e5e"
+content-hash = "ada1950bbb779bbb49642a8b56f35fc6cda5d0fac23bde132ba51be619c1e12b"

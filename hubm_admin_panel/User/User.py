@@ -104,6 +104,7 @@ class User:
         self.__init_group_policies__(user)
 
 
+
     def __init_group_policies__(self, user):
         response = api_request(f"users/{user}/policies", request="full")
         try:
