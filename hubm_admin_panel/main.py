@@ -84,6 +84,54 @@ def is_valid_ip(self, ip):
         return False
 
 
+def check_version(ui: "QtWidgets.QMainWindow", startup):
+    server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
+    api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
+    url = f"http://{server}:{api_port}/download/check-version"
+    response = requests.get(url)
+    actual_version = response.text
+    if actual_version > panel_version:
+
+        dlg = QMessageBox.question(ui, 'Проверка обновления',
+                                   f'Обнаружена новая версия {actual_version}.\nСкачать?',
+                                   QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                   QMessageBox.StandardButton.Yes)
+        if dlg == QMessageBox.StandardButton.Yes:
+            download_path = os.path.join(os.path.expanduser("~"), "Downloads", "hubM Admin Panel Installer.exe")
+            directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
+
+            if directory[ 0 ]:
+                url = f"http://{server}:{api_port}/download/latest"
+                response = requests.get(url)
+                total_size = int(response.headers.get('content-length', 0))
+                print(total_size)
+                if response.status_code == 200:
+                    # Сохраняем содержимое файла
+                    with open(directory[ 0 ], 'wb') as f:
+                        f.write(response.content)
+                    dlg2 = QMessageBox.question(ui, 'Обновление',
+                                                'Обновление успешно загружено.\nПерезапустить?',
+                                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                                QMessageBox.StandardButton.Yes)
+                    if dlg2 == QMessageBox.StandardButton.Yes:
+                        os.startfile(directory[ 0 ])
+                        print("Exit")
+
+                        ui.close()
+                        sys.exit()
+
+                else:
+                    print('Ошибка при скачивании файла:', response.status_code)
+            else:
+                QMessageBox.critical(ui, 'Ошибка',
+                                     'Некорректный путь. Загрузка отменена.')
+    else:
+        if not startup:
+            QMessageBox.information(ui, 'Информация',
+                                    f'Обновление не требуется.\n'
+                                    f'Последняя версия - {actual_version}.')
+
+
 class Downloader(QThread):
     # Signal for the window to establish the maximum value
     # of the progress bar.
@@ -166,7 +214,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.btn_refresh_groups_tab.clicked.connect(self.group_init)
         self.btn_user_create.clicked.connect(self.win_user_create)
         self.btn_about_program.triggered.connect(self.win_about_program)
-        self.btn_check_update.triggered.connect(lambda: self.check_version(False))
+        self.btn_check_update.triggered.connect(lambda: check_version(self, False))
         self.DevButton1.clicked.connect(self.get_class)
         self.DevButton2.clicked.connect(self.get_class2)
         #self.list_groups.itemSelectionChanged.connect(self.group_render)
@@ -176,7 +224,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_users.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
-        self.check_version(startup=True)
+
 
     def group_restart(self):
         self.groups.restart_selected(self)
@@ -329,51 +377,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             os.startfile(filename)
             sys.exit(0)
         del self.downloader
-
-    def check_version(self, startup):
-        server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
-        api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
-        url = f"http://{server}:{api_port}/download/check-version"
-        response = requests.get(url)
-        actual_version = response.text
-        if actual_version > panel_version:
-
-            dlg = QMessageBox.question(self, 'Проверка обновления',
-                                       'Обнаружена новая версия.\nСкачать?',
-                                       QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                       QMessageBox.StandardButton.Yes)
-            if dlg == QMessageBox.StandardButton.Yes:
-                directory = QtWidgets.QFileDialog.getSaveFileName(self, "Выберите папку",
-                                                                  "hubM Admin Panel Installer.exe")
-                if directory[ 0 ]:
-                    url = f"http://{server}:{api_port}/download/latest"
-                    response = requests.get(url)
-                    total_size = int(response.headers.get('content-length', 0))
-                    print(total_size)
-                    if response.status_code == 200:
-                        # Сохраняем содержимое файла
-                        with open(directory[ 0 ], 'wb') as f:
-                            f.write(response.content)
-                        dlg2 = QMessageBox.question(self, 'Обновление',
-                                                    'Обновление успешно загружено.\nПерезапустить?',
-                                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                                    QMessageBox.StandardButton.Yes)
-                        if dlg2 == QMessageBox.StandardButton.Yes:
-                            os.startfile(directory[ 0 ])
-                            print("Exit")
-
-                            #sys.exit()
-                    else:
-                        print('Ошибка при скачивании файла:', response.status_code)
-                else:
-                    QMessageBox.critical(self, 'Ошибка',
-                                         'Некорректный путь. Загрузка отменена.')
-        else:
-            if not startup:
-                QMessageBox.information(self, 'Информация',
-                                        f'Обновление не требуется.\n'
-                                        f'Последняя версия - {actual_version}.')
-
 
     def get_class(self):
         try:
@@ -650,15 +653,17 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
     def __init__(self, *args, obj=None, **kwargs):
         super(Launch, self).__init__(*args, **kwargs)
         self.setupUi(self)
+        icon = QtGui.QIcon(resource_path("res/icon.png"))
+        self.setWindowIcon(icon)
 
         reg_address_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
         reg_tcp_port_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
         reg_token_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_token")
+
+
         self.le_address.setText(reg_address_value)
         self.le_tcp_port.setText(reg_tcp_port_value)
         self.le_token.setText(reg_token_value)
-        icon = QtGui.QIcon(resource_path("res/icon.png"))
-        self.setWindowIcon(icon)
 
         self.btn_connect.clicked.connect(self.to_connect)
         self.le_address.returnPressed.connect(self.to_connect)
@@ -719,5 +724,6 @@ app = QtWidgets.QApplication(sys.argv)
 qdarktheme.setup_theme()
 window = Launch()
 window.show()
+check_version(window, True)
 
 app.exec()

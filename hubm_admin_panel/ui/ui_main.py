@@ -1214,8 +1214,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(2)
-        self.tabs_users.setCurrentIndex(2)
+        self.tabs_general.setCurrentIndex(0)
+        self.tabs_users.setCurrentIndex(0)
         self.btn_user_save_params.setDefault(False)
         self.btn_refresh_users_tab.setDefault(False)
         self.tabs_group.setCurrentIndex(0)
