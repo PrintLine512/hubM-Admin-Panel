@@ -78,7 +78,8 @@ class CheckBoxWidget(QtWidgets.QWidget):
 
 class User:
     def __init__(self, user):
-        user_data_raw = api_request(f"users/{user}")
+        self.user = user
+        user_data_raw = api_request(f"users/{self.user}")
         user_data = json.loads(user_data_raw)
         self.active = user_data.get("active")
         self.cn = user_data.get("cn")
@@ -99,14 +100,13 @@ class User:
             "tg_id": self.tg_id,
             "active": self.active,
         }
-
         self.group_policies = []
-        self.__init_group_policies__(user)
+        self.__init_group_policies__()
 
 
 
-    def __init_group_policies__(self, user):
-        response = api_request(f"users/{user}/policies", request="full")
+    def __init_group_policies__(self):
+        response = api_request(f"users/{self.user}/policies", request="full")
         try:
             if response.status_code == 200:
 

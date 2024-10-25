@@ -21,8 +21,8 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0" colspan="2">
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
-        <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
          <widget class="QGroupBox" name="groupBox">
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
@@ -44,13 +44,19 @@
              </property>
             </widget>
            </item>
-           <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
+           <item>
             <widget class="QCheckBox" name="cb_enable_group_policies">
              <property name="enabled">
-              <bool>false</bool>
+              <bool>true</bool>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>16777215</height>
+              </size>
              </property>
              <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
+              <enum>Qt::LayoutDirection::RightToLeft</enum>
              </property>
              <property name="text">
               <string/>
@@ -63,7 +69,7 @@
           </layout>
          </widget>
         </item>
-        <item>
+        <item row="1" column="0">
          <widget class="QGroupBox" name="groupBox_4">
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
@@ -79,16 +85,25 @@
              </property>
             </widget>
            </item>
-           <item alignment="Qt::AlignLeft">
+           <item>
             <widget class="QCheckBox" name="cb_enable_usb_policies">
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
+              <enum>Qt::LayoutDirection::RightToLeft</enum>
              </property>
              <property name="text">
               <string/>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
              </property>
              <property name="checked">
               <bool>false</bool>
@@ -103,10 +118,10 @@
       <item row="1" column="1">
        <widget class="QDialogButtonBox" name="btns">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="standardButtons">
-         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
         </property>
         <property name="centerButtons">
          <bool>false</bool>

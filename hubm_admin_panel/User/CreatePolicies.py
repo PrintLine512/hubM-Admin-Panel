@@ -77,6 +77,7 @@ class CreatePolicies(QDialog):
             "auth_method": self.ui.le_authmethod.text() if self.ui.le_authmethod.text().strip() else None,
             "password": self.ui.le_pass.text() if self.ui.le_pass.text().strip() else None,
             "permit_login": self.ui.cb_permit_login.isChecked(),
+            "usb_filter": self.ui.cb_usb_filter.isChecked(),
             "can_kick": self.ui.cb_can_kick.isChecked(),
             "kickable": self.ui.cb_kickable.isChecked(),
             "until": self.ui.le_until.text() if self.ui.le_until.text().strip() else None

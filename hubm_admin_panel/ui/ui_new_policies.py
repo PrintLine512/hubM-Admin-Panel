@@ -16,13 +16,20 @@ class Ui_win_new_policies(object):
     def setupUi(self, win_new_policies):
         if not win_new_policies.objectName():
             win_new_policies.setObjectName(u"win_new_policies")
-        win_new_policies.resize(400, 472)
+        win_new_policies.resize(400, 514)
         self.gridLayout = QGridLayout(win_new_policies)
         self.gridLayout.setObjectName(u"gridLayout")
         self.groupBox_6 = QGroupBox(win_new_policies)
         self.groupBox_6.setObjectName(u"groupBox_6")
         self.gridLayout_2 = QGridLayout(self.groupBox_6)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.btns = QDialogButtonBox(self.groupBox_6)
+        self.btns.setObjectName(u"btns")
+        self.btns.setOrientation(Qt.Orientation.Horizontal)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Save)
+
+        self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)
+
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.groupBox_7 = QGroupBox(self.groupBox_6)
@@ -63,7 +70,7 @@ class Ui_win_new_policies(object):
 
         self.cb_access = QCheckBox(self.groupBox)
         self.cb_access.setObjectName(u"cb_access")
-        self.cb_access.setLayoutDirection(Qt.RightToLeft)
+        self.cb_access.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.cb_access.setChecked(True)
 
         self.horizontalLayout.addWidget(self.cb_access)
@@ -86,7 +93,7 @@ class Ui_win_new_policies(object):
 
         self.le_ip = QLineEdit(self.groupBox_2)
         self.le_ip.setObjectName(u"le_ip")
-        self.le_ip.setLayoutDirection(Qt.LeftToRight)
+        self.le_ip.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.le_ip.setDragEnabled(False)
         self.le_ip.setReadOnly(False)
 
@@ -94,28 +101,6 @@ class Ui_win_new_policies(object):
 
 
         self.verticalLayout.addWidget(self.groupBox_2)
-
-        self.groupBox_3 = QGroupBox(self.groupBox_6)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.horizontalLayout_4 = QHBoxLayout(self.groupBox_3)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_11 = QLabel(self.groupBox_3)
-        self.label_11.setObjectName(u"label_11")
-        sizePolicy.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
-        self.label_11.setSizePolicy(sizePolicy)
-        self.label_11.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_4.addWidget(self.label_11)
-
-        self.le_authmethod = QSpinBox(self.groupBox_3)
-        self.le_authmethod.setObjectName(u"le_authmethod")
-        self.le_authmethod.setMaximum(6)
-        self.le_authmethod.setValue(4)
-
-        self.horizontalLayout_4.addWidget(self.le_authmethod)
-
-
-        self.verticalLayout.addWidget(self.groupBox_3)
 
         self.groupBox_43 = QGroupBox(self.groupBox_6)
         self.groupBox_43.setObjectName(u"groupBox_43")
@@ -131,32 +116,32 @@ class Ui_win_new_policies(object):
 
         self.le_pass = QLineEdit(self.groupBox_43)
         self.le_pass.setObjectName(u"le_pass")
-        self.le_pass.setEchoMode(QLineEdit.PasswordEchoOnEdit)
+        self.le_pass.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
         self.horizontalLayout_56.addWidget(self.le_pass)
 
 
         self.verticalLayout.addWidget(self.groupBox_43)
 
-        self.groupBox_4 = QGroupBox(self.groupBox_6)
-        self.groupBox_4.setObjectName(u"groupBox_4")
-        self.horizontalLayout_5 = QHBoxLayout(self.groupBox_4)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_12 = QLabel(self.groupBox_4)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setMinimumSize(QSize(150, 0))
+        self.groupBox_8 = QGroupBox(self.groupBox_6)
+        self.groupBox_8.setObjectName(u"groupBox_8")
+        self.horizontalLayout_7 = QHBoxLayout(self.groupBox_8)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.label_13 = QLabel(self.groupBox_8)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_5.addWidget(self.label_12)
+        self.horizontalLayout_7.addWidget(self.label_13)
 
-        self.cb_permit_login = QCheckBox(self.groupBox_4)
-        self.cb_permit_login.setObjectName(u"cb_permit_login")
-        self.cb_permit_login.setLayoutDirection(Qt.RightToLeft)
-        self.cb_permit_login.setChecked(False)
+        self.cb_usb_filter = QCheckBox(self.groupBox_8)
+        self.cb_usb_filter.setObjectName(u"cb_usb_filter")
+        self.cb_usb_filter.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.cb_usb_filter.setChecked(True)
 
-        self.horizontalLayout_5.addWidget(self.cb_permit_login)
+        self.horizontalLayout_7.addWidget(self.cb_usb_filter)
 
 
-        self.verticalLayout.addWidget(self.groupBox_4)
+        self.verticalLayout.addWidget(self.groupBox_8)
 
         self.groupBox_5 = QGroupBox(self.groupBox_6)
         self.groupBox_5.setObjectName(u"groupBox_5")
@@ -170,7 +155,7 @@ class Ui_win_new_policies(object):
 
         self.cb_can_kick = QCheckBox(self.groupBox_5)
         self.cb_can_kick.setObjectName(u"cb_can_kick")
-        self.cb_can_kick.setLayoutDirection(Qt.RightToLeft)
+        self.cb_can_kick.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.cb_can_kick.setCheckable(True)
         self.cb_can_kick.setChecked(False)
 
@@ -191,7 +176,7 @@ class Ui_win_new_policies(object):
 
         self.cb_kickable = QCheckBox(self.groupBox_34)
         self.cb_kickable.setObjectName(u"cb_kickable")
-        self.cb_kickable.setLayoutDirection(Qt.RightToLeft)
+        self.cb_kickable.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.cb_kickable.setChecked(True)
 
         self.horizontalLayout_43.addWidget(self.cb_kickable)
@@ -217,15 +202,53 @@ class Ui_win_new_policies(object):
 
         self.verticalLayout.addWidget(self.groupBox_42)
 
+        self.groupBox_4 = QGroupBox(self.groupBox_6)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setEnabled(False)
+        self.horizontalLayout_5 = QHBoxLayout(self.groupBox_4)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.label_12 = QLabel(self.groupBox_4)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_5.addWidget(self.label_12)
+
+        self.cb_permit_login = QCheckBox(self.groupBox_4)
+        self.cb_permit_login.setObjectName(u"cb_permit_login")
+        self.cb_permit_login.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.cb_permit_login.setChecked(False)
+
+        self.horizontalLayout_5.addWidget(self.cb_permit_login)
+
+
+        self.verticalLayout.addWidget(self.groupBox_4)
+
+        self.groupBox_3 = QGroupBox(self.groupBox_6)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.groupBox_3.setEnabled(False)
+        self.horizontalLayout_4 = QHBoxLayout(self.groupBox_3)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.label_11 = QLabel(self.groupBox_3)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setEnabled(False)
+        sizePolicy.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy)
+        self.label_11.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_4.addWidget(self.label_11)
+
+        self.le_authmethod = QSpinBox(self.groupBox_3)
+        self.le_authmethod.setObjectName(u"le_authmethod")
+        self.le_authmethod.setMaximum(6)
+        self.le_authmethod.setValue(4)
+
+        self.horizontalLayout_4.addWidget(self.le_authmethod)
+
+
+        self.verticalLayout.addWidget(self.groupBox_3)
+
 
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 2)
-
-        self.btns = QDialogButtonBox(self.groupBox_6)
-        self.btns.setObjectName(u"btns")
-        self.btns.setOrientation(Qt.Horizontal)
-        self.btns.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Save)
-
-        self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)
 
         self.label = QLabel(self.groupBox_6)
         self.label.setObjectName(u"label")
@@ -253,12 +276,11 @@ class Ui_win_new_policies(object):
         self.label_2.setText(QCoreApplication.translate("win_new_policies", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430*", None))
         self.le_ip.setText("")
         self.le_ip.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"255.255.255.255", None))
-        self.label_11.setText(QCoreApplication.translate("win_new_policies", u"Auth-Method", None))
         self.label_56.setText(QCoreApplication.translate("win_new_policies", u"\u041f\u0430\u0440\u043e\u043b\u044c*", None))
         self.le_pass.setText("")
         self.le_pass.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"MyTopP@ssw0rd", None))
-        self.label_12.setText(QCoreApplication.translate("win_new_policies", u"Permit-Login", None))
-        self.cb_permit_login.setText("")
+        self.label_13.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440", None))
+        self.cb_usb_filter.setText("")
         self.label_10.setText(QCoreApplication.translate("win_new_policies", u"Can kick", None))
         self.cb_can_kick.setText("")
         self.label_44.setText(QCoreApplication.translate("win_new_policies", u"Kickable", None))
@@ -269,6 +291,9 @@ class Ui_win_new_policies(object):
 #endif // QT_CONFIG(tooltip)
         self.le_until.setText("")
         self.le_until.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"YYYY-MM-DD", None))
+        self.label_12.setText(QCoreApplication.translate("win_new_policies", u"Permit-Login", None))
+        self.cb_permit_login.setText("")
+        self.label_11.setText(QCoreApplication.translate("win_new_policies", u"Auth-Method", None))
         self.label.setText(QCoreApplication.translate("win_new_policies", u"* - \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None))
     # retranslateUi
 

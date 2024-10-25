@@ -23,8 +23,8 @@ class Ui_win_user_export(object):
         self.groupBox_6.setObjectName(u"groupBox_6")
         self.gridLayout_2 = QGridLayout(self.groupBox_6)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.gridLayout_3 = QGridLayout()
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.groupBox = QGroupBox(self.groupBox_6)
         self.groupBox.setObjectName(u"groupBox")
         self.horizontalLayout = QHBoxLayout(self.groupBox)
@@ -42,14 +42,15 @@ class Ui_win_user_export(object):
 
         self.cb_enable_group_policies = QCheckBox(self.groupBox)
         self.cb_enable_group_policies.setObjectName(u"cb_enable_group_policies")
-        self.cb_enable_group_policies.setEnabled(False)
-        self.cb_enable_group_policies.setLayoutDirection(Qt.RightToLeft)
+        self.cb_enable_group_policies.setEnabled(True)
+        self.cb_enable_group_policies.setMaximumSize(QSize(20, 16777215))
+        self.cb_enable_group_policies.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.cb_enable_group_policies.setChecked(False)
 
-        self.horizontalLayout.addWidget(self.cb_enable_group_policies, 0, Qt.AlignLeft|Qt.AlignVCenter)
+        self.horizontalLayout.addWidget(self.cb_enable_group_policies)
 
 
-        self.verticalLayout.addWidget(self.groupBox)
+        self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.groupBox_4 = QGroupBox(self.groupBox_6)
         self.groupBox_4.setObjectName(u"groupBox_4")
@@ -64,21 +65,23 @@ class Ui_win_user_export(object):
         self.cb_enable_usb_policies = QCheckBox(self.groupBox_4)
         self.cb_enable_usb_policies.setObjectName(u"cb_enable_usb_policies")
         self.cb_enable_usb_policies.setEnabled(False)
-        self.cb_enable_usb_policies.setLayoutDirection(Qt.RightToLeft)
+        self.cb_enable_usb_policies.setMaximumSize(QSize(20, 16777215))
+        self.cb_enable_usb_policies.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.cb_enable_usb_policies.setCheckable(True)
         self.cb_enable_usb_policies.setChecked(False)
 
-        self.horizontalLayout_5.addWidget(self.cb_enable_usb_policies, 0, Qt.AlignLeft)
+        self.horizontalLayout_5.addWidget(self.cb_enable_usb_policies)
 
 
-        self.verticalLayout.addWidget(self.groupBox_4)
+        self.gridLayout_3.addWidget(self.groupBox_4, 1, 0, 1, 1)
 
 
-        self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 2)
+        self.gridLayout_2.addLayout(self.gridLayout_3, 0, 0, 1, 2)
 
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
-        self.btns.setOrientation(Qt.Horizontal)
-        self.btns.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.btns.setOrientation(Qt.Orientation.Horizontal)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
         self.btns.setCenterButtons(False)
 
         self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)

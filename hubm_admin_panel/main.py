@@ -11,6 +11,7 @@ from urllib.request import urlopen
 import pandas as pd
 import qdarktheme
 import requests
+from Scripts.bottle import response
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
@@ -105,7 +106,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
     if not running_from_pyinstaller and actual_version > panel_version:
 
         dlg = QMessageBox.question(ui, 'Проверка обновления',
-                                   f'Обнаружена новая версия \"{actual_version}\".\nСкачать?',
+                                   f'Обнаружена новая версия - {actual_version}\nСкачать?',
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                    QMessageBox.StandardButton.Yes)
         if dlg == QMessageBox.StandardButton.Yes:
@@ -221,6 +222,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_user_policies_save.clicked.connect(self.save_user_policies)
         self.btn_user_save_params.clicked.connect(self.save_user_params)
         self.btn_user_policies_create.clicked.connect(self.win_new_create_policies)
+        self.btn_user_policies_delete.clicked.connect(self.user_policy_delete)
         self.btn_user_export.clicked.connect(self.win_user_export)
         self.btn_user_delete.clicked.connect(self.user_delete)
         self.btn_refresh_users_tab.clicked.connect(self.get_list_users)
@@ -299,7 +301,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         username = self.user.name
 
         dialog = QMessageBox.question(self, 'Удалить пользователя',
-                                      'Вы уверены что хотите удалить пользователя?',
+                                      f'Вы уверены что хотите удалить пользователя {username}?',
                                       QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                       QMessageBox.StandardButton.No)
         if dialog == QMessageBox.StandardButton.Yes:
@@ -317,27 +319,98 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.list_users.setCurrentItem(None)
             self.get_list_users()
 
+    def user_policy_delete(self):
+        try:
+            row = self.tbl_user_policies.currentItem().row()
+            header = self.tbl_user_policies.verticalHeaderItem(row)
+            groupname = header.text()
+
+            dialog = QMessageBox.question(self, 'Удалить политику',
+                                          f'Вы уверены что хотите удалить политику для группы {groupname}?',
+                                          QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                          QMessageBox.StandardButton.No)
+            if dialog == QMessageBox.StandardButton.Yes:
+                username = self.user.name
+                response = api_request(f"users/{username}/policies/{groupname}", {}, {}, "DELETE", "full")
+
+                if response.status_code == 200:
+                    QMessageBox.information(self, "Информация", f"Политика успешно удален!")
+                # elif response.status_code == 401:
+                #    QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
+                else:
+                    QMessageBox.critical(self, "Ошибка",
+                                         f"Политика не удалена или удалена с ошибками!\nОшибка: {response.status_code}"
+                                         f"\n{response.text}")
+                #self.list_users.setCurrentItem(None)
+                self.get_list_users()
+
+        except Exception:
+            QMessageBox.warning(self, "Ошибка", f"Некорректная политика!")
+
     def win_user_export(self):
         win_user_export = UserExport()
         if win_user_export.exec() == QDialog.DialogCode.Accepted:
             print(win_user_export.ui.cb_enable_usb_policies.isChecked())
             print(win_user_export.ui.cb_enable_group_policies.isChecked())
-
-            directory = QtWidgets.QFileDialog.getSaveFileName(self, "Выберите папку", "export.xlsx")
+            export_path = os.path.join(os.path.expanduser("~"), "Documents", "export.xlsx")
+            directory = QtWidgets.QFileDialog.getSaveFileName(self, "Выберите папку", export_path, ".xlsx")
 
             if directory[ 0 ]:
 
-                data = [ ]
+                data = []
+                order = []
                 try:
-                    for column in range(self.list_users.topLevelItemCount()):
-                        item = self.list_users.topLevelItem(column)
-                        user = User(item.text(1))
-                        # user_temp = self.user(item.text)
-                        data.append(user.dict)
+                    if not win_user_export.ui.cb_enable_group_policies.isChecked():
+                        order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active']
 
-                    print(data)
-                    df = pd.DataFrame(data)
+                        response = api_request("users/", request="full")
+                        data = json.loads(response.text)[ 'users' ]
+
+
+                    if win_user_export.ui.cb_enable_group_policies.isChecked() and not win_user_export.ui.cb_enable_usb_policies.isChecked():
+                        order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active', 'groups' ]
+
+                        response = api_request("users/?type=servers", request="full")
+                        data = json.loads(response.text)[ 'users' ]
+                        for user in data:
+                            # Получаем группы пользователя
+                            #user['active'] = "True" if user['active'] else "False"
+                            groups = user[ 'groups' ]
+                            group_names = [ group_name for group_name in groups.keys() ]  # Получаем только имена групп
+
+                            # Объединяем группы в одну строку
+                            user_groups = ', '.join(group_names)
+                            user[ 'groups' ] = f"Группы: {user_groups}"
+
+                    if win_user_export.ui.cb_enable_usb_policies.isChecked():
+                        order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active', 'groups' ]
+
+                        response = api_request("users/?type=servers", request="full")
+                        data = json.loads(response.text)[ 'users' ]
+                        for user in data:
+                            #user['active'] = "True" if user['active'] else "False"
+
+                            # print(f"User: {user[ 'cn' ]}, ID: {user[ 'id' ]}")
+
+                            # Получаем группы пользователя
+                            groups = user[ 'groups' ]
+                            group_usb_mapping = [ ]  # Список для хранения групп с их USB-портами
+
+                            # Проходимся по каждой группе
+                            for group_name, group_info in groups.items():
+                                usb_names = [ usb[ 'name' ] for usb in
+                                              group_info.get('usb', [ ]) ]  # Получаем имена USB-портов
+                                group_usb_mapping.append(
+                                    f"Группа - {group_name}, USB: {', '.join(usb_names)}")  # Формируем строку
+
+                            # Объединяем группы в одну строку
+                            user_groups = '; '.join(group_usb_mapping)
+                            # print(f"Группы: {user_groups}")
+                            user[ 'groups' ] = user_groups
+
+                    df = pd.DataFrame(data, columns=order)
                     df.to_excel(directory[ 0 ], index=False)
+
                     dlg2 = QMessageBox.question(self, 'Экспорт пользователей',
                                                 'Экспорт успешно завершен.\nОткрыть файл?',
                                                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
@@ -492,12 +565,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if self.user:
             query = self.user.name
+            print(query)
             matching_items = self.list_users.findItems(query, Qt.MatchFlag.MatchStartsWith, 1)
             item = matching_items[ 0 ]
             self.list_users.setCurrentItem(item)
 
     def search(self):
         # clear current selection.
+        print("SEARCH")
         self.list_users.setCurrentItem(None)
 
         query = self.le_search_user.text()
@@ -601,7 +676,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def update_user_info(self, item):
 
-        self.user = User(item)
+        self.user = User.__init__(self.user, item)
         self.user.render_info(self)
         self.user.render_group_policies(self)
 

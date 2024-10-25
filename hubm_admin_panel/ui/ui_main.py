@@ -437,6 +437,9 @@ class Ui_MainWindow(object):
         __qtablewidgetitem18 = QTableWidgetItem()
         self.tbl_user_policies.setItem(2, 9, __qtablewidgetitem18)
         self.tbl_user_policies.setObjectName(u"tbl_user_policies")
+        self.tbl_user_policies.setEnabled(True)
+        self.tbl_user_policies.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.tbl_user_policies.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.tbl_user_policies.setSortingEnabled(False)
         self.tbl_user_policies.setRowCount(3)
         self.tbl_user_policies.setColumnCount(10)
@@ -1214,8 +1217,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(0)
-        self.tabs_users.setCurrentIndex(0)
+        self.tabs_general.setCurrentIndex(1)
+        self.tabs_users.setCurrentIndex(1)
         self.btn_user_save_params.setDefault(False)
         self.btn_refresh_users_tab.setDefault(False)
         self.tabs_group.setCurrentIndex(0)
