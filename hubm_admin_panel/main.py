@@ -37,6 +37,11 @@ from ui.ui_main import Ui_MainWindow
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    running_from_pyinstaller = True
+else:
+    running_from_pyinstaller = False
+
 console = Console()
 
 log_file = open("log2.log", "a")
@@ -90,10 +95,17 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
     url = f"http://{server}:{api_port}/download/check-version"
     response = requests.get(url)
     actual_version = response.text
-    if actual_version > panel_version:
+    if not running_from_pyinstaller and not startup:
+        QMessageBox.information(ui, 'Информация',
+                                f'Программа запущена через интерпретатор Python.\n'
+                                f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
+                                f'прим.: "pip install hubm-admin-panel --upgrade"')
+        return
+
+    if not running_from_pyinstaller and actual_version > panel_version:
 
         dlg = QMessageBox.question(ui, 'Проверка обновления',
-                                   f'Обнаружена новая версия {actual_version}.\nСкачать?',
+                                   f'Обнаружена новая версия \"{actual_version}\".\nСкачать?',
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                    QMessageBox.StandardButton.Yes)
         if dlg == QMessageBox.StandardButton.Yes:
@@ -125,6 +137,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
             else:
                 QMessageBox.critical(ui, 'Ошибка',
                                      'Некорректный путь. Загрузка отменена.')
+
     else:
         if not startup:
             QMessageBox.information(ui, 'Информация',
