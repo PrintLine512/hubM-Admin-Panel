@@ -94,57 +94,77 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
     api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
     url = f"http://{server}:{api_port}/download/check-version"
     response = requests.get(url)
-    if not response.status_code == 200:
-        QMessageBox.warning(ui, "Ошибка", f"Пользователь не выбран!")
-    actual_version = response.text
-    if not running_from_pyinstaller and not startup:
-        QMessageBox.information(ui, 'Информация',
-                                f'Программа запущена через интерпретатор Python.\n'
-                                f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
-                                f'прим.: "pip install hubm-admin-panel --upgrade"')
-        return
+    try:
+        response = api_request(request="full", full_uri=True, uri=url)
+        # Проверяем успешность запроса по статусу ответа
+        if response.status_code == 200:
+            # MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)
+            try:
+                actual_version = response.text
+                if not running_from_pyinstaller and not startup:
+                    QMessageBox.information(ui, 'Информация',
+                                            f'Программа запущена через интерпретатор Python.\n'
+                                            f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
+                                            f'прим.: "pip install hubm-admin-panel --upgrade"')
+                    return
 
-    if not running_from_pyinstaller and actual_version > panel_version:
+                if not running_from_pyinstaller and actual_version > panel_version:
 
-        dlg = QMessageBox.question(ui, 'Проверка обновления',
-                                   f'Обнаружена новая версия - {actual_version}\nСкачать?',
-                                   QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                   QMessageBox.StandardButton.Yes)
-        if dlg == QMessageBox.StandardButton.Yes:
-            download_path = os.path.join(os.path.expanduser("~"), "Downloads", "hubM Admin Panel Installer.exe")
-            directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
+                    dlg = QMessageBox.question(ui, 'Проверка обновления',
+                                               f'Обнаружена новая версия - {actual_version}\nСкачать?',
+                                               QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                               QMessageBox.StandardButton.Yes)
+                    if dlg == QMessageBox.StandardButton.Yes:
+                        download_path = os.path.join(os.path.expanduser("~"), "Downloads",
+                                                     "hubM Admin Panel Installer.exe")
+                        directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
 
-            if directory[ 0 ]:
-                url = f"http://{server}:{api_port}/download/latest"
-                response = requests.get(url)
-                total_size = int(response.headers.get('content-length', 0))
-                print(total_size)
-                if response.status_code == 200:
-                    # Сохраняем содержимое файла
-                    with open(directory[ 0 ], 'wb') as f:
-                        f.write(response.content)
-                    dlg2 = QMessageBox.question(ui, 'Обновление',
-                                                'Обновление успешно загружено.\nПерезапустить?',
-                                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                                QMessageBox.StandardButton.Yes)
-                    if dlg2 == QMessageBox.StandardButton.Yes:
-                        os.startfile(directory[ 0 ])
-                        print("Exit")
+                        if directory[ 0 ]:
+                            url = f"http://{server}:{api_port}/download/latest"
+                            response = requests.get(url)
+                            total_size = int(response.headers.get('content-length', 0))
+                            print(total_size)
+                            if response.status_code == 200:
+                                # Сохраняем содержимое файла
+                                with open(directory[ 0 ], 'wb') as f:
+                                    f.write(response.content)
+                                dlg2 = QMessageBox.question(ui, 'Обновление',
+                                                            'Обновление успешно загружено.\nПерезапустить?',
+                                                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                                            QMessageBox.StandardButton.Yes)
+                                if dlg2 == QMessageBox.StandardButton.Yes:
+                                    os.startfile(directory[ 0 ])
+                                    print("Exit")
 
-                        ui.close()
-                        sys.exit()
+                                    ui.close()
+                                    sys.exit()
+
+                            else:
+                                print('Ошибка при скачивании файла:', response.status_code)
+                        else:
+                            QMessageBox.critical(ui, 'Ошибка',
+                                                 'Некорректный путь. Загрузка отменена.')
 
                 else:
-                    print('Ошибка при скачивании файла:', response.status_code)
-            else:
-                QMessageBox.critical(ui, 'Ошибка',
-                                     'Некорректный путь. Загрузка отменена.')
+                    if not startup:
+                        QMessageBox.information(ui, 'Информация',
+                                                f'Обновление не требуется.\n'
+                                                f'Последняя версия - {actual_version}.')
+            except:
+                log.exception("Error!")
+                # console.print_exception(show_locals=True)
+                # console.print_exception(show_locals=True)
+                # print(console.export_html())
 
-    else:
-        if not startup:
-            QMessageBox.information(ui, 'Информация',
-                                    f'Обновление не требуется.\n'
-                                    f'Последняя версия - {actual_version}.')
+        elif response.status_code == 401:
+            QMessageBox.critical(ui, "Ошибка", f"Неправильный токен!")
+        else:
+            QMessageBox.critical(ui, "Ошибка", f"Ошибка: {response.status_code}"
+                                                 f"\n{response.text}")
+
+    except requests.ConnectionError:
+        QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!")
+
 
 
 class Downloader(QThread):

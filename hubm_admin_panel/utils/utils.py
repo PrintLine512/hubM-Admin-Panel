@@ -32,12 +32,15 @@ server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hu
 api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
 api_base_dir = f":{api_port}/api/{api_version}"
 
-def api_request(uri, new_headers=None, new_data=None, method="GET", request="basic", ):
+def api_request(uri, new_headers=None, new_data=None, method="GET", request="basic", full_uri=False):
     if new_data is None:
         new_data = {}
     if new_headers is None:
         new_headers = {}
-    url = f"http://{server}{api_base_dir}/{uri}"
+    if full_uri:
+        url = uri
+    else:
+        url = f"http://{server}{api_base_dir}/{uri}"
     print(url)
     headers = {
         "accept": "application/json",
