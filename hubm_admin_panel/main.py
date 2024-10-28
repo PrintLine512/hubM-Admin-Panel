@@ -94,6 +94,8 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
     api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
     url = f"http://{server}:{api_port}/download/check-version"
     response = requests.get(url)
+    if not response.status_code == 200:
+        QMessageBox.warning(ui, "Ошибка", f"Пользователь не выбран!")
     actual_version = response.text
     if not running_from_pyinstaller and not startup:
         QMessageBox.information(ui, 'Информация',

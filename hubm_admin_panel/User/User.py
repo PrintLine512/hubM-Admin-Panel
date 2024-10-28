@@ -192,6 +192,7 @@ class User:
                 print("-" * 60)
 
     def render_usb_policies(self):
+        self.ui.tbl_user_policies.clear()
         for policy in self.group_policies:
             response = api_request(f"servers/{policy.server_name}", request="full")
             server = json.loads(response.text)
