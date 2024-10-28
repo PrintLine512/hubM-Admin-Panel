@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>514</height>
+    <width>525</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
        </widget>
       </item>
       <item row="0" column="0" colspan="2">
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0,0">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0,0,0">
         <item>
          <widget class="QGroupBox" name="groupBox_7">
           <property name="flat">
@@ -85,7 +85,7 @@
               </size>
              </property>
              <property name="text">
-              <string>Доступ</string>
+              <string>Доступ*</string>
              </property>
             </widget>
            </item>
@@ -202,7 +202,7 @@
               </size>
              </property>
              <property name="text">
-              <string>USB-фильтр</string>
+              <string>USB-фильтр*</string>
              </property>
             </widget>
            </item>
@@ -215,7 +215,7 @@
               <string/>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -315,6 +315,50 @@
              </property>
              <property name="placeholderText">
               <string>YYYY-MM-DD</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gb_usb">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QLabel" name="label_14">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>USB-устройства</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QListWidget" name="list_usb">
+             <property name="tabKeyNavigation">
+              <bool>true</bool>
+             </property>
+             <property name="isWrapping" stdset="0">
+              <bool>false</bool>
+             </property>
+             <property name="resizeMode">
+              <enum>QListView::ResizeMode::Fixed</enum>
+             </property>
+             <property name="viewMode">
+              <enum>QListView::ViewMode::ListMode</enum>
+             </property>
+             <property name="modelColumn">
+              <number>0</number>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
              </property>
             </widget>
            </item>

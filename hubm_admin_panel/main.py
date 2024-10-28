@@ -11,7 +11,6 @@ from urllib.request import urlopen
 import pandas as pd
 import qdarktheme
 import requests
-from Scripts.bottle import response
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
@@ -204,7 +203,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         icon_path = resource_path("res/icon.png")
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
-        self.user = None
+        self.user = User(self)
         #self.groups = None
         self.groups = Groups(self)
 
@@ -533,6 +532,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print("Политики групп")
             case 2:
                 print("Политики портов")
+                self.user.render_usb_policies()
             case 3:
                 print("Активность")
             case _:
@@ -555,6 +555,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def get_list_users(self):
         users_raw = self.get_users_json()
+        self.list_users.setCurrentItem(None)
         self.list_users.clear()
         items = [ ]
         for user in users_raw:
@@ -676,10 +677,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def update_user_info(self, item):
 
-        self.user = User.__init__(self.user, item)
-        self.user.render_info(self)
-        self.user.render_group_policies(self)
-
+        self.user.init(item)
+        self.user.init_group_policies()
         # policies = self.get_user_policies(item)
         # self.apply_user_policies(policies)
 
@@ -697,6 +696,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if win_create_policies.exec() == QDialog.DialogCode.Accepted:
             data = win_create_policies.save()
             group = data[ "group" ]
+            usb_list = data["usb_allowed"]
+            for usb in usb_list:
+                response = api_request(f"users/{username}/ports/{usb}", {}, json.dumps(data), "POST", "full")
+                if response.status_code == 200:
+                    #QMessageBox.information(self, "Информация", f"Политика успешно добавлена.")
+                    pass
+                elif response.status_code == 409:
+                    #QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
+                    pass
+                else:
+                    QMessageBox.critical(self, "Ошибка",
+                                         f"Доступ к порту не добавлен или добавлен с ошибками!\nОшибка: {response.status_code}"
+                                         f"\n{response.text}")
+
             response = api_request(f"users/{username}/policies/{group}", {}, json.dumps(data), "PUT", "full")
 
             if response.status_code == 200:

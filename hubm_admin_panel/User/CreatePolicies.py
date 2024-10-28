@@ -1,8 +1,11 @@
 import os
 from re import match as re_match
+import json
 
-from PySide6 import QtWidgets, QtGui
+from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtWidgets import QDialog
+
+from utils.utils import api_request
 
 from ui.ui_new_policies import Ui_win_new_policies
 
@@ -32,6 +35,8 @@ class CreatePolicies(QDialog):
         self.ui.le_group.currentTextChanged.connect(self.validate)
         self.ui.le_until.textChanged.connect(self.validate)
         self.ui.le_pass.textChanged.connect(self.validate)
+        self.ui.le_group.currentTextChanged.connect(self.check_usb_params)
+        self.ui.cb_usb_filter.checkStateChanged.connect(self.check_usb_params)
 
         self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
 
@@ -51,25 +56,33 @@ class CreatePolicies(QDialog):
         else:
             self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
 
-    def validate1(self):
-        # Получаем значения из полей ввода
-        ip = self.ui.le_ip.text()
-        until = self.ui.le_until.text()
-        group = self.ui.le_group.currentText()
+    def check_usb_params(self):
+        self.ui.list_usb.clear()
 
-        if re_match(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', ip):
-            if until == "" or re_match(r"\d{4}-\d{2}-\d{2}", until):
-                if group.strip():
-                    self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(True)
-                else:
-                    self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
-            else:
-                self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
+        if self.ui.cb_usb_filter.isChecked() and self.ui.le_group.currentText():
+            self.ui.gb_usb.setEnabled(True)
+            response = api_request(f"servers/{self.ui.le_group.currentText()}", request="full")
+            server = json.loads(response.text)
+            for usb in (server['usb_info']):
+                item = QtWidgets.QListWidgetItem(self.ui.list_usb)
+                item.setCheckState(QtCore.Qt.CheckState.Unchecked)
 
+                item.setText(usb['name'])
+                item.setToolTip(usb['virtual_port'])
         else:
-            self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
+            self.ui.gb_usb.setEnabled(False)
+
 
     def save(self):
+        def get_usb():
+            usb_list = []
+            for row in range(0, self.ui.list_usb.count()):
+                item = self.ui.list_usb.item(row)
+                if item.checkState() == QtCore.Qt.CheckState.Checked:
+                    virtual_id = item.toolTip()
+                    usb_list.append(virtual_id)
+            return usb_list
+
         values = {
             "group": self.ui.le_group.currentText() if self.ui.le_group.currentText().strip() else None,
             "access": self.ui.cb_access.isChecked(),
@@ -80,6 +93,7 @@ class CreatePolicies(QDialog):
             "usb_filter": self.ui.cb_usb_filter.isChecked(),
             "can_kick": self.ui.cb_can_kick.isChecked(),
             "kickable": self.ui.cb_kickable.isChecked(),
+            "usb_allowed": get_usb(),
             "until": self.ui.le_until.text() if self.ui.le_until.text().strip() else None
         }
         return values

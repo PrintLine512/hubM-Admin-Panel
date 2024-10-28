@@ -16,7 +16,7 @@ class Ui_win_new_policies(object):
     def setupUi(self, win_new_policies):
         if not win_new_policies.objectName():
             win_new_policies.setObjectName(u"win_new_policies")
-        win_new_policies.resize(400, 514)
+        win_new_policies.resize(525, 663)
         self.gridLayout = QGridLayout(win_new_policies)
         self.gridLayout.setObjectName(u"gridLayout")
         self.groupBox_6 = QGroupBox(win_new_policies)
@@ -136,7 +136,7 @@ class Ui_win_new_policies(object):
         self.cb_usb_filter = QCheckBox(self.groupBox_8)
         self.cb_usb_filter.setObjectName(u"cb_usb_filter")
         self.cb_usb_filter.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
-        self.cb_usb_filter.setChecked(True)
+        self.cb_usb_filter.setChecked(False)
 
         self.horizontalLayout_7.addWidget(self.cb_usb_filter)
 
@@ -201,6 +201,31 @@ class Ui_win_new_policies(object):
 
 
         self.verticalLayout.addWidget(self.groupBox_42)
+
+        self.gb_usb = QGroupBox(self.groupBox_6)
+        self.gb_usb.setObjectName(u"gb_usb")
+        self.gb_usb.setEnabled(False)
+        self.horizontalLayout_9 = QHBoxLayout(self.gb_usb)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.label_14 = QLabel(self.gb_usb)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_9.addWidget(self.label_14)
+
+        self.list_usb = QListWidget(self.gb_usb)
+        self.list_usb.setObjectName(u"list_usb")
+        self.list_usb.setTabKeyNavigation(True)
+        self.list_usb.setProperty(u"isWrapping", False)
+        self.list_usb.setResizeMode(QListView.ResizeMode.Fixed)
+        self.list_usb.setViewMode(QListView.ViewMode.ListMode)
+        self.list_usb.setModelColumn(0)
+        self.list_usb.setSortingEnabled(True)
+
+        self.horizontalLayout_9.addWidget(self.list_usb)
+
+
+        self.verticalLayout.addWidget(self.gb_usb)
 
         self.groupBox_4 = QGroupBox(self.groupBox_6)
         self.groupBox_4.setObjectName(u"groupBox_4")
@@ -271,7 +296,7 @@ class Ui_win_new_policies(object):
         self.groupBox_6.setTitle("")
         self.label_3.setText(QCoreApplication.translate("win_new_policies", u"\u0413\u0440\u0443\u043f\u043f\u0430*", None))
         self.le_group.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0433\u0440\u0443\u043f\u043f\u0443...", None))
-        self.users_fullname_label.setText(QCoreApplication.translate("win_new_policies", u"\u0414\u043e\u0441\u0442\u0443\u043f", None))
+        self.users_fullname_label.setText(QCoreApplication.translate("win_new_policies", u"\u0414\u043e\u0441\u0442\u0443\u043f*", None))
         self.cb_access.setText("")
         self.label_2.setText(QCoreApplication.translate("win_new_policies", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430*", None))
         self.le_ip.setText("")
@@ -279,7 +304,7 @@ class Ui_win_new_policies(object):
         self.label_56.setText(QCoreApplication.translate("win_new_policies", u"\u041f\u0430\u0440\u043e\u043b\u044c*", None))
         self.le_pass.setText("")
         self.le_pass.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"MyTopP@ssw0rd", None))
-        self.label_13.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440", None))
+        self.label_13.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440*", None))
         self.cb_usb_filter.setText("")
         self.label_10.setText(QCoreApplication.translate("win_new_policies", u"Can kick", None))
         self.cb_can_kick.setText("")
@@ -291,6 +316,7 @@ class Ui_win_new_policies(object):
 #endif // QT_CONFIG(tooltip)
         self.le_until.setText("")
         self.le_until.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"YYYY-MM-DD", None))
+        self.label_14.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430", None))
         self.label_12.setText(QCoreApplication.translate("win_new_policies", u"Permit-Login", None))
         self.cb_permit_login.setText("")
         self.label_11.setText(QCoreApplication.translate("win_new_policies", u"Auth-Method", None))

@@ -1,11 +1,18 @@
 import json
 import sys
 import traceback
+from typing import TYPE_CHECKING
 
+from PySide6 import QtCore
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QTableWidgetItem
-from PySide6 import QtWidgets
+from PySide6 import QtWidgets\
 
+    
+
+
+if TYPE_CHECKING:
+    from main import MainWindow
 from utils.utils import api_request
 
 
@@ -77,7 +84,22 @@ class CheckBoxWidget(QtWidgets.QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
 
 class User:
-    def __init__(self, user):
+    def __init__(self, ui: 'MainWindow'):
+
+        self.user = None
+        self.active = None
+        self.cn = None
+        self.password = None
+        self.comment = None
+        self.email = None
+        self.ip = None
+        self.name = None
+        self.tg_id = None
+        self.dict = {}
+        self.group_policies = []
+        self.ui = ui
+
+    def init(self, user):
         self.user = user
         user_data_raw = api_request(f"users/{self.user}")
         user_data = json.loads(user_data_raw)
@@ -100,12 +122,11 @@ class User:
             "tg_id": self.tg_id,
             "active": self.active,
         }
-        self.group_policies = []
-        self.__init_group_policies__()
+        self.render_info()
 
 
 
-    def __init_group_policies__(self):
+    def init_group_policies(self):
         response = api_request(f"users/{self.user}/policies", request="full")
         try:
             if response.status_code == 200:
@@ -113,7 +134,7 @@ class User:
                 policies = json.loads(response.text)
                 if policies:
                     print(policies)
-
+                    self.group_policies = []
                     for item in policies:
 
                         server_id = str(item[ "server_id" ])
@@ -137,30 +158,32 @@ class User:
                     )
                         self.group_policies.append(policy)
 
+            self.render_group_policies()
+
         except Exception:
             print("Exception in user code:")
             print("-" * 60)
             traceback.print_exc(file=sys.stdout)
             print("-" * 60)
 
-    def render_group_policies(self, main):
-        main.tbl_user_policies.setRowCount(0)
-        column_list = json.loads(main.EnumPolicies.get_all_names())
+    def render_group_policies(self):
+        self.ui.tbl_user_policies.setRowCount(0)
+        column_list = json.loads(self.ui.EnumPolicies.get_all_names())
 
         for policy in self.group_policies:
-            main.tbl_user_policies.insertRow(0)
-            main.tbl_user_policies.setVerticalHeaderItem(0, QTableWidgetItem(policy.server_name))
+            self.ui.tbl_user_policies.insertRow(0)
+            self.ui.tbl_user_policies.setVerticalHeaderItem(0, QTableWidgetItem(policy.server_name))
 
             try:
                 for column in column_list:
-                    id_enum, type_enum = main.EnumPolicies.get(column)
+                    id_enum, type_enum = self.ui.EnumPolicies.get(column)
                     value = policy.dict[column]
                     if type_enum == "bool":
-                        item = PolicyTableWidgetItem(main, current_column=id_enum, checkbox=True, value=value)
-                        main.tbl_user_policies.setItem(0, id_enum, item)
+                        item = PolicyTableWidgetItem(self.ui, current_column=id_enum, checkbox=True, value=value)
+                        self.ui.tbl_user_policies.setItem(0, id_enum, item)
                     else:
-                        item = PolicyTableWidgetItem(main, current_column=id_enum, value=str(value))
-                        main.tbl_user_policies.setItem(0, id_enum, item)
+                        item = PolicyTableWidgetItem(self.ui, current_column=id_enum, value=str(value))
+                        self.ui.tbl_user_policies.setItem(0, id_enum, item)
 
             except Exception:
                 print("Exception in user code:")
@@ -168,19 +191,34 @@ class User:
                 traceback.print_exc(file=sys.stdout)
                 print("-" * 60)
 
+    def render_usb_policies(self):
+        for policy in self.group_policies:
+            response = api_request(f"servers/{policy.server_name}", request="full")
+            server = json.loads(response.text)
+            print(server['server_info']['name'])
+            server_item = QtWidgets.QTreeWidgetItem(self.ui.tbl_user_ports)
+            server_item.setText(0, str(server['server_info']['name']))
+            for usb in (server[ 'usb_info' ]):
+                item = QtWidgets.QTreeWidgetItem(server_item)
 
-    def render_info(self, main):
-        main.cb_user_active.setChecked(self.active)
-        main.le_user_cn.setText(self.cn)
-        main.le_user_comment.setText(self.comment)
-        main.le_user_email.setText(self.email)
-        main.le_user_default_ip.setText(self.ip)
-        main.le_user_name.setText(self.name)
-        main.le_user_tg_id.setText(self.tg_id)
+                item.setCheckState(0, QtCore.Qt.CheckState.Unchecked)
+
+                item.setText(0, usb[ 'name' ])
+                item.setToolTip(0, usb[ 'virtual_port' ])
+
+
+    def render_info(self):
+       self.ui.cb_user_active.setChecked(self.active)
+       self.ui.le_user_cn.setText(self.cn)
+       self.ui.le_user_comment.setText(self.comment)
+       self.ui.le_user_email.setText(self.email)
+       self.ui.le_user_default_ip.setText(self.ip)
+       self.ui.le_user_name.setText(self.name)
+       self.ui.le_user_tg_id.setText(self.tg_id)
 
     #def render_clear(self, main):
 
-    def sent_params(self, main, data):
+    def sent_params(self, data):
         print("1")
         response = api_request(f"users/{self.name}", {}, json.dumps(data), "PUT", "full")
         return response
