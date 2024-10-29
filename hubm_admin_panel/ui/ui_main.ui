@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1175</width>
-    <height>732</height>
+    <height>748</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -140,6 +140,7 @@
                   <property name="frameShadow">
                    <enum>QFrame::Shadow::Raised</enum>
                   </property>
+                  <layout class="QGridLayout" name="gridLayout_27"/>
                  </widget>
                 </item>
                </layout>
@@ -162,6 +163,7 @@
                <property name="title">
                 <string/>
                </property>
+               <layout class="QGridLayout" name="gridLayout_28"/>
               </widget>
              </item>
             </layout>
@@ -1191,6 +1193,19 @@
                <widget class="QPushButton" name="btn_group_restart">
                 <property name="text">
                  <string>Перезагрузить группу</string>
+                </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_group_stop">
+                <property name="text">
+                 <string>Выключить группу</string>
                 </property>
                 <property name="checkable">
                  <bool>false</bool>

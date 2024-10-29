@@ -14,7 +14,7 @@ def convert():
         py_file = ui_file.replace('.ui', '.py')
         print(f"Working with {ui_file}...")
         try:
-            os.system(f'{uic} "{ui_file}" -o "{py_file}" -g "python" --star-imports')
+            os.system(f'{uic} "{ui_file}" -o "{py_file}" -g "python"')
             #print(f"pyuic6 \"{ui_file}\" -o \"{py_file}\"")
             print(f"Done!")
         except:

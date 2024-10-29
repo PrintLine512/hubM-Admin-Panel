@@ -8,9 +8,21 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import *  # type: ignore
-from PySide6.QtGui import *  # type: ignore
-from PySide6.QtWidgets import *  # type: ignore
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
+    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QListWidget,
+    QListWidgetItem, QMainWindow, QMenu, QMenuBar,
+    QPushButton, QSizePolicy, QStatusBar, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -700,6 +712,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.btn_group_restart)
 
+        self.btn_group_stop = QPushButton(self.groupBox_17)
+        self.btn_group_stop.setObjectName(u"btn_group_stop")
+        self.btn_group_stop.setCheckable(False)
+        self.btn_group_stop.setChecked(False)
+
+        self.verticalLayout_6.addWidget(self.btn_group_stop)
+
 
         self.verticalLayout_8.addWidget(self.groupBox_17)
 
@@ -1232,7 +1251,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(0)
+        self.tabs_general.setCurrentIndex(2)
         self.tabs_users.setCurrentIndex(0)
         self.btn_user_save_params.setDefault(False)
         self.btn_refresh_users_tab.setDefault(False)
@@ -1388,6 +1407,7 @@ class Ui_MainWindow(object):
         self.btn_group_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
         self.btn_group_start.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
+        self.btn_group_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.groupBox_21.setTitle("")
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.le_group_password.setText("")

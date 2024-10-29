@@ -86,6 +86,7 @@ class CheckBoxWidget(QtWidgets.QWidget):
 class User:
     def __init__(self, ui: 'MainWindow'):
 
+        self.servers = []
         self.user = None
         self.active = None
         self.cn = None
@@ -111,6 +112,7 @@ class User:
         self.ip = user_data.get("ip")
         self.name = user_data.get("name")
         self.tg_id = user_data.get("tg_id")
+        self.servers = user_data.get("servers")
 
         self.dict = {
             "cn": self.cn,
@@ -192,11 +194,11 @@ class User:
                 print("-" * 60)
 
     def render_usb_policies(self):
-        self.ui.tbl_user_policies.clear()
+        self.ui.tbl_user_ports.clear()
         for policy in self.group_policies:
             response = api_request(f"servers/{policy.server_name}", request="full")
             server = json.loads(response.text)
-            print(server['server_info']['name'])
+            print(server)
             server_item = QtWidgets.QTreeWidgetItem(self.ui.tbl_user_ports)
             server_item.setText(0, str(server['server_info']['name']))
             for usb in (server[ 'usb_info' ]):

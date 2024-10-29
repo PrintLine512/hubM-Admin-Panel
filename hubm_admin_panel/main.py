@@ -90,17 +90,17 @@ def is_valid_ip(self, ip):
 
 
 def check_version(ui: "QtWidgets.QMainWindow", startup):
-    server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
-    api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
-    url = f"http://{server}:{api_port}/download/check-version"
-    response = requests.get(url)
+    url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
+
     try:
         response = api_request(request="full", full_uri=True, uri=url)
         # Проверяем успешность запроса по статусу ответа
         if response.status_code == 200:
             # MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)
             try:
-                actual_version = response.text
+                data = response.json()
+                print(data['assets'][0]['browser_download_url'])
+                actual_version = data['tag_name']
                 if not running_from_pyinstaller and not startup:
                     QMessageBox.information(ui, 'Информация',
                                             f'Программа запущена через интерпретатор Python.\n'
@@ -120,7 +120,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                         directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
 
                         if directory[ 0 ]:
-                            url = f"http://{server}:{api_port}/download/latest"
+                            url = data['assets'][0]['browser_download_url']
                             response = requests.get(url)
                             total_size = int(response.headers.get('content-length', 0))
                             print(total_size)
@@ -162,8 +162,9 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
             QMessageBox.critical(ui, "Ошибка", f"Ошибка: {response.status_code}"
                                                  f"\n{response.text}")
 
-    except requests.ConnectionError:
-        QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!")
+    except requests.ConnectionError as e:
+        QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
+                             f"{e}")
 
 
 
@@ -261,10 +262,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
 
-
-    def group_restart(self):
-        self.groups.restart_selected(self)
-
     def group_render(self):
         print("2112")
         self.groups.render_groups(self)
@@ -282,7 +279,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 "active": self.cb_user_active.isChecked(),
             }
             self.user.dict = dict_user
-            response = (self.user.sent_params(self, dict_user))
+            response = (self.user.sent_params(dict_user))
 
             if response.status_code == 200:
                 QMessageBox.information(self, "Информация", f"Пользователь {self.le_user_name.text()} успешно изменен!")

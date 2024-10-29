@@ -1,7 +1,7 @@
 import json
 import os
 import weakref
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -57,7 +57,9 @@ class Groups:
         #self.update_list(ui)
         #self.render_groups(ui)
         ui.list_groups.itemSelectionChanged.connect(lambda: Groups.render_group(self, ui))
-        ui.btn_group_restart.clicked.connect(lambda: self.restart_selected(ui))
+        ui.btn_group_restart.clicked.connect(lambda: self.action(ui, "restart"))
+        ui.btn_group_start.clicked.connect(lambda: self.action(ui, "start"))
+        ui.btn_group_stop.clicked.connect(lambda: self.action(ui, "stop"))
         ui.btn_refresh_groups_tab.clicked.connect(lambda: self.refresh(ui))
 
 
@@ -116,26 +118,30 @@ class Groups:
         ui.le_group_password.setText(group.password)
         ui.le_group_ip.setText(group.ip)
 
-    def restart_selected(self, ui: 'MainWindow'):
+    def action(self, ui: 'MainWindow', action: Literal["start", "stop", "restart"]):
         if not ui.list_groups.currentItem():
-            QMessageBox.information(ui, 'Перезагрузка группы',
+            QMessageBox.information(ui, 'Управление группой',
                                     f'Сначала выберите группу!')
             return
-        dialog = QMessageBox.question(ui, 'Перезагрузка группы',
-                                   'Вы уверены что хотите перезагрузить группу?',
+        dialog = QMessageBox.question(ui, 'Управление группой',
+                                   f'Вы уверены что хотите совершить это действие - {action}?',
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                    QMessageBox.StandardButton.Yes)
 
         if dialog == QMessageBox.StandardButton.Yes:
 
             group = self.get_group(ui.list_groups.currentItem().text(0))
-            response = group.restart()
+            response = group.action(action)
 
             if response.status_code == 200:
-                QMessageBox.information(ui, 'Перезагрузка группы',
-                                        f'Запрос на перезагрузку отправлен.')
+                QMessageBox.information(ui, 'Управление группой',
+                                        f'Запрос на действие успешно отправлен.')
+            elif response.status_code == 500:
+                QMessageBox.warning(ui, 'Управление группой',
+                                     f"Ошибка: некорректное состояние!\n"
+                                     f"Группа {group.name} уже включена или выключена.")
             else:
-                QMessageBox.critical(ui, 'Перезагрузка группы',
+                QMessageBox.critical(ui, 'Управление группой',
                                      f"Ошибка: {response.status_code}"
                                      f"\n{response.text}")
 
@@ -157,6 +163,6 @@ class Group:
         self.tcp_port = tcp_port
         self.password = password
 
-    def restart(self):
-        response = api_request(uri=f"servers/{self.name}/restart", request="full")
+    def action(self, action):
+        response = api_request(uri=f"servers/{self.name}/{action}", request="full")
         return response
