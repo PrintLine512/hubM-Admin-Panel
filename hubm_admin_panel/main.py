@@ -94,14 +94,14 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                 data = response.json()
                 print(data['assets'][0]['browser_download_url'])
                 actual_version = data['tag_name']
-                if not running_from_pyinstaller and not startup:
+                if not startup:
                     QMessageBox.information(ui, 'Информация',
                                             f'Программа запущена через интерпретатор Python.\n'
                                             f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
                                             f'прим.: "pip install hubm-admin-panel --upgrade"')
                     return
 
-                if not running_from_pyinstaller and actual_version > panel_version:
+                if actual_version > panel_version:
 
                     dlg = QMessageBox.question(ui, 'Проверка обновления',
                                                f'Обнаружена новая версия - {actual_version}\nСкачать?',
