@@ -2,7 +2,6 @@ import gc
 import json
 import logging
 import os
-import re
 import sys
 import traceback
 import winreg
@@ -19,6 +18,8 @@ from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtWidgets import (
     QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog
 )
+import PySide6.QtQuickControls2
+
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.traceback import install
@@ -78,15 +79,7 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-def is_valid_ip(self, ip):
-    # Паттерн для проверки корректности IP-адреса
-    ip_pattern = r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
 
-    # Проверяем IP-адрес с помощью регулярного выражения
-    if re.match(ip_pattern, ip):
-        return True
-    else:
-        return False
 
 
 def check_version(ui: "QtWidgets.QMainWindow", startup):
@@ -241,8 +234,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_users.itemSelectionChanged.connect(self.entry_update_user_info)
         self.le_search_user.textChanged.connect(self.search)
         self.le_search_group.textChanged.connect(lambda: group_search(self))
-        self.btn_user_policies_save.clicked.connect(self.save_user_policies)
-        self.btn_user_save_params.clicked.connect(self.save_user_params)
         self.btn_user_policies_create.clicked.connect(self.win_new_create_policies)
         self.btn_user_policies_delete.clicked.connect(self.user_policy_delete)
         self.btn_user_export.clicked.connect(self.win_user_export)
@@ -262,39 +253,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
 
-    def group_render(self):
-        print("2112")
-        self.groups.render_groups(self)
 
-    def save_user_params(self):
-        try:
-            dict_user = {
-                "cn": self.le_user_cn.text(),
-                "name": self.le_user_name.text(),
-                "ip": self.le_user_default_ip.text(),
-                "password": self.le_user_pass.text(),
-                "email": self.le_user_email.text(),
-                "comment": self.le_user_comment.text(),
-                "tg_id": self.le_user_tg_id.text(),
-                "active": self.cb_user_active.isChecked(),
-            }
-            self.user.dict = dict_user
-            response = (self.user.sent_params(dict_user))
-
-            if response.status_code == 200:
-                QMessageBox.information(self, "Информация", f"Пользователь {self.le_user_name.text()} успешно изменен!")
-            else:
-                QMessageBox.critical(self, "Ошибка",
-                                     f"Пользователь не сохранен или сохранен с ошибками!\nОшибка: {response.status_code}"
-                                     f"\n {response.text}")
-
-            self.update_user_info(self.le_user_name.text())
-
-        except Exception:
-            print("Exception in user code:")
-            print("-" * 60)
-            traceback.print_exc(file=sys.stdout)
-            print("-" * 60)
 
     def win_user_create(self):
         win_create_user = CreateUser()
@@ -551,7 +510,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print("Политики групп")
             case 2:
                 print("Политики портов")
-                self.user.render_usb_policies()
             case 3:
                 print("Активность")
             case _:
@@ -624,8 +582,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ip = (1, "str")
         usb_filter = (2, "bool")
         auth_method = (3, "str")
-        otp_secret = (4, "str")
-        password = (5, "str")
+        otp_secret = (4, "password")
+        password = (5, "password")
         # login_use = (6, "bool")
         kick = (7, "bool")
         kickable = (8, "bool")
@@ -643,73 +601,37 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     return enum_member.name, enum_member.value[ 1 ]
 
         @classmethod
-        def get_all_names(cls):
+        def get_type(cls, type):
+            data = []
+            for enum_member in cls:
+                if enum_member.value[ 1 ] == type:
+                    value = {'name': enum_member.name, 'id': enum_member.value[0]}
+                    data.append(value)
+            return data
+
+        @classmethod
+        def get_all_names_with_type(cls):
+            value = {enum_member.name: enum_member.value[ 1 ] for enum_member in cls}
+            return json.dumps(value)
+
+        @classmethod
+        def get_all_names_with_index(cls):
             value = {enum_member.name: enum_member.value[ 0 ] for enum_member in cls}
             return json.dumps(value)
 
-    # Пример использования
-
-    def save_user_policies(self):
-        print("1")
-        if not self.user:
-            # No selected user
-            return
-
-        print("2")
-        user_name = self.user.name
-
-        for row in range(self.tbl_user_policies.rowCount()):
-            row_data = {}
-            for column in range(self.tbl_user_policies.columnCount()):
-                item = self.tbl_user_policies.item(row, column)
-                if item is not None:
-                    if self.EnumPolicies.get_enum(column):
-                        name, p_type = self.EnumPolicies.get_enum(column)
-                        if p_type == "bool":
-                            if item.cb_is_checked():
-                                row_data[ name ] = True
-                            else:
-                                row_data[ name ] = False
-                        else:
-                            row_data[ name ] = item.text()
-                    else:
-                        row_data[ column ] = ""  # Значение пустой ячейки
-
-            ip_address = row_data[ "ip" ]
-            if not is_valid_ip(self, ip_address):
-                QMessageBox.warning(self, "Ошибка", f"Некорректный IP-адрес!")
-                return
-            srv = self.tbl_user_policies.verticalHeaderItem(row).text()
-            response = api_request(f"users/{user_name}/policies/{srv}", {}, json.dumps(row_data), "PUT", request="full")
-
-            if response.status_code == 200:
-                pass
-            elif response.status_code == 401:
-                QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
-            else:
-                QMessageBox.critical(self, "Ошибка",
-                                     f"Политика не изменена или изменена с ошибками!\nСервер: {srv}\nОшибка: {response.status_code}"
-                                     f"\n{response.text}")
-
-        self.update_user_info(user_name)
-        QMessageBox.information(self, "Информация", f"Завершено.")
 
     def update_user_info(self, item):
-
         self.user.init(item)
-        self.user.init_group_policies()
-        # policies = self.get_user_policies(item)
-        # self.apply_user_policies(policies)
+
 
     def win_new_create_policies(self):
-
         if not self.user:
             QMessageBox.warning(self, "Ошибка", f"Пользователь не выбран!")
             return
 
         username = self.user.name
 
-        win_create_policies = CreatePolicies(self.user.ip)
+        win_create_policies = CreatePolicies(self.user.dict['ip'])
         groups = self.get_groups_list_text()
         win_create_policies.ui.le_group.addItems(groups)
         if win_create_policies.exec() == QDialog.DialogCode.Accepted:
@@ -815,7 +737,7 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
             print("Ошибка:", e)
 
         try:
-            response = api_request("users/", request="full")
+            response = api_request("servers/", request="full")
             # Проверяем успешность запроса по статусу ответа
             if response.status_code == 200:
                 # MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)

@@ -18,17 +18,18 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QListWidget,
-    QListWidgetItem, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QStatusBar, QTabWidget,
-    QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
-    QVBoxLayout, QWidget)
+    QHeaderView, QLabel, QLayout, QLineEdit,
+    QListWidget, QListWidgetItem, QMainWindow, QMenu,
+    QMenuBar, QPushButton, QSizePolicy, QStackedWidget,
+    QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
+    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
+from . import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1175, 732)
+        MainWindow.resize(1175, 775)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -125,6 +126,8 @@ class Ui_MainWindow(object):
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_27 = QGridLayout(self.frame_3)
+        self.gridLayout_27.setObjectName(u"gridLayout_27")
 
         self.gridLayout_26.addWidget(self.frame_3, 0, 0, 1, 2)
 
@@ -142,6 +145,8 @@ class Ui_MainWindow(object):
         self.groupBox_14 = QGroupBox(self.widget_2)
         self.groupBox_14.setObjectName(u"groupBox_14")
         self.groupBox_14.setAcceptDrops(True)
+        self.gridLayout_28 = QGridLayout(self.groupBox_14)
+        self.gridLayout_28.setObjectName(u"gridLayout_28")
 
         self.gridLayout_22.addWidget(self.groupBox_14, 0, 0, 1, 1)
 
@@ -192,6 +197,7 @@ class Ui_MainWindow(object):
 
         self.le_user_cn = QLineEdit(self.groupBox)
         self.le_user_cn.setObjectName(u"le_user_cn")
+        self.le_user_cn.setInputMethodHints(Qt.InputMethodHint.ImhNone)
 
         self.horizontalLayout.addWidget(self.le_user_cn)
 
@@ -213,6 +219,7 @@ class Ui_MainWindow(object):
 
         self.le_user_name = QLineEdit(self.groupBox1)
         self.le_user_name.setObjectName(u"le_user_name")
+        self.le_user_name.setInputMethodHints(Qt.InputMethodHint.ImhNone)
         self.le_user_name.setDragEnabled(False)
         self.le_user_name.setReadOnly(True)
 
@@ -235,6 +242,7 @@ class Ui_MainWindow(object):
 
         self.le_user_default_ip = QLineEdit(self.groupBox2)
         self.le_user_default_ip.setObjectName(u"le_user_default_ip")
+        self.le_user_default_ip.setFrame(True)
         self.le_user_default_ip.setDragEnabled(False)
 
         self.horizontalLayout_4.addWidget(self.le_user_default_ip)
@@ -256,9 +264,23 @@ class Ui_MainWindow(object):
 
         self.le_user_pass = QLineEdit(self.groupBox_43)
         self.le_user_pass.setObjectName(u"le_user_pass")
+        self.le_user_pass.setInputMethodHints(Qt.InputMethodHint.ImhNoAutoUppercase|Qt.InputMethodHint.ImhNoPredictiveText|Qt.InputMethodHint.ImhSensitiveData)
+        self.le_user_pass.setFrame(True)
         self.le_user_pass.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
         self.horizontalLayout_56.addWidget(self.le_user_pass)
+
+        self.btn_show_pass = QPushButton(self.groupBox_43)
+        self.btn_show_pass.setObjectName(u"btn_show_pass")
+        icon3 = QIcon()
+        icon3.addFile(u":/res/icons/eye_on.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon3.addFile(u":/res/icons/eye_off.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.btn_show_pass.setIcon(icon3)
+        self.btn_show_pass.setCheckable(True)
+        self.btn_show_pass.setAutoRepeat(False)
+        self.btn_show_pass.setAutoExclusive(False)
+
+        self.horizontalLayout_56.addWidget(self.btn_show_pass)
 
 
         self.verticalLayout.addWidget(self.groupBox_43)
@@ -329,8 +351,16 @@ class Ui_MainWindow(object):
 
         self.le_user_tg_code = QLineEdit(self.groupBox_42)
         self.le_user_tg_code.setObjectName(u"le_user_tg_code")
+        self.le_user_tg_code.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
         self.horizontalLayout_55.addWidget(self.le_user_tg_code)
+
+        self.btn_show_tg_code = QPushButton(self.groupBox_42)
+        self.btn_show_tg_code.setObjectName(u"btn_show_tg_code")
+        self.btn_show_tg_code.setIcon(icon3)
+        self.btn_show_tg_code.setCheckable(True)
+
+        self.horizontalLayout_55.addWidget(self.btn_show_tg_code)
 
 
         self.verticalLayout.addWidget(self.groupBox_42)
@@ -387,14 +417,22 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.groupBox_7, 0, 0, 1, 1)
 
 
-        self.gridLayout_4.addLayout(self.gridLayout_2, 0, 0, 1, 1)
+        self.gridLayout_4.addLayout(self.gridLayout_2, 1, 0, 1, 1)
 
         self.tabs_users.addTab(self.users_tab_info, "")
         self.users_tab_group_policies = QWidget()
         self.users_tab_group_policies.setObjectName(u"users_tab_group_policies")
         self.gridLayout_5 = QGridLayout(self.users_tab_group_policies)
         self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.tbl_user_policies = QTableWidget(self.users_tab_group_policies)
+        self.stack_user_policies = QStackedWidget(self.users_tab_group_policies)
+        self.stack_user_policies.setObjectName(u"stack_user_policies")
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.gridLayout_29 = QGridLayout(self.page)
+        self.gridLayout_29.setSpacing(0)
+        self.gridLayout_29.setObjectName(u"gridLayout_29")
+        self.gridLayout_29.setContentsMargins(0, 0, 0, 0)
+        self.tbl_user_policies = QTableWidget(self.page)
         if (self.tbl_user_policies.columnCount() < 10):
             self.tbl_user_policies.setColumnCount(10)
         font1 = QFont()
@@ -450,14 +488,57 @@ class Ui_MainWindow(object):
         self.tbl_user_policies.setItem(2, 9, __qtablewidgetitem18)
         self.tbl_user_policies.setObjectName(u"tbl_user_policies")
         self.tbl_user_policies.setEnabled(True)
-        self.tbl_user_policies.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.tbl_user_policies.setLineWidth(100)
+        self.tbl_user_policies.setMidLineWidth(50)
+        self.tbl_user_policies.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
         self.tbl_user_policies.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.tbl_user_policies.setSortingEnabled(False)
         self.tbl_user_policies.setRowCount(3)
         self.tbl_user_policies.setColumnCount(10)
         self.tbl_user_policies.verticalHeader().setProperty(u"showSortIndicator", False)
 
-        self.gridLayout_5.addWidget(self.tbl_user_policies, 0, 0, 1, 1)
+        self.gridLayout_29.addWidget(self.tbl_user_policies, 0, 0, 1, 1)
+
+        self.stack_user_policies.addWidget(self.page)
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.gridLayout_30 = QGridLayout(self.page_2)
+        self.gridLayout_30.setObjectName(u"gridLayout_30")
+        self.gridLayout_30.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        self.gridLayout_30.setContentsMargins(0, 0, 0, 0)
+        self.tree_user_policies = QTreeWidget(self.page_2)
+        font3 = QFont()
+        font3.setBold(False)
+        __qtreewidgetitem = QTreeWidgetItem()
+        __qtreewidgetitem.setFont(0, font3);
+        self.tree_user_policies.setHeaderItem(__qtreewidgetitem)
+        brush = QBrush(QColor(65, 68, 82, 100))
+        brush.setStyle(Qt.SolidPattern)
+        font4 = QFont()
+        font4.setBold(True)
+        __qtreewidgetitem1 = QTreeWidgetItem(self.tree_user_policies)
+        __qtreewidgetitem1.setCheckState(0, Qt.Checked);
+        __qtreewidgetitem1.setFont(0, font4);
+        __qtreewidgetitem1.setBackground(0, brush);
+        __qtreewidgetitem2 = QTreeWidgetItem(__qtreewidgetitem1)
+        __qtreewidgetitem2.setFlags(Qt.ItemIsSelectable|Qt.ItemIsEditable|Qt.ItemIsDragEnabled|Qt.ItemIsDropEnabled|Qt.ItemIsUserCheckable|Qt.ItemIsEnabled);
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        QTreeWidgetItem(__qtreewidgetitem1)
+        __qtreewidgetitem3 = QTreeWidgetItem(self.tree_user_policies)
+        QTreeWidgetItem(__qtreewidgetitem3)
+        QTreeWidgetItem(__qtreewidgetitem3)
+        QTreeWidgetItem(__qtreewidgetitem3)
+        QTreeWidgetItem(__qtreewidgetitem3)
+        QTreeWidgetItem(__qtreewidgetitem3)
+        self.tree_user_policies.setObjectName(u"tree_user_policies")
+
+        self.gridLayout_30.addWidget(self.tree_user_policies, 0, 0, 1, 1)
+
+        self.stack_user_policies.addWidget(self.page_2)
+
+        self.gridLayout_5.addWidget(self.stack_user_policies, 0, 0, 1, 1)
 
         self.groupBox_18 = QGroupBox(self.users_tab_group_policies)
         self.groupBox_18.setObjectName(u"groupBox_18")
@@ -479,6 +560,24 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.btn_user_policies_delete)
 
+        self.btn_change_view_user_policies = QPushButton(self.frame)
+        self.btn_change_view_user_policies.setObjectName(u"btn_change_view_user_policies")
+        self.btn_change_view_user_policies.setMaximumSize(QSize(30, 16777215))
+        icon4 = QIcon()
+        icon4.addFile(u":/res/icons/strings.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_change_view_user_policies.setIcon(icon4)
+        self.btn_change_view_user_policies.setCheckable(False)
+
+        self.horizontalLayout_14.addWidget(self.btn_change_view_user_policies)
+
+        self.btn_show_user_policies = QPushButton(self.frame)
+        self.btn_show_user_policies.setObjectName(u"btn_show_user_policies")
+        self.btn_show_user_policies.setMaximumSize(QSize(30, 16777215))
+        self.btn_show_user_policies.setIcon(icon3)
+        self.btn_show_user_policies.setCheckable(True)
+
+        self.horizontalLayout_14.addWidget(self.btn_show_user_policies)
+
 
         self.gridLayout_21.addWidget(self.frame, 0, 0, 1, 1)
 
@@ -488,7 +587,7 @@ class Ui_MainWindow(object):
         self.gridLayout_21.addWidget(self.btn_user_policies_save, 1, 0, 1, 1)
 
 
-        self.gridLayout_5.addWidget(self.groupBox_18, 1, 0, 1, 1)
+        self.gridLayout_5.addWidget(self.groupBox_18, 2, 0, 1, 1)
 
         self.tabs_users.addTab(self.users_tab_group_policies, "")
         self.users_tab_usb_policices = QWidget()
@@ -496,40 +595,37 @@ class Ui_MainWindow(object):
         self.users_tab_usb_policices.setEnabled(True)
         self.gridLayout_7 = QGridLayout(self.users_tab_usb_policices)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.gridLayout_3 = QGridLayout()
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-
-        self.gridLayout_7.addLayout(self.gridLayout_3, 1, 0, 1, 1)
-
-        self.groupBox_12 = QGroupBox(self.users_tab_usb_policices)
-        self.groupBox_12.setObjectName(u"groupBox_12")
-        self.groupBox_12.setEnabled(True)
-        self.gridLayout_16 = QGridLayout(self.groupBox_12)
-        self.gridLayout_16.setObjectName(u"gridLayout_16")
-        self.frame1 = QFrame(self.groupBox_12)
+        self.frame1 = QFrame(self.users_tab_usb_policices)
         self.frame1.setObjectName(u"frame1")
         self.gridLayout_9 = QGridLayout(self.frame1)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
+        self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.tbl_user_ports = QTreeWidget(self.frame1)
+        __qtreewidgetitem4 = QTreeWidgetItem()
+        __qtreewidgetitem4.setText(0, u"1");
+        self.tbl_user_ports.setHeaderItem(__qtreewidgetitem4)
+        self.tbl_user_ports.setObjectName(u"tbl_user_ports")
+        self.tbl_user_ports.setEnabled(True)
+        self.tbl_user_ports.setAlternatingRowColors(False)
+        self.tbl_user_ports.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+        self.tbl_user_ports.setRootIsDecorated(True)
+        self.tbl_user_ports.setItemsExpandable(True)
+        self.tbl_user_ports.setSortingEnabled(False)
+        self.tbl_user_ports.setAnimated(True)
+        self.tbl_user_ports.setHeaderHidden(True)
+        self.tbl_user_ports.header().setVisible(False)
+        self.tbl_user_ports.header().setCascadingSectionResizes(False)
+        self.tbl_user_ports.header().setHighlightSections(False)
+
+        self.gridLayout_9.addWidget(self.tbl_user_ports, 1, 0, 1, 1)
+
         self.btn_user_ports_save = QPushButton(self.frame1)
         self.btn_user_ports_save.setObjectName(u"btn_user_ports_save")
 
-        self.gridLayout_9.addWidget(self.btn_user_ports_save, 0, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.btn_user_ports_save, 2, 0, 1, 1)
 
 
-        self.gridLayout_16.addWidget(self.frame1, 1, 0, 1, 1)
-
-        self.tbl_user_ports = QTreeWidget(self.groupBox_12)
-        self.tbl_user_ports.setObjectName(u"tbl_user_ports")
-        self.tbl_user_ports.setEnabled(True)
-        self.tbl_user_ports.setItemsExpandable(True)
-        self.tbl_user_ports.setSortingEnabled(True)
-        self.tbl_user_ports.setAnimated(False)
-        self.tbl_user_ports.header().setVisible(False)
-
-        self.gridLayout_16.addWidget(self.tbl_user_ports, 0, 0, 1, 1)
-
-
-        self.gridLayout_7.addWidget(self.groupBox_12, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.frame1, 0, 0, 1, 1)
 
         self.tabs_users.addTab(self.users_tab_usb_policices, "")
         self.tab = QWidget()
@@ -554,8 +650,8 @@ class Ui_MainWindow(object):
 
         self.btn_refresh_users_tab = QPushButton(self.users_list_layout)
         self.btn_refresh_users_tab.setObjectName(u"btn_refresh_users_tab")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.btn_refresh_users_tab.setIcon(icon3)
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.btn_refresh_users_tab.setIcon(icon5)
         self.btn_refresh_users_tab.setFlat(False)
 
         self.horizontalLayout_57.addWidget(self.btn_refresh_users_tab)
@@ -568,6 +664,7 @@ class Ui_MainWindow(object):
         self.list_users.setObjectName(u"list_users")
         sizePolicy1.setHeightForWidth(self.list_users.sizePolicy().hasHeightForWidth())
         self.list_users.setSizePolicy(sizePolicy1)
+        self.list_users.setDragEnabled(False)
         self.list_users.setRootIsDecorated(False)
         self.list_users.setUniformRowHeights(False)
         self.list_users.setItemsExpandable(False)
@@ -626,7 +723,7 @@ class Ui_MainWindow(object):
 
         self.btn_refresh_groups_tab = QPushButton(self.groupBox_19)
         self.btn_refresh_groups_tab.setObjectName(u"btn_refresh_groups_tab")
-        self.btn_refresh_groups_tab.setIcon(icon3)
+        self.btn_refresh_groups_tab.setIcon(icon5)
         self.btn_refresh_groups_tab.setFlat(False)
 
         self.horizontalLayout_17.addWidget(self.btn_refresh_groups_tab)
@@ -1236,6 +1333,17 @@ class Ui_MainWindow(object):
         self.statusBar = QStatusBar(MainWindow)
         self.statusBar.setObjectName(u"statusBar")
         MainWindow.setStatusBar(self.statusBar)
+#if QT_CONFIG(shortcut)
+        self.users_fullname_label.setBuddy(self.le_user_cn)
+        self.label_2.setBuddy(self.le_user_name)
+        self.label_11.setBuddy(self.le_user_default_ip)
+        self.label_56.setBuddy(self.le_user_pass)
+        self.label_12.setBuddy(self.le_user_email)
+        self.label_10.setBuddy(self.le_user_comment)
+        self.label_44.setBuddy(self.le_user_tg_id)
+        self.label_55.setBuddy(self.le_user_tg_code)
+        self.label_3.setBuddy(self.cb_user_active)
+#endif // QT_CONFIG(shortcut)
 
         self.menuBar.addAction(self.menu_1.menuAction())
         self.menuBar.addAction(self.menu.menuAction())
@@ -1251,9 +1359,10 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(2)
+        self.tabs_general.setCurrentIndex(0)
         self.tabs_users.setCurrentIndex(0)
         self.btn_user_save_params.setDefault(False)
+        self.stack_user_policies.setCurrentIndex(0)
         self.btn_refresh_users_tab.setDefault(False)
         self.tabs_group.setCurrentIndex(0)
         self.tabs_ports.setCurrentIndex(0)
@@ -1297,6 +1406,7 @@ class Ui_MainWindow(object):
         self.le_user_pass.setInputMask("")
         self.le_user_pass.setText("")
         self.le_user_pass.setPlaceholderText(QCoreApplication.translate("MainWindow", u"MyTopP@ssw0rd", None))
+        self.btn_show_pass.setText("")
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.le_user_email.setText("")
         self.le_user_email.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ii.ivanov@unistroyrf.ru", None))
@@ -1309,6 +1419,7 @@ class Ui_MainWindow(object):
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Telegram code", None))
         self.le_user_tg_code.setText("")
         self.le_user_tg_code.setPlaceholderText(QCoreApplication.translate("MainWindow", u"!hahg@21ga", None))
+        self.btn_show_tg_code.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
         self.cb_user_active.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u0435\u043d", None))
         self.btn_user_save_params.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
@@ -1352,29 +1463,60 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"2023.01.23 15:48", None));
         self.tbl_user_policies.setSortingEnabled(__sortingEnabled)
 
+        ___qtreewidgetitem = self.tree_user_policies.headerItem()
+        ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None));
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None));
+
+        __sortingEnabled1 = self.tree_user_policies.isSortingEnabled()
+        self.tree_user_policies.setSortingEnabled(False)
+        ___qtreewidgetitem1 = self.tree_user_policies.topLevelItem(0)
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem2 = ___qtreewidgetitem1.child(0)
+        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u0434\u043e\u0447\u0435\u0440\u043d\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem3 = ___qtreewidgetitem1.child(1)
+        ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem4 = ___qtreewidgetitem1.child(2)
+        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem5 = ___qtreewidgetitem1.child(3)
+        ___qtreewidgetitem5.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem6 = ___qtreewidgetitem1.child(4)
+        ___qtreewidgetitem6.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u0434\u043e\u0447\u0435\u0440\u043d\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem7 = self.tree_user_policies.topLevelItem(1)
+        ___qtreewidgetitem7.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem8 = ___qtreewidgetitem7.child(0)
+        ___qtreewidgetitem8.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u0434\u043e\u0447\u0435\u0440\u043d\u0438\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem9 = ___qtreewidgetitem7.child(1)
+        ___qtreewidgetitem9.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem10 = ___qtreewidgetitem7.child(2)
+        ___qtreewidgetitem10.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem11 = ___qtreewidgetitem7.child(3)
+        ___qtreewidgetitem11.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        ___qtreewidgetitem12 = ___qtreewidgetitem7.child(4)
+        ___qtreewidgetitem12.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        self.tree_user_policies.setSortingEnabled(__sortingEnabled1)
+
         self.groupBox_18.setTitle("")
         self.btn_user_policies_create.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430", None))
         self.btn_user_policies_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0443", None))
+        self.btn_change_view_user_policies.setText("")
+        self.btn_show_user_policies.setText("")
         self.btn_user_policies_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_group_policies), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f", None))
-        self.groupBox_12.setTitle(QCoreApplication.translate("MainWindow", u"\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u043d\u044b\u0435 \u043f\u043e\u0440\u0442\u044b \u0434\u043b\u044f \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f:", None))
         self.btn_user_ports_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        ___qtreewidgetitem = self.tbl_user_ports.headerItem()
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None));
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_usb_policices), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
         self.users_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
         self.le_search_user.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.btn_refresh_users_tab.setText("")
-        ___qtreewidgetitem1 = self.list_users.headerItem()
-        ___qtreewidgetitem1.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem13 = self.list_users.headerItem()
+        ___qtreewidgetitem13.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem13.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
 
-        __sortingEnabled1 = self.list_users.isSortingEnabled()
+        __sortingEnabled2 = self.list_users.isSortingEnabled()
         self.list_users.setSortingEnabled(False)
-        ___qtreewidgetitem2 = self.list_users.topLevelItem(0)
-        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        self.list_users.setSortingEnabled(__sortingEnabled1)
+        ___qtreewidgetitem14 = self.list_users.topLevelItem(0)
+        ___qtreewidgetitem14.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
+        self.list_users.setSortingEnabled(__sortingEnabled2)
 
         self.groupBox_16.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.btn_user_create.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c", None))
@@ -1385,18 +1527,18 @@ class Ui_MainWindow(object):
         self.le_search_group.setText("")
         self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.btn_refresh_groups_tab.setText("")
-        ___qtreewidgetitem3 = self.list_groups.headerItem()
-        ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem15 = self.list_groups.headerItem()
+        ___qtreewidgetitem15.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
 
-        __sortingEnabled2 = self.list_groups.isSortingEnabled()
+        __sortingEnabled3 = self.list_groups.isSortingEnabled()
         self.list_groups.setSortingEnabled(False)
-        ___qtreewidgetitem4 = self.list_groups.topLevelItem(0)
-        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None));
-        ___qtreewidgetitem5 = self.list_groups.topLevelItem(1)
-        ___qtreewidgetitem5.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem6 = self.list_groups.topLevelItem(2)
-        ___qtreewidgetitem6.setText(0, QCoreApplication.translate("MainWindow", u"Sever-Volzh", None));
-        self.list_groups.setSortingEnabled(__sortingEnabled2)
+        ___qtreewidgetitem16 = self.list_groups.topLevelItem(0)
+        ___qtreewidgetitem16.setText(0, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None));
+        ___qtreewidgetitem17 = self.list_groups.topLevelItem(1)
+        ___qtreewidgetitem17.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem18 = self.list_groups.topLevelItem(2)
+        ___qtreewidgetitem18.setText(0, QCoreApplication.translate("MainWindow", u"Sever-Volzh", None));
+        self.list_groups.setSortingEnabled(__sortingEnabled3)
 
         self.groupBox_13.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
         self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
@@ -1431,15 +1573,15 @@ class Ui_MainWindow(object):
         self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
 
-        __sortingEnabled3 = self.listWidget.isSortingEnabled()
+        __sortingEnabled4 = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         ___qlistwidgetitem = self.listWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04332", None));
+        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0430\u0440\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
         ___qlistwidgetitem1 = self.listWidget.item(1)
         ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04331", None));
         ___qlistwidgetitem2 = self.listWidget.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0430\u0440\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled3)
+        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04332", None));
+        self.listWidget.setSortingEnabled(__sortingEnabled4)
 
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_usb), QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_access), QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
@@ -1453,24 +1595,24 @@ class Ui_MainWindow(object):
         self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Virtual Port", None))
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
         self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        ___qtreewidgetitem7 = self.treeWidget.headerItem()
-        ___qtreewidgetitem7.setText(2, QCoreApplication.translate("MainWindow", u"Group", None));
-        ___qtreewidgetitem7.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
-        ___qtreewidgetitem7.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
+        ___qtreewidgetitem19 = self.treeWidget.headerItem()
+        ___qtreewidgetitem19.setText(2, QCoreApplication.translate("MainWindow", u"Group", None));
+        ___qtreewidgetitem19.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
+        ___qtreewidgetitem19.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
 
-        __sortingEnabled4 = self.treeWidget.isSortingEnabled()
+        __sortingEnabled5 = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
-        ___qtreewidgetitem8 = self.treeWidget.topLevelItem(0)
-        ___qtreewidgetitem8.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem8.setText(1, QCoreApplication.translate("MainWindow", u"1.1", None));
-        ___qtreewidgetitem8.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0411\u0443\u043b\u0430\u0442\u043e\u0432\u0430", None));
-        ___qtreewidgetitem9 = self.treeWidget.topLevelItem(1)
-        ___qtreewidgetitem9.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem9.setText(1, QCoreApplication.translate("MainWindow", u"1.2", None));
-        ___qtreewidgetitem9.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
-        ___qtreewidgetitem10 = self.treeWidget.topLevelItem(2)
-        ___qtreewidgetitem10.setText(1, QCoreApplication.translate("MainWindow", u"1.3", None));
-        self.treeWidget.setSortingEnabled(__sortingEnabled4)
+        ___qtreewidgetitem20 = self.treeWidget.topLevelItem(0)
+        ___qtreewidgetitem20.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem20.setText(1, QCoreApplication.translate("MainWindow", u"1.1", None));
+        ___qtreewidgetitem20.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0411\u0443\u043b\u0430\u0442\u043e\u0432\u0430", None));
+        ___qtreewidgetitem21 = self.treeWidget.topLevelItem(1)
+        ___qtreewidgetitem21.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem21.setText(1, QCoreApplication.translate("MainWindow", u"1.2", None));
+        ___qtreewidgetitem21.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
+        ___qtreewidgetitem22 = self.treeWidget.topLevelItem(2)
+        ___qtreewidgetitem22.setText(1, QCoreApplication.translate("MainWindow", u"1.3", None));
+        self.treeWidget.setSortingEnabled(__sortingEnabled5)
 
         self.groupBox_2.setTitle("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
@@ -1491,7 +1633,7 @@ class Ui_MainWindow(object):
         self.groupBox_3.setTitle("")
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0439\u0442\u0438", None))
 
-        __sortingEnabled5 = self.listWidget_3.isSortingEnabled()
+        __sortingEnabled6 = self.listWidget_3.isSortingEnabled()
         self.listWidget_3.setSortingEnabled(False)
         ___qlistwidgetitem3 = self.listWidget_3.item(0)
         ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
@@ -1557,7 +1699,7 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem33.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
         ___qlistwidgetitem34 = self.listWidget_3.item(31)
         ___qlistwidgetitem34.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        self.listWidget_3.setSortingEnabled(__sortingEnabled5)
+        self.listWidget_3.setSortingEnabled(__sortingEnabled6)
 
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None))

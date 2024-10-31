@@ -3,7 +3,7 @@ import os
 
 uic = "C:\\Users\\mv.alekseev\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\hubm-admin-panel-lCPXPe4P-py3.11\\Lib\\site-packages\\PySide6\\uic.exe"
 # Получаем список всех файлов с расширением .ui
-def convert():
+def convert_ui():
 
     current_directory = os.path.abspath(os.path.dirname(__file__))
     ui_files = glob.glob(os.path.join(current_directory, '*.ui'))
@@ -14,11 +14,11 @@ def convert():
         py_file = ui_file.replace('.ui', '.py')
         print(f"Working with {ui_file}...")
         try:
-            os.system(f'{uic} "{ui_file}" -o "{py_file}" -g "python"')
+            os.system(f'{uic} --from-imports "{ui_file}" -o "{py_file}" -g "python"')
             #print(f"pyuic6 \"{ui_file}\" -o \"{py_file}\"")
             print(f"Done!")
         except:
             print(f"Unexpected error!")
 
 if __name__ == '__main__':
-    convert()
+    convert_ui()

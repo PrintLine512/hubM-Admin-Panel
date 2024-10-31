@@ -6,18 +6,21 @@ import tomllib
 
 import PyInstaller.__main__
 
-from hubm_admin_panel.ui.convert import convert
+from hubm_admin_panel.ui.convert_ui import convert_ui
+from hubm_admin_panel.ui.convert_res import convert_res
 
 nsis_path = "C:\\Program Files (x86)\\NSIS"
+
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
 previous_dir = os.path.join(current_directory, "..")
 
-
-
-def main(reconvert_ui, installer):
+def main(reconvert_ui, reconvert_resource, installer):
     if reconvert_ui:
-        convert()
+        convert_ui()
+
+    if reconvert_resource:
+        convert_res()
 
     #if os.path.exists("build"):
     #    shutil.rmtree("build")
@@ -77,7 +80,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build and optionally create an installer.')
     parser.add_argument('-U', '--reconvert-ui', action='store_true', help='Reconvert the UI')
     parser.add_argument('-I', '--installer', action='store_true', help='Create installer')
+    parser.add_argument('-R', '--reconvert-resource', action='store_true', help='Reconvert the resource')
 
     args = parser.parse_args()
 
-    main(args.reconvert_ui, args.installer)
+    main(args.reconvert_ui, args.reconvert_resource, args.installer)
