@@ -5,18 +5,22 @@ import os
 import sys
 import traceback
 import winreg
+import configparser
 from urllib.request import urlopen
 
 import pandas as pd
 import qdarktheme
 import requests
+from PySide6.QtGui import QAction
+
+import utils.utils
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog
+    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog, QMenu, QToolButton
 )
 import PySide6.QtQuickControls2
 
@@ -26,15 +30,18 @@ from rich.traceback import install
 
 from version import panel_version
 from enum import Enum
-from utils.utils import api_request, get_registry_value, set_registry_value, close_registry_key, create_or_open_key
+from utils.utils import api_request
 from User.User import User
 from User.CreatePolicies import CreatePolicies
 from User.CreateUser import CreateUser
 from User.UserExport import UserExport
 from Groups.master import Groups, group_search
 
+from ui import launch_dialogs
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
+
+from utils.utils import config
 
 reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 
@@ -78,10 +85,6 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-
-
-
-
 def check_version(ui: "QtWidgets.QMainWindow", startup):
     url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
 
@@ -94,12 +97,12 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                 data = response.json()
                 print(data['assets'][0]['browser_download_url'])
                 actual_version = data['tag_name']
-                if not startup:
-                    QMessageBox.information(ui, 'Информация',
-                                            f'Программа запущена через интерпретатор Python.\n'
-                                            f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
-                                            f'прим.: "pip install hubm-admin-panel --upgrade"')
-                    return
+                #if not startup:
+                #    QMessageBox.information(ui, 'Информация',
+                #                            f'Программа запущена через интерпретатор Python.\n'
+                #                            f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
+                #                            f'прим.: "pip install hubm-admin-panel --upgrade"')
+                #    return
 
                 if actual_version > panel_version:
 
@@ -149,8 +152,6 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                 # console.print_exception(show_locals=True)
                 # print(console.export_html())
 
-        elif response.status_code == 401:
-            QMessageBox.critical(ui, "Ошибка", f"Неправильный токен!")
         else:
             QMessageBox.critical(ui, "Ошибка", f"Ошибка: {response.status_code}"
                                                  f"\n{response.text}")
@@ -158,7 +159,6 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
     except requests.ConnectionError as e:
         QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
                              f"{e}")
-
 
 
 class Downloader(QThread):
@@ -230,7 +230,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tabs_general.currentChanged.connect(self.tabs_general_clicked)
         self.tabs_group.tabBarClicked.connect(self.tabs_group_clicked)
         self.tabs_users.tabBarClicked.connect(self.tabs_users_clicked)
-        self.tabs_ports.tabBarClicked.connect(self.tabs_ports_clicked)
         self.list_users.itemSelectionChanged.connect(self.entry_update_user_info)
         self.le_search_user.textChanged.connect(self.search)
         self.le_search_group.textChanged.connect(lambda: group_search(self))
@@ -464,7 +463,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print(refs.__class__.__name__)
         except:
             pass
-        
+
     def group_init(self):
         #if self.groups is not None:
         #    print("DELETE")
@@ -515,14 +514,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             case _:
                 print("Некорректная вкладка")
 
-    def tabs_ports_clicked(self, index):
-        match index:
-            case 0:
-                print("Параметры")
-            case 1:
-                print("Доступы")
-            case _:
-                print("Некорректная вкладка")
 
     def get_users_json(self):
         users_raw = api_request("users")
@@ -698,43 +689,152 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
         icon = QtGui.QIcon(resource_path("res/icon.png"))
         self.setWindowIcon(icon)
 
-        reg_address_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
-        reg_tcp_port_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
-        reg_token_value = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_token")
+        self.cred_username = None
+        self.cred_userpass = None
+        self.cred_label = None
 
+        #self.cb_creds.currentTextChanged.connect(self.change_cred)
 
-        self.le_address.setText(reg_address_value)
-        self.le_tcp_port.setText(reg_tcp_port_value)
-        self.le_token.setText(reg_token_value)
+        self.load_creds()
+        self.load_servers()
 
         self.btn_connect.clicked.connect(self.to_connect)
-        self.le_address.returnPressed.connect(self.to_connect)
-        self.le_tcp_port.returnPressed.connect(self.to_connect)
-        self.le_token.returnPressed.connect(self.to_connect)
+        self.btn_creds_delete.clicked.connect(self.delete_cred)
+        self.btn_server_delete.clicked.connect(self.delete_server)
+        self.btn_creds_new.clicked.connect(self.create_cred)
+        self.btn_server_new.clicked.connect(self.create_server)
+        self.cb_creds.currentTextChanged.connect(self.validator)
+        self.cb_servers.currentTextChanged.connect(self.validator)
+        self.validator()
+
+    def validator(self):
+        if self.cb_creds.currentText() != "" and self.cb_servers.currentText() != "":
+            self.btn_connect.setEnabled(True)
+        else:
+            self.btn_connect.setEnabled(False)
+
+    def load_creds(self):
+        self.cb_creds.clear()
+        if config[ "creds" ]:
+            for cred in config["creds"]:
+                self.cb_creds.addItem(cred["label"])
+
+        if config[ "last_cred" ]:
+            last_cred = config[ "last_cred" ]
+
+            # Получаем пароль для last_cred из словаря creds
+            for cred in config[ "creds" ]:
+                if cred[ "label" ] == last_cred:
+                    self.cb_creds.setCurrentText(cred[ "label" ])
+                    break
+
+    def load_servers(self):
+        self.cb_servers.clear()
+        if config[ "servers" ]:
+            for server in config[ "servers" ]:
+                self.cb_servers.addItem(server[ "label" ])
+
+        if config[ "last_server" ]:
+            last_server = config[ "last_server" ]
+
+            # Получаем пароль для last_cred из словаря creds
+            for server in config[ "servers" ]:
+                if server[ "label" ] == last_server:
+                    self.cb_creds.setCurrentText(server[ "label" ])
+                    break
+
+    def create_cred(self):
+        dialog = launch_dialogs.CredDialog()
+        if dialog.exec():  # exec() вернет True, если диалог завершен успешно
+            username = dialog.username
+            password = dialog.password
+            label = dialog.label
+
+            # Проверка уникальности имени пользователя
+            if any(cred["label"] == label for cred in config["creds"]):
+                QMessageBox.warning(self, "Ошибка", "Профиль подключения уже существует!")
+            else:
+                # Добавляем нового пользователя в конфиг
+                new_cred = {
+                    "username": username,
+                    "password": password,
+                    "label": label
+                }
+                config[ "creds" ].append(new_cred)
+                utils.utils.write_config()
+                self.load_creds()
+                QMessageBox.information(self, "Информация", f"Новый профиль подключения добавлен: {label}")
+
+
+    def create_server(self):
+        dialog = launch_dialogs.ServerDialog()  # Открываем диалог добавления сервера
+        if dialog.exec():  # exec() вернет True, если диалог завершен успешно
+            label = dialog.label
+            address = dialog.address
+            port = dialog.port
+
+            # Проверка уникальности названия сервера
+            if any(server[ "label" ] == label for server in config[ "servers" ]):
+                QMessageBox.warning(self, "Ошибка", "Профиль сервера уже существует!")
+            else:
+                # Добавляем новый сервер в конфиг
+                new_server = {
+                    "label": label,
+                    "address": address,
+                    "port": port
+                }
+                config[ "servers" ].append(new_server)
+                utils.utils.write_config()
+                self.load_servers()  # Обновляем список серверов в интерфейсе
+                QMessageBox.information(self, "Информация", f"Новый профиль сервера добавлен: {label}")
+
+    def delete_cred(self):
+        # Получаем текущий выбранный label
+        label = self.cb_creds.currentText()
+
+        # Диалог подтверждения
+        reply = QMessageBox.question(
+            self,
+            "Подтверждение удаления",
+            f"Вы действительно хотите удалить профиль подключения '{label}'?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        # Проверяем, подтвердил ли пользователь удаление
+        if reply == QMessageBox.StandardButton.Yes:
+            # Удаляем учетные данные и обновляем список, если удаление прошло успешно
+            if utils.utils.delete_cred(label):
+                self.load_creds()
+                QMessageBox.information(self, "Удалено", f"Профиль подключения '{label}' успешно удален.")
+            else:
+                QMessageBox.warning(self, "Ошибка", f"Профиль подключения '{label}' не найден.")
+
+    def delete_server(self):
+        # Получаем текущий выбранный label
+        label = self.cb_servers.currentText()
+
+        # Диалог подтверждения
+        reply = QMessageBox.question(
+            self,
+            "Подтверждение удаления",
+            f"Вы действительно хотите удалить профиль сервера '{label}'?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        # Проверяем, подтвердил ли пользователь удаление
+        if reply == QMessageBox.StandardButton.Yes:
+            # Удаляем учетные данные и обновляем список, если удаление прошло успешно
+            if utils.utils.delete_server(label):
+                self.load_servers()
+                QMessageBox.information(self, "Удалено", f"Профиль сервера '{label}' успешно удален.")
+            else:
+                QMessageBox.warning(self, "Ошибка", f"Профиль сервера '{label}' не найден.")
+
 
     def to_connect(self):
-        address = self.le_address.text()
-        tcp_port = self.le_tcp_port.text()
-        token = self.le_token.text()
-
-        try:
-            # Открываем родительский ключ
-            parent_key_path = r"HKEY_CURRENT_USER\Software\PrintLine"
-            parent_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Software", 0, winreg.KEY_WRITE)
-            # Создаем или открываем ключ
-            key = create_or_open_key(parent_key, "PrintLine")
-            # Закрываем родительский ключ
-            close_registry_key(parent_key)
-
-            # Устанавливаем значение ключа
-            set_registry_value(key, "hubM_AP_address", address)
-            set_registry_value(key, "hubM_AP_tcp_port", tcp_port)
-            set_registry_value(key, "hubM_AP_token", token)
-
-            # Закрываем ключ
-            close_registry_key(key)
-        except Exception as e:
-            print("Ошибка:", e)
+        config[ "last_cred" ] = self.cb_creds.currentText()
+        config[ "last_server" ] = self.cb_servers.currentText()
+        utils.utils.write_config()
 
         try:
             response = api_request("servers/", request="full")
@@ -745,14 +845,19 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
                     self.new_window = MainWindow()
                     self.new_window.show()
                     self.close()
-                except:
+                except Exception as e:
                     log.exception("Error!")
                     # console.print_exception(show_locals=True)
                     # console.print_exception(show_locals=True)
                     # print(console.export_html())
+                    QMessageBox.critical(self, "Ошибка", f"{e}")
 
             elif response.status_code == 401:
-                QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
+                QMessageBox.critical(self, "Ошибка", f"Некорректные учетные данные! {response.status_code}"
+                                                     f"\n{response.text}")
+            elif response.status_code == 403:
+                QMessageBox.critical(self, "Ошибка", f"Не хватает прав! {response.status_code}"
+                                                     f"\n{response.text}")
             else:
                 QMessageBox.critical(self, "Ошибка", f"Ошибка: {response.status_code}"
                                                      f"\n{response.text}")

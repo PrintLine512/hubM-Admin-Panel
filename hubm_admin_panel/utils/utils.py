@@ -1,41 +1,66 @@
+import json
 import winreg
-
-import requests
+from . import session
+from . import config, config_file
 from typing import TYPE_CHECKING, Literal
 
-api_version = "v1"
-
-def get_registry_value(parent_key, sub_key, name):
-    try:
-        key = winreg.OpenKey(parent_key, sub_key, 0, winreg.KEY_READ)
-        value, _ = winreg.QueryValueEx(key, name)
-        winreg.CloseKey(key)
-        return value
-    except FileNotFoundError:
-        return None
-
-def create_or_open_key(parent_key, sub_key):
-    try:
-        key = winreg.OpenKey(parent_key, sub_key, 0, winreg.KEY_WRITE)
-    except FileNotFoundError:
-        key = winreg.CreateKey(parent_key, sub_key)
-    return key
-
-def set_registry_value(key, name, value, value_type=winreg.REG_SZ):
-    winreg.SetValueEx(key, name, 0, value_type, value)
-
-def close_registry_key(key):
-    winreg.CloseKey(key)
 
 
-TOKEN = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_token")
-server = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_address")
-api_port = get_registry_value(winreg.HKEY_CURRENT_USER, "Software\\PrintLine", "hubM_AP_tcp_port")
-api_base_dir = f":{api_port}/api/{api_version}"
+api_version = "v2"
+
+def delete_cred(label):
+    # Найти индекс элемента с указанным label
+    for i, cred in enumerate(config["creds"]):
+        if cred["label"] == label:
+            # Удаляем элемент по найденному индексу
+            config["creds"].pop(i)
+            write_config()
+            return True
+    return False  # Возвращаем False, если учетные данные не найдены
+
+def delete_server(label):
+    # Найти индекс элемента с указанным label
+    for i, server in enumerate(config["servers"]):
+        if server["label"] == label:
+            # Удаляем элемент по найденному индексу
+            config["servers"].pop(i)
+            write_config()
+            return True
+    return False  # Возвращаем False, если учетные данные не найдены
+
+def write_config():
+    with open(config_file, 'w') as file:
+        json.dump(config, file, indent=4)
+
 
 def api_request(uri, new_headers=None, new_data=None,
                 method: Literal["GET", "PUT", "POST", "DELETE"] = "GET",
                 request: Literal['basic', 'full'] = "basic", full_uri=False):
+
+    server_address = None
+    server_port = None
+    if config[ "last_server" ]:
+        last_server = config[ "last_server" ]
+
+        # Получаем пароль для last_cred из словаря creds
+        for server in config[ "servers" ]:
+            if server[ "label" ] == last_server:
+                server_address = server[ "address" ]
+                server_port = server[ "port" ]
+                break
+
+    if config[ "last_cred" ]:
+        last_cred = config[ "last_cred" ]
+
+        # Получаем пароль для last_cred из словаря creds
+        for cred in config[ "creds" ]:
+            if cred[ "label" ] == last_cred:
+                cred_user = cred[ "username" ]
+                cred_pass = cred[ "password" ]
+                break
+
+    api_base_dir = f":{server_port}/api/{api_version}"
+
     if new_data is None:
         new_data = {}
     if new_headers is None:
@@ -43,12 +68,12 @@ def api_request(uri, new_headers=None, new_data=None,
     if full_uri:
         url = uri
     else:
-        url = f"http://{server}{api_base_dir}/{uri}"
+        url = f"http://{server_address}{api_base_dir}/{uri}"
+
     print(url)
     headers = {
         "accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": TOKEN,
         **new_headers
     }
     # data = {
@@ -58,16 +83,58 @@ def api_request(uri, new_headers=None, new_data=None,
         "http": "",
         "https": "",
     }
+
+    def login():
+        login_data = {
+            "username": cred_user,
+            "password": cred_pass
+        }
+
+        response = session.post(f"http://{server_address}:{server_port}/login", json=login_data, headers=headers, proxies=proxies)
+
+        if response.status_code == 200:
+            print("Login successful!")
+            return True
+        else:
+            print(f"Login failed with status code {response.status_code}")
+            return False
+
     if method == "GET":
-        response = requests.get(url, headers=headers, data=new_data, proxies=proxies)
+        response = session.get(url, headers=headers, data=new_data, proxies=proxies)
     elif method == "PUT":
-        response = requests.put(url, headers=headers, data=new_data, proxies=proxies)
+        response = session.put(url, headers=headers, data=new_data, proxies=proxies)
     elif method == "POST":
-        response = requests.post(url, headers=headers, data=new_data, proxies=proxies)
+        response = session.post(url, headers=headers, data=new_data, proxies=proxies)
     elif method == "DELETE":
-        response = requests.delete(url, headers=headers, data=new_data, proxies=proxies)
+        response = session.delete(url, headers=headers, data=new_data, proxies=proxies)
     else:
         return
+
+    if response.status_code == 401:
+        print("Authorization required. Attempting to log in...")
+        if login():
+            # Повторяем запрос после успешной авторизации
+            if method == "GET":
+                response = session.get(url, headers=headers, data=new_data, proxies=proxies)
+            elif method == "PUT":
+                response = session.put(url, headers=headers, data=new_data, proxies=proxies)
+            elif method == "POST":
+                response = session.post(url, headers=headers, data=new_data, proxies=proxies)
+            elif method == "DELETE":
+                response = session.delete(url, headers=headers, data=new_data, proxies=proxies)
+        else:
+            print("Failed to log in, cannot access the resource.")
+            if request == "basic":
+                return response.text
+            elif request == "full":
+                return response
+            else:
+                return response.text
+
+        # Проверка на доступ (403 Forbidden)
+    elif response.status_code == 403:
+        print(f"Access denied: {response.status_code}")
+        return "Error: Forbidden access. You don't have permission to access this resource."
 
     if request == "basic":
         return response.text

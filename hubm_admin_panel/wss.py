@@ -1,5 +1,6 @@
 from PySide6.QtCore import QUrl, QObject, Slot, QTimer
-from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit
+from PySide6.QtGui import QIcon, QAction
+from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QTextEdit, QToolBar, QToolButton, QMenu
 from PySide6.QtWebSockets import QWebSocket
 
 class WebSocketClient(QObject):
@@ -14,56 +15,68 @@ class WebSocketClient(QObject):
         self.socket.textMessageReceived.connect(self.on_message_received)
         self.socket.errorOccurred.connect(self.on_error)
 
-    def connect(self):
-        self.output_widget.append("Connecting to WebSocket server...")
-        self.socket.open(QUrl(self.url))
+    from PySide6.QtWidgets import QApplication, QMainWindow, QToolBar, QToolButton, QMenu, QVBoxLayout, QWidget
+    from PySide6.QtGui import QIcon
 
-    @Slot()
-    def on_connected(self):
-        self.output_widget.append("Connected to server!")
-        self.socket.sendTextMessage("Hello, WebSocket Server!")
+    class MainWindow(QMainWindow):
+        def __init__(self):
+            super().__init__()
 
-    @Slot(str)
-    def on_message_received(self, message):
-        self.output_widget.append(f"Received message: {message}")
+            # Создаем панель инструментов
+            toolbar = QToolBar()
 
-    @Slot()
-    def on_error(self, error):
-        self.output_widget.append(f"Error: {self.socket.errorString()}")
+            # Создаем кнопку для панели инструментов
+            tool_button = QToolButton()
+            tool_button.setText("Menu Button")
+            tool_button.setIcon(QIcon("path_to_icon.png"))  # Здесь можно поставить путь к иконке
 
-    def close(self):
-        if self.socket.state() == QWebSocket.ConnectedState:
-            self.socket.close()
+            # Создаем меню
+            menu = QMenu()
 
-class WebSocketClientWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("WebSocket Client")
-        self.resize(400, 300)
+            # Добавляем действия в меню
+            action1 = QAction("Action 1", self)
+            action2 = QAction("Action 2", self)
+            action3 = QAction("Action 3", self)
 
-        # Виджеты
-        self.output = QTextEdit()
-        self.output.setReadOnly(True)
-        self.connect_button = QPushButton("Connect to WebSocket Server")
+            # Привязываем действия к событиям
+            action1.triggered.connect(self.action1_triggered)
+            action2.triggered.connect(self.action2_triggered)
+            action3.triggered.connect(self.action3_triggered)
 
-        # Макет
-        layout = QVBoxLayout()
-        layout.addWidget(self.output)
-        layout.addWidget(self.connect_button)
-        self.setLayout(layout)
+            # Добавляем действия в меню
+            menu.addAction(action1)
+            menu.addAction(action2)
+            menu.addAction(action3)
 
-        # Инициализация WebSocket клиента
-        self.client = WebSocketClient("ws://hubm.smt.local:5000/socket.io/?transport=websocket", self.output)
-        # Подключение сигнала к кнопке
-        self.connect_button.clicked.connect(self.client.connect)
+            # Устанавливаем меню в кнопке
+            tool_button.setMenu(menu)
+            tool_button.setPopupMode(QToolButton.MenuButtonPopup)  # Устанавливаем кнопку с раскрывающимся меню
 
-    def closeEvent(self, event):
-        self.client.close()
-        event.accept()
+            # Добавляем кнопку на панель инструментов
+            toolbar.addWidget(tool_button)
 
-if __name__ == "__main__":
-    app = QApplication([])
+            # Устанавливаем панель инструментов в главное окно
+            self.addToolBar(toolbar)
 
-    window = WebSocketClientWindow()
+            # Настроим центральный виджет
+            central_widget = QWidget()
+            layout = QVBoxLayout(central_widget)
+            self.setCentralWidget(central_widget)
+
+            self.setWindowTitle("QToolButton with Menu Example")
+            self.setGeometry(100, 100, 300, 200)
+
+        def action1_triggered(self):
+            print("Action 1 triggered")
+
+        def action2_triggered(self):
+            print("Action 2 triggered")
+
+        def action3_triggered(self):
+            print("Action 3 triggered")
+
+    # Запуск приложения
+    app = QApplication([ ])
+    window = MainWindow()
     window.show()
     app.exec()

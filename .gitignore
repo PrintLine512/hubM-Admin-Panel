@@ -9,3 +9,4 @@ main.spec
 /.idea/runConfigurations/
 hubM Admin Panel.spec
 /build-with-click.py
+/config.json

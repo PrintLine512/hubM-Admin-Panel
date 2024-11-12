@@ -182,95 +182,97 @@ class Ui_MainWindow(object):
         self.gridLayout_10 = QGridLayout(self.groupBox_7)
         self.gridLayout_10.setObjectName(u"gridLayout_10")
         self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.groupBox = QGroupBox(self.groupBox_7)
         self.groupBox.setObjectName(u"groupBox")
-        self.horizontalLayout = QHBoxLayout(self.groupBox)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
+        self.groupBox.setSizePolicy(sizePolicy2)
+        self.verticalLayout_10 = QVBoxLayout(self.groupBox)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.verticalLayout_10.setSizeConstraint(QLayout.SizeConstraint.SetMaximumSize)
+        self.horizontalLayout_23 = QHBoxLayout()
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
         self.users_fullname_label = QLabel(self.groupBox)
         self.users_fullname_label.setObjectName(u"users_fullname_label")
         sizePolicy.setHeightForWidth(self.users_fullname_label.sizePolicy().hasHeightForWidth())
         self.users_fullname_label.setSizePolicy(sizePolicy)
         self.users_fullname_label.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout.addWidget(self.users_fullname_label)
+        self.horizontalLayout_23.addWidget(self.users_fullname_label)
 
         self.le_user_cn = QLineEdit(self.groupBox)
         self.le_user_cn.setObjectName(u"le_user_cn")
         self.le_user_cn.setInputMethodHints(Qt.InputMethodHint.ImhNone)
 
-        self.horizontalLayout.addWidget(self.le_user_cn)
+        self.horizontalLayout_23.addWidget(self.le_user_cn)
 
 
-        self.verticalLayout.addWidget(self.groupBox)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_23)
 
-        self.groupBox1 = QGroupBox(self.groupBox_7)
-        self.groupBox1.setObjectName(u"groupBox1")
-        self.groupBox1.setFlat(False)
-        self.horizontalLayout_2 = QHBoxLayout(self.groupBox1)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.label_2 = QLabel(self.groupBox1)
+        self.horizontalLayout_24 = QHBoxLayout()
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.label_2 = QLabel(self.groupBox)
         self.label_2.setObjectName(u"label_2")
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.horizontalLayout_24.addWidget(self.label_2)
 
-        self.le_user_name = QLineEdit(self.groupBox1)
+        self.le_user_name = QLineEdit(self.groupBox)
         self.le_user_name.setObjectName(u"le_user_name")
         self.le_user_name.setInputMethodHints(Qt.InputMethodHint.ImhNone)
         self.le_user_name.setDragEnabled(False)
         self.le_user_name.setReadOnly(True)
 
-        self.horizontalLayout_2.addWidget(self.le_user_name)
+        self.horizontalLayout_24.addWidget(self.le_user_name)
 
 
-        self.verticalLayout.addWidget(self.groupBox1)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_24)
 
-        self.groupBox2 = QGroupBox(self.groupBox_7)
-        self.groupBox2.setObjectName(u"groupBox2")
-        self.horizontalLayout_4 = QHBoxLayout(self.groupBox2)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_11 = QLabel(self.groupBox2)
+        self.horizontalLayout_25 = QHBoxLayout()
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.label_11 = QLabel(self.groupBox)
         self.label_11.setObjectName(u"label_11")
         sizePolicy.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
         self.label_11.setSizePolicy(sizePolicy)
         self.label_11.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_4.addWidget(self.label_11)
+        self.horizontalLayout_25.addWidget(self.label_11)
 
-        self.le_user_default_ip = QLineEdit(self.groupBox2)
+        self.le_user_default_ip = QLineEdit(self.groupBox)
         self.le_user_default_ip.setObjectName(u"le_user_default_ip")
         self.le_user_default_ip.setFrame(True)
         self.le_user_default_ip.setDragEnabled(False)
 
-        self.horizontalLayout_4.addWidget(self.le_user_default_ip)
+        self.horizontalLayout_25.addWidget(self.le_user_default_ip)
 
 
-        self.verticalLayout.addWidget(self.groupBox2)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_25)
 
-        self.groupBox_43 = QGroupBox(self.groupBox_7)
-        self.groupBox_43.setObjectName(u"groupBox_43")
-        self.horizontalLayout_56 = QHBoxLayout(self.groupBox_43)
-        self.horizontalLayout_56.setObjectName(u"horizontalLayout_56")
-        self.label_56 = QLabel(self.groupBox_43)
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.label_56 = QLabel(self.groupBox)
         self.label_56.setObjectName(u"label_56")
         sizePolicy.setHeightForWidth(self.label_56.sizePolicy().hasHeightForWidth())
         self.label_56.setSizePolicy(sizePolicy)
         self.label_56.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_56.addWidget(self.label_56)
+        self.horizontalLayout_26.addWidget(self.label_56)
 
-        self.le_user_pass = QLineEdit(self.groupBox_43)
+        self.le_user_pass = QLineEdit(self.groupBox)
         self.le_user_pass.setObjectName(u"le_user_pass")
         self.le_user_pass.setInputMethodHints(Qt.InputMethodHint.ImhNoAutoUppercase|Qt.InputMethodHint.ImhNoPredictiveText|Qt.InputMethodHint.ImhSensitiveData)
         self.le_user_pass.setFrame(True)
         self.le_user_pass.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
-        self.horizontalLayout_56.addWidget(self.le_user_pass)
+        self.horizontalLayout_26.addWidget(self.le_user_pass)
 
-        self.btn_show_pass = QPushButton(self.groupBox_43)
+        self.btn_show_pass = QPushButton(self.groupBox)
         self.btn_show_pass.setObjectName(u"btn_show_pass")
         icon3 = QIcon()
         icon3.addFile(u":/res/icons/eye_on.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
@@ -280,102 +282,92 @@ class Ui_MainWindow(object):
         self.btn_show_pass.setAutoRepeat(False)
         self.btn_show_pass.setAutoExclusive(False)
 
-        self.horizontalLayout_56.addWidget(self.btn_show_pass)
+        self.horizontalLayout_26.addWidget(self.btn_show_pass)
 
 
-        self.verticalLayout.addWidget(self.groupBox_43)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_26)
 
-        self.groupBox3 = QGroupBox(self.groupBox_7)
-        self.groupBox3.setObjectName(u"groupBox3")
-        self.horizontalLayout_5 = QHBoxLayout(self.groupBox3)
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_12 = QLabel(self.groupBox3)
+        self.horizontalLayout_27 = QHBoxLayout()
+        self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
+        self.label_12 = QLabel(self.groupBox)
         self.label_12.setObjectName(u"label_12")
         self.label_12.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_5.addWidget(self.label_12)
+        self.horizontalLayout_27.addWidget(self.label_12)
 
-        self.le_user_email = QLineEdit(self.groupBox3)
+        self.le_user_email = QLineEdit(self.groupBox)
         self.le_user_email.setObjectName(u"le_user_email")
 
-        self.horizontalLayout_5.addWidget(self.le_user_email)
+        self.horizontalLayout_27.addWidget(self.le_user_email)
 
 
-        self.verticalLayout.addWidget(self.groupBox3)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_27)
 
-        self.groupBox4 = QGroupBox(self.groupBox_7)
-        self.groupBox4.setObjectName(u"groupBox4")
-        self.horizontalLayout_6 = QHBoxLayout(self.groupBox4)
-        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.label_10 = QLabel(self.groupBox4)
+        self.horizontalLayout_28 = QHBoxLayout()
+        self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
+        self.label_10 = QLabel(self.groupBox)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_6.addWidget(self.label_10)
+        self.horizontalLayout_28.addWidget(self.label_10)
 
-        self.le_user_comment = QLineEdit(self.groupBox4)
+        self.le_user_comment = QLineEdit(self.groupBox)
         self.le_user_comment.setObjectName(u"le_user_comment")
 
-        self.horizontalLayout_6.addWidget(self.le_user_comment)
+        self.horizontalLayout_28.addWidget(self.le_user_comment)
 
 
-        self.verticalLayout.addWidget(self.groupBox4)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_28)
 
-        self.groupBox_34 = QGroupBox(self.groupBox_7)
-        self.groupBox_34.setObjectName(u"groupBox_34")
-        self.horizontalLayout_43 = QHBoxLayout(self.groupBox_34)
-        self.horizontalLayout_43.setObjectName(u"horizontalLayout_43")
-        self.label_44 = QLabel(self.groupBox_34)
+        self.horizontalLayout_29 = QHBoxLayout()
+        self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
+        self.label_44 = QLabel(self.groupBox)
         self.label_44.setObjectName(u"label_44")
         self.label_44.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_43.addWidget(self.label_44)
+        self.horizontalLayout_29.addWidget(self.label_44)
 
-        self.le_user_tg_id = QLineEdit(self.groupBox_34)
+        self.le_user_tg_id = QLineEdit(self.groupBox)
         self.le_user_tg_id.setObjectName(u"le_user_tg_id")
 
-        self.horizontalLayout_43.addWidget(self.le_user_tg_id)
+        self.horizontalLayout_29.addWidget(self.le_user_tg_id)
 
 
-        self.verticalLayout.addWidget(self.groupBox_34)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_29)
 
-        self.groupBox_42 = QGroupBox(self.groupBox_7)
-        self.groupBox_42.setObjectName(u"groupBox_42")
-        self.horizontalLayout_55 = QHBoxLayout(self.groupBox_42)
-        self.horizontalLayout_55.setObjectName(u"horizontalLayout_55")
-        self.label_55 = QLabel(self.groupBox_42)
+        self.horizontalLayout_30 = QHBoxLayout()
+        self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
+        self.label_55 = QLabel(self.groupBox)
         self.label_55.setObjectName(u"label_55")
         self.label_55.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_55.addWidget(self.label_55)
+        self.horizontalLayout_30.addWidget(self.label_55)
 
-        self.le_user_tg_code = QLineEdit(self.groupBox_42)
+        self.le_user_tg_code = QLineEdit(self.groupBox)
         self.le_user_tg_code.setObjectName(u"le_user_tg_code")
         self.le_user_tg_code.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
-        self.horizontalLayout_55.addWidget(self.le_user_tg_code)
+        self.horizontalLayout_30.addWidget(self.le_user_tg_code)
 
-        self.btn_show_tg_code = QPushButton(self.groupBox_42)
+        self.btn_show_tg_code = QPushButton(self.groupBox)
         self.btn_show_tg_code.setObjectName(u"btn_show_tg_code")
         self.btn_show_tg_code.setIcon(icon3)
         self.btn_show_tg_code.setCheckable(True)
 
-        self.horizontalLayout_55.addWidget(self.btn_show_tg_code)
+        self.horizontalLayout_30.addWidget(self.btn_show_tg_code)
 
 
-        self.verticalLayout.addWidget(self.groupBox_42)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_30)
 
-        self.groupBox5 = QGroupBox(self.groupBox_7)
-        self.groupBox5.setObjectName(u"groupBox5")
-        self.horizontalLayout_3 = QHBoxLayout(self.groupBox5)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.label_3 = QLabel(self.groupBox5)
+        self.horizontalLayout_31 = QHBoxLayout()
+        self.horizontalLayout_31.setObjectName(u"horizontalLayout_31")
+        self.label_3 = QLabel(self.groupBox)
         self.label_3.setObjectName(u"label_3")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy3)
         self.label_3.setMinimumSize(QSize(150, 0))
         self.label_3.setMaximumSize(QSize(150, 16777215))
         self.label_3.setBaseSize(QSize(0, 0))
@@ -384,9 +376,9 @@ class Ui_MainWindow(object):
         self.label_3.setScaledContents(True)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
-        self.horizontalLayout_3.addWidget(self.label_3)
+        self.horizontalLayout_31.addWidget(self.label_3)
 
-        self.cb_user_active = QCheckBox(self.groupBox5)
+        self.cb_user_active = QCheckBox(self.groupBox)
         self.cb_user_active.setObjectName(u"cb_user_active")
         sizePolicy.setHeightForWidth(self.cb_user_active.sizePolicy().hasHeightForWidth())
         self.cb_user_active.setSizePolicy(sizePolicy)
@@ -399,10 +391,20 @@ class Ui_MainWindow(object):
         self.cb_user_active.setChecked(True)
         self.cb_user_active.setTristate(False)
 
-        self.horizontalLayout_3.addWidget(self.cb_user_active)
+        self.horizontalLayout_31.addWidget(self.cb_user_active)
 
 
-        self.verticalLayout.addWidget(self.groupBox5)
+        self.verticalLayout_10.addLayout(self.horizontalLayout_31)
+
+
+        self.verticalLayout.addWidget(self.groupBox)
+
+        self.frame_2 = QFrame(self.groupBox_7)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.Shape.NoFrame)
+        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.verticalLayout.addWidget(self.frame_2)
 
 
         self.gridLayout_10.addLayout(self.verticalLayout, 0, 0, 1, 1)
@@ -600,7 +602,14 @@ class Ui_MainWindow(object):
         self.gridLayout_9 = QGridLayout(self.frame1)
         self.gridLayout_9.setObjectName(u"gridLayout_9")
         self.gridLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.tbl_user_ports = QTreeWidget(self.frame1)
+
+        self.gridLayout_7.addWidget(self.frame1, 0, 1, 1, 1)
+
+        self.groupBox_3 = QGroupBox(self.users_tab_usb_policices)
+        self.groupBox_3.setObjectName(u"groupBox_3")
+        self.gridLayout_13 = QGridLayout(self.groupBox_3)
+        self.gridLayout_13.setObjectName(u"gridLayout_13")
+        self.tbl_user_ports = QTreeWidget(self.groupBox_3)
         __qtreewidgetitem4 = QTreeWidgetItem()
         __qtreewidgetitem4.setText(0, u"1");
         self.tbl_user_ports.setHeaderItem(__qtreewidgetitem4)
@@ -617,15 +626,15 @@ class Ui_MainWindow(object):
         self.tbl_user_ports.header().setCascadingSectionResizes(False)
         self.tbl_user_ports.header().setHighlightSections(False)
 
-        self.gridLayout_9.addWidget(self.tbl_user_ports, 1, 0, 1, 1)
+        self.gridLayout_13.addWidget(self.tbl_user_ports, 0, 0, 1, 1)
 
-        self.btn_user_ports_save = QPushButton(self.frame1)
+        self.btn_user_ports_save = QPushButton(self.groupBox_3)
         self.btn_user_ports_save.setObjectName(u"btn_user_ports_save")
 
-        self.gridLayout_9.addWidget(self.btn_user_ports_save, 2, 0, 1, 1)
+        self.gridLayout_13.addWidget(self.btn_user_ports_save, 1, 0, 1, 1)
 
 
-        self.gridLayout_7.addWidget(self.frame1, 0, 0, 1, 1)
+        self.gridLayout_7.addWidget(self.groupBox_3, 0, 0, 1, 1)
 
         self.tabs_users.addTab(self.users_tab_usb_policices, "")
         self.tab = QWidget()
@@ -746,24 +755,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.list_groups)
 
-        self.groupBox_13 = QGroupBox(self.groupBox_19)
-        self.groupBox_13.setObjectName(u"groupBox_13")
-        self.groupBox_13.setEnabled(False)
-        self.horizontalLayout_15 = QHBoxLayout(self.groupBox_13)
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.pushButton_14 = QPushButton(self.groupBox_13)
-        self.pushButton_14.setObjectName(u"pushButton_14")
-
-        self.horizontalLayout_15.addWidget(self.pushButton_14)
-
-        self.pushButton_18 = QPushButton(self.groupBox_13)
-        self.pushButton_18.setObjectName(u"pushButton_18")
-
-        self.horizontalLayout_15.addWidget(self.pushButton_18)
-
-
-        self.verticalLayout_8.addWidget(self.groupBox_13)
-
         self.groupBox_17 = QGroupBox(self.groupBox_19)
         self.groupBox_17.setObjectName(u"groupBox_17")
         self.verticalLayout_6 = QVBoxLayout(self.groupBox_17)
@@ -829,165 +820,148 @@ class Ui_MainWindow(object):
         self.tab_group_params.setObjectName(u"tab_group_params")
         self.gridLayout_15 = QGridLayout(self.tab_group_params)
         self.gridLayout_15.setObjectName(u"gridLayout_15")
-        self.frame_2 = QFrame(self.tab_group_params)
-        self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
-
-        self.gridLayout_15.addWidget(self.frame_2, 1, 0, 1, 1)
-
         self.groupBox_21 = QGroupBox(self.tab_group_params)
         self.groupBox_21.setObjectName(u"groupBox_21")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.groupBox_21.sizePolicy().hasHeightForWidth())
-        self.groupBox_21.setSizePolicy(sizePolicy3)
+        sizePolicy.setHeightForWidth(self.groupBox_21.sizePolicy().hasHeightForWidth())
+        self.groupBox_21.setSizePolicy(sizePolicy)
         self.gridLayout_8 = QGridLayout(self.groupBox_21)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
-        self.groupBox_23 = QGroupBox(self.groupBox_21)
-        self.groupBox_23.setObjectName(u"groupBox_23")
-        self.groupBox_23.setEnabled(False)
-        self.horizontalLayout_26 = QHBoxLayout(self.groupBox_23)
-        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
-        self.label_22 = QLabel(self.groupBox_23)
+        self.gridLayout_8.setVerticalSpacing(6)
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.listWidget = QListWidget(self.groupBox_21)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        QListWidgetItem(self.listWidget)
+        self.listWidget.setObjectName(u"listWidget")
+        sizePolicy1.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
+        self.listWidget.setSizePolicy(sizePolicy1)
+        self.listWidget.setSortingEnabled(True)
+
+        self.verticalLayout_2.addWidget(self.listWidget)
+
+        self.pushButton_6 = QPushButton(self.groupBox_21)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+
+        self.verticalLayout_2.addWidget(self.pushButton_6)
+
+        self.pushButton_4 = QPushButton(self.groupBox_21)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+
+        self.verticalLayout_2.addWidget(self.pushButton_4)
+
+
+        self.gridLayout_8.addLayout(self.verticalLayout_2, 5, 0, 1, 1)
+
+        self.groupBox_24 = QGroupBox(self.groupBox_21)
+        self.groupBox_24.setObjectName(u"groupBox_24")
+        sizePolicy2.setHeightForWidth(self.groupBox_24.sizePolicy().hasHeightForWidth())
+        self.groupBox_24.setSizePolicy(sizePolicy2)
+        self.verticalLayout_9 = QVBoxLayout(self.groupBox_24)
+        self.verticalLayout_9.setSpacing(9)
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalLayout_9.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        self.verticalLayout_9.setContentsMargins(-1, 5, -1, 5)
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.label_24 = QLabel(self.groupBox_24)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_9.addWidget(self.label_24)
+
+        self.le_group_name = QLineEdit(self.groupBox_24)
+        self.le_group_name.setObjectName(u"le_group_name")
+
+        self.horizontalLayout_9.addWidget(self.le_group_name)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_9)
+
+        self.horizontalLayout_13 = QHBoxLayout()
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.label_26 = QLabel(self.groupBox_24)
+        self.label_26.setObjectName(u"label_26")
+        self.label_26.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_13.addWidget(self.label_26)
+
+        self.le_group_port = QLineEdit(self.groupBox_24)
+        self.le_group_port.setObjectName(u"le_group_port")
+
+        self.horizontalLayout_13.addWidget(self.le_group_port)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_15 = QHBoxLayout()
+        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
+        self.label_27 = QLabel(self.groupBox_24)
+        self.label_27.setObjectName(u"label_27")
+        self.label_27.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_15.addWidget(self.label_27)
+
+        self.le_group_ip = QLineEdit(self.groupBox_24)
+        self.le_group_ip.setObjectName(u"le_group_ip")
+
+        self.horizontalLayout_15.addWidget(self.le_group_ip)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_15)
+
+        self.horizontalLayout_19 = QHBoxLayout()
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.label_36 = QLabel(self.groupBox_24)
+        self.label_36.setObjectName(u"label_36")
+        self.label_36.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_19.addWidget(self.label_36)
+
+        self.le_group_login = QLineEdit(self.groupBox_24)
+        self.le_group_login.setObjectName(u"le_group_login")
+        self.le_group_login.setEchoMode(QLineEdit.EchoMode.Normal)
+
+        self.horizontalLayout_19.addWidget(self.le_group_login)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_19)
+
+        self.horizontalLayout_22 = QHBoxLayout()
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.label_22 = QLabel(self.groupBox_24)
         self.label_22.setObjectName(u"label_22")
         self.label_22.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_26.addWidget(self.label_22)
+        self.horizontalLayout_22.addWidget(self.label_22)
 
-        self.le_group_password = QLineEdit(self.groupBox_23)
+        self.le_group_password = QLineEdit(self.groupBox_24)
         self.le_group_password.setObjectName(u"le_group_password")
         self.le_group_password.setEchoMode(QLineEdit.EchoMode.Normal)
 
-        self.horizontalLayout_26.addWidget(self.le_group_password)
+        self.horizontalLayout_22.addWidget(self.le_group_password)
 
 
-        self.gridLayout_8.addWidget(self.groupBox_23, 4, 0, 1, 1)
+        self.verticalLayout_9.addLayout(self.horizontalLayout_22)
+
+
+        self.gridLayout_8.addWidget(self.groupBox_24, 0, 0, 1, 1)
+
+        self.label_6 = QLabel(self.groupBox_21)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout_8.addWidget(self.label_6, 4, 0, 1, 1)
 
         self.users_save_button_2 = QPushButton(self.groupBox_21)
         self.users_save_button_2.setObjectName(u"users_save_button_2")
         self.users_save_button_2.setEnabled(False)
 
-        self.gridLayout_8.addWidget(self.users_save_button_2, 5, 0, 1, 1)
-
-        self.groupBox_25 = QGroupBox(self.groupBox_21)
-        self.groupBox_25.setObjectName(u"groupBox_25")
-        self.horizontalLayout_28 = QHBoxLayout(self.groupBox_25)
-        self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.label_26 = QLabel(self.groupBox_25)
-        self.label_26.setObjectName(u"label_26")
-        self.label_26.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_28.addWidget(self.label_26)
-
-        self.le_group_port = QLineEdit(self.groupBox_25)
-        self.le_group_port.setObjectName(u"le_group_port")
-
-        self.horizontalLayout_28.addWidget(self.le_group_port)
-
-
-        self.gridLayout_8.addWidget(self.groupBox_25, 1, 0, 1, 1)
-
-        self.groupBox_24 = QGroupBox(self.groupBox_21)
-        self.groupBox_24.setObjectName(u"groupBox_24")
-        self.horizontalLayout_27 = QHBoxLayout(self.groupBox_24)
-        self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
-        self.label_24 = QLabel(self.groupBox_24)
-        self.label_24.setObjectName(u"label_24")
-        self.label_24.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_27.addWidget(self.label_24)
-
-        self.le_group_name = QLineEdit(self.groupBox_24)
-        self.le_group_name.setObjectName(u"le_group_name")
-
-        self.horizontalLayout_27.addWidget(self.le_group_name)
-
-
-        self.gridLayout_8.addWidget(self.groupBox_24, 0, 0, 1, 1)
-
-        self.groupBox_28 = QGroupBox(self.groupBox_21)
-        self.groupBox_28.setObjectName(u"groupBox_28")
-        self.groupBox_28.setEnabled(False)
-        self.horizontalLayout_33 = QHBoxLayout(self.groupBox_28)
-        self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
-        self.label_36 = QLabel(self.groupBox_28)
-        self.label_36.setObjectName(u"label_36")
-        self.label_36.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_33.addWidget(self.label_36)
-
-        self.le_group_login = QLineEdit(self.groupBox_28)
-        self.le_group_login.setObjectName(u"le_group_login")
-        self.le_group_login.setEchoMode(QLineEdit.EchoMode.Normal)
-
-        self.horizontalLayout_33.addWidget(self.le_group_login)
-
-
-        self.gridLayout_8.addWidget(self.groupBox_28, 3, 0, 1, 1)
-
-        self.groupBox_26 = QGroupBox(self.groupBox_21)
-        self.groupBox_26.setObjectName(u"groupBox_26")
-        self.horizontalLayout_29 = QHBoxLayout(self.groupBox_26)
-        self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
-        self.label_27 = QLabel(self.groupBox_26)
-        self.label_27.setObjectName(u"label_27")
-        self.label_27.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_29.addWidget(self.label_27)
-
-        self.le_group_ip = QLineEdit(self.groupBox_26)
-        self.le_group_ip.setObjectName(u"le_group_ip")
-
-        self.horizontalLayout_29.addWidget(self.le_group_ip)
-
-
-        self.gridLayout_8.addWidget(self.groupBox_26, 2, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.users_save_button_2, 3, 0, 1, 1)
 
 
         self.gridLayout_15.addWidget(self.groupBox_21, 0, 0, 1, 1)
 
         self.tabs_group.addTab(self.tab_group_params, "")
-        self.tab_group_usb = QWidget()
-        self.tab_group_usb.setObjectName(u"tab_group_usb")
-        self.tab_group_usb.setEnabled(False)
-        self.gridLayout_24 = QGridLayout(self.tab_group_usb)
-        self.gridLayout_24.setObjectName(u"gridLayout_24")
-        self.groupBox_20 = QGroupBox(self.tab_group_usb)
-        self.groupBox_20.setObjectName(u"groupBox_20")
-        self.gridLayout_23 = QGridLayout(self.groupBox_20)
-        self.gridLayout_23.setObjectName(u"gridLayout_23")
-        self.groupBox_22 = QGroupBox(self.groupBox_20)
-        self.groupBox_22.setObjectName(u"groupBox_22")
-        self.horizontalLayout_12 = QHBoxLayout(self.groupBox_22)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.pushButton_6 = QPushButton(self.groupBox_22)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-
-        self.horizontalLayout_12.addWidget(self.pushButton_6)
-
-        self.pushButton_4 = QPushButton(self.groupBox_22)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-
-        self.horizontalLayout_12.addWidget(self.pushButton_4)
-
-
-        self.gridLayout_23.addWidget(self.groupBox_22, 1, 0, 1, 1)
-
-        self.listWidget = QListWidget(self.groupBox_20)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setSortingEnabled(True)
-
-        self.gridLayout_23.addWidget(self.listWidget, 0, 0, 1, 1)
-
-
-        self.gridLayout_24.addWidget(self.groupBox_20, 0, 0, 1, 1)
-
-        self.tabs_group.addTab(self.tab_group_usb, "")
         self.tab_group_access = QWidget()
         self.tab_group_access.setObjectName(u"tab_group_access")
         self.tab_group_access.setEnabled(False)
@@ -995,23 +969,181 @@ class Ui_MainWindow(object):
         self.gridLayout_25.setObjectName(u"gridLayout_25")
         self.tabs_group.addTab(self.tab_group_access, "")
 
-        self.gridLayout_14.addWidget(self.tabs_group, 0, 1, 1, 1)
+        self.gridLayout_14.addWidget(self.tabs_group, 0, 2, 1, 1)
 
         self.tabs_general.addTab(self.tab_groups, "")
         self.tab_ports = QWidget()
         self.tab_ports.setObjectName(u"tab_ports")
-        self.tab_ports.setEnabled(False)
+        self.tab_ports.setEnabled(True)
         self.gridLayout_12 = QGridLayout(self.tab_ports)
         self.gridLayout_12.setObjectName(u"gridLayout_12")
+        self.groupBox_8 = QGroupBox(self.tab_ports)
+        self.groupBox_8.setObjectName(u"groupBox_8")
+        self.gridLayout_16 = QGridLayout(self.groupBox_8)
+        self.gridLayout_16.setObjectName(u"gridLayout_16")
+        self.groupBox_2 = QGroupBox(self.groupBox_8)
+        self.groupBox_2.setObjectName(u"groupBox_2")
+        self.groupBox_2.setEnabled(True)
+        sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy)
+        self.groupBox_2.setMinimumSize(QSize(0, 0))
+        self.groupBox_2.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
+        self.groupBox_2.setAcceptDrops(False)
+        self.groupBox_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.groupBox_2.setFlat(False)
+        self.groupBox_2.setCheckable(False)
+        self.gridLayout_3 = QGridLayout(self.groupBox_2)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.groupBox_9 = QGroupBox(self.groupBox_2)
+        self.groupBox_9.setObjectName(u"groupBox_9")
+        self.horizontalLayout_18 = QHBoxLayout(self.groupBox_9)
+        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.label_13 = QLabel(self.groupBox_9)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_18.addWidget(self.label_13)
+
+        self.lb_usb_virtual_port = QLabel(self.groupBox_9)
+        self.lb_usb_virtual_port.setObjectName(u"lb_usb_virtual_port")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.lb_usb_virtual_port.sizePolicy().hasHeightForWidth())
+        self.lb_usb_virtual_port.setSizePolicy(sizePolicy4)
+
+        self.horizontalLayout_18.addWidget(self.lb_usb_virtual_port)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_9, 2, 0, 1, 1)
+
+        self.treeWidget = QTreeWidget(self.groupBox_2)
+        self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setHeaderHidden(False)
+        self.treeWidget.header().setVisible(True)
+        self.treeWidget.header().setHighlightSections(True)
+        self.treeWidget.header().setProperty(u"showSortIndicator", True)
+
+        self.gridLayout_3.addWidget(self.treeWidget, 7, 0, 1, 1)
+
+        self.label = QLabel(self.groupBox_2)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_3.addWidget(self.label, 6, 0, 1, 1)
+
+        self.btn_usb_save = QPushButton(self.groupBox_2)
+        self.btn_usb_save.setObjectName(u"btn_usb_save")
+
+        self.gridLayout_3.addWidget(self.btn_usb_save, 8, 0, 1, 1)
+
+        self.groupBox_5 = QGroupBox(self.groupBox_2)
+        self.groupBox_5.setObjectName(u"groupBox_5")
+        self.horizontalLayout_10 = QHBoxLayout(self.groupBox_5)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.label_4 = QLabel(self.groupBox_5)
+        self.label_4.setObjectName(u"label_4")
+        sizePolicy3.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy3)
+        self.label_4.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_10.addWidget(self.label_4)
+
+        self.cb_usb_active = QCheckBox(self.groupBox_5)
+        self.cb_usb_active.setObjectName(u"cb_usb_active")
+        sizePolicy4.setHeightForWidth(self.cb_usb_active.sizePolicy().hasHeightForWidth())
+        self.cb_usb_active.setSizePolicy(sizePolicy4)
+        self.cb_usb_active.setChecked(True)
+
+        self.horizontalLayout_10.addWidget(self.cb_usb_active)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_5, 1, 0, 1, 1)
+
+        self.groupBox_10 = QGroupBox(self.groupBox_2)
+        self.groupBox_10.setObjectName(u"groupBox_10")
+        self.horizontalLayout_20 = QHBoxLayout(self.groupBox_10)
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.label_15 = QLabel(self.groupBox_10)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_20.addWidget(self.label_15)
+
+        self.lb_usb_bus = QLabel(self.groupBox_10)
+        self.lb_usb_bus.setObjectName(u"lb_usb_bus")
+        sizePolicy4.setHeightForWidth(self.lb_usb_bus.sizePolicy().hasHeightForWidth())
+        self.lb_usb_bus.setSizePolicy(sizePolicy4)
+
+        self.horizontalLayout_20.addWidget(self.lb_usb_bus)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_10, 3, 0, 1, 1)
+
+        self.groupBox_6 = QGroupBox(self.groupBox_2)
+        self.groupBox_6.setObjectName(u"groupBox_6")
+        self.horizontalLayout_11 = QHBoxLayout(self.groupBox_6)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.label_5 = QLabel(self.groupBox_6)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_11.addWidget(self.label_5)
+
+        self.combo_usb_group = QComboBox(self.groupBox_6)
+        self.combo_usb_group.addItem("")
+        self.combo_usb_group.addItem("")
+        self.combo_usb_group.addItem("")
+        self.combo_usb_group.setObjectName(u"combo_usb_group")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.combo_usb_group.sizePolicy().hasHeightForWidth())
+        self.combo_usb_group.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_11.addWidget(self.combo_usb_group)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_6, 4, 0, 1, 1)
+
+        self.groupBox_11 = QGroupBox(self.groupBox_2)
+        self.groupBox_11.setObjectName(u"groupBox_11")
+        self.horizontalLayout_21 = QHBoxLayout(self.groupBox_11)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.label_17 = QLabel(self.groupBox_11)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_21.addWidget(self.label_17)
+
+        self.le_usb_name = QLineEdit(self.groupBox_11)
+        self.le_usb_name.setObjectName(u"le_usb_name")
+        sizePolicy5.setHeightForWidth(self.le_usb_name.sizePolicy().hasHeightForWidth())
+        self.le_usb_name.setSizePolicy(sizePolicy5)
+
+        self.horizontalLayout_21.addWidget(self.le_usb_name)
+
+
+        self.gridLayout_3.addWidget(self.groupBox_11, 0, 0, 1, 1)
+
+
+        self.gridLayout_16.addWidget(self.groupBox_2, 0, 0, 1, 1)
+
+
+        self.gridLayout_12.addWidget(self.groupBox_8, 0, 1, 1, 1)
+
         self.lw_users = QGroupBox(self.tab_ports)
         self.lw_users.setObjectName(u"lw_users")
         self.lw_users.setMaximumSize(QSize(350, 16777215))
         self.gridLayout = QGridLayout(self.lw_users)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.pushButton_10 = QPushButton(self.lw_users)
-        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.tree_usb_list = QTreeWidget(self.lw_users)
+        QTreeWidgetItem(self.tree_usb_list)
+        QTreeWidgetItem(self.tree_usb_list)
+        QTreeWidgetItem(self.tree_usb_list)
+        self.tree_usb_list.setObjectName(u"tree_usb_list")
+        self.tree_usb_list.setSortingEnabled(True)
 
-        self.gridLayout.addWidget(self.pushButton_10, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.tree_usb_list, 1, 0, 1, 1)
 
         self.horizontalLayout_16 = QHBoxLayout()
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
@@ -1030,282 +1162,23 @@ class Ui_MainWindow(object):
 
         self.groupBox_4 = QGroupBox(self.lw_users)
         self.groupBox_4.setObjectName(u"groupBox_4")
-        self.horizontalLayout_8 = QHBoxLayout(self.groupBox_4)
-        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.pushButton_13 = QPushButton(self.groupBox_4)
-        self.pushButton_13.setObjectName(u"pushButton_13")
+        self.verticalLayout_7 = QVBoxLayout(self.groupBox_4)
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.btn_usb_add = QPushButton(self.groupBox_4)
+        self.btn_usb_add.setObjectName(u"btn_usb_add")
 
-        self.horizontalLayout_8.addWidget(self.pushButton_13)
+        self.verticalLayout_7.addWidget(self.btn_usb_add)
 
-        self.pushButton_11 = QPushButton(self.groupBox_4)
-        self.pushButton_11.setObjectName(u"pushButton_11")
+        self.btn_usb_remove = QPushButton(self.groupBox_4)
+        self.btn_usb_remove.setObjectName(u"btn_usb_remove")
 
-        self.horizontalLayout_8.addWidget(self.pushButton_11)
-
-        self.pushButton_12 = QPushButton(self.groupBox_4)
-        self.pushButton_12.setObjectName(u"pushButton_12")
-
-        self.horizontalLayout_8.addWidget(self.pushButton_12)
+        self.verticalLayout_7.addWidget(self.btn_usb_remove)
 
 
         self.gridLayout.addWidget(self.groupBox_4, 2, 0, 1, 1)
 
-        self.pushButton_15 = QPushButton(self.lw_users)
-        self.pushButton_15.setObjectName(u"pushButton_15")
-
-        self.gridLayout.addWidget(self.pushButton_15, 4, 0, 1, 1)
-
-        self.treeWidget = QTreeWidget(self.lw_users)
-        QTreeWidgetItem(self.treeWidget)
-        QTreeWidgetItem(self.treeWidget)
-        QTreeWidgetItem(self.treeWidget)
-        self.treeWidget.setObjectName(u"treeWidget")
-        self.treeWidget.setSortingEnabled(True)
-
-        self.gridLayout.addWidget(self.treeWidget, 1, 0, 1, 1)
-
 
         self.gridLayout_12.addWidget(self.lw_users, 0, 0, 1, 1)
-
-        self.tabs_ports = QTabWidget(self.tab_ports)
-        self.tabs_ports.setObjectName(u"tabs_ports")
-        self.tabWidget_3Page1 = QWidget()
-        self.tabWidget_3Page1.setObjectName(u"tabWidget_3Page1")
-        self.gridLayout_17 = QGridLayout(self.tabWidget_3Page1)
-        self.gridLayout_17.setObjectName(u"gridLayout_17")
-        self.groupBox_2 = QGroupBox(self.tabWidget_3Page1)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        sizePolicy3.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
-        self.groupBox_2.setSizePolicy(sizePolicy3)
-        self.groupBox_2.setMinimumSize(QSize(0, 0))
-        self.groupBox_2.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
-        self.groupBox_2.setAcceptDrops(False)
-        self.groupBox_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
-        self.groupBox_2.setFlat(False)
-        self.groupBox_2.setCheckable(False)
-        self.verticalLayout_4 = QVBoxLayout(self.groupBox_2)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.groupBox_5 = QGroupBox(self.groupBox_2)
-        self.groupBox_5.setObjectName(u"groupBox_5")
-        self.horizontalLayout_10 = QHBoxLayout(self.groupBox_5)
-        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.label_4 = QLabel(self.groupBox_5)
-        self.label_4.setObjectName(u"label_4")
-        sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy2)
-        self.label_4.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_10.addWidget(self.label_4)
-
-        self.checkBox_2 = QCheckBox(self.groupBox_5)
-        self.checkBox_2.setObjectName(u"checkBox_2")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.checkBox_2.sizePolicy().hasHeightForWidth())
-        self.checkBox_2.setSizePolicy(sizePolicy4)
-        self.checkBox_2.setChecked(True)
-
-        self.horizontalLayout_10.addWidget(self.checkBox_2)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_5)
-
-        self.groupBox_9 = QGroupBox(self.groupBox_2)
-        self.groupBox_9.setObjectName(u"groupBox_9")
-        self.horizontalLayout_18 = QHBoxLayout(self.groupBox_9)
-        self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.label_13 = QLabel(self.groupBox_9)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_18.addWidget(self.label_13)
-
-        self.label_9 = QLabel(self.groupBox_9)
-        self.label_9.setObjectName(u"label_9")
-        sizePolicy4.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy4)
-
-        self.horizontalLayout_18.addWidget(self.label_9)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_9)
-
-        self.groupBox_10 = QGroupBox(self.groupBox_2)
-        self.groupBox_10.setObjectName(u"groupBox_10")
-        self.horizontalLayout_20 = QHBoxLayout(self.groupBox_10)
-        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
-        self.label_15 = QLabel(self.groupBox_10)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_20.addWidget(self.label_15)
-
-        self.label_16 = QLabel(self.groupBox_10)
-        self.label_16.setObjectName(u"label_16")
-        sizePolicy4.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
-        self.label_16.setSizePolicy(sizePolicy4)
-
-        self.horizontalLayout_20.addWidget(self.label_16)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_10)
-
-        self.groupBox_6 = QGroupBox(self.groupBox_2)
-        self.groupBox_6.setObjectName(u"groupBox_6")
-        self.horizontalLayout_11 = QHBoxLayout(self.groupBox_6)
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.label_5 = QLabel(self.groupBox_6)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_11.addWidget(self.label_5)
-
-        self.comboBox_3 = QComboBox(self.groupBox_6)
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.setObjectName(u"comboBox_3")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.comboBox_3.sizePolicy().hasHeightForWidth())
-        self.comboBox_3.setSizePolicy(sizePolicy5)
-
-        self.horizontalLayout_11.addWidget(self.comboBox_3)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_6)
-
-        self.groupBox_11 = QGroupBox(self.groupBox_2)
-        self.groupBox_11.setObjectName(u"groupBox_11")
-        self.horizontalLayout_21 = QHBoxLayout(self.groupBox_11)
-        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
-        self.label_17 = QLabel(self.groupBox_11)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_21.addWidget(self.label_17)
-
-        self.lineEdit_8 = QLineEdit(self.groupBox_11)
-        self.lineEdit_8.setObjectName(u"lineEdit_8")
-        sizePolicy5.setHeightForWidth(self.lineEdit_8.sizePolicy().hasHeightForWidth())
-        self.lineEdit_8.setSizePolicy(sizePolicy5)
-
-        self.horizontalLayout_21.addWidget(self.lineEdit_8)
-
-
-        self.verticalLayout_4.addWidget(self.groupBox_11)
-
-        self.pushButton_9 = QPushButton(self.groupBox_2)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-
-        self.verticalLayout_4.addWidget(self.pushButton_9)
-
-
-        self.gridLayout_17.addWidget(self.groupBox_2, 0, 0, 1, 1)
-
-        self.frame_4 = QFrame(self.tabWidget_3Page1)
-        self.frame_4.setObjectName(u"frame_4")
-
-        self.gridLayout_17.addWidget(self.frame_4, 1, 0, 1, 1)
-
-        self.tabs_ports.addTab(self.tabWidget_3Page1, "")
-        self.usb_tab_access_list = QWidget()
-        self.usb_tab_access_list.setObjectName(u"usb_tab_access_list")
-        self.usb_tab_access_list.setAutoFillBackground(False)
-        self.usb_tab_access_list.setStyleSheet(u"")
-        self.gridLayout_13 = QGridLayout(self.usb_tab_access_list)
-        self.gridLayout_13.setObjectName(u"gridLayout_13")
-        self.groupBox_3 = QGroupBox(self.usb_tab_access_list)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        sizePolicy.setHeightForWidth(self.groupBox_3.sizePolicy().hasHeightForWidth())
-        self.groupBox_3.setSizePolicy(sizePolicy)
-        self.verticalLayout_2 = QVBoxLayout(self.groupBox_3)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame_14 = QFrame(self.groupBox_3)
-        self.frame_14.setObjectName(u"frame_14")
-        sizePolicy3.setHeightForWidth(self.frame_14.sizePolicy().hasHeightForWidth())
-        self.frame_14.setSizePolicy(sizePolicy3)
-        self.horizontalLayout_9 = QHBoxLayout(self.frame_14)
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.lineEdit_10 = QLineEdit(self.frame_14)
-        self.lineEdit_10.setObjectName(u"lineEdit_10")
-
-        self.horizontalLayout_9.addWidget(self.lineEdit_10)
-
-        self.pushButton_3 = QPushButton(self.frame_14)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-
-        self.horizontalLayout_9.addWidget(self.pushButton_3)
-
-
-        self.verticalLayout_2.addWidget(self.frame_14)
-
-        self.listWidget_3 = QListWidget(self.groupBox_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        QListWidgetItem(self.listWidget_3)
-        self.listWidget_3.setObjectName(u"listWidget_3")
-        sizePolicy.setHeightForWidth(self.listWidget_3.sizePolicy().hasHeightForWidth())
-        self.listWidget_3.setSizePolicy(sizePolicy)
-
-        self.verticalLayout_2.addWidget(self.listWidget_3)
-
-        self.groupBox_8 = QGroupBox(self.groupBox_3)
-        self.groupBox_8.setObjectName(u"groupBox_8")
-        sizePolicy3.setHeightForWidth(self.groupBox_8.sizePolicy().hasHeightForWidth())
-        self.groupBox_8.setSizePolicy(sizePolicy3)
-        self.horizontalLayout_7 = QHBoxLayout(self.groupBox_8)
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.pushButton = QPushButton(self.groupBox_8)
-        self.pushButton.setObjectName(u"pushButton")
-
-        self.horizontalLayout_7.addWidget(self.pushButton)
-
-        self.pushButton_2 = QPushButton(self.groupBox_8)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-
-        self.horizontalLayout_7.addWidget(self.pushButton_2)
-
-
-        self.verticalLayout_2.addWidget(self.groupBox_8)
-
-
-        self.gridLayout_13.addWidget(self.groupBox_3, 0, 0, 1, 1)
-
-        self.tabs_ports.addTab(self.usb_tab_access_list, "")
-
-        self.gridLayout_12.addWidget(self.tabs_ports, 0, 1, 1, 1)
 
         self.tabs_general.addTab(self.tab_ports, "")
         self.tab_logs = QWidget()
@@ -1365,7 +1238,6 @@ class Ui_MainWindow(object):
         self.stack_user_policies.setCurrentIndex(0)
         self.btn_refresh_users_tab.setDefault(False)
         self.tabs_group.setCurrentIndex(0)
-        self.tabs_ports.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1502,6 +1374,7 @@ class Ui_MainWindow(object):
         self.btn_show_user_policies.setText("")
         self.btn_user_policies_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_group_policies), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f", None))
+        self.groupBox_3.setTitle("")
         self.btn_user_ports_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_usb_policices), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
@@ -1528,21 +1401,22 @@ class Ui_MainWindow(object):
         self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.btn_refresh_groups_tab.setText("")
         ___qtreewidgetitem15 = self.list_groups.headerItem()
+        ___qtreewidgetitem15.setText(1, QCoreApplication.translate("MainWindow", u"TCP-\u043f\u043e\u0440\u0442", None));
         ___qtreewidgetitem15.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
 
         __sortingEnabled3 = self.list_groups.isSortingEnabled()
         self.list_groups.setSortingEnabled(False)
         ___qtreewidgetitem16 = self.list_groups.topLevelItem(0)
+        ___qtreewidgetitem16.setText(1, QCoreApplication.translate("MainWindow", u"7503", None));
         ___qtreewidgetitem16.setText(0, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None));
         ___qtreewidgetitem17 = self.list_groups.topLevelItem(1)
+        ___qtreewidgetitem17.setText(1, QCoreApplication.translate("MainWindow", u"7501", None));
         ___qtreewidgetitem17.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
         ___qtreewidgetitem18 = self.list_groups.topLevelItem(2)
+        ___qtreewidgetitem18.setText(1, QCoreApplication.translate("MainWindow", u"7500", None));
         ___qtreewidgetitem18.setText(0, QCoreApplication.translate("MainWindow", u"Sever-Volzh", None));
         self.list_groups.setSortingEnabled(__sortingEnabled3)
 
-        self.groupBox_13.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
-        self.pushButton_14.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.pushButton_18.setText(QCoreApplication.translate("MainWindow", u"TCP \u043f\u043e\u0440\u0442", None))
         self.groupBox_17.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.btn_group_new.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430", None))
         self.btn_group_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
@@ -1551,27 +1425,6 @@ class Ui_MainWindow(object):
         self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.btn_group_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.groupBox_21.setTitle("")
-        self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
-        self.le_group_password.setText("")
-        self.le_group_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.users_save_button_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"TCP \u043f\u043e\u0440\u0442", None))
-        self.le_group_port.setText("")
-        self.le_group_port.setPlaceholderText(QCoreApplication.translate("MainWindow", u"7501", None))
-        self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.le_group_name.setText("")
-        self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
-        self.le_group_login.setText("")
-        self.le_group_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.label_27.setText(QCoreApplication.translate("MainWindow", u"IP/Hostname", None))
-        self.le_group_ip.setText("")
-        self.le_group_ip.setPlaceholderText(QCoreApplication.translate("MainWindow", u"10.10.8.161", None))
-        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params), QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
-        self.groupBox_20.setTitle("")
-        self.groupBox_22.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
 
         __sortingEnabled4 = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
@@ -1583,128 +1436,73 @@ class Ui_MainWindow(object):
         ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04332", None));
         self.listWidget.setSortingEnabled(__sortingEnabled4)
 
-        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_usb), QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
+        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
+        self.le_group_name.setText("")
+        self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"TCP \u043f\u043e\u0440\u0442", None))
+        self.le_group_port.setText("")
+        self.le_group_port.setPlaceholderText(QCoreApplication.translate("MainWindow", u"7501", None))
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"IP/Hostname", None))
+        self.le_group_ip.setText("")
+        self.le_group_ip.setPlaceholderText(QCoreApplication.translate("MainWindow", u"10.10.8.161", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438\u043d", None))
+        self.le_group_login.setText("")
+        self.le_group_login.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
+        self.le_group_password.setText("")
+        self.le_group_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
+        self.users_save_button_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params), QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_access), QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_groups), QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
-        self.lw_users.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
-        self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0439\u0442\u0438", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
-        self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u"Virtual Port", None))
-        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
-        self.pushButton_15.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        ___qtreewidgetitem19 = self.treeWidget.headerItem()
-        ___qtreewidgetitem19.setText(2, QCoreApplication.translate("MainWindow", u"Group", None));
-        ___qtreewidgetitem19.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
-        ___qtreewidgetitem19.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
-
-        __sortingEnabled5 = self.treeWidget.isSortingEnabled()
-        self.treeWidget.setSortingEnabled(False)
-        ___qtreewidgetitem20 = self.treeWidget.topLevelItem(0)
-        ___qtreewidgetitem20.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem20.setText(1, QCoreApplication.translate("MainWindow", u"1.1", None));
-        ___qtreewidgetitem20.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0411\u0443\u043b\u0430\u0442\u043e\u0432\u0430", None));
-        ___qtreewidgetitem21 = self.treeWidget.topLevelItem(1)
-        ___qtreewidgetitem21.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem21.setText(1, QCoreApplication.translate("MainWindow", u"1.2", None));
-        ___qtreewidgetitem21.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
-        ___qtreewidgetitem22 = self.treeWidget.topLevelItem(2)
-        ___qtreewidgetitem22.setText(1, QCoreApplication.translate("MainWindow", u"1.3", None));
-        self.treeWidget.setSortingEnabled(__sortingEnabled5)
-
+        self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.groupBox_2.setTitle("")
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
-        self.checkBox_2.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u0435\u043d", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Virtual Port", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"1.21", None))
+        self.lb_usb_virtual_port.setText(QCoreApplication.translate("MainWindow", u"1.21", None))
+        ___qtreewidgetitem19 = self.treeWidget.headerItem()
+        ___qtreewidgetitem19.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem19.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        self.label.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.btn_usb_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
+        self.cb_usb_active.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u0435\u043d", None))
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"1.2.1-2.2.4", None))
+        self.lb_usb_bus.setText(QCoreApplication.translate("MainWindow", u"1.2.1-2.2.4", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442", None))
-        self.comboBox_3.setItemText(0, QCoreApplication.translate("MainWindow", u"Smart", None))
-        self.comboBox_3.setItemText(1, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None))
-        self.comboBox_3.setItemText(2, QCoreApplication.translate("MainWindow", u"USKStandart", None))
+        self.combo_usb_group.setItemText(0, QCoreApplication.translate("MainWindow", u"Smart", None))
+        self.combo_usb_group.setItemText(1, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None))
+        self.combo_usb_group.setItemText(2, QCoreApplication.translate("MainWindow", u"USKStandart", None))
 
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.lineEdit_8.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.tabs_ports.setTabText(self.tabs_ports.indexOf(self.tabWidget_3Page1), QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
-        self.groupBox_3.setTitle("")
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0439\u0442\u0438", None))
+        self.le_usb_name.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None))
+        self.lw_users.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
+        ___qtreewidgetitem20 = self.tree_usb_list.headerItem()
+        ___qtreewidgetitem20.setText(2, QCoreApplication.translate("MainWindow", u"Group", None));
+        ___qtreewidgetitem20.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
+        ___qtreewidgetitem20.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
 
-        __sortingEnabled6 = self.listWidget_3.isSortingEnabled()
-        self.listWidget_3.setSortingEnabled(False)
-        ___qlistwidgetitem3 = self.listWidget_3.item(0)
-        ___qlistwidgetitem3.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem4 = self.listWidget_3.item(1)
-        ___qlistwidgetitem4.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem5 = self.listWidget_3.item(2)
-        ___qlistwidgetitem5.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem6 = self.listWidget_3.item(3)
-        ___qlistwidgetitem6.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem7 = self.listWidget_3.item(4)
-        ___qlistwidgetitem7.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem8 = self.listWidget_3.item(5)
-        ___qlistwidgetitem8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem9 = self.listWidget_3.item(6)
-        ___qlistwidgetitem9.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem10 = self.listWidget_3.item(7)
-        ___qlistwidgetitem10.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem11 = self.listWidget_3.item(8)
-        ___qlistwidgetitem11.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem12 = self.listWidget_3.item(9)
-        ___qlistwidgetitem12.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem13 = self.listWidget_3.item(10)
-        ___qlistwidgetitem13.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem14 = self.listWidget_3.item(11)
-        ___qlistwidgetitem14.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem15 = self.listWidget_3.item(12)
-        ___qlistwidgetitem15.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem16 = self.listWidget_3.item(13)
-        ___qlistwidgetitem16.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem17 = self.listWidget_3.item(14)
-        ___qlistwidgetitem17.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem18 = self.listWidget_3.item(15)
-        ___qlistwidgetitem18.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem19 = self.listWidget_3.item(16)
-        ___qlistwidgetitem19.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem20 = self.listWidget_3.item(17)
-        ___qlistwidgetitem20.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem21 = self.listWidget_3.item(18)
-        ___qlistwidgetitem21.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem22 = self.listWidget_3.item(19)
-        ___qlistwidgetitem22.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem23 = self.listWidget_3.item(20)
-        ___qlistwidgetitem23.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem24 = self.listWidget_3.item(21)
-        ___qlistwidgetitem24.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem25 = self.listWidget_3.item(22)
-        ___qlistwidgetitem25.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem26 = self.listWidget_3.item(23)
-        ___qlistwidgetitem26.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem27 = self.listWidget_3.item(24)
-        ___qlistwidgetitem27.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem28 = self.listWidget_3.item(25)
-        ___qlistwidgetitem28.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem29 = self.listWidget_3.item(26)
-        ___qlistwidgetitem29.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem30 = self.listWidget_3.item(27)
-        ___qlistwidgetitem30.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem31 = self.listWidget_3.item(28)
-        ___qlistwidgetitem31.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem32 = self.listWidget_3.item(29)
-        ___qlistwidgetitem32.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem33 = self.listWidget_3.item(30)
-        ___qlistwidgetitem33.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        ___qlistwidgetitem34 = self.listWidget_3.item(31)
-        ___qlistwidgetitem34.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        self.listWidget_3.setSortingEnabled(__sortingEnabled6)
+        __sortingEnabled5 = self.tree_usb_list.isSortingEnabled()
+        self.tree_usb_list.setSortingEnabled(False)
+        ___qtreewidgetitem21 = self.tree_usb_list.topLevelItem(0)
+        ___qtreewidgetitem21.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem21.setText(1, QCoreApplication.translate("MainWindow", u"1.1", None));
+        ___qtreewidgetitem21.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0411\u0443\u043b\u0430\u0442\u043e\u0432\u0430", None));
+        ___qtreewidgetitem22 = self.tree_usb_list.topLevelItem(1)
+        ___qtreewidgetitem22.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem22.setText(1, QCoreApplication.translate("MainWindow", u"1.2", None));
+        ___qtreewidgetitem22.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
+        ___qtreewidgetitem23 = self.tree_usb_list.topLevelItem(2)
+        ___qtreewidgetitem23.setText(1, QCoreApplication.translate("MainWindow", u"1.3", None));
+        self.tree_usb_list.setSortingEnabled(__sortingEnabled5)
 
-        self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043b\u0435\u043d\u0438\u0435", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None))
-        self.tabs_ports.setTabText(self.tabs_ports.indexOf(self.usb_tab_access_list), QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0439\u0442\u0438", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
+        self.btn_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.btn_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_ports), QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_logs), QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438", None))
         self.menu_1.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u043e\u0435", None))

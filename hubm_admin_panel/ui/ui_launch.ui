@@ -133,8 +133,8 @@
              <widget class="QLabel" name="label">
               <property name="geometry">
                <rect>
-                <x>640</x>
-                <y>40</y>
+                <x>670</x>
+                <y>50</y>
                 <width>71</width>
                 <height>71</height>
                </rect>
@@ -172,35 +172,60 @@
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
               <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Адрес:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="le_address">
-               <property name="placeholderText">
-                <string>Hostname или IP</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_7">
-               <property name="text">
-                <string>Порт:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="le_tcp_port">
-               <property name="maximumSize">
+               <property name="minimumSize">
                 <size>
-                 <width>50</width>
-                 <height>16777215</height>
+                 <width>150</width>
+                 <height>0</height>
                 </size>
                </property>
                <property name="text">
-                <string>5000</string>
+                <string>Профиль сервера:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="cb_servers">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maxVisibleItems">
+                <number>15</number>
+               </property>
+               <property name="maxCount">
+                <number>15</number>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line_2">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_server_new">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="folder-new"/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_server_delete">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="edit-delete"/>
                </property>
               </widget>
              </item>
@@ -210,21 +235,60 @@
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
               <widget class="QLabel" name="label_8">
+               <property name="minimumSize">
+                <size>
+                 <width>150</width>
+                 <height>0</height>
+                </size>
+               </property>
                <property name="text">
-                <string>Токен:</string>
+                <string>Профиль подключения:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="le_token">
+              <widget class="QComboBox" name="cb_creds">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maxVisibleItems">
+                <number>15</number>
+               </property>
+               <property name="maxCount">
+                <number>15</number>
+               </property>
+               <property name="sizeAdjustPolicy">
+                <enum>QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="Line" name="line">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_creds_new">
                <property name="text">
                 <string/>
                </property>
-               <property name="echoMode">
-                <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+               <property name="icon">
+                <iconset theme="contact-new"/>
                </property>
-               <property name="placeholderText">
-                <string>Ваш токен</string>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btn_creds_delete">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset theme="edit-delete"/>
                </property>
               </widget>
              </item>
@@ -257,12 +321,13 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>le_address</tabstop>
-  <tabstop>le_tcp_port</tabstop>
-  <tabstop>le_token</tabstop>
   <tabstop>btn_connect</tabstop>
+  <tabstop>cb_creds</tabstop>
+  <tabstop>btn_creds_new</tabstop>
+  <tabstop>btn_creds_delete</tabstop>
  </tabstops>
  <resources>
+  <include location="resources.qrc"/>
   <include location="resources.qrc"/>
  </resources>
  <connections/>

@@ -32,6 +32,11 @@ class Ui_win_new_policies(object):
         self.groupBox_6.setObjectName(u"groupBox_6")
         self.gridLayout_2 = QGridLayout(self.groupBox_6)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.label = QLabel(self.groupBox_6)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_2.addWidget(self.label, 1, 0, 1, 1)
+
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
         self.btns.setOrientation(Qt.Orientation.Horizontal)
@@ -145,7 +150,7 @@ class Ui_win_new_policies(object):
         self.cb_usb_filter = QCheckBox(self.groupBox_8)
         self.cb_usb_filter.setObjectName(u"cb_usb_filter")
         self.cb_usb_filter.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
-        self.cb_usb_filter.setChecked(False)
+        self.cb_usb_filter.setChecked(True)
 
         self.horizontalLayout_7.addWidget(self.cb_usb_filter)
 
@@ -284,14 +289,19 @@ class Ui_win_new_policies(object):
 
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 2)
 
-        self.label = QLabel(self.groupBox_6)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout_2.addWidget(self.label, 1, 0, 1, 1)
-
 
         self.gridLayout.addWidget(self.groupBox_6, 0, 0, 1, 1)
 
+        QWidget.setTabOrder(self.le_group, self.cb_access)
+        QWidget.setTabOrder(self.cb_access, self.le_ip)
+        QWidget.setTabOrder(self.le_ip, self.le_pass)
+        QWidget.setTabOrder(self.le_pass, self.cb_usb_filter)
+        QWidget.setTabOrder(self.cb_usb_filter, self.cb_can_kick)
+        QWidget.setTabOrder(self.cb_can_kick, self.cb_kickable)
+        QWidget.setTabOrder(self.cb_kickable, self.le_until)
+        QWidget.setTabOrder(self.le_until, self.list_usb)
+        QWidget.setTabOrder(self.list_usb, self.cb_permit_login)
+        QWidget.setTabOrder(self.cb_permit_login, self.le_authmethod)
 
         self.retranslateUi(win_new_policies)
         self.btns.accepted.connect(win_new_policies.accept)
@@ -303,6 +313,7 @@ class Ui_win_new_policies(object):
     def retranslateUi(self, win_new_policies):
         win_new_policies.setWindowTitle(QCoreApplication.translate("win_new_policies", u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430", None))
         self.groupBox_6.setTitle("")
+        self.label.setText(QCoreApplication.translate("win_new_policies", u"* - \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None))
         self.label_3.setText(QCoreApplication.translate("win_new_policies", u"\u0413\u0440\u0443\u043f\u043f\u0430*", None))
         self.le_group.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0433\u0440\u0443\u043f\u043f\u0443...", None))
         self.users_fullname_label.setText(QCoreApplication.translate("win_new_policies", u"\u0414\u043e\u0441\u0442\u0443\u043f*", None))
@@ -329,6 +340,5 @@ class Ui_win_new_policies(object):
         self.label_12.setText(QCoreApplication.translate("win_new_policies", u"Permit-Login", None))
         self.cb_permit_login.setText("")
         self.label_11.setText(QCoreApplication.translate("win_new_policies", u"Auth-Method", None))
-        self.label.setText(QCoreApplication.translate("win_new_policies", u"* - \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None))
     # retranslateUi
 

@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QLabel, QLayout, QLineEdit, QMainWindow,
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QHBoxLayout, QLabel, QLayout, QMainWindow,
     QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+from . import resources_rc
 from . import resources_rc
 
 class Ui_Launch(object):
@@ -85,7 +86,7 @@ class Ui_Launch(object):
         self.label_9.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label = QLabel(self.frame_2)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(640, 40, 71, 71))
+        self.label.setGeometry(QRect(670, 50, 71, 71))
         self.label.setMaximumSize(QSize(120, 120))
         self.label.setPixmap(QPixmap(u":/res/image/hub_fill.png"))
         self.label.setScaledContents(True)
@@ -108,24 +109,43 @@ class Ui_Launch(object):
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.label_6 = QLabel(self.frame)
         self.label_6.setObjectName(u"label_6")
+        self.label_6.setMinimumSize(QSize(150, 0))
 
         self.horizontalLayout_3.addWidget(self.label_6)
 
-        self.le_address = QLineEdit(self.frame)
-        self.le_address.setObjectName(u"le_address")
+        self.cb_servers = QComboBox(self.frame)
+        self.cb_servers.setObjectName(u"cb_servers")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.cb_servers.sizePolicy().hasHeightForWidth())
+        self.cb_servers.setSizePolicy(sizePolicy3)
+        self.cb_servers.setMaxVisibleItems(15)
+        self.cb_servers.setMaxCount(15)
+        self.cb_servers.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
 
-        self.horizontalLayout_3.addWidget(self.le_address)
+        self.horizontalLayout_3.addWidget(self.cb_servers)
 
-        self.label_7 = QLabel(self.frame)
-        self.label_7.setObjectName(u"label_7")
+        self.line_2 = QFrame(self.frame)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
 
-        self.horizontalLayout_3.addWidget(self.label_7)
+        self.horizontalLayout_3.addWidget(self.line_2)
 
-        self.le_tcp_port = QLineEdit(self.frame)
-        self.le_tcp_port.setObjectName(u"le_tcp_port")
-        self.le_tcp_port.setMaximumSize(QSize(50, 16777215))
+        self.btn_server_new = QPushButton(self.frame)
+        self.btn_server_new.setObjectName(u"btn_server_new")
+        icon1 = QIcon(QIcon.fromTheme(u"folder-new"))
+        self.btn_server_new.setIcon(icon1)
 
-        self.horizontalLayout_3.addWidget(self.le_tcp_port)
+        self.horizontalLayout_3.addWidget(self.btn_server_new)
+
+        self.btn_server_delete = QPushButton(self.frame)
+        self.btn_server_delete.setObjectName(u"btn_server_delete")
+        icon2 = QIcon(QIcon.fromTheme(u"edit-delete"))
+        self.btn_server_delete.setIcon(icon2)
+
+        self.horizontalLayout_3.addWidget(self.btn_server_delete)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_3)
@@ -134,14 +154,39 @@ class Ui_Launch(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label_8 = QLabel(self.frame)
         self.label_8.setObjectName(u"label_8")
+        self.label_8.setMinimumSize(QSize(150, 0))
 
         self.horizontalLayout_4.addWidget(self.label_8)
 
-        self.le_token = QLineEdit(self.frame)
-        self.le_token.setObjectName(u"le_token")
-        self.le_token.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
+        self.cb_creds = QComboBox(self.frame)
+        self.cb_creds.setObjectName(u"cb_creds")
+        sizePolicy3.setHeightForWidth(self.cb_creds.sizePolicy().hasHeightForWidth())
+        self.cb_creds.setSizePolicy(sizePolicy3)
+        self.cb_creds.setMaxVisibleItems(15)
+        self.cb_creds.setMaxCount(15)
+        self.cb_creds.setSizeAdjustPolicy(QComboBox.SizeAdjustPolicy.AdjustToMinimumContentsLengthWithIcon)
 
-        self.horizontalLayout_4.addWidget(self.le_token)
+        self.horizontalLayout_4.addWidget(self.cb_creds)
+
+        self.line = QFrame(self.frame)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.horizontalLayout_4.addWidget(self.line)
+
+        self.btn_creds_new = QPushButton(self.frame)
+        self.btn_creds_new.setObjectName(u"btn_creds_new")
+        icon3 = QIcon(QIcon.fromTheme(u"contact-new"))
+        self.btn_creds_new.setIcon(icon3)
+
+        self.horizontalLayout_4.addWidget(self.btn_creds_new)
+
+        self.btn_creds_delete = QPushButton(self.frame)
+        self.btn_creds_delete.setObjectName(u"btn_creds_delete")
+        self.btn_creds_delete.setIcon(icon2)
+
+        self.horizontalLayout_4.addWidget(self.btn_creds_delete)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_4)
@@ -163,9 +208,9 @@ class Ui_Launch(object):
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
 
         Launch.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.le_address, self.le_tcp_port)
-        QWidget.setTabOrder(self.le_tcp_port, self.le_token)
-        QWidget.setTabOrder(self.le_token, self.btn_connect)
+        QWidget.setTabOrder(self.btn_connect, self.cb_creds)
+        QWidget.setTabOrder(self.cb_creds, self.btn_creds_new)
+        QWidget.setTabOrder(self.btn_creds_new, self.btn_creds_delete)
 
         self.retranslateUi(Launch)
 
@@ -179,13 +224,12 @@ class Ui_Launch(object):
         Launch.setWindowTitle(QCoreApplication.translate("Launch", u"hubM Admin Panel Connect", None))
         self.label_5.setText(QCoreApplication.translate("Launch", u"<html><head/><body><p>\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f \u043a \u0441\u0435\u0440\u0432\u0435\u0440\u0443 \u0438\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u0435:</p></body></html>", None))
         self.label_9.setText(QCoreApplication.translate("Launch", u"<html><head/><body><p><span style=\" font-size:48pt;\">hubM Admin Panel</span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("Launch", u"\u0410\u0434\u0440\u0435\u0441:", None))
-        self.le_address.setPlaceholderText(QCoreApplication.translate("Launch", u"Hostname \u0438\u043b\u0438 IP", None))
-        self.label_7.setText(QCoreApplication.translate("Launch", u"\u041f\u043e\u0440\u0442:", None))
-        self.le_tcp_port.setText(QCoreApplication.translate("Launch", u"5000", None))
-        self.label_8.setText(QCoreApplication.translate("Launch", u"\u0422\u043e\u043a\u0435\u043d:", None))
-        self.le_token.setText("")
-        self.le_token.setPlaceholderText(QCoreApplication.translate("Launch", u"\u0412\u0430\u0448 \u0442\u043e\u043a\u0435\u043d", None))
+        self.label_6.setText(QCoreApplication.translate("Launch", u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u0441\u0435\u0440\u0432\u0435\u0440\u0430:", None))
+        self.btn_server_new.setText("")
+        self.btn_server_delete.setText("")
+        self.label_8.setText(QCoreApplication.translate("Launch", u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f:", None))
+        self.btn_creds_new.setText("")
+        self.btn_creds_delete.setText("")
         self.btn_connect.setText(QCoreApplication.translate("Launch", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f", None))
     # retranslateUi
 
