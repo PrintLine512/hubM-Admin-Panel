@@ -91,6 +91,12 @@ class Ui_Launch(object):
         self.label.setScaledContents(True)
         self.label.setWordWrap(False)
         self.label.setOpenExternalLinks(False)
+        self.pushButton = QPushButton(self.frame_2)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(730, 10, 28, 28))
+        self.pushButton.setMinimumSize(QSize(28, 28))
+        icon1 = QIcon(QIcon.fromTheme(u"emblem-downloads"))
+        self.pushButton.setIcon(icon1)
 
         self.verticalLayout.addWidget(self.frame_2)
 
@@ -134,15 +140,15 @@ class Ui_Launch(object):
 
         self.btn_server_new = QPushButton(self.frame)
         self.btn_server_new.setObjectName(u"btn_server_new")
-        icon1 = QIcon(QIcon.fromTheme(u"folder-new"))
-        self.btn_server_new.setIcon(icon1)
+        icon2 = QIcon(QIcon.fromTheme(u"folder-new"))
+        self.btn_server_new.setIcon(icon2)
 
         self.horizontalLayout_3.addWidget(self.btn_server_new)
 
         self.btn_server_delete = QPushButton(self.frame)
         self.btn_server_delete.setObjectName(u"btn_server_delete")
-        icon2 = QIcon(QIcon.fromTheme(u"edit-delete"))
-        self.btn_server_delete.setIcon(icon2)
+        icon3 = QIcon(QIcon.fromTheme(u"edit-delete"))
+        self.btn_server_delete.setIcon(icon3)
 
         self.horizontalLayout_3.addWidget(self.btn_server_delete)
 
@@ -176,14 +182,14 @@ class Ui_Launch(object):
 
         self.btn_creds_new = QPushButton(self.frame)
         self.btn_creds_new.setObjectName(u"btn_creds_new")
-        icon3 = QIcon(QIcon.fromTheme(u"contact-new"))
-        self.btn_creds_new.setIcon(icon3)
+        icon4 = QIcon(QIcon.fromTheme(u"contact-new"))
+        self.btn_creds_new.setIcon(icon4)
 
         self.horizontalLayout_4.addWidget(self.btn_creds_new)
 
         self.btn_creds_delete = QPushButton(self.frame)
         self.btn_creds_delete.setObjectName(u"btn_creds_delete")
-        self.btn_creds_delete.setIcon(icon2)
+        self.btn_creds_delete.setIcon(icon3)
 
         self.horizontalLayout_4.addWidget(self.btn_creds_delete)
 

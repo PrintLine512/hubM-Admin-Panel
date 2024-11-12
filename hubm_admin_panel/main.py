@@ -9,7 +9,10 @@ from urllib.request import urlopen
 import pandas as pd
 import qdarktheme
 import requests
+from PySide6.QtGui import QCursor, QGuiApplication
 from packaging import version
+from qdarktheme.qtpy.QtWidgets import QApplication
+
 import utils.utils
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
@@ -81,18 +84,26 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+def handle_file_download(file_data):
+    # Обработка загруженного файла
+    with open('run', "wb") as file:
+        file.write(file_data)
+    print("Файл успешно загружен и сохранен!")
+
 
 def check_version(ui: "QtWidgets.QMainWindow", startup):
     url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
-
+    proxies = {
+        "http": "",
+        "https": "",
+    }
     try:
-        response = api_request(request="full", full_uri=True, uri=url)
+        response = requests.get(url=url, proxies=proxies)
         # Проверяем успешность запроса по статусу ответа
         if response.status_code == 200:
             # MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)
             try:
                 data = response.json()
-                print(data[ 'assets' ][ 0 ][ 'browser_download_url' ])
                 actual_version = data[ 'tag_name' ]
                 # if not startup:
                 #    QMessageBox.information(ui, 'Информация',
@@ -114,10 +125,18 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
 
                         if directory[ 0 ]:
                             url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
-                            response = requests.get(url)
-                            total_size = int(response.headers.get('content-length', 0))
-                            print(total_size)
-                            if response.status_code == 200:
+                            #response = requests.get(url=url, proxies=proxies)
+                            #total_size = int(response.headers.get('content-length', 0))
+                            #print(total_size)
+                            print(url)
+                            print(directory[0])
+                            downloader = FileDownloader(url)
+                            downloader.download_complete.connect(handle_file_download)
+                            downloader.start()
+
+                            if response.status_code == 202:
+                                print(url)
+
                                 # Сохраняем содержимое файла
                                 with open(directory[ 0 ], 'wb') as f:
                                     f.write(response.content)
@@ -157,52 +176,17 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
         QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
                                            f"{e}")
 
+class FileDownloader(QThread):
+    download_complete = Signal(bytes)  # Сигнал для передачи загруженного файла
 
-class Downloader(QThread):
-    # Signal for the window to establish the maximum value
-    # of the progress bar.
-    setTotalProgress = Signal(int)
-    # Signal to increase the progress.
-    setCurrentProgress = Signal(int)
-    # Signal to be emitted when the file has been downloaded successfully.
-    succeeded = Signal()
-
-    def __init__(self, url, filename):
+    def __init__(self, url):
         super().__init__()
         self.url = url
-        self.filename = filename
 
     def run(self):
-        # url = "https://www.python.org/ftp/python/3.7.2/python-3.7.2.exe"
-        # filename = "python-3.7.2.exe"
-        readBytes = 0
-        chunkSize = 1024
-        # Open the URL address.
-        with urlopen(self.url) as r:
-            print(self.url)
-            # Tell the window the amount of bytes to be downloaded.
-            self.setTotalProgress.emit(int(r.info()[ "Content-Length" ]))
-            with open(self.filename, "ab") as f:
-                while True:
-                    # Read a piece of the file we are downloading.
-                    chunk = r.read(chunkSize)
-                    # If the result is `None`, that means data is not
-                    # downloaded yet. Just keep waiting.
-                    if chunk is None:
-                        continue
-                    # If the result is an empty `bytes` instance, then
-                    # the file is complete.
-                    elif chunk == b"":
-                        break
-                    # Write into the local file the downloaded chunk.
-                    f.write(chunk)
-                    readBytes += chunkSize
-                    # Tell the window how many bytes we have received.
-                    self.setCurrentProgress.emit(readBytes)
-        # If this line is reached then no exception has ocurred in
-        # the previous lines.
-
-        self.succeeded.emit()
+        response = requests.get(self.url)
+        if response.status_code == 200:
+            self.download_complete.emit(response.content)
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -398,39 +382,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 f'Версия - {panel_version}\n'
                                 f'@PrintLine512')
 
-    def initDownload(self, url, filename):
-
-        pd = QProgressDialog("Operation in progress.", "Cancel", 0, 100)
-        # pd.canceled.connect(self.cancel)
-        # Run the download in a new thread.
-        self.downloader = Downloader(url, filename)
-
-        # Connect the signals which send information about the download
-        # progress with the proper methods of the progress bar.
-        self.downloader.setTotalProgress.connect(pd.setMaximum)
-        self.downloader.setCurrentProgress.connect(pd.setValue)
-        # Qt will invoke the `succeeded()` method when the file has been
-        # downloaded successfully and `downloadFinished()` when the
-        # child thread finishes.
-        self.downloader.succeeded.connect(lambda: self.progressBar.setValue(pd.maximum()))
-        self.downloader.finished.connect(lambda: self.downloadFinished(filename))
-        self.downloader.start()
-
-    def downloadSucceeded(self, pd):
-        # Set the progress at 100%.
-        self.progressBar.setValue(pd.maximum())
-
-    def downloadFinished(self, filename):
-        # Restore the button.
-        # Delete the thread when no longer needed.
-        dlg2 = QMessageBox.question(self, 'Обновление',
-                                    'Обновление успешно загружено.\nПерезапустить?',
-                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                    QMessageBox.StandardButton.Yes)
-        if dlg2 == QMessageBox.StandardButton.Yes:
-            os.startfile(filename)
-            sys.exit(0)
-        del self.downloader
 
     def get_class(self):
         try:

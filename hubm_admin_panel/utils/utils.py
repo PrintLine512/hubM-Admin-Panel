@@ -1,8 +1,12 @@
 import json
-from typing import Literal
+from typing import Literal, TYPE_CHECKING
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QApplication
 
 from . import config, config_file
 from . import session
+
 
 api_version = "v2"
 
@@ -39,6 +43,8 @@ def api_request(uri, new_headers=None, new_data=None,
                 request: Literal[ 'basic', 'full' ] = "basic", full_uri=False):
     server_address = None
     server_port = None
+    QApplication.setOverrideCursor(Qt.BusyCursor)
+
     if config[ "last_server" ]:
         last_server = config[ "last_server" ]
 
@@ -100,15 +106,21 @@ def api_request(uri, new_headers=None, new_data=None,
             print(f"Login failed with status code {response.status_code}")
             return False
 
-    if method == "GET":
-        response = session.get(url, headers=headers, data=new_data, proxies=proxies)
-    elif method == "PUT":
-        response = session.put(url, headers=headers, data=new_data, proxies=proxies)
-    elif method == "POST":
-        response = session.post(url, headers=headers, data=new_data, proxies=proxies)
-    elif method == "DELETE":
-        response = session.delete(url, headers=headers, data=new_data, proxies=proxies)
-    else:
+    try:
+        if method == "GET":
+            response = session.get(url, headers=headers, data=new_data, proxies=proxies)
+        elif method == "PUT":
+            response = session.put(url, headers=headers, data=new_data, proxies=proxies)
+        elif method == "POST":
+            response = session.post(url, headers=headers, data=new_data, proxies=proxies)
+        elif method == "DELETE":
+            response = session.delete(url, headers=headers, data=new_data, proxies=proxies)
+        else:
+            QApplication.restoreOverrideCursor()
+            return
+    except Exception as e:
+        print(e)
+        QApplication.restoreOverrideCursor()
         return
 
     if response.status_code == 401:
@@ -125,6 +137,7 @@ def api_request(uri, new_headers=None, new_data=None,
                 response = session.delete(url, headers=headers, data=new_data, proxies=proxies)
         else:
             print("Failed to log in, cannot access the resource.")
+            QApplication.restoreOverrideCursor()
             if request == "basic":
                 return response.text
             elif request == "full":
@@ -135,7 +148,10 @@ def api_request(uri, new_headers=None, new_data=None,
         # Проверка на доступ (403 Forbidden)
     elif response.status_code == 403:
         print(f"Access denied: {response.status_code}")
+        QApplication.restoreOverrideCursor()
         return "Error: Forbidden access. You don't have permission to access this resource."
+
+    QApplication.restoreOverrideCursor()
 
     if request == "basic":
         return response.text
