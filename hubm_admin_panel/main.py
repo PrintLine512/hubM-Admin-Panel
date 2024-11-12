@@ -9,7 +9,7 @@ from urllib.request import urlopen
 import pandas as pd
 import qdarktheme
 import requests
-
+from packaging import version
 import utils.utils
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
@@ -101,7 +101,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                 #                            f'прим.: "pip install hubm-admin-panel --upgrade"')
                 #    return
 
-                if actual_version > panel_version:
+                if version.parse(actual_version) > version.parse(panel_version):
 
                     dlg = QMessageBox.question(ui, 'Проверка обновления',
                                                f'Обнаружена новая версия - {actual_version}\nСкачать?',
