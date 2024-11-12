@@ -1,334 +1,349 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Launch</class>
- <widget class="QMainWindow" name="Launch">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>800</width>
-    <height>260</height>
-   </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>800</width>
-    <height>260</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>800</width>
-    <height>260</height>
-   </size>
-  </property>
-  <property name="windowTitle">
-   <string>hubM Admin Panel Connect</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/res/icon_connect</normaloff>:/res/icon_connect</iconset>
-  </property>
-  <property name="documentMode">
-   <bool>false</bool>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QFrame" name="frame">
-      <property name="frameShape">
-       <enum>QFrame::Shape::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Shadow::Raised</enum>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
-           </property>
-           <item>
-            <widget class="QFrame" name="frame_2">
-             <property name="frameShape">
-              <enum>QFrame::Shape::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Raised</enum>
-             </property>
-             <property name="lineWidth">
-              <number>0</number>
-             </property>
-             <widget class="QLabel" name="label_5">
-              <property name="geometry">
-               <rect>
+    <class>Launch</class>
+    <widget class="QMainWindow" name="Launch">
+        <property name="geometry">
+            <rect>
                 <x>0</x>
-                <y>50</y>
-                <width>571</width>
-                <height>71</height>
-               </rect>
-              </property>
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите данные для подключения к серверу или используйте последние сохраненные:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="textFormat">
-               <enum>Qt::TextFormat::RichText</enum>
-              </property>
-              <property name="scaledContents">
-               <bool>false</bool>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft</set>
-              </property>
-             </widget>
-             <widget class="QLabel" name="label_9">
-              <property name="geometry">
-               <rect>
-                <x>60</x>
                 <y>0</y>
-                <width>632</width>
-                <height>121</height>
-               </rect>
-              </property>
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <width>800</width>
+                <height>260</height>
+            </rect>
+        </property>
+        <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <family>Britannic</family>
-                <pointsize>14</pointsize>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;hubM Admin Panel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="textFormat">
-               <enum>Qt::TextFormat::MarkdownText</enum>
-              </property>
-              <property name="scaledContents">
-               <bool>false</bool>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignmentFlag::AlignCenter</set>
-              </property>
-             </widget>
-             <widget class="QLabel" name="label">
-              <property name="geometry">
-               <rect>
-                <x>670</x>
-                <y>50</y>
-                <width>71</width>
-                <height>71</height>
-               </rect>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>120</width>
-                <height>120</height>
-               </size>
-              </property>
-              <property name="pixmap">
-               <pixmap resource="resources.qrc">:/res/image/hub_fill.png</pixmap>
-              </property>
-              <property name="scaledContents">
-               <bool>true</bool>
-              </property>
-              <property name="wordWrap">
-               <bool>false</bool>
-              </property>
-              <property name="openExternalLinks">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Профиль сервера:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="cb_servers">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maxVisibleItems">
-                <number>15</number>
-               </property>
-               <property name="maxCount">
-                <number>15</number>
-               </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line_2">
-               <property name="orientation">
-                <enum>Qt::Orientation::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_server_new">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="folder-new"/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_server_delete">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="edit-delete"/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_8">
-               <property name="minimumSize">
-                <size>
-                 <width>150</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Профиль подключения:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="cb_creds">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maxVisibleItems">
-                <number>15</number>
-               </property>
-               <property name="maxCount">
-                <number>15</number>
-               </property>
-               <property name="sizeAdjustPolicy">
-                <enum>QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="Line" name="line">
-               <property name="orientation">
-                <enum>Qt::Orientation::Vertical</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_creds_new">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="contact-new"/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_creds_delete">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="edit-delete"/>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btn_connect">
-           <property name="text">
-            <string>Подключиться</string>
-           </property>
-           <property name="checkable">
+            </sizepolicy>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>800</width>
+                <height>260</height>
+            </size>
+        </property>
+        <property name="maximumSize">
+            <size>
+                <width>800</width>
+                <height>260</height>
+            </size>
+        </property>
+        <property name="windowTitle">
+            <string>hubM Admin Panel Connect</string>
+        </property>
+        <property name="windowIcon">
+            <iconset>
+                <normaloff>:/res/icon_connect</normaloff>:/res/icon_connect
+            </iconset>
+        </property>
+        <property name="documentMode">
             <bool>false</bool>
-           </property>
-           <property name="autoDefault">
-            <bool>true</bool>
-           </property>
-           <property name="default">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-   </layout>
-  </widget>
- </widget>
- <tabstops>
-  <tabstop>btn_connect</tabstop>
-  <tabstop>cb_creds</tabstop>
-  <tabstop>btn_creds_new</tabstop>
-  <tabstop>btn_creds_delete</tabstop>
- </tabstops>
- <resources>
-  <include location="resources.qrc"/>
-  <include location="resources.qrc"/>
- </resources>
- <connections/>
+        </property>
+        <widget class="QWidget" name="centralwidget">
+            <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="0">
+                    <widget class="QFrame" name="frame">
+                        <property name="frameShape">
+                            <enum>QFrame::Shape::StyledPanel</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>QFrame::Shadow::Raised</enum>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout_4">
+                            <item>
+                                <layout class="QHBoxLayout" name="horizontalLayout">
+                                    <item>
+                                        <layout class="QVBoxLayout" name="verticalLayout">
+                                            <property name="sizeConstraint">
+                                                <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+                                            </property>
+                                            <item>
+                                                <widget class="QFrame" name="frame_2">
+                                                    <property name="frameShape">
+                                                        <enum>QFrame::Shape::NoFrame</enum>
+                                                    </property>
+                                                    <property name="frameShadow">
+                                                        <enum>QFrame::Shadow::Raised</enum>
+                                                    </property>
+                                                    <property name="lineWidth">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <widget class="QLabel" name="label_5">
+                                                        <property name="geometry">
+                                                            <rect>
+                                                                <x>0</x>
+                                                                <y>50</y>
+                                                                <width>571</width>
+                                                                <height>71</height>
+                                                            </rect>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Введите
+                                                                данные для подключения к серверу или используйте
+                                                                последние сохраненные:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                                                            </string>
+                                                        </property>
+                                                        <property name="textFormat">
+                                                            <enum>Qt::TextFormat::RichText</enum>
+                                                        </property>
+                                                        <property name="scaledContents">
+                                                            <bool>false</bool>
+                                                        </property>
+                                                        <property name="alignment">
+                                                            <set>
+                                                                Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft
+                                                            </set>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel" name="label_9">
+                                                        <property name="geometry">
+                                                            <rect>
+                                                                <x>60</x>
+                                                                <y>0</y>
+                                                                <width>632</width>
+                                                                <height>121</height>
+                                                            </rect>
+                                                        </property>
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <family>Britannic</family>
+                                                                <pointsize>14</pointsize>
+                                                                <bold>true</bold>
+                                                            </font>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span
+                                                                style=&quot; font-size:48pt;&quot;&gt;hubM Admin Panel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+                                                            </string>
+                                                        </property>
+                                                        <property name="textFormat">
+                                                            <enum>Qt::TextFormat::MarkdownText</enum>
+                                                        </property>
+                                                        <property name="scaledContents">
+                                                            <bool>false</bool>
+                                                        </property>
+                                                        <property name="alignment">
+                                                            <set>Qt::AlignmentFlag::AlignCenter</set>
+                                                        </property>
+                                                    </widget>
+                                                    <widget class="QLabel" name="label">
+                                                        <property name="geometry">
+                                                            <rect>
+                                                                <x>670</x>
+                                                                <y>50</y>
+                                                                <width>71</width>
+                                                                <height>71</height>
+                                                            </rect>
+                                                        </property>
+                                                        <property name="maximumSize">
+                                                            <size>
+                                                                <width>120</width>
+                                                                <height>120</height>
+                                                            </size>
+                                                        </property>
+                                                        <property name="pixmap">
+                                                            <pixmap resource="resources.qrc">:/res/image/hub_fill.png
+                                                            </pixmap>
+                                                        </property>
+                                                        <property name="scaledContents">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="wordWrap">
+                                                            <bool>false</bool>
+                                                        </property>
+                                                        <property name="openExternalLinks">
+                                                            <bool>false</bool>
+                                                        </property>
+                                                    </widget>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                </layout>
+                            </item>
+                            <item>
+                                <layout class="QVBoxLayout" name="verticalLayout_5">
+                                    <item>
+                                        <layout class="QVBoxLayout" name="verticalLayout_6">
+                                            <item>
+                                                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                                                    <item>
+                                                        <widget class="QLabel" name="label_6">
+                                                            <property name="minimumSize">
+                                                                <size>
+                                                                    <width>150</width>
+                                                                    <height>0</height>
+                                                                </size>
+                                                            </property>
+                                                            <property name="text">
+                                                                <string>Профиль сервера:</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QComboBox" name="cb_servers">
+                                                            <property name="sizePolicy">
+                                                                <sizepolicy hsizetype="MinimumExpanding"
+                                                                            vsizetype="Fixed">
+                                                                    <horstretch>0</horstretch>
+                                                                    <verstretch>0</verstretch>
+                                                                </sizepolicy>
+                                                            </property>
+                                                            <property name="maxVisibleItems">
+                                                                <number>15</number>
+                                                            </property>
+                                                            <property name="maxCount">
+                                                                <number>15</number>
+                                                            </property>
+                                                            <property name="sizeAdjustPolicy">
+                                                                <enum>
+                                                                    QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon
+                                                                </enum>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="Line" name="line_2">
+                                                            <property name="orientation">
+                                                                <enum>Qt::Orientation::Vertical</enum>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QPushButton" name="btn_server_new">
+                                                            <property name="text">
+                                                                <string/>
+                                                            </property>
+                                                            <property name="icon">
+                                                                <iconset theme="folder-new"/>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QPushButton" name="btn_server_delete">
+                                                            <property name="text">
+                                                                <string/>
+                                                            </property>
+                                                            <property name="icon">
+                                                                <iconset theme="edit-delete"/>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </item>
+                                            <item>
+                                                <layout class="QHBoxLayout" name="horizontalLayout_4">
+                                                    <item>
+                                                        <widget class="QLabel" name="label_8">
+                                                            <property name="minimumSize">
+                                                                <size>
+                                                                    <width>150</width>
+                                                                    <height>0</height>
+                                                                </size>
+                                                            </property>
+                                                            <property name="text">
+                                                                <string>Профиль подключения:</string>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QComboBox" name="cb_creds">
+                                                            <property name="sizePolicy">
+                                                                <sizepolicy hsizetype="MinimumExpanding"
+                                                                            vsizetype="Fixed">
+                                                                    <horstretch>0</horstretch>
+                                                                    <verstretch>0</verstretch>
+                                                                </sizepolicy>
+                                                            </property>
+                                                            <property name="maxVisibleItems">
+                                                                <number>15</number>
+                                                            </property>
+                                                            <property name="maxCount">
+                                                                <number>15</number>
+                                                            </property>
+                                                            <property name="sizeAdjustPolicy">
+                                                                <enum>
+                                                                    QComboBox::SizeAdjustPolicy::AdjustToMinimumContentsLengthWithIcon
+                                                                </enum>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="Line" name="line">
+                                                            <property name="orientation">
+                                                                <enum>Qt::Orientation::Vertical</enum>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QPushButton" name="btn_creds_new">
+                                                            <property name="text">
+                                                                <string/>
+                                                            </property>
+                                                            <property name="icon">
+                                                                <iconset theme="contact-new"/>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                    <item>
+                                                        <widget class="QPushButton" name="btn_creds_delete">
+                                                            <property name="text">
+                                                                <string/>
+                                                            </property>
+                                                            <property name="icon">
+                                                                <iconset theme="edit-delete"/>
+                                                            </property>
+                                                        </widget>
+                                                    </item>
+                                                </layout>
+                                            </item>
+                                        </layout>
+                                    </item>
+                                    <item>
+                                        <widget class="QPushButton" name="btn_connect">
+                                            <property name="text">
+                                                <string>Подключиться</string>
+                                            </property>
+                                            <property name="checkable">
+                                                <bool>false</bool>
+                                            </property>
+                                            <property name="autoDefault">
+                                                <bool>true</bool>
+                                            </property>
+                                            <property name="default">
+                                                <bool>true</bool>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </item>
+                        </layout>
+                    </widget>
+                </item>
+            </layout>
+        </widget>
+    </widget>
+    <tabstops>
+        <tabstop>btn_connect</tabstop>
+        <tabstop>cb_creds</tabstop>
+        <tabstop>btn_creds_new</tabstop>
+        <tabstop>btn_creds_delete</tabstop>
+    </tabstops>
+    <resources>
+        <include location="resources.qrc"/>
+        <include location="resources.qrc"/>
+    </resources>
+    <connections/>
 </ui>

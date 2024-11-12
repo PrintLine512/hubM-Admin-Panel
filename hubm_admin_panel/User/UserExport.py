@@ -15,6 +15,7 @@ def resource_path(relative):
         relative
     )
 
+
 class UserExport(QDialog):
     def __init__(self):
         super().__init__()
@@ -26,13 +27,11 @@ class UserExport(QDialog):
         # Инициализируем интерфейс дополнительного окна
         self.ui.setupUi(self)
 
-        #self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
+        # self.ui.btns.button(QtWidgets.QDialogButtonBox.StandardButton.Save).setEnabled(False)
         # Здесь можно добавить дополнительную логику и функциональность вашего дополнительного окна
 
         self.ui.cb_enable_usb_policies.checkStateChanged.connect(self.validate)
         self.ui.cb_enable_group_policies.checkStateChanged.connect(self.validate)
-
-
 
     def validate(self):
         if self.ui.cb_enable_group_policies.isChecked():

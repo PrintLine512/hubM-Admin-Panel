@@ -4,14 +4,11 @@ import logging
 import os
 import sys
 import traceback
-import winreg
-import configparser
 from urllib.request import urlopen
 
 import pandas as pd
 import qdarktheme
 import requests
-from PySide6.QtGui import QAction
 
 import utils.utils
 
@@ -20,9 +17,8 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QThread, Signal
 from PySide6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog, QMenu, QToolButton
+    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog
 )
-import PySide6.QtQuickControls2
 
 from rich.console import Console
 from rich.logging import RichHandler
@@ -85,6 +81,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+
 def check_version(ui: "QtWidgets.QMainWindow", startup):
     url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
 
@@ -95,9 +92,9 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
             # MainWindow().tbl_user_policies = PolicyTableWidget(name="Try3", parent=MainWindow().users_tab_group_policies)
             try:
                 data = response.json()
-                print(data['assets'][0]['browser_download_url'])
-                actual_version = data['tag_name']
-                #if not startup:
+                print(data[ 'assets' ][ 0 ][ 'browser_download_url' ])
+                actual_version = data[ 'tag_name' ]
+                # if not startup:
                 #    QMessageBox.information(ui, 'Информация',
                 #                            f'Программа запущена через интерпретатор Python.\n'
                 #                            f'Если необходимо обновление, воспользуйтесь инструментом pip.\n'
@@ -116,7 +113,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                         directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
 
                         if directory[ 0 ]:
-                            url = data['assets'][0]['browser_download_url']
+                            url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
                             response = requests.get(url)
                             total_size = int(response.headers.get('content-length', 0))
                             print(total_size)
@@ -154,11 +151,11 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
 
         else:
             QMessageBox.critical(ui, "Ошибка", f"Ошибка: {response.status_code}"
-                                                 f"\n{response.text}")
+                                               f"\n{response.text}")
 
     except requests.ConnectionError as e:
         QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
-                             f"{e}")
+                                           f"{e}")
 
 
 class Downloader(QThread):
@@ -213,14 +210,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         super(MainWindow, self).__init__(*args, **kwargs)
 
-
         self.setupUi(self)
 
         icon_path = resource_path("res/icon.png")
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
         self.user = User(self)
-        #self.groups = None
+        # self.groups = None
         self.groups = Groups(self)
 
         # self.tbl_user_policies = PolicyTableWidget(parent=self.users_tab_group_policies)
@@ -238,21 +234,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_user_export.clicked.connect(self.win_user_export)
         self.btn_user_delete.clicked.connect(self.user_delete)
         self.btn_refresh_users_tab.clicked.connect(self.get_list_users)
-        #self.btn_refresh_groups_tab.clicked.connect(self.group_init)
+        # self.btn_refresh_groups_tab.clicked.connect(self.group_init)
         self.btn_user_create.clicked.connect(self.win_user_create)
         self.btn_about_program.triggered.connect(self.win_about_program)
         self.btn_check_update.triggered.connect(lambda: check_version(self, False))
         self.DevButton1.clicked.connect(self.get_class)
         self.DevButton2.clicked.connect(self.get_class2)
-        #self.list_groups.itemSelectionChanged.connect(self.group_render)
-        #self.btn_group_restart.clicked.connect(self.group_restart)
+        # self.list_groups.itemSelectionChanged.connect(self.group_render)
+        # self.btn_group_restart.clicked.connect(self.group_restart)
         ###
 
         self.list_users.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
-
-
-
 
     def win_user_create(self):
         win_create_user = CreateUser()
@@ -317,7 +310,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     QMessageBox.critical(self, "Ошибка",
                                          f"Политика не удалена или удалена с ошибками!\nОшибка: {response.status_code}"
                                          f"\n{response.text}")
-                #self.list_users.setCurrentItem(None)
+                # self.list_users.setCurrentItem(None)
                 self.get_list_users()
 
         except Exception:
@@ -333,15 +326,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
             if directory[ 0 ]:
 
-                data = []
-                order = []
+                data = [ ]
+                order = [ ]
                 try:
                     if not win_user_export.ui.cb_enable_group_policies.isChecked():
-                        order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active']
+                        order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active' ]
 
                         response = api_request("users/", request="full")
                         data = json.loads(response.text)[ 'users' ]
-
 
                     if win_user_export.ui.cb_enable_group_policies.isChecked() and not win_user_export.ui.cb_enable_usb_policies.isChecked():
                         order = [ 'cn', 'name', 'email', 'ip', 'comment', 'active', 'groups' ]
@@ -350,7 +342,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         data = json.loads(response.text)[ 'users' ]
                         for user in data:
                             # Получаем группы пользователя
-                            #user['active'] = "True" if user['active'] else "False"
+                            # user['active'] = "True" if user['active'] else "False"
                             groups = user[ 'groups' ]
                             group_names = [ group_name for group_name in groups.keys() ]  # Получаем только имена групп
 
@@ -364,7 +356,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         response = api_request("users/?type=servers", request="full")
                         data = json.loads(response.text)[ 'users' ]
                         for user in data:
-                            #user['active'] = "True" if user['active'] else "False"
+                            # user['active'] = "True" if user['active'] else "False"
 
                             # print(f"User: {user[ 'cn' ]}, ID: {user[ 'id' ]}")
 
@@ -465,25 +457,25 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pass
 
     def group_init(self):
-        #if self.groups is not None:
+        # if self.groups is not None:
         #    print("DELETE")
         #    del self.groups
-        #self.groups = Groups(self)
+        # self.groups = Groups(self)
         self.groups.render_groups(self)
 
     def tabs_general_clicked(self, index):
         match index:
             case 0:
                 print("Дэшборд")
-                #print(self.tabs_general.currentWidget().objectName())
+                # print(self.tabs_general.currentWidget().objectName())
             case 1:
                 print("Пользователи")
-                #print(self.tabs_general.currentWidget().objectName())
+                # print(self.tabs_general.currentWidget().objectName())
                 self.clear_user_info()
                 self.get_list_users()
             case 2:
                 print("Группы")
-                #print(self.tabs_general.currentWidget().objectName())
+                # print(self.tabs_general.currentWidget().objectName())
                 self.groups.refresh(self)
             case 3:
                 print("Порты")
@@ -513,7 +505,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print("Активность")
             case _:
                 print("Некорректная вкладка")
-
 
     def get_users_json(self):
         users_raw = api_request("users")
@@ -593,10 +584,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         @classmethod
         def get_type(cls, type):
-            data = []
+            data = [ ]
             for enum_member in cls:
                 if enum_member.value[ 1 ] == type:
-                    value = {'name': enum_member.name, 'id': enum_member.value[0]}
+                    value = {'name': enum_member.name, 'id': enum_member.value[ 0 ]}
                     data.append(value)
             return data
 
@@ -610,10 +601,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             value = {enum_member.name: enum_member.value[ 0 ] for enum_member in cls}
             return json.dumps(value)
 
-
     def update_user_info(self, item):
         self.user.init(item)
-
 
     def win_new_create_policies(self):
         if not self.user:
@@ -622,20 +611,20 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         username = self.user.name
 
-        win_create_policies = CreatePolicies(self.user.dict['ip'])
+        win_create_policies = CreatePolicies(self.user.dict[ 'ip' ])
         groups = self.get_groups_list_text()
         win_create_policies.ui.le_group.addItems(groups)
         if win_create_policies.exec() == QDialog.DialogCode.Accepted:
             data = win_create_policies.save()
             group = data[ "group" ]
-            usb_list = data["usb_allowed"]
+            usb_list = data[ "usb_allowed" ]
             for usb in usb_list:
                 response = api_request(f"users/{username}/ports/{usb}", {}, json.dumps(data), "POST", "full")
                 if response.status_code == 200:
-                    #QMessageBox.information(self, "Информация", f"Политика успешно добавлена.")
+                    # QMessageBox.information(self, "Информация", f"Политика успешно добавлена.")
                     pass
                 elif response.status_code == 409:
-                    #QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
+                    # QMessageBox.critical(self, "Ошибка", f"Неправильный токен!")
                     pass
                 else:
                     QMessageBox.critical(self, "Ошибка",
@@ -693,7 +682,7 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
         self.cred_userpass = None
         self.cred_label = None
 
-        #self.cb_creds.currentTextChanged.connect(self.change_cred)
+        # self.cb_creds.currentTextChanged.connect(self.change_cred)
 
         self.load_creds()
         self.load_servers()
@@ -716,8 +705,8 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
     def load_creds(self):
         self.cb_creds.clear()
         if config[ "creds" ]:
-            for cred in config["creds"]:
-                self.cb_creds.addItem(cred["label"])
+            for cred in config[ "creds" ]:
+                self.cb_creds.addItem(cred[ "label" ])
 
         if config[ "last_cred" ]:
             last_cred = config[ "last_cred" ]
@@ -751,7 +740,7 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
             label = dialog.label
 
             # Проверка уникальности имени пользователя
-            if any(cred["label"] == label for cred in config["creds"]):
+            if any(cred[ "label" ] == label for cred in config[ "creds" ]):
                 QMessageBox.warning(self, "Ошибка", "Профиль подключения уже существует!")
             else:
                 # Добавляем нового пользователя в конфиг
@@ -764,7 +753,6 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
                 utils.utils.write_config()
                 self.load_creds()
                 QMessageBox.information(self, "Информация", f"Новый профиль подключения добавлен: {label}")
-
 
     def create_server(self):
         dialog = launch_dialogs.ServerDialog()  # Открываем диалог добавления сервера
@@ -830,7 +818,6 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
             else:
                 QMessageBox.warning(self, "Ошибка", f"Профиль сервера '{label}' не найден.")
 
-
     def to_connect(self):
         config[ "last_cred" ] = self.cb_creds.currentText()
         config[ "last_server" ] = self.cb_servers.currentText()
@@ -864,7 +851,6 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
 
         except requests.ConnectionError:
             QMessageBox.critical(self, "Ошибка", "Проверьте сетевое соединение!")
-
 
 
 app = QtWidgets.QApplication(sys.argv)

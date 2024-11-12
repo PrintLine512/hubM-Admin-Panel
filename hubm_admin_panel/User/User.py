@@ -1,18 +1,19 @@
 import json
+import re
 import sys
 import traceback
-import re
 from typing import TYPE_CHECKING
 
 from PySide6 import QtCore
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QTableWidgetItem, QMessageBox, QTreeWidgetItem
 from PySide6 import QtWidgets
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QBrush, QColor
+from PySide6.QtWidgets import QTableWidgetItem, QMessageBox, QTreeWidgetItem
 
 if TYPE_CHECKING:
     from main import MainWindow
 from utils.utils import api_request
+
 
 def is_valid_ip(ip):
     # Паттерн для проверки корректности IP-адреса
@@ -23,6 +24,7 @@ def is_valid_ip(ip):
         return True
     else:
         return False
+
 
 class Policy:
     def __init__(self):
@@ -46,9 +48,9 @@ class Policy:
         self.dict.update(filtered_dict)
 
 
-
 class PolicyTableWidgetItem(QTableWidgetItem):
-    def __init__(self, main, current_column, value, checkbox=False, password_echo=False, password_echo_mode=True, *args, **kwargs):
+    def __init__(self, main, current_column, value, checkbox=False, password_echo=False, password_echo_mode=True, *args,
+                 **kwargs):
         super().__init__(*args, **kwargs)
         self.checkbox = checkbox
         self.password_echo = password_echo
@@ -60,7 +62,8 @@ class PolicyTableWidgetItem(QTableWidgetItem):
         elif self.password_echo:
             self.item = QtWidgets.QLineEdit()
             self.item.setFrame(False)
-            self.item.setEchoMode((QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
+            self.item.setEchoMode((
+                                      QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
             self.item.setText(value)
             self.setText(value)
             main.tbl_user_policies.setCellWidget(0, current_column, self.item)
@@ -84,10 +87,9 @@ class PolicyTableWidgetItem(QTableWidgetItem):
             return self.text()
 
 
-
-
 class PolicyTreeWidgetItem(QTreeWidgetItem):
-    def __init__(self, server_item, ui: "MainWindow", current_column, name, value, checkbox=False, password_echo=False, password_echo_mode=True, *args, **kwargs):
+    def __init__(self, server_item, ui: "MainWindow", current_column, name, value, checkbox=False, password_echo=False,
+                 password_echo_mode=True, *args, **kwargs):
         super().__init__(server_item, *args, **kwargs)
         self.checkbox = checkbox
         self.ui = ui
@@ -114,9 +116,8 @@ class PolicyTreeWidgetItem(QTreeWidgetItem):
             self.ui.tree_user_policies.setItemWidget(self, 1, self.item)
 
         if self.password_echo:
-            self.item.setEchoMode((QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
-
-
+            self.item.setEchoMode((
+                                      QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
 
     def cb_is_checked(self):
         if self.checkbox:
@@ -154,6 +155,7 @@ class CheckBoxWidget(QtWidgets.QWidget):
         layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.setContentsMargins(0, 0, 0, 0)
 
+
 class User:
     def __init__(self, ui: 'MainWindow'):
 
@@ -163,8 +165,8 @@ class User:
         self.name = None
 
         self.dict = {}
-        self.servers = []
-        self.group_policies = []
+        self.servers = [ ]
+        self.group_policies = [ ]
         self.ui = ui
 
         self.ui.btn_user_save_params.clicked.connect(self.save_user_params)
@@ -182,16 +184,15 @@ class User:
         self.dict = json.loads(user_data_raw)
         self.name = self.dict.get("name")
         self.servers = self.dict.get("servers")
-        self.group_policies = []
+        self.group_policies = [ ]
         for server in self.servers:
             if server.get('policy'):
-                policy = server['policy']
-                self.group_policies.append({**policy, "server_name": server['name']})
+                policy = server[ 'policy' ]
+                self.group_policies.append({**policy, "server_name": server[ 'name' ]})
 
         self.render_info()
         self.render_group_policies()
         self.render_usb_policies()
-
 
     def render_group_policies(self):
         self.ui.tree_user_policies.clear()
@@ -199,30 +200,32 @@ class User:
         enum_name_type = json.loads(self.ui.EnumPolicies.get_all_names_with_type())
         for policy in self.group_policies:
             self.ui.tbl_user_policies.insertRow(0)
-            self.ui.tbl_user_policies.setVerticalHeaderItem(0, QTableWidgetItem(policy['server_name']))
+            self.ui.tbl_user_policies.setVerticalHeaderItem(0, QTableWidgetItem(policy[ 'server_name' ]))
 
-            server_item = QtWidgets.QTreeWidgetItem(self.ui.tree_user_policies) ###########
-            server_item.setText(0, policy['server_name']) ###########
+            server_item = QtWidgets.QTreeWidgetItem(self.ui.tree_user_policies)  ###########
+            server_item.setText(0, policy[ 'server_name' ])  ###########
             font = QFont()
             font.setBold(True)
             server_item.setFont(0, font)
             server_item.setExpanded(True)  ###########
             server_item.setFlags(server_item.flags() & ~QtCore.Qt.ItemFlag.ItemIsSelectable)
-            server_item.setCheckState(0, QtCore.Qt.CheckState.Checked if policy['access'] else QtCore.Qt.CheckState.Unchecked)
+            server_item.setCheckState(0, QtCore.Qt.CheckState.Checked if policy[
+                'access' ] else QtCore.Qt.CheckState.Unchecked)
             server_item.setFirstColumnSpanned(True)
             server_item.setBackground(0, QBrush(QColor("#48536f")))
 
             try:
                 for column in enum_name_type:
                     id_enum, type_enum = self.ui.EnumPolicies.get(column)
-                    value = policy[column]
+                    value = policy[ column ]
                     if column == "access":
                         item = PolicyTableWidgetItem(self.ui, current_column=id_enum, checkbox=True, value=value)
                         self.ui.tbl_user_policies.setItem(0, id_enum, item)
                         self.ui.tbl_user_policies.resizeColumnToContents(id_enum)
 
                     elif type_enum == "bool":
-                        PolicyTreeWidgetItem(server_item, self.ui, current_column=id_enum, value=value, name=column, checkbox=True)
+                        PolicyTreeWidgetItem(server_item, self.ui, current_column=id_enum, value=value, name=column,
+                                             checkbox=True)
 
                         item = PolicyTableWidgetItem(self.ui, current_column=id_enum, checkbox=True, value=value)
                         self.ui.tbl_user_policies.setItem(0, id_enum, item)
@@ -234,10 +237,13 @@ class User:
                             server_item, self.ui, current_column=id_enum, value=value, name=column,
                             password_echo=True, password_echo_mode=self.user_policies_normal_echo)
 
-                        item = PolicyTableWidgetItem(self.ui, current_column=id_enum, value=str(value), password_echo=True, password_echo_mode=self.user_policies_normal_echo)
+                        item = PolicyTableWidgetItem(self.ui, current_column=id_enum, value=str(value),
+                                                     password_echo=True,
+                                                     password_echo_mode=self.user_policies_normal_echo)
                         self.ui.tbl_user_policies.setItem(0, id_enum, item)
                     else:
-                        PolicyTreeWidgetItem(server_item, self.ui, current_column=id_enum, value=str(value), name=column)
+                        PolicyTreeWidgetItem(server_item, self.ui, current_column=id_enum, value=str(value),
+                                             name=column)
 
                         item = PolicyTableWidgetItem(self.ui, current_column=id_enum, value=str(value))
                         self.ui.tbl_user_policies.setItem(0, id_enum, item)
@@ -254,12 +260,11 @@ class User:
         self.alt_view_mode = not self.alt_view_mode
         self.ui.stack_user_policies.setCurrentIndex(1 if self.alt_view_mode else 0)
 
-
     def render_usb_policies(self):
         self.ui.tbl_user_ports.clear()
         for server in self.servers:
             server_item = QtWidgets.QTreeWidgetItem(self.ui.tbl_user_ports)
-            server_item.setText(0, server['name'])
+            server_item.setText(0, server[ 'name' ])
             server_item.setExpanded(True)
             font = QFont()
             font.setBold(True)
@@ -271,23 +276,22 @@ class User:
                 usb_ports = server[ 'usb_ports' ]
                 for usb in usb_ports:
                     item = QtWidgets.QTreeWidgetItem(server_item)
-                    item.setCheckState(0, QtCore.Qt.CheckState.Checked if usb[ 'access' ] else QtCore.Qt.CheckState.Unchecked)
+                    item.setCheckState(0, QtCore.Qt.CheckState.Checked if usb[
+                        'access' ] else QtCore.Qt.CheckState.Unchecked)
                     item.setText(0, usb[ 'name' ])
                     item.setToolTip(0, usb[ 'virtual_port' ])
                     self.user_usb_checklist.update({usb[ 'virtual_port' ]: usb[ 'access' ]})
 
-
     def render_info(self):
-        self.ui.cb_user_active.setChecked(self.dict['active'])
-        self.ui.le_user_cn.setText(self.dict['cn'])
-        self.set_str_value(self.ui.le_user_comment, self.dict["comment"])
-        self.ui.le_user_email.setText(self.dict['email'])
-        self.ui.le_user_default_ip.setText(self.dict['ip'])
-        self.ui.le_user_name.setText(self.dict['name'])
-        self.ui.le_user_pass.setText(self.dict['password'])
-        self.set_str_value(self.ui.le_user_tg_id, self.dict["tg_id"])
-        self.set_str_value(self.ui.le_user_tg_code, self.dict["tg_code"])
-
+        self.ui.cb_user_active.setChecked(self.dict[ 'active' ])
+        self.ui.le_user_cn.setText(self.dict[ 'cn' ])
+        self.set_str_value(self.ui.le_user_comment, self.dict[ "comment" ])
+        self.ui.le_user_email.setText(self.dict[ 'email' ])
+        self.ui.le_user_default_ip.setText(self.dict[ 'ip' ])
+        self.ui.le_user_name.setText(self.dict[ 'name' ])
+        self.ui.le_user_pass.setText(self.dict[ 'password' ])
+        self.set_str_value(self.ui.le_user_tg_id, self.dict[ "tg_id" ])
+        self.set_str_value(self.ui.le_user_tg_code, self.dict[ "tg_code" ])
 
     def set_str_value(self, line: "QtWidgets.QLineEdit", value):
         if value is not None:
@@ -301,11 +305,9 @@ class User:
         else:
             return value
 
-
     def sent_params(self, data):
         response = api_request(f"users/{self.name}", {}, json.dumps(data), "PUT", "full")
         return response
-
 
     def save_user_params(self):
 
@@ -324,7 +326,8 @@ class User:
             response = (self.sent_params(dict_user))
 
             if response.status_code == 200:
-                QMessageBox.information(self.ui, "Информация", f"Пользователь {self.ui.le_user_name.text()} успешно изменен!")
+                QMessageBox.information(self.ui, "Информация",
+                                        f"Пользователь {self.ui.le_user_name.text()} успешно изменен!")
             else:
                 QMessageBox.critical(self.ui, "Ошибка",
                                      f"Пользователь не сохранен или сохранен с ошибками!\nОшибка: {response.status_code}"
@@ -338,9 +341,8 @@ class User:
             traceback.print_exc(file=sys.stdout)
             print("-" * 60)
 
-
     def policy_to_save(self):
-        policies_data = []
+        policies_data = [ ]
         enum_name_type = json.loads(self.ui.EnumPolicies.get_all_names_with_type())
         enum_name_index = json.loads(self.ui.EnumPolicies.get_all_names_with_index())
         if self.alt_view_mode:
@@ -359,11 +361,11 @@ class User:
                         if policy_name == policy.text(0):
 
                             if policy_type == "bool":
-                                policy_data.update({ policy_name: True if policy.cb_is_checked() == True else False })
+                                policy_data.update({policy_name: True if policy.cb_is_checked() == True else False})
                             else:
-                                policy_data.update({ policy_name: self.get_str_value(policy.get_text()) })
+                                policy_data.update({policy_name: self.get_str_value(policy.get_text())})
 
-                if not policy_data.dict["ip"] or not is_valid_ip(policy_data.dict["ip"]):
+                if not policy_data.dict[ "ip" ] or not is_valid_ip(policy_data.dict[ "ip" ]):
                     QMessageBox.warning(self.ui, "Ошибка", f"Некорректный IP-адрес!")
                     return
                 policies_data.append(policy_data)
@@ -378,9 +380,9 @@ class User:
                             policy_index, policy_type = self.ui.EnumPolicies.get(policy_name)
 
                             if policy_type == "bool":
-                                policy_data.update({ policy_name: True if policy.cb_is_checked() == True else False })
+                                policy_data.update({policy_name: True if policy.cb_is_checked() == True else False})
                             else:
-                                policy_data.update({ policy_name: self.get_str_value(policy.get_text()) })
+                                policy_data.update({policy_name: self.get_str_value(policy.get_text())})
 
                 if not policy_data.dict[ "ip" ] or not is_valid_ip(policy_data.dict[ "ip" ]):
                     QMessageBox.warning(self.ui, "Ошибка", f"Некорректный IP-адрес!")
@@ -390,12 +392,11 @@ class User:
         print(policies_data)
         return policies_data
 
-
     def save_user_policies(self):
         policies = self.policy_to_save()
         for policy in policies:
 
-            response = api_request(f"users/{self.name}/policies/{policy.dict['server_name']}",
+            response = api_request(f"users/{self.name}/policies/{policy.dict[ 'server_name' ]}",
                                    {}, json.dumps(policy.dict), "PUT", request="full")
 
             if response.status_code == 200:
@@ -404,14 +405,14 @@ class User:
                 QMessageBox.critical(self.ui, "Ошибка", f"Неправильный токен!")
             else:
                 QMessageBox.critical(self.ui, "Ошибка",
-                                     f"Политика не изменена или изменена с ошибками!\nСервер: {policy.dict['server_name']}\nОшибка: {response.status_code}"
+                                     f"Политика не изменена или изменена с ошибками!\nСервер: {policy.dict[ 'server_name' ]}\nОшибка: {response.status_code}"
                                      f"\n{response.text}")
 
         self.init(self.name)
         QMessageBox.information(self.ui, "Информация", f"Завершено.")
 
     def get_usb_status(self, server_item: "QtWidgets.QTreeWidgetItem"):
-        ports = []
+        ports = [ ]
         for index in range(server_item.childCount()):
             item = server_item.child(index)
             access = True if item.checkState(0) == QtCore.Qt.CheckState.Checked else False
@@ -420,14 +421,12 @@ class User:
             ports.append(usb)
         return ports
 
-
     def save_user_usb(self):
         update_list = {}
         for index in range(self.ui.tbl_user_ports.topLevelItemCount()):
             server = self.ui.tbl_user_ports.topLevelItem(index)
-            update_list.update({item['virtual_port']: item['access'] for item in self.get_usb_status(server)
-                                if item['access'] != self.user_usb_checklist[item['virtual_port']]})
-
+            update_list.update({item[ 'virtual_port' ]: item[ 'access' ] for item in self.get_usb_status(server)
+                                if item[ 'access' ] != self.user_usb_checklist[ item[ 'virtual_port' ] ]})
 
         if update_list:
             response = api_request(f"users/{self.name}/ports", {}, json.dumps(update_list), "PUT", "full")
@@ -440,7 +439,6 @@ class User:
                 QMessageBox.critical(self.ui, "Ошибка",
                                      f"Доступы не обновлены или обновлены с ошибками!\nОшибка: {response.status_code}"
                                      f"\n{response.text}")
-
 
             self.user_usb_checklist.update(update_list)
             self.init(self.name)
@@ -456,7 +454,7 @@ class User:
 
     def switch_user_policies_echo(self, checked):
         enums = self.ui.EnumPolicies.get_type("password")
-        column_id_list = {enum['id'] for enum in enums}
+        column_id_list = {enum[ 'id' ] for enum in enums}
         for index in range(self.ui.tree_user_policies.topLevelItemCount()):
             server = self.ui.tree_user_policies.topLevelItem(index)
             for index in range(server.childCount()):
@@ -469,6 +467,7 @@ class User:
             for column in column_id_list:
                 policy = self.ui.tbl_user_policies.item(row, column)
                 if policy.password_echo:
-                    policy.set_echo(QtWidgets.QLineEdit.EchoMode.Normal if checked else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit)
+                    policy.set_echo(
+                        QtWidgets.QLineEdit.EchoMode.Normal if checked else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit)
 
         self.user_policies_normal_echo = checked

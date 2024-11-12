@@ -1,32 +1,33 @@
 import json
-import winreg
-from . import session
+from typing import Literal
+
 from . import config, config_file
-from typing import TYPE_CHECKING, Literal
-
-
+from . import session
 
 api_version = "v2"
 
+
 def delete_cred(label):
     # Найти индекс элемента с указанным label
-    for i, cred in enumerate(config["creds"]):
-        if cred["label"] == label:
+    for i, cred in enumerate(config[ "creds" ]):
+        if cred[ "label" ] == label:
             # Удаляем элемент по найденному индексу
-            config["creds"].pop(i)
+            config[ "creds" ].pop(i)
             write_config()
             return True
     return False  # Возвращаем False, если учетные данные не найдены
 
+
 def delete_server(label):
     # Найти индекс элемента с указанным label
-    for i, server in enumerate(config["servers"]):
-        if server["label"] == label:
+    for i, server in enumerate(config[ "servers" ]):
+        if server[ "label" ] == label:
             # Удаляем элемент по найденному индексу
-            config["servers"].pop(i)
+            config[ "servers" ].pop(i)
             write_config()
             return True
     return False  # Возвращаем False, если учетные данные не найдены
+
 
 def write_config():
     with open(config_file, 'w') as file:
@@ -34,9 +35,8 @@ def write_config():
 
 
 def api_request(uri, new_headers=None, new_data=None,
-                method: Literal["GET", "PUT", "POST", "DELETE"] = "GET",
-                request: Literal['basic', 'full'] = "basic", full_uri=False):
-
+                method: Literal[ "GET", "PUT", "POST", "DELETE" ] = "GET",
+                request: Literal[ 'basic', 'full' ] = "basic", full_uri=False):
     server_address = None
     server_port = None
     if config[ "last_server" ]:
@@ -90,7 +90,8 @@ def api_request(uri, new_headers=None, new_data=None,
             "password": cred_pass
         }
 
-        response = session.post(f"http://{server_address}:{server_port}/login", json=login_data, headers=headers, proxies=proxies)
+        response = session.post(f"http://{server_address}:{server_port}/login", json=login_data, headers=headers,
+                                proxies=proxies)
 
         if response.status_code == 200:
             print("Login successful!")
@@ -142,8 +143,3 @@ def api_request(uri, new_headers=None, new_data=None,
         return response
     else:
         return response.text
-
-
-
-
-

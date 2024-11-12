@@ -8,18 +8,13 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QHBoxLayout, QLabel, QLayout, QMainWindow,
-    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
-from . import resources_rc
-from . import resources_rc
+from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
+                            QSize, Qt)
+from PySide6.QtGui import (QFont, QIcon,
+                           QPixmap)
+from PySide6.QtWidgets import (QComboBox, QFrame, QGridLayout,
+                               QHBoxLayout, QLabel, QLayout, QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+
 
 class Ui_Launch(object):
     def setupUi(self, Launch):
@@ -67,7 +62,8 @@ class Ui_Launch(object):
         self.label_5.setSizePolicy(sizePolicy1)
         self.label_5.setTextFormat(Qt.TextFormat.RichText)
         self.label_5.setScaledContents(False)
-        self.label_5.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
+        self.label_5.setAlignment(
+            Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignLeading | Qt.AlignmentFlag.AlignLeft)
         self.label_9 = QLabel(self.frame_2)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(60, 0, 632, 121))
@@ -77,7 +73,7 @@ class Ui_Launch(object):
         sizePolicy2.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
         self.label_9.setSizePolicy(sizePolicy2)
         font = QFont()
-        font.setFamilies([u"Britannic"])
+        font.setFamilies([ u"Britannic" ])
         font.setPointSize(14)
         font.setBold(True)
         self.label_9.setFont(font)
@@ -95,9 +91,7 @@ class Ui_Launch(object):
 
         self.verticalLayout.addWidget(self.frame_2)
 
-
         self.horizontalLayout.addLayout(self.verticalLayout)
-
 
         self.verticalLayout_4.addLayout(self.horizontalLayout)
 
@@ -147,7 +141,6 @@ class Ui_Launch(object):
 
         self.horizontalLayout_3.addWidget(self.btn_server_delete)
 
-
         self.verticalLayout_6.addLayout(self.horizontalLayout_3)
 
         self.horizontalLayout_4 = QHBoxLayout()
@@ -188,9 +181,7 @@ class Ui_Launch(object):
 
         self.horizontalLayout_4.addWidget(self.btn_creds_delete)
 
-
         self.verticalLayout_6.addLayout(self.horizontalLayout_4)
-
 
         self.verticalLayout_5.addLayout(self.verticalLayout_6)
 
@@ -201,9 +192,7 @@ class Ui_Launch(object):
 
         self.verticalLayout_5.addWidget(self.btn_connect)
 
-
         self.verticalLayout_4.addLayout(self.verticalLayout_5)
-
 
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
 
@@ -216,20 +205,29 @@ class Ui_Launch(object):
 
         self.btn_connect.setDefault(True)
 
-
         QMetaObject.connectSlotsByName(Launch)
+
     # setupUi
 
     def retranslateUi(self, Launch):
         Launch.setWindowTitle(QCoreApplication.translate("Launch", u"hubM Admin Panel Connect", None))
-        self.label_5.setText(QCoreApplication.translate("Launch", u"<html><head/><body><p>\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f \u043a \u0441\u0435\u0440\u0432\u0435\u0440\u0443 \u0438\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u0435:</p></body></html>", None))
-        self.label_9.setText(QCoreApplication.translate("Launch", u"<html><head/><body><p><span style=\" font-size:48pt;\">hubM Admin Panel</span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("Launch", u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u0441\u0435\u0440\u0432\u0435\u0440\u0430:", None))
+        self.label_5.setText(QCoreApplication.translate("Launch",
+                                                        u"<html><head/><body><p>\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0434\u0430\u043d\u043d\u044b\u0435 \u0434\u043b\u044f \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f \u043a \u0441\u0435\u0440\u0432\u0435\u0440\u0443 \u0438\u043b\u0438 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0439\u0442\u0435 \u043f\u043e\u0441\u043b\u0435\u0434\u043d\u0438\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u043d\u044b\u0435:</p></body></html>",
+                                                        None))
+        self.label_9.setText(QCoreApplication.translate("Launch",
+                                                        u"<html><head/><body><p><span style=\" font-size:48pt;\">hubM Admin Panel</span></p></body></html>",
+                                                        None))
+        self.label_6.setText(QCoreApplication.translate("Launch",
+                                                        u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u0441\u0435\u0440\u0432\u0435\u0440\u0430:",
+                                                        None))
         self.btn_server_new.setText("")
         self.btn_server_delete.setText("")
-        self.label_8.setText(QCoreApplication.translate("Launch", u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f:", None))
+        self.label_8.setText(QCoreApplication.translate("Launch",
+                                                        u"\u041f\u0440\u043e\u0444\u0438\u043b\u044c \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f:",
+                                                        None))
         self.btn_creds_new.setText("")
         self.btn_creds_delete.setText("")
-        self.btn_connect.setText(QCoreApplication.translate("Launch", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f", None))
+        self.btn_connect.setText(QCoreApplication.translate("Launch",
+                                                            u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0438\u0442\u044c\u0441\u044f",
+                                                            None))
     # retranslateUi
-

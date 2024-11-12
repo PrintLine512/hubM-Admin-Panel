@@ -1,1 +1,1 @@
-panel_version="0.0.34"
+panel_version = "0.0.34"

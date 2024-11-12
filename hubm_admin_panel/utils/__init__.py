@@ -1,9 +1,10 @@
-import requests
 import json
 import os
+import sys
+
+import requests
 
 session = requests.session()
-
 
 
 def resource_path(relative_path):
@@ -16,6 +17,7 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
+
 config_file = resource_path("config.json")
 
 if os.path.exists(config_file):
@@ -26,8 +28,8 @@ else:
     config = {
         "last_server": "",
         "last_cred": "",
-        "servers": [],
-        "creds": []
+        "servers": [ ],
+        "creds": [ ]
     }
 
     # Запись конфигурации в файл
@@ -35,4 +37,3 @@ else:
         json.dump(config, file, indent=4)
 
     print(f"Config file '{config_file}' created with default values.")
-

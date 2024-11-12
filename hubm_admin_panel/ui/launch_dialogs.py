@@ -1,10 +1,10 @@
 import os
 import re
 
-
+from PySide6 import QtGui
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QFrame, QSpacerItem, \
     QSizePolicy, QHBoxLayout
-from PySide6 import QtGui
+
 
 def resource_path(relative):
     return os.path.join(
@@ -14,6 +14,7 @@ def resource_path(relative):
         ),
         relative
     )
+
 
 class CredDialog(QDialog):
     def __init__(self, parent=None):
@@ -95,6 +96,7 @@ class CredDialog(QDialog):
         # Закрываем диалог с флагом успешного завершения
         super().accept()
 
+
 class ServerDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -147,7 +149,6 @@ class ServerDialog(QDialog):
         separator.setFrameShadow(QFrame.Shadow.Sunken)  # Вдавленная тень для эффекта
         layout.addWidget(separator)
 
-
         # Кнопка для подтверждения
         add_button = QPushButton("Добавить")
         add_button.clicked.connect(self.accept)
@@ -181,9 +182,9 @@ class ServerDialog(QDialog):
 
     def is_valid_address(self, address):
         # Регулярное выражение для проверки IP-адреса или доменного имени
-        ip_pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
+        ip_pattern = re.compile(
+            r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
         hostname_pattern = re.compile(r'^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$')
 
         # Проверяем, соответствует ли введенный адрес одному из шаблонов
         return bool(ip_pattern.match(address) or hostname_pattern.match(address))
-

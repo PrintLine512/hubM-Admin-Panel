@@ -1,13 +1,12 @@
+import json
 import os
 from re import match as re_match
-import json
 
 from PySide6 import QtWidgets, QtGui, QtCore
 from PySide6.QtWidgets import QDialog
 
-from utils.utils import api_request
-
 from ui.ui_new_policies import Ui_win_new_policies
+from utils.utils import api_request
 
 
 def resource_path(relative):
@@ -18,6 +17,7 @@ def resource_path(relative):
         ),
         relative
     )
+
 
 class CreatePolicies(QDialog):
     def __init__(self, default_ip):
@@ -46,7 +46,8 @@ class CreatePolicies(QDialog):
         group = self.ui.le_group.currentText()
         password = self.ui.le_pass.text()
 
-        ip_valid = re_match(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', ip)
+        ip_valid = re_match(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
+                            ip)
         until_valid = re_match(r"\d{4}-\d{2}-\d{2}", until) if until else True
         group_valid = bool(group.strip())
         password_valid = bool(password.strip())
@@ -63,19 +64,18 @@ class CreatePolicies(QDialog):
             self.ui.gb_usb.setEnabled(True)
             response = api_request(f"servers/{self.ui.le_group.currentText()}", request="full")
             server = json.loads(response.text)
-            for usb in (server['usb_info']):
+            for usb in (server[ 'usb_info' ]):
                 item = QtWidgets.QListWidgetItem(self.ui.list_usb)
                 item.setCheckState(QtCore.Qt.CheckState.Unchecked)
 
-                item.setText(usb['name'])
-                item.setToolTip(usb['virtual_port'])
+                item.setText(usb[ 'name' ])
+                item.setToolTip(usb[ 'virtual_port' ])
         else:
             self.ui.gb_usb.setEnabled(False)
 
-
     def save(self):
         def get_usb():
-            usb_list = []
+            usb_list = [ ]
             for row in range(0, self.ui.list_usb.count()):
                 item = self.ui.list_usb.item(row)
                 if item.checkState() == QtCore.Qt.CheckState.Checked:
@@ -97,4 +97,3 @@ class CreatePolicies(QDialog):
             "until": self.ui.le_until.text() if self.ui.le_until.text().strip() else None
         }
         return values
-
