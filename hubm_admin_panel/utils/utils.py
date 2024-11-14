@@ -3,7 +3,7 @@ from typing import Literal, TYPE_CHECKING
 
 import requests
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QTreeWidget
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
@@ -13,8 +13,36 @@ import os
 from . import config, config_file
 from . import session
 
+
+
 master_password = None
 api_version = "v2"
+
+
+def filter_items(list: "QTreeWidget", query_raw):
+    query = query_raw.strip().lower()  # Получаем текст из строки поиска и приводим к нижнему регистру
+
+    # Если строка пустая, показываем все элементы
+    if not query:
+        show_all_items(list)
+        return
+
+    for i in range(list.topLevelItemCount()):
+        item = list.topLevelItem(i)
+        match_found = filter_item(item, query)
+        item.setHidden(not match_found)  # Скрываем элемент, если нет совпадения
+
+
+def filter_item(item, query) -> bool:
+    match = query in item.text(0).lower() or query in item.text(1).lower()
+    return match
+
+
+def show_all_items(list):
+    """Показывает все элементы в QTreeWidget."""
+    for i in range(list.topLevelItemCount()):
+        list.topLevelItem(i).setHidden(False)
+
 
 def generate_key_from_password(password, salt):
     kdf = PBKDF2HMAC(

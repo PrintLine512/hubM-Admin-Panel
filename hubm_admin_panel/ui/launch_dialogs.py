@@ -1,9 +1,11 @@
 import os
 import re
 
+from .ui_select_port import Ui_SelectPort
 from PySide6 import QtGui
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QFrame, QSpacerItem, \
-    QSizePolicy, QHBoxLayout
+    QSizePolicy, QHBoxLayout, QDialogButtonBox, QTreeWidgetItem
+from utils.utils import filter_items
 
 
 def resource_path(relative):
@@ -14,6 +16,40 @@ def resource_path(relative):
         ),
         relative
     )
+
+class SelectPort(QDialog):
+    def __init__(self, usb_ports):
+        super().__init__()
+
+        # Создаем экземпляр класса Ui_win_new_policies
+        self.ui = Ui_SelectPort()
+        icon = QtGui.QIcon(resource_path("res/icon.png"))
+        self.setWindowIcon(icon)
+        # Инициализируем интерфейс дополнительного окна
+        self.ui.setupUi(self)
+        self.ui.treeWidget.setColumnWidth(0, 250)
+        self.ui.lineEdit.textChanged.connect(lambda: filter_items(self.ui.treeWidget, self.ui.lineEdit.text()))
+
+        for usb_port in usb_ports:
+            item = QTreeWidgetItem([usb_port['name'], usb_port['virtual_port']])
+            self.ui.treeWidget.addTopLevelItem(item)
+
+
+    def accept(self):
+        # Получаем введенные данные
+        self.selected = self.ui.treeWidget.selectedItems()
+        if not self.selected:
+            QMessageBox.warning(self, "Ошибка", "Выберите хотя бы один USB-порт!")
+            return
+
+        #self.selected = []
+        #for item in selected:
+        #    self.selected.append(item.text(1))
+        # Закрываем диалог с флагом успешного завершения
+
+        super().accept()
+
+
 
 class MasterPasswordGetDialog(QDialog):
     def __init__(self, parent=None):

@@ -19,10 +19,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
     QHeaderView, QLabel, QLayout, QLineEdit,
-    QListWidget, QListWidgetItem, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QStackedWidget,
-    QStatusBar, QTabWidget, QTableWidget, QTableWidgetItem,
-    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QSizePolicy, QStackedWidget, QStatusBar, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 from . import resources_rc
 
 class Ui_MainWindow(object):
@@ -662,7 +662,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.addLayout(self.horizontalLayout_57)
 
         self.list_users = QTreeWidget(self.users_list_layout)
-        QTreeWidgetItem(self.list_users)
         self.list_users.setObjectName(u"list_users")
         sizePolicy1.setHeightForWidth(self.list_users.sizePolicy().hasHeightForWidth())
         self.list_users.setSizePolicy(sizePolicy1)
@@ -814,31 +813,30 @@ class Ui_MainWindow(object):
         self.gridLayout_8 = QGridLayout(self.groupBox_21)
         self.gridLayout_8.setObjectName(u"gridLayout_8")
         self.gridLayout_8.setVerticalSpacing(6)
-        self.verticalLayout_2 = QVBoxLayout()
+        self.groupBox1 = QGroupBox(self.groupBox_21)
+        self.groupBox1.setObjectName(u"groupBox1")
+        self.verticalLayout_2 = QVBoxLayout(self.groupBox1)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.listWidget = QListWidget(self.groupBox_21)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        QListWidgetItem(self.listWidget)
-        self.listWidget.setObjectName(u"listWidget")
-        sizePolicy1.setHeightForWidth(self.listWidget.sizePolicy().hasHeightForWidth())
-        self.listWidget.setSizePolicy(sizePolicy1)
-        self.listWidget.setSortingEnabled(True)
+        self.list_group_usb = QTreeWidget(self.groupBox1)
+        self.list_group_usb.setObjectName(u"list_group_usb")
+        sizePolicy1.setHeightForWidth(self.list_group_usb.sizePolicy().hasHeightForWidth())
+        self.list_group_usb.setSizePolicy(sizePolicy1)
+        self.list_group_usb.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
 
-        self.verticalLayout_2.addWidget(self.listWidget)
+        self.verticalLayout_2.addWidget(self.list_group_usb)
 
-        self.pushButton_6 = QPushButton(self.groupBox_21)
-        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.btn_group_usb_add = QPushButton(self.groupBox1)
+        self.btn_group_usb_add.setObjectName(u"btn_group_usb_add")
 
-        self.verticalLayout_2.addWidget(self.pushButton_6)
+        self.verticalLayout_2.addWidget(self.btn_group_usb_add)
 
-        self.pushButton_4 = QPushButton(self.groupBox_21)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.btn_group_usb_remove = QPushButton(self.groupBox1)
+        self.btn_group_usb_remove.setObjectName(u"btn_group_usb_remove")
 
-        self.verticalLayout_2.addWidget(self.pushButton_4)
+        self.verticalLayout_2.addWidget(self.btn_group_usb_remove)
 
 
-        self.gridLayout_8.addLayout(self.verticalLayout_2, 5, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.groupBox1, 3, 0, 1, 1)
 
         self.groupBox_24 = QGroupBox(self.groupBox_21)
         self.groupBox_24.setObjectName(u"groupBox_24")
@@ -849,6 +847,27 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.verticalLayout_9.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.verticalLayout_9.setContentsMargins(-1, 5, -1, 5)
+        self.horizontalLayout_32 = QHBoxLayout()
+        self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
+        self.label_28 = QLabel(self.groupBox_24)
+        self.label_28.setObjectName(u"label_28")
+        self.label_28.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_32.addWidget(self.label_28)
+
+        self.label_8 = QLabel(self.groupBox_24)
+        self.label_8.setObjectName(u"label_8")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy4)
+
+        self.horizontalLayout_32.addWidget(self.label_8)
+
+
+        self.verticalLayout_9.addLayout(self.horizontalLayout_32)
+
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.label_24 = QLabel(self.groupBox_24)
@@ -932,18 +951,23 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addLayout(self.horizontalLayout_22)
 
 
-        self.gridLayout_8.addWidget(self.groupBox_24, 0, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.groupBox_24, 1, 0, 1, 1)
+
+        self.btn_group_save = QPushButton(self.groupBox_21)
+        self.btn_group_save.setObjectName(u"btn_group_save")
+        self.btn_group_save.setEnabled(True)
+
+        self.gridLayout_8.addWidget(self.btn_group_save, 6, 0, 1, 1)
+
+        self.label_7 = QLabel(self.groupBox_21)
+        self.label_7.setObjectName(u"label_7")
+
+        self.gridLayout_8.addWidget(self.label_7, 0, 0, 1, 1)
 
         self.label_6 = QLabel(self.groupBox_21)
         self.label_6.setObjectName(u"label_6")
 
-        self.gridLayout_8.addWidget(self.label_6, 4, 0, 1, 1)
-
-        self.users_save_button_2 = QPushButton(self.groupBox_21)
-        self.users_save_button_2.setObjectName(u"users_save_button_2")
-        self.users_save_button_2.setEnabled(False)
-
-        self.gridLayout_8.addWidget(self.users_save_button_2, 3, 0, 1, 1)
+        self.gridLayout_8.addWidget(self.label_6, 2, 0, 1, 1)
 
 
         self.gridLayout_15.addWidget(self.groupBox_21, 0, 0, 1, 1)
@@ -993,11 +1017,11 @@ class Ui_MainWindow(object):
 
         self.lb_usb_virtual_port = QLabel(self.groupBox_9)
         self.lb_usb_virtual_port.setObjectName(u"lb_usb_virtual_port")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.lb_usb_virtual_port.sizePolicy().hasHeightForWidth())
-        self.lb_usb_virtual_port.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.lb_usb_virtual_port.sizePolicy().hasHeightForWidth())
+        self.lb_usb_virtual_port.setSizePolicy(sizePolicy5)
 
         self.horizontalLayout_18.addWidget(self.lb_usb_virtual_port)
 
@@ -1006,6 +1030,7 @@ class Ui_MainWindow(object):
 
         self.treeWidget = QTreeWidget(self.groupBox_2)
         self.treeWidget.setObjectName(u"treeWidget")
+        self.treeWidget.setSortingEnabled(True)
         self.treeWidget.setHeaderHidden(False)
         self.treeWidget.header().setVisible(True)
         self.treeWidget.header().setHighlightSections(True)
@@ -1037,8 +1062,8 @@ class Ui_MainWindow(object):
 
         self.cb_usb_active = QCheckBox(self.groupBox_5)
         self.cb_usb_active.setObjectName(u"cb_usb_active")
-        sizePolicy4.setHeightForWidth(self.cb_usb_active.sizePolicy().hasHeightForWidth())
-        self.cb_usb_active.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.cb_usb_active.sizePolicy().hasHeightForWidth())
+        self.cb_usb_active.setSizePolicy(sizePolicy5)
         self.cb_usb_active.setChecked(True)
 
         self.horizontalLayout_10.addWidget(self.cb_usb_active)
@@ -1058,8 +1083,8 @@ class Ui_MainWindow(object):
 
         self.lb_usb_bus = QLabel(self.groupBox_10)
         self.lb_usb_bus.setObjectName(u"lb_usb_bus")
-        sizePolicy4.setHeightForWidth(self.lb_usb_bus.sizePolicy().hasHeightForWidth())
-        self.lb_usb_bus.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.lb_usb_bus.sizePolicy().hasHeightForWidth())
+        self.lb_usb_bus.setSizePolicy(sizePolicy5)
 
         self.horizontalLayout_20.addWidget(self.lb_usb_bus)
 
@@ -1081,11 +1106,11 @@ class Ui_MainWindow(object):
         self.combo_usb_group.addItem("")
         self.combo_usb_group.addItem("")
         self.combo_usb_group.setObjectName(u"combo_usb_group")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.combo_usb_group.sizePolicy().hasHeightForWidth())
-        self.combo_usb_group.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.combo_usb_group.sizePolicy().hasHeightForWidth())
+        self.combo_usb_group.setSizePolicy(sizePolicy6)
 
         self.horizontalLayout_11.addWidget(self.combo_usb_group)
 
@@ -1104,8 +1129,8 @@ class Ui_MainWindow(object):
 
         self.le_usb_name = QLineEdit(self.groupBox_11)
         self.le_usb_name.setObjectName(u"le_usb_name")
-        sizePolicy5.setHeightForWidth(self.le_usb_name.sizePolicy().hasHeightForWidth())
-        self.le_usb_name.setSizePolicy(sizePolicy5)
+        sizePolicy6.setHeightForWidth(self.le_usb_name.sizePolicy().hasHeightForWidth())
+        self.le_usb_name.setSizePolicy(sizePolicy6)
 
         self.horizontalLayout_21.addWidget(self.le_usb_name)
 
@@ -1219,8 +1244,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(0)
-        self.tabs_users.setCurrentIndex(0)
+        self.tabs_general.setCurrentIndex(2)
+        self.tabs_users.setCurrentIndex(1)
         self.btn_user_save_params.setDefault(False)
         self.stack_user_policies.setCurrentIndex(0)
         self.tabs_group.setCurrentIndex(0)
@@ -1369,13 +1394,6 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem13 = self.list_users.headerItem()
         ___qtreewidgetitem13.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
         ___qtreewidgetitem13.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-
-        __sortingEnabled2 = self.list_users.isSortingEnabled()
-        self.list_users.setSortingEnabled(False)
-        ___qtreewidgetitem14 = self.list_users.topLevelItem(0)
-        ___qtreewidgetitem14.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u044d\u043b\u0435\u043c\u0435\u043d\u0442", None));
-        self.list_users.setSortingEnabled(__sortingEnabled2)
-
         self.groupBox_16.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.btn_user_create.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c", None))
         self.btn_user_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
@@ -1384,22 +1402,22 @@ class Ui_MainWindow(object):
         self.user_group_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.le_search_group.setText("")
         self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        ___qtreewidgetitem15 = self.list_groups.headerItem()
-        ___qtreewidgetitem15.setText(1, QCoreApplication.translate("MainWindow", u"TCP-\u043f\u043e\u0440\u0442", None));
-        ___qtreewidgetitem15.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem14 = self.list_groups.headerItem()
+        ___qtreewidgetitem14.setText(1, QCoreApplication.translate("MainWindow", u"TCP-\u043f\u043e\u0440\u0442", None));
+        ___qtreewidgetitem14.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
 
-        __sortingEnabled3 = self.list_groups.isSortingEnabled()
+        __sortingEnabled2 = self.list_groups.isSortingEnabled()
         self.list_groups.setSortingEnabled(False)
-        ___qtreewidgetitem16 = self.list_groups.topLevelItem(0)
-        ___qtreewidgetitem16.setText(1, QCoreApplication.translate("MainWindow", u"7503", None));
-        ___qtreewidgetitem16.setText(0, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None));
-        ___qtreewidgetitem17 = self.list_groups.topLevelItem(1)
-        ___qtreewidgetitem17.setText(1, QCoreApplication.translate("MainWindow", u"7501", None));
-        ___qtreewidgetitem17.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
-        ___qtreewidgetitem18 = self.list_groups.topLevelItem(2)
-        ___qtreewidgetitem18.setText(1, QCoreApplication.translate("MainWindow", u"7500", None));
-        ___qtreewidgetitem18.setText(0, QCoreApplication.translate("MainWindow", u"Sever-Volzh", None));
-        self.list_groups.setSortingEnabled(__sortingEnabled3)
+        ___qtreewidgetitem15 = self.list_groups.topLevelItem(0)
+        ___qtreewidgetitem15.setText(1, QCoreApplication.translate("MainWindow", u"7503", None));
+        ___qtreewidgetitem15.setText(0, QCoreApplication.translate("MainWindow", u"Unistroy-Region", None));
+        ___qtreewidgetitem16 = self.list_groups.topLevelItem(1)
+        ___qtreewidgetitem16.setText(1, QCoreApplication.translate("MainWindow", u"df", None));
+        ___qtreewidgetitem16.setText(0, QCoreApplication.translate("MainWindow", u"Smart", None));
+        ___qtreewidgetitem17 = self.list_groups.topLevelItem(2)
+        ___qtreewidgetitem17.setText(1, QCoreApplication.translate("MainWindow", u"7500", None));
+        ___qtreewidgetitem17.setText(0, QCoreApplication.translate("MainWindow", u"Sever-Volzh", None));
+        self.list_groups.setSortingEnabled(__sortingEnabled2)
 
         self.groupBox_17.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
         self.btn_group_new.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430", None))
@@ -1409,19 +1427,13 @@ class Ui_MainWindow(object):
         self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.btn_group_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.groupBox_21.setTitle("")
-
-        __sortingEnabled4 = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043c\u0430\u0440\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
-        ___qlistwidgetitem1 = self.listWidget.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04331", None));
-        ___qlistwidgetitem2 = self.listWidget.item(2)
-        ___qlistwidgetitem2.setText(QCoreApplication.translate("MainWindow", u"\u0423\u043d\u0420\u0435\u04332", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled4)
-
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        ___qtreewidgetitem18 = self.list_group_usb.headerItem()
+        ___qtreewidgetitem18.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
+        ___qtreewidgetitem18.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
+        self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.label_28.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#0a9d00;\">\u0417\u0430\u043f\u0443\u0449\u0435\u043d\u0430</span></p></body></html>", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
         self.le_group_name.setText("")
         self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
@@ -1437,8 +1449,9 @@ class Ui_MainWindow(object):
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None))
         self.le_group_password.setText("")
         self.le_group_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.btn_group_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
-        self.users_save_button_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params), QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_access), QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_groups), QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
@@ -1468,7 +1481,7 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem20.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
         ___qtreewidgetitem20.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
 
-        __sortingEnabled5 = self.tree_usb_list.isSortingEnabled()
+        __sortingEnabled3 = self.tree_usb_list.isSortingEnabled()
         self.tree_usb_list.setSortingEnabled(False)
         ___qtreewidgetitem21 = self.tree_usb_list.topLevelItem(0)
         ___qtreewidgetitem21.setText(2, QCoreApplication.translate("MainWindow", u"Smart", None));
@@ -1480,7 +1493,7 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem22.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043a\u0441\u043e\u043d \u0414\u0435\u0432\u0435\u043b\u043e\u043f\u043c\u0435\u043d\u0442 \u0410\u0445\u0442\u044f\u043c\u043e\u0432", None));
         ___qtreewidgetitem23 = self.tree_usb_list.topLevelItem(2)
         ___qtreewidgetitem23.setText(1, QCoreApplication.translate("MainWindow", u"1.3", None));
-        self.tree_usb_list.setSortingEnabled(__sortingEnabled5)
+        self.tree_usb_list.setSortingEnabled(__sortingEnabled3)
 
         self.lineEdit_7.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0439\u0442\u0438", None))

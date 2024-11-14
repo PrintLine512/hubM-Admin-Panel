@@ -10,7 +10,7 @@ from urllib.request import urlopen, ProxyHandler, build_opener, install_opener
 import pandas as pd
 import qdarktheme
 import requests
-from PySide6.QtGui import QCursor, QGuiApplication, QResizeEvent, QIcon
+from PySide6.QtGui import QIcon
 from cryptography.fernet import InvalidToken
 from packaging import version
 from qdarktheme.qtpy.QtWidgets import QApplication
@@ -22,7 +22,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QThread, Signal, QSize, QTimer
 from PySide6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog, QVBoxLayout, QLabel, QProgressBar, QPushButton
+    QTreeWidgetItem, QMessageBox, QDialog, QVBoxLayout, QLabel, QProgressBar, QPushButton
 )
 
 from rich.console import Console
@@ -31,7 +31,7 @@ from rich.traceback import install
 
 from version import panel_version
 from enum import Enum
-from utils.utils import api_request
+from utils.utils import api_request, filter_items
 from User.User import User
 from User.CreatePolicies import CreatePolicies
 from User.CreateUser import CreateUser
@@ -203,20 +203,16 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                                                 f'Последняя версия - {actual_version}.')
             except:
                 log.exception("Error!")
-                # console.print_exception(show_locals=True)
-                # console.print_exception(show_locals=True)
-                # print(console.export_html())
+
 
         else:
             QMessageBox.critical(ui, "Ошибка", f"Ошибка: {response.status_code}"
                                                f"\n{response.text}")
 
     except requests.ConnectionError as e:
-        QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
-                                           f"{e}")
+        QMessageBox.critical(ui, "Ошибка", f"Проверьте сетевое соединение!\n {e}")
 
-def on_button_click():
-    print("QWFQF")
+
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -300,8 +296,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tabs_group.tabBarClicked.connect(self.tabs_group_clicked)
         self.tabs_users.tabBarClicked.connect(self.tabs_users_clicked)
         self.list_users.itemSelectionChanged.connect(self.entry_update_user_info)
-        self.le_search_user.textChanged.connect(self.search)
-        self.le_search_group.textChanged.connect(lambda: group_search(self))
+        self.le_search_user.textChanged.connect(lambda: filter_items(self.list_users, self.le_search_user.text()))
+        self.le_search_group.textChanged.connect(lambda: filter_items(self.list_groups, self.le_search_group.text()))
         self.btn_user_policies_create.clicked.connect(self.win_new_create_policies)
         self.btn_user_policies_delete.clicked.connect(self.user_policy_delete)
         self.btn_user_export.clicked.connect(self.win_user_export)
@@ -317,6 +313,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ###
 
         self.list_users.setColumnWidth(0, 200)
+        self.list_groups.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
         QTimer.singleShot(0, self.resize_custom)
@@ -528,7 +525,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             case 2:
                 print("Группы")
                 # print(self.tabs_general.currentWidget().objectName())
-                self.groups.refresh(self)
+                self.groups.refresh()
             case 3:
                 print("Порты")
             case 4:
@@ -892,9 +889,7 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
 
     def to_connect(self):
         config[ "last_cred" ] = self.cb_creds.currentText()
-        print(self.cb_creds.currentText())
         config[ "last_server" ] = self.cb_servers.currentText()
-        print(self.cb_servers.currentText())
         utils.utils.write_config()
         dialog = launch_dialogs.MasterPasswordGetDialog()  # Открываем диалог добавления сервера
         if dialog.exec():  # exec() вернет True, если диалог завершен успешно

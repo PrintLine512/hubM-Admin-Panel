@@ -79,7 +79,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -190,7 +190,7 @@
            <enum>QTabWidget::TabShape::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <property name="documentMode">
            <bool>false</bool>
@@ -1263,11 +1263,6 @@
                <string>Системное имя</string>
               </property>
              </column>
-             <item>
-              <property name="text">
-               <string>Новый элемент</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -1394,7 +1389,7 @@
                <string>Smart</string>
               </property>
               <property name="text">
-               <string>7501</string>
+               <string>df</string>
               </property>
              </item>
              <item>
@@ -1529,53 +1524,50 @@
                <property name="verticalSpacing">
                 <number>6</number>
                </property>
-               <item row="5" column="0">
-                <layout class="QVBoxLayout" name="verticalLayout_2">
-                 <item>
-                  <widget class="QListWidget" name="listWidget">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="sortingEnabled">
-                    <bool>true</bool>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Смарт Ахтямов</string>
+               <item row="3" column="0">
+                <widget class="QGroupBox" name="groupBox">
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <item>
+                   <widget class="QTreeWidget" name="list_group_usb">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
                     </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>УнРег1</string>
+                    <property name="selectionMode">
+                     <enum>QAbstractItemView::SelectionMode::MultiSelection</enum>
                     </property>
-                   </item>
-                   <item>
+                    <column>
+                     <property name="text">
+                      <string>Имя</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>VID</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_group_usb_add">
                     <property name="text">
-                     <string>УнРег2</string>
+                     <string>Добавить порт</string>
                     </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_6">
-                   <property name="text">
-                    <string>Добавить порт</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_4">
-                   <property name="text">
-                    <string>Удалить порт</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="btn_group_usb_remove">
+                    <property name="text">
+                     <string>Удалить порт</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
                </item>
-               <item row="0" column="0">
+               <item row="1" column="0">
                 <widget class="QGroupBox" name="groupBox_24">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -1596,6 +1588,36 @@
                   <property name="bottomMargin">
                    <number>5</number>
                   </property>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_32">
+                    <item>
+                     <widget class="QLabel" name="label_28">
+                      <property name="minimumSize">
+                       <size>
+                        <width>150</width>
+                        <height>0</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>Статус</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLabel" name="label_8">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Нет информации</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_9">
                     <item>
@@ -1740,20 +1762,27 @@
                  </layout>
                 </widget>
                </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="label_6">
-                 <property name="text">
-                  <string>USB-порты</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QPushButton" name="users_save_button_2">
+               <item row="6" column="0">
+                <widget class="QPushButton" name="btn_group_save">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="text">
                   <string>Сохранить</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_7">
+                 <property name="text">
+                  <string>Настройки</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_6">
+                 <property name="text">
+                  <string>USB-порты</string>
                  </property>
                 </widget>
                </item>
@@ -1859,6 +1888,9 @@
               </item>
               <item row="7" column="0">
                <widget class="QTreeWidget" name="treeWidget">
+                <property name="sortingEnabled">
+                 <bool>true</bool>
+                </property>
                 <property name="headerHidden">
                  <bool>false</bool>
                 </property>

@@ -40,6 +40,7 @@ class Ui_win_new_policies(object):
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
         self.btns.setOrientation(Qt.Orientation.Horizontal)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Save)
 
         self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)
 
