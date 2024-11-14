@@ -105,7 +105,7 @@ class Groups:
 
         else:
             QMessageBox.warning(self.ui, 'Управление группой',
-                                f'Сначала выберите USB-порт!')
+                                f'Выберите хотя бы один USB-порт!')
 
     def save(self):
         if self.current_group is None:

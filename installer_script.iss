@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "hubM Admin Panel"
-#define MyAppVersion "v0.0.37"
+#define MyAppVersion "v0.0.38"
 #define MyAppPublisher "PrintLine512"
 #define MyAppURL "https://github.com/PrintLine512/hubM-Admin-Panel"
 #define MyAppExeName "hubM Admin Panel.exe"
@@ -31,7 +31,7 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=C:\Users\mv.alekseev\Documents\projects\hubM Admin Panel\dist
-OutputBaseFilename=hubM Admin Panel Installer {#MyAppPublisher}
+OutputBaseFilename=hubM Admin Panel Installer {#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
