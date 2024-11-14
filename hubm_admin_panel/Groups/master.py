@@ -137,19 +137,20 @@ class Groups:
                                  f"Группа не изменена или  изменена с ошибками!\nОшибка: {response.status_code}"
                                  f"\n {response.text}")
 
-        old_group = self.current_group.name
 
         self.refresh()
-        print(self.current_group.name)
-        match = self.ui.list_groups.findItems(old_group, Qt.MatchFlag.MatchExactly, 0)
-        if match:
-            print(match[0].text(0))
-            self.ui.list_groups.setCurrentItem(match[0])
+
 
 
     def refresh(self):
+        old_group = self.current_group.name if self.current_group else None
         self.update_list()
         self.render_groups()
+        if old_group:
+            match = self.ui.list_groups.findItems(old_group, Qt.MatchFlag.MatchExactly, 0)
+            if match:
+                self.ui.list_groups.setCurrentItem(match[ 0 ])
+
 
     def update_list(self):
         print("Updating list")

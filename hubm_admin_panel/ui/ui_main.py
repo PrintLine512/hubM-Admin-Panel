@@ -1430,8 +1430,8 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem18 = self.list_group_usb.headerItem()
         ___qtreewidgetitem18.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
         ___qtreewidgetitem18.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
-        self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+        self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b", None))
+        self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))

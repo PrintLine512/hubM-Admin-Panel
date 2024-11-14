@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="res">
+    <file>icons/icon-white.png</file>
     <file>icons/icon-hr.png.png</file>
     <file>icons/icon-red-hr.png</file>
     <file>icons/info.png</file>
