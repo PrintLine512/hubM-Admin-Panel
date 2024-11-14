@@ -1244,8 +1244,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabs_general.setCurrentIndex(2)
-        self.tabs_users.setCurrentIndex(1)
+        self.tabs_general.setCurrentIndex(0)
+        self.tabs_users.setCurrentIndex(0)
         self.btn_user_save_params.setDefault(False)
         self.stack_user_policies.setCurrentIndex(0)
         self.tabs_group.setCurrentIndex(0)
@@ -1433,7 +1433,7 @@ class Ui_MainWindow(object):
         self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#0a9d00;\">\u0417\u0430\u043f\u0443\u0449\u0435\u043d\u0430</span></p></body></html>", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
         self.le_group_name.setText("")
         self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))

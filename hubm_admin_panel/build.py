@@ -84,4 +84,4 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(args.reconvert_ui, args.reconvert_resource, args.installer)
+    main(args.reconvert_ui, args.reconvert_resource, args.no_installer)

@@ -282,6 +282,7 @@ class ServerDialog(QDialog):
         label.setFixedWidth(125)
         label_layout.addWidget(label)
         self.address_input = QLineEdit(self)
+        self.address_input.setText("hubm.smt.local")
         label_layout.addWidget(self.address_input)
         layout.addLayout(label_layout)
 
@@ -291,6 +292,7 @@ class ServerDialog(QDialog):
         label.setFixedWidth(125)
         label_layout.addWidget(label)
         self.port_input = QLineEdit(self)
+        self.port_input.setText("5000")
         self.port_input.setValidator(QtGui.QIntValidator())  # Ограничиваем ввод только чисел
         label_layout.addWidget(self.port_input)
         layout.addLayout(label_layout)
