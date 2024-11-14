@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1175, 775)
+        MainWindow.resize(1126, 797)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -646,6 +646,7 @@ class Ui_MainWindow(object):
 
         self.users_list_layout = QGroupBox(self.tab_users)
         self.users_list_layout.setObjectName(u"users_list_layout")
+        self.users_list_layout.setMinimumSize(QSize(350, 0))
         self.users_list_layout.setMaximumSize(QSize(350, 16777215))
         self.verticalLayout_3 = QVBoxLayout(self.users_list_layout)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
@@ -656,14 +657,6 @@ class Ui_MainWindow(object):
         self.le_search_user.setClearButtonEnabled(True)
 
         self.horizontalLayout_57.addWidget(self.le_search_user)
-
-        self.btn_refresh_users_tab = QPushButton(self.users_list_layout)
-        self.btn_refresh_users_tab.setObjectName(u"btn_refresh_users_tab")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
-        self.btn_refresh_users_tab.setIcon(icon5)
-        self.btn_refresh_users_tab.setFlat(False)
-
-        self.horizontalLayout_57.addWidget(self.btn_refresh_users_tab)
 
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_57)
@@ -717,30 +710,24 @@ class Ui_MainWindow(object):
         self.tab_groups.setEnabled(True)
         self.gridLayout_14 = QGridLayout(self.tab_groups)
         self.gridLayout_14.setObjectName(u"gridLayout_14")
-        self.groupBox_19 = QGroupBox(self.tab_groups)
-        self.groupBox_19.setObjectName(u"groupBox_19")
-        self.groupBox_19.setMaximumSize(QSize(350, 16777215))
-        self.verticalLayout_8 = QVBoxLayout(self.groupBox_19)
+        self.user_group_list_layout = QGroupBox(self.tab_groups)
+        self.user_group_list_layout.setObjectName(u"user_group_list_layout")
+        self.user_group_list_layout.setMinimumSize(QSize(350, 0))
+        self.user_group_list_layout.setMaximumSize(QSize(350, 16777215))
+        self.verticalLayout_8 = QVBoxLayout(self.user_group_list_layout)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.horizontalLayout_17 = QHBoxLayout()
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.le_search_group = QLineEdit(self.groupBox_19)
+        self.le_search_group = QLineEdit(self.user_group_list_layout)
         self.le_search_group.setObjectName(u"le_search_group")
         self.le_search_group.setClearButtonEnabled(True)
 
         self.horizontalLayout_17.addWidget(self.le_search_group)
 
-        self.btn_refresh_groups_tab = QPushButton(self.groupBox_19)
-        self.btn_refresh_groups_tab.setObjectName(u"btn_refresh_groups_tab")
-        self.btn_refresh_groups_tab.setIcon(icon5)
-        self.btn_refresh_groups_tab.setFlat(False)
-
-        self.horizontalLayout_17.addWidget(self.btn_refresh_groups_tab)
-
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_17)
 
-        self.list_groups = QTreeWidget(self.groupBox_19)
+        self.list_groups = QTreeWidget(self.user_group_list_layout)
         QTreeWidgetItem(self.list_groups)
         QTreeWidgetItem(self.list_groups)
         QTreeWidgetItem(self.list_groups)
@@ -755,7 +742,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.list_groups)
 
-        self.groupBox_17 = QGroupBox(self.groupBox_19)
+        self.groupBox_17 = QGroupBox(self.user_group_list_layout)
         self.groupBox_17.setObjectName(u"groupBox_17")
         self.verticalLayout_6 = QVBoxLayout(self.groupBox_17)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -811,7 +798,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.groupBox_17)
 
 
-        self.gridLayout_14.addWidget(self.groupBox_19, 0, 0, 1, 1)
+        self.gridLayout_14.addWidget(self.user_group_list_layout, 0, 0, 1, 1)
 
         self.tabs_group = QTabWidget(self.tab_groups)
         self.tabs_group.setObjectName(u"tabs_group")
@@ -1191,7 +1178,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1175, 22))
+        self.menuBar.setGeometry(QRect(0, 0, 1126, 22))
         self.menu_1 = QMenu(self.menuBar)
         self.menu_1.setObjectName(u"menu_1")
         self.menu = QMenu(self.menuBar)
@@ -1236,7 +1223,6 @@ class Ui_MainWindow(object):
         self.tabs_users.setCurrentIndex(0)
         self.btn_user_save_params.setDefault(False)
         self.stack_user_policies.setCurrentIndex(0)
-        self.btn_refresh_users_tab.setDefault(False)
         self.tabs_group.setCurrentIndex(0)
 
 
@@ -1380,7 +1366,6 @@ class Ui_MainWindow(object):
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
         self.users_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
         self.le_search_user.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.btn_refresh_users_tab.setText("")
         ___qtreewidgetitem13 = self.list_users.headerItem()
         ___qtreewidgetitem13.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
         ___qtreewidgetitem13.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
@@ -1396,10 +1381,9 @@ class Ui_MainWindow(object):
         self.btn_user_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
         self.btn_user_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_users), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
-        self.groupBox_19.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
+        self.user_group_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.le_search_group.setText("")
         self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.btn_refresh_groups_tab.setText("")
         ___qtreewidgetitem15 = self.list_groups.headerItem()
         ___qtreewidgetitem15.setText(1, QCoreApplication.translate("MainWindow", u"TCP-\u043f\u043e\u0440\u0442", None));
         ___qtreewidgetitem15.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1175</width>
-    <height>775</height>
+    <width>1126</width>
+    <height>797</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1185,6 +1185,12 @@
         </item>
         <item row="1" column="0">
          <widget class="QGroupBox" name="users_list_layout">
+          <property name="minimumSize">
+           <size>
+            <width>350</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -1204,22 +1210,6 @@
                </property>
                <property name="clearButtonEnabled">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_refresh_users_tab">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
-               </property>
-               <property name="default">
-                <bool>false</bool>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -1324,7 +1314,13 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_14">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_19">
+         <widget class="QGroupBox" name="user_group_list_layout">
+          <property name="minimumSize">
+           <size>
+            <width>350</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -1347,19 +1343,6 @@
                </property>
                <property name="clearButtonEnabled">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_refresh_groups_tab">
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset theme="QIcon::ThemeIcon::ViewRefresh"/>
-               </property>
-               <property name="flat">
-                <bool>false</bool>
                </property>
               </widget>
              </item>
@@ -2199,7 +2182,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1175</width>
+     <width>1126</width>
      <height>22</height>
     </rect>
    </property>

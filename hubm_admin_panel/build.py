@@ -15,7 +15,7 @@ current_directory = os.path.abspath(os.path.dirname(__file__))
 previous_dir = os.path.join(current_directory, "..")
 
 
-def main(reconvert_ui, reconvert_resource, installer):
+def main(reconvert_ui, reconvert_resource, no_installer):
     if reconvert_ui:
         convert_ui()
 
@@ -59,7 +59,7 @@ def main(reconvert_ui, reconvert_resource, installer):
     ]
     PyInstaller.__main__.run(pyinstaller_args)
 
-    if installer:
+    if not no_installer:
         print("Creating installer...")
         installer_script_path = os.path.join(previous_dir, "installer_script.nsi")
         result = subprocess.run(
@@ -79,7 +79,7 @@ def main(reconvert_ui, reconvert_resource, installer):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Build and optionally create an installer.')
     parser.add_argument('-U', '--reconvert-ui', action='store_true', help='Reconvert the UI')
-    parser.add_argument('-I', '--installer', action='store_true', help='Create installer')
+    parser.add_argument('-i', '--no-installer', action='store_true', help='Create installer')
     parser.add_argument('-R', '--reconvert-resource', action='store_true', help='Reconvert the resource')
 
     args = parser.parse_args()

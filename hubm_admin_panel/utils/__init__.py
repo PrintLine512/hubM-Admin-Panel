@@ -1,8 +1,8 @@
 import json
 import os
 import sys
-
 import requests
+
 
 session = requests.session()
 

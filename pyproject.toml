@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "hubm-admin-panel"
-version = "0.0.34"
+version = "0.0.36"
 description = ""
 authors = ["PrintLine512 <paralet.games@gmail.com>"]
 readme = "README.md"
 package-mode = true
 #packages = [{ include = "hubm_admin_panel\\User" }]
-repository = "https://github.com/python-poetry/poetry"
-documentation = "https://python-poetry.org/docs/"
+repository = "https://github.com/PrintLine512/hubM-Admin-Panel"
+documentation = "https://github.com/PrintLine512/hubM-Admin-Panel"
 
 [tool.poetry.dependencies]
 python = "~3.11"
@@ -17,6 +17,7 @@ pyqtdarktheme = "^2.1.0"
 requests = "^2.32.3"
 openpyxl = "^3.1.5"
 pyside6 = "^6.8.0.1"
+cryptography = "^43.0.3"
 
 [tool.poetry.group.build.dependencies]
 pyinstaller = "^6.11.0"

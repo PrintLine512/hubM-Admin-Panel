@@ -15,6 +15,123 @@ def resource_path(relative):
         relative
     )
 
+class MasterPasswordGetDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        icon = QtGui.QIcon(resource_path("res/icon.png"))
+        self.setWindowIcon(icon)
+        self.setFixedSize(500, 115)
+        # Устанавливаем заголовок окна
+        self.setWindowTitle("Мастер пароль для подключения")
+
+        # Инициализируем возвращаемые данные
+        self.master_password = None
+
+        # Компоновка
+        layout = QVBoxLayout()
+        label = QLabel("Указать мастер пароль для доступа к профилям подключения")
+        layout.addWidget(label)
+
+        # Поле для ввода пароля
+        label_layout = QHBoxLayout()
+        label = QLabel("Пароль:")
+        label.setFixedWidth(125)
+        label_layout.addWidget(label)
+        self.password_input = QLineEdit(self)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        label_layout.addWidget(self.password_input)
+        layout.addLayout(label_layout)
+
+        layout.addItem(QSpacerItem(4, 4, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+
+        separator = QFrame()
+        separator.setFrameShape(QFrame.Shape.HLine)  # Горизонтальная линия
+        separator.setFrameShadow(QFrame.Shadow.Sunken)  # Вдавленная тень для эффекта
+        layout.addWidget(separator)
+
+        # Кнопка для подтверждения
+        add_button = QPushButton("Сохранить")
+        add_button.clicked.connect(self.accept)  # Принять и закрыть диалог
+        layout.addWidget(add_button)
+
+        # Установка компоновки
+        self.setLayout(layout)
+
+    def accept(self):
+        # Получаем введенные данные
+        master_password = self.password_input.text().strip()
+
+        # Проверяем, что поля не пустые
+        if not master_password:
+            QMessageBox.warning(self, "Ошибка", "Мастер пароль не указан!")
+            return
+
+        # Устанавливаем возвращаемые данные
+        self.master_password = self.password_input.text().strip()
+
+        # Закрываем диалог с флагом успешного завершения
+        super().accept()
+
+class MasterPasswordSetDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        icon = QtGui.QIcon(resource_path("res/icon.png"))
+        self.setWindowIcon(icon)
+        self.setFixedSize(500, 115)
+        # Устанавливаем заголовок окна
+        self.setWindowTitle("Задать мастер пароль")
+
+        # Инициализируем возвращаемые данные
+        self.master_password = None
+
+        # Компоновка
+        layout = QVBoxLayout()
+        label = QLabel("Новый мастер пароль для доступа к профилям подключения")
+        layout.addWidget(label)
+
+        # Поле для ввода пароля
+        label_layout = QHBoxLayout()
+        label = QLabel("Пароль:")
+        label.setFixedWidth(125)
+        label_layout.addWidget(label)
+        self.password_input = QLineEdit(self)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        label_layout.addWidget(self.password_input)
+        layout.addLayout(label_layout)
+
+        layout.addItem(QSpacerItem(4, 4, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+
+        separator = QFrame()
+        separator.setFrameShape(QFrame.Shape.HLine)  # Горизонтальная линия
+        separator.setFrameShadow(QFrame.Shadow.Sunken)  # Вдавленная тень для эффекта
+        layout.addWidget(separator)
+
+        # Кнопка для подтверждения
+        add_button = QPushButton("Сохранить")
+        add_button.clicked.connect(self.accept)  # Принять и закрыть диалог
+        layout.addWidget(add_button)
+
+        # Установка компоновки
+        self.setLayout(layout)
+
+    def accept(self):
+        # Получаем введенные данные
+        master_password = self.password_input.text().strip()
+
+        # Проверяем, что поля не пустые
+        if not master_password:
+            QMessageBox.warning(self, "Ошибка", "Мастер пароль не указан!")
+            return
+
+        # Устанавливаем возвращаемые данные
+        self.master_password = self.password_input.text().strip()
+
+        # Закрываем диалог с флагом успешного завершения
+        super().accept()
+
+
 
 class CredDialog(QDialog):
     def __init__(self, parent=None):
@@ -58,7 +175,7 @@ class CredDialog(QDialog):
         label.setFixedWidth(125)
         label_layout.addWidget(label)
         self.password_input = QLineEdit(self)
-        self.password_input.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
         label_layout.addWidget(self.password_input)
         layout.addLayout(label_layout)
 

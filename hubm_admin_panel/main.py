@@ -4,12 +4,14 @@ import logging
 import os
 import sys
 import traceback
-from urllib.request import urlopen
+
+from urllib.request import urlopen, ProxyHandler, build_opener, install_opener
 
 import pandas as pd
 import qdarktheme
 import requests
-from PySide6.QtGui import QCursor, QGuiApplication
+from PySide6.QtGui import QCursor, QGuiApplication, QResizeEvent, QIcon
+from cryptography.fernet import InvalidToken
 from packaging import version
 from qdarktheme.qtpy.QtWidgets import QApplication
 
@@ -18,9 +20,9 @@ import utils.utils
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from PySide6 import QtWidgets, QtGui
-from PySide6.QtCore import Qt, QThread, Signal
+from PySide6.QtCore import Qt, QThread, Signal, QSize, QTimer
 from PySide6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog
+    QTreeWidgetItem, QMessageBox, QDialog, QProgressDialog, QVBoxLayout, QLabel, QProgressBar, QPushButton
 )
 
 from rich.console import Console
@@ -90,6 +92,67 @@ def handle_file_download(file_data):
         file.write(file_data)
     print("Файл успешно загружен и сохранен!")
 
+class Downloader(QThread):
+    no_proxy_handler = ProxyHandler({})
+    opener = build_opener(no_proxy_handler)
+    install_opener(opener)
+    setTotalProgress = Signal(int)
+    setCurrentProgress = Signal(int)
+    succeeded = Signal()
+
+    def __init__(self, url, filename):
+        super().__init__()
+        self._url = url
+        self._filename = filename
+
+    def run(self):
+        readBytes = 0
+        chunkSize = 1024
+        with urlopen(self._url) as r:
+            self.setTotalProgress.emit(int(r.info()["Content-Length"]))
+            with open(self._filename, "wb") as f:
+                while True:
+                    chunk = r.read(chunkSize)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+                    readBytes += len(chunk)
+                    self.setCurrentProgress.emit(readBytes)
+        self.succeeded.emit()
+
+
+
+class DownloadDialog(QDialog):
+    def __init__(self, download_url, save_path, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Downloading Update")
+        #self.resize(300, 100)
+        self.save_path = save_path
+        layout = QVBoxLayout(self)
+
+        self.label = QLabel("Downloading file...", self)
+        layout.addWidget(self.label)
+
+        self.progressBar = QProgressBar(self)
+        layout.addWidget(self.progressBar)
+
+        self.downloader = Downloader(download_url, self.save_path)
+        self.downloader.setTotalProgress.connect(self.progressBar.setMaximum)
+        self.downloader.setCurrentProgress.connect(self.progressBar.setValue)
+        self.downloader.succeeded.connect(self.downloadSucceeded)
+        self.downloader.finished.connect(self.close)
+        self.downloader.start()
+
+    def downloadSucceeded(self):
+        dlg2 = QMessageBox.question(self, 'Обновление',
+                                    'Обновление успешно загружено.\nПерезапустить?',
+                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                    QMessageBox.StandardButton.Yes)
+        if dlg2 == QMessageBox.StandardButton.Yes:
+            os.startfile(self.save_path)
+            QApplication.quit()
+            sys.exit()
+
 
 def check_version(ui: "QtWidgets.QMainWindow", startup):
     url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
@@ -121,42 +184,18 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
                     if dlg == QMessageBox.StandardButton.Yes:
                         download_path = os.path.join(os.path.expanduser("~"), "Downloads",
                                                      "hubM Admin Panel Installer.exe")
-                        directory = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
-
-                        if directory[ 0 ]:
+                        directory_raw = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
+                        directory = directory_raw[0]
+                        if directory:
                             url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
-                            #response = requests.get(url=url, proxies=proxies)
-                            #total_size = int(response.headers.get('content-length', 0))
-                            #print(total_size)
                             print(url)
-                            print(directory[0])
-                            downloader = FileDownloader(url)
-                            downloader.download_complete.connect(handle_file_download)
-                            downloader.start()
+                            print(directory)
+                            download_dialog = DownloadDialog(url, directory, ui)
+                            download_dialog.exec()
 
-                            if response.status_code == 202:
-                                print(url)
-
-                                # Сохраняем содержимое файла
-                                with open(directory[ 0 ], 'wb') as f:
-                                    f.write(response.content)
-                                dlg2 = QMessageBox.question(ui, 'Обновление',
-                                                            'Обновление успешно загружено.\nПерезапустить?',
-                                                            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
-                                                            QMessageBox.StandardButton.Yes)
-                                if dlg2 == QMessageBox.StandardButton.Yes:
-                                    os.startfile(directory[ 0 ])
-                                    print("Exit")
-
-                                    ui.close()
-                                    sys.exit()
-
-                            else:
-                                print('Ошибка при скачивании файла:', response.status_code)
                         else:
                             QMessageBox.critical(ui, 'Ошибка',
                                                  'Некорректный путь. Загрузка отменена.')
-
                 else:
                     if not startup:
                         QMessageBox.information(ui, 'Информация',
@@ -176,35 +215,85 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
         QMessageBox.critical(ui, "Ошибка", "Проверьте сетевое соединение!\n"
                                            f"{e}")
 
-class FileDownloader(QThread):
-    download_complete = Signal(bytes)  # Сигнал для передачи загруженного файла
-
-    def __init__(self, url):
-        super().__init__()
-        self.url = url
-
-    def run(self):
-        response = requests.get(self.url)
-        if response.status_code == 200:
-            self.download_complete.emit(response.content)
-
+def on_button_click():
+    print("QWFQF")
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self, *args, obj=None, **kwargs):
+    def __init__(self, *args, **kwargs):
 
         super(MainWindow, self).__init__(*args, **kwargs)
 
         self.setupUi(self)
 
+
+
         icon_path = resource_path("res/icon.png")
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
-        self.user = User(self)
-        # self.groups = None
-        self.groups = Groups(self)
 
-        # self.tbl_user_policies = PolicyTableWidget(parent=self.users_tab_group_policies)
-        # self.tbl_user_policies = QtWidgets.QTableWidget(parent=self.users_tab_group_policies)
+
+        ####
+        self.btn_refresh_users_tab = QPushButton(self.users_list_layout)
+        self.btn_refresh_users_tab.setFixedSize(16, 16)
+        self.btn_refresh_users_tab.setIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.btn_refresh_users_tab.setStyleSheet("""
+                    QPushButton {
+                        border-radius: 8px;   /* Радиус равен половине ширины и высоты */
+                        background-color: #202124;  /* Изменение цвета при наведении */
+                        
+                    }
+                    QPushButton:hover {
+                        background-color: #2d3b53;
+                    }
+                    QPushButton:pressed {
+                        background-color: #3a4c69;  /* Изменение цвета при нажатии */
+                    }
+                """)
+        ###
+        self.btn_refresh_groups_tab = QPushButton(self.user_group_list_layout)
+        self.btn_refresh_groups_tab.setFixedSize(16, 16)
+        self.btn_refresh_groups_tab.setIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.btn_refresh_groups_tab.setStyleSheet("""
+                            QPushButton {
+                                border-radius: 8px;   /* Радиус равен половине ширины и высоты */
+                                background-color: #202124;  /* Изменение цвета при наведении */
+
+                            }
+                            QPushButton:hover {
+                                background-color: #2d3b53;
+                            }
+                            QPushButton:pressed {
+                                background-color: #3a4c69;  /* Изменение цвета при нажатии */
+                            }
+                        """)
+        ###
+        self.btn_information = QPushButton(self)
+        self.btn_information.setFixedSize(24, 24)
+        self.btn_information.setIconSize(QSize(24, 24))
+        self.btn_information.setFlat(False)
+        self.icon_info = QIcon()
+        self.icon_info.addFile(u":/res/icons/icon-hr.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.icon_info_red = QIcon()
+        self.icon_info.addFile(u":/res/icons/icon-hr-red.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_information.setIcon(self.icon_info)
+        self.btn_information.setStyleSheet("""
+                                    QPushButton {
+                                        border-radius: 12px;   /* Радиус равен половине ширины и высоты */
+                                        background-color: #202124;  /* Изменение цвета при наведении */
+
+                                    }
+                                    QPushButton:hover {
+                                        background-color: #2d3b53;
+                                    }
+                                    QPushButton:pressed {
+                                        background-color: #3a4c69;  /* Изменение цвета при нажатии */
+                                    }
+                                """)
+        ###
+        ####
+
+        self.user = User(self)
+        self.groups = Groups(self)
 
         ### Connections
         self.tabs_general.currentChanged.connect(self.tabs_general_clicked)
@@ -218,7 +307,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_user_export.clicked.connect(self.win_user_export)
         self.btn_user_delete.clicked.connect(self.user_delete)
         self.btn_refresh_users_tab.clicked.connect(self.get_list_users)
-        # self.btn_refresh_groups_tab.clicked.connect(self.group_init)
         self.btn_user_create.clicked.connect(self.win_user_create)
         self.btn_about_program.triggered.connect(self.win_about_program)
         self.btn_check_update.triggered.connect(lambda: check_version(self, False))
@@ -230,6 +318,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.list_users.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
+
+        QTimer.singleShot(0, self.resize_custom)
+
+
+    def resize_custom(self):
+        self.btn_refresh_users_tab.move(self.users_list_layout.width() - self.btn_refresh_users_tab.width(), 4)
+        self.btn_refresh_groups_tab.move(self.user_group_list_layout.width() - self.btn_refresh_groups_tab.width(), 4)
+        self.btn_information.move(self.centralwidget.width() - self.btn_information.width(), 3)
+
+
+
+    def resizeEvent(self, event):
+        self.resize_custom()
 
     def win_user_create(self):
         win_create_user = CreateUser()
@@ -623,7 +724,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
 class Launch(QtWidgets.QMainWindow, Ui_Launch):
-    def __init__(self, *args, obj=None, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(Launch, self).__init__(*args, **kwargs)
         self.setupUi(self)
         icon = QtGui.QIcon(resource_path("res/icon.png"))
@@ -645,7 +746,15 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
         self.btn_server_new.clicked.connect(self.create_server)
         self.cb_creds.currentTextChanged.connect(self.validator)
         self.cb_servers.currentTextChanged.connect(self.validator)
+        self.menu_update.triggered.connect(lambda: check_version(self, startup=False))
+        self.menu_connect.triggered.connect(self.to_connect)
+        self.menu_reset_creds.triggered.connect(lambda: (utils.utils.delete_creds(), self.load_creds()))
+        self.menu_reset_servers.triggered.connect(lambda: (utils.utils.delete_servers(), self.load_servers()))
+        self.menu_reset_all_profiles.triggered.connect(lambda: (utils.utils.delete_all_profiles(), self.load_creds(), self.load_servers()))
+        self.menu_reset_master_password.triggered.connect(lambda: QMessageBox.information(self, "Информация",
+                    "Сброс мастер пароля не возможен. Если он был утерян, необходимо удалить профиль к которому он был привязан."))
         self.validator()
+
 
     def validator(self):
         if self.cb_creds.currentText() != "" and self.cb_servers.currentText() != "":
@@ -680,14 +789,26 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
             # Получаем пароль для last_cred из словаря creds
             for server in config[ "servers" ]:
                 if server[ "label" ] == last_server:
-                    self.cb_creds.setCurrentText(server[ "label" ])
+                    self.cb_servers.setCurrentText(server[ "label" ])
                     break
 
     def create_cred(self):
+        if not config[ "creds" ]:
+            dialog = launch_dialogs.MasterPasswordSetDialog()  # Открываем диалог добавления сервера
+            if dialog.exec():  # exec() вернет True, если диалог завершен успешно
+                utils.utils.master_password = dialog.master_password
+            else:
+                return
+        else:
+            dialog = launch_dialogs.MasterPasswordGetDialog()
+            if dialog.exec():  # exec() вернет True, если диалог завершен успешно
+                utils.utils.master_password = dialog.master_password
+            else:
+                return
         dialog = launch_dialogs.CredDialog()
         if dialog.exec():  # exec() вернет True, если диалог завершен успешно
             username = dialog.username
-            password = dialog.password
+            password = utils.utils.encrypt_data(dialog.password, utils.utils.master_password)
             label = dialog.label
 
             # Проверка уникальности имени пользователя
@@ -771,8 +892,15 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
 
     def to_connect(self):
         config[ "last_cred" ] = self.cb_creds.currentText()
+        print(self.cb_creds.currentText())
         config[ "last_server" ] = self.cb_servers.currentText()
+        print(self.cb_servers.currentText())
         utils.utils.write_config()
+        dialog = launch_dialogs.MasterPasswordGetDialog()  # Открываем диалог добавления сервера
+        if dialog.exec():  # exec() вернет True, если диалог завершен успешно
+            utils.utils.master_password = dialog.master_password
+        else:
+            return
 
         try:
             response = api_request("servers/", request="full")
@@ -800,8 +928,19 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
                 QMessageBox.critical(self, "Ошибка", f"Ошибка: {response.status_code}"
                                                      f"\n{response.text}")
 
+
+
+        except requests.Timeout:
+            QMessageBox.critical(self, "Ошибка", "Превышен таймаут ожидания!")
+
+        except requests.ConnectTimeout:
+            QMessageBox.critical(self, "Ошибка", "Превышен таймаут ожидания!")
+
         except requests.ConnectionError:
             QMessageBox.critical(self, "Ошибка", "Проверьте сетевое соединение!")
+
+        except InvalidToken:
+            QMessageBox.critical(self, "Ошибка", "Некорректный мастер пароль!")
 
 
 app = QtWidgets.QApplication(sys.argv)
