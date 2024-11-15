@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1126</width>
-    <height>797</height>
+    <height>941</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -79,7 +79,7 @@
        <enum>QTabWidget::TabShape::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -178,1011 +178,6 @@
         <string>Пользователи</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="1" column="1">
-         <widget class="QTabWidget" name="tabs_users">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="tabShape">
-           <enum>QTabWidget::TabShape::Rounded</enum>
-          </property>
-          <property name="currentIndex">
-           <number>0</number>
-          </property>
-          <property name="documentMode">
-           <bool>false</bool>
-          </property>
-          <property name="tabsClosable">
-           <bool>false</bool>
-          </property>
-          <property name="movable">
-           <bool>false</bool>
-          </property>
-          <property name="tabBarAutoHide">
-           <bool>false</bool>
-          </property>
-          <widget class="QWidget" name="users_tab_info">
-           <attribute name="title">
-            <string>Параметры</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="1" column="0">
-             <layout class="QGridLayout" name="gridLayout_2">
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item row="0" column="0">
-               <widget class="QGroupBox" name="groupBox_7">
-                <layout class="QGridLayout" name="gridLayout_10">
-                 <item row="0" column="0">
-                  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
-                   <property name="spacing">
-                    <number>6</number>
-                   </property>
-                   <item>
-                    <widget class="QGroupBox" name="groupBox">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_10">
-                      <property name="sizeConstraint">
-                       <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
-                      </property>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_23">
-                        <item>
-                         <widget class="QLabel" name="users_fullname_label">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Полное имя</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_cn</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_cn">
-                          <property name="inputMethodHints">
-                           <set>Qt::InputMethodHint::ImhNone</set>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="placeholderText">
-                           <string>Иванов Иван Иванович</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_24">
-                        <item>
-                         <widget class="QLabel" name="label_2">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Системное имя</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_name</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_name">
-                          <property name="inputMethodHints">
-                           <set>Qt::InputMethodHint::ImhNone</set>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="dragEnabled">
-                           <bool>false</bool>
-                          </property>
-                          <property name="readOnly">
-                           <bool>true</bool>
-                          </property>
-                          <property name="placeholderText">
-                           <string>ii.ivanov</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_25">
-                        <item>
-                         <widget class="QLabel" name="label_11">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Основной IP</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_default_ip</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_default_ip">
-                          <property name="inputMask">
-                           <string/>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="frame">
-                           <bool>true</bool>
-                          </property>
-                          <property name="dragEnabled">
-                           <bool>false</bool>
-                          </property>
-                          <property name="placeholderText">
-                           <string>255.255.255.255</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_26">
-                        <item>
-                         <widget class="QLabel" name="label_56">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Пароль</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_pass</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_pass">
-                          <property name="inputMethodHints">
-                           <set>Qt::InputMethodHint::ImhNoAutoUppercase|Qt::InputMethodHint::ImhNoPredictiveText|Qt::InputMethodHint::ImhSensitiveData</set>
-                          </property>
-                          <property name="inputMask">
-                           <string/>
-                          </property>
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="frame">
-                           <bool>true</bool>
-                          </property>
-                          <property name="echoMode">
-                           <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>MyTopP@ssw0rd</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="btn_show_pass">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="icon">
-                           <iconset resource="resources.qrc">
-                            <normaloff>:/res/icons/eye_on.png</normaloff>
-                            <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
-                          </property>
-                          <property name="checkable">
-                           <bool>true</bool>
-                          </property>
-                          <property name="autoRepeat">
-                           <bool>false</bool>
-                          </property>
-                          <property name="autoExclusive">
-                           <bool>false</bool>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_27">
-                        <item>
-                         <widget class="QLabel" name="label_12">
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Email</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_email</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_email">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="placeholderText">
-                           <string>ii.ivanov@unistroyrf.ru</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_28">
-                        <item>
-                         <widget class="QLabel" name="label_10">
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Комментарий</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_comment</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_comment">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="placeholderText">
-                           <string>Энергоресурс, юрист</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_29">
-                        <item>
-                         <widget class="QLabel" name="label_44">
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Telegram id</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_tg_id</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_tg_id">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="placeholderText">
-                           <string>912561677</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_30">
-                        <item>
-                         <widget class="QLabel" name="label_55">
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="text">
-                           <string>Telegram code</string>
-                          </property>
-                          <property name="buddy">
-                           <cstring>le_user_tg_code</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QLineEdit" name="le_user_tg_code">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="echoMode">
-                           <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
-                          </property>
-                          <property name="placeholderText">
-                           <string>!hahg@21ga</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="btn_show_tg_code">
-                          <property name="text">
-                           <string/>
-                          </property>
-                          <property name="icon">
-                           <iconset resource="resources.qrc">
-                            <normaloff>:/res/icons/eye_on.png</normaloff>
-                            <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
-                          </property>
-                          <property name="checkable">
-                           <bool>true</bool>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_31">
-                        <item>
-                         <widget class="QLabel" name="label_3">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>150</width>
-                            <height>16777215</height>
-                           </size>
-                          </property>
-                          <property name="baseSize">
-                           <size>
-                            <width>0</width>
-                            <height>0</height>
-                           </size>
-                          </property>
-                          <property name="layoutDirection">
-                           <enum>Qt::LayoutDirection::LeftToRight</enum>
-                          </property>
-                          <property name="text">
-                           <string>Статус</string>
-                          </property>
-                          <property name="textFormat">
-                           <enum>Qt::TextFormat::AutoText</enum>
-                          </property>
-                          <property name="scaledContents">
-                           <bool>true</bool>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-                          </property>
-                          <property name="buddy">
-                           <cstring>cb_user_active</cstring>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QCheckBox" name="cb_user_active">
-                          <property name="sizePolicy">
-                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                           </sizepolicy>
-                          </property>
-                          <property name="minimumSize">
-                           <size>
-                            <width>150</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                          <property name="maximumSize">
-                           <size>
-                            <width>16777215</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                          <property name="font">
-                           <font>
-                            <pointsize>9</pointsize>
-                            <italic>false</italic>
-                           </font>
-                          </property>
-                          <property name="text">
-                           <string>Активен</string>
-                          </property>
-                          <property name="checked">
-                           <bool>true</bool>
-                          </property>
-                          <property name="tristate">
-                           <bool>false</bool>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QFrame" name="frame_2">
-                     <property name="frameShape">
-                      <enum>QFrame::Shape::NoFrame</enum>
-                     </property>
-                     <property name="frameShadow">
-                      <enum>QFrame::Shadow::Raised</enum>
-                     </property>
-                    </widget>
-                   </item>
-                  </layout>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QPushButton" name="btn_user_save_params">
-                   <property name="text">
-                    <string>Сохранить</string>
-                   </property>
-                   <property name="default">
-                    <bool>false</bool>
-                   </property>
-                   <property name="flat">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="users_tab_group_policies">
-           <attribute name="title">
-            <string>Политики групп</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QStackedWidget" name="stack_user_policies">
-              <property name="currentIndex">
-               <number>0</number>
-              </property>
-              <widget class="QWidget" name="page">
-               <layout class="QGridLayout" name="gridLayout_29">
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <property name="spacing">
-                 <number>0</number>
-                </property>
-                <item row="0" column="0">
-                 <widget class="QTableWidget" name="tbl_user_policies">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="lineWidth">
-                   <number>100</number>
-                  </property>
-                  <property name="midLineWidth">
-                   <number>50</number>
-                  </property>
-                  <property name="selectionMode">
-                   <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
-                  </property>
-                  <property name="selectionBehavior">
-                   <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-                  </property>
-                  <property name="sortingEnabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="rowCount">
-                   <number>3</number>
-                  </property>
-                  <property name="columnCount">
-                   <number>10</number>
-                  </property>
-                  <attribute name="verticalHeaderShowSortIndicator" stdset="0">
-                   <bool>false</bool>
-                  </attribute>
-                  <row>
-                   <property name="text">
-                    <string>Smart</string>
-                   </property>
-                  </row>
-                  <row>
-                   <property name="text">
-                    <string>Unistroy-Region</string>
-                   </property>
-                  </row>
-                  <row>
-                   <property name="text">
-                    <string>USKStandart</string>
-                   </property>
-                  </row>
-                  <column>
-                   <property name="text">
-                    <string>Доступ</string>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>9</pointsize>
-                     <kerning>true</kerning>
-                    </font>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>IP-адреса</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>USB-фильтр</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Auth-Method</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>OTP-секрет</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Пароль</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Permit-Login</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Can kick</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Kickable</string>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Until</string>
-                   </property>
-                  </column>
-                  <item row="0" column="0">
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <pointsize>1</pointsize>
-                    </font>
-                   </property>
-                   <property name="checkState">
-                    <enum>Checked</enum>
-                   </property>
-                   <property name="flags">
-                    <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled|ItemIsAutoTristate</set>
-                   </property>
-                  </item>
-                  <item row="0" column="1">
-                   <property name="text">
-                    <string>{10.20.30.100,10.20.1.22}</string>
-                   </property>
-                  </item>
-                  <item row="0" column="9">
-                   <property name="text">
-                    <string>2024.01.23 15:48</string>
-                   </property>
-                  </item>
-                  <item row="1" column="0">
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="checkState">
-                    <enum>Unchecked</enum>
-                   </property>
-                   <property name="flags">
-                    <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                   </property>
-                  </item>
-                  <item row="1" column="9">
-                   <property name="text">
-                    <string>2024.02.23 15:48</string>
-                   </property>
-                  </item>
-                  <item row="2" column="9">
-                   <property name="text">
-                    <string>2023.01.23 15:48</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-              <widget class="QWidget" name="page_2">
-               <layout class="QGridLayout" name="gridLayout_30">
-                <property name="sizeConstraint">
-                 <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
-                </property>
-                <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
-                 <number>0</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>0</number>
-                </property>
-                <item row="0" column="0">
-                 <widget class="QTreeWidget" name="tree_user_policies">
-                  <column>
-                   <property name="text">
-                    <string>Название</string>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <bold>false</bold>
-                    </font>
-                   </property>
-                  </column>
-                  <column>
-                   <property name="text">
-                    <string>Значение</string>
-                   </property>
-                  </column>
-                  <item>
-                   <property name="text">
-                    <string>Smart</string>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <bold>true</bold>
-                    </font>
-                   </property>
-                   <property name="background">
-                    <brush brushstyle="SolidPattern">
-                     <color alpha="100">
-                      <red>65</red>
-                      <green>68</green>
-                      <blue>82</blue>
-                     </color>
-                    </brush>
-                   </property>
-                   <property name="checkState">
-                    <enum>Checked</enum>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Новый дочерний элемент</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="flags">
-                     <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый дочерний элемент</string>
-                    </property>
-                   </item>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Новый элемент</string>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>Новый дочерний элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Новый элемент</string>
-                    </property>
-                   </item>
-                  </item>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QGroupBox" name="groupBox_18">
-              <property name="title">
-               <string/>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_21">
-               <item row="0" column="0">
-                <widget class="QFrame" name="frame">
-                 <layout class="QHBoxLayout" name="horizontalLayout_14">
-                  <property name="spacing">
-                   <number>10</number>
-                  </property>
-                  <property name="leftMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="topMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="rightMargin">
-                   <number>0</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>0</number>
-                  </property>
-                  <item>
-                   <widget class="QPushButton" name="btn_user_policies_create">
-                    <property name="text">
-                     <string>Новая политика</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_user_policies_delete">
-                    <property name="text">
-                     <string>Удалить политику</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_change_view_user_policies">
-                    <property name="maximumSize">
-                     <size>
-                      <width>30</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="resources.qrc">
-                      <normaloff>:/res/icons/strings.png</normaloff>:/res/icons/strings.png</iconset>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_show_user_policies">
-                    <property name="maximumSize">
-                     <size>
-                      <width>30</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="resources.qrc">
-                      <normaloff>:/res/icons/eye_on.png</normaloff>
-                      <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
-                    </property>
-                    <property name="checkable">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QPushButton" name="btn_user_policies_save">
-                 <property name="text">
-                  <string>Сохранить</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="users_tab_usb_policices">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
-           <attribute name="title">
-            <string>Политики USB-портов</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout_7">
-            <item row="0" column="1">
-             <widget class="QFrame" name="frame">
-              <layout class="QGridLayout" name="gridLayout_9">
-               <property name="leftMargin">
-                <number>0</number>
-               </property>
-               <property name="topMargin">
-                <number>0</number>
-               </property>
-               <property name="rightMargin">
-                <number>0</number>
-               </property>
-               <property name="bottomMargin">
-                <number>0</number>
-               </property>
-              </layout>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="groupBox_3">
-              <property name="title">
-               <string/>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_13">
-               <item row="0" column="0">
-                <widget class="QTreeWidget" name="tbl_user_ports">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="alternatingRowColors">
-                  <bool>false</bool>
-                 </property>
-                 <property name="selectionMode">
-                  <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
-                 </property>
-                 <property name="rootIsDecorated">
-                  <bool>true</bool>
-                 </property>
-                 <property name="itemsExpandable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="sortingEnabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="animated">
-                  <bool>true</bool>
-                 </property>
-                 <property name="headerHidden">
-                  <bool>true</bool>
-                 </property>
-                 <attribute name="headerVisible">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="headerCascadingSectionResizes">
-                  <bool>false</bool>
-                 </attribute>
-                 <attribute name="headerHighlightSections">
-                  <bool>false</bool>
-                 </attribute>
-                 <column>
-                  <property name="text">
-                   <string notr="true">1</string>
-                  </property>
-                 </column>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QPushButton" name="btn_user_ports_save">
-                 <property name="text">
-                  <string>Сохранить</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
-           <attribute name="title">
-            <string>Активность</string>
-           </attribute>
-          </widget>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QGroupBox" name="users_list_layout">
           <property name="minimumSize">
@@ -1298,6 +293,941 @@
           </layout>
          </widget>
         </item>
+        <item row="1" column="1">
+         <widget class="QTabWidget" name="tabs_users">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="tabShape">
+           <enum>QTabWidget::TabShape::Rounded</enum>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="documentMode">
+           <bool>false</bool>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <property name="tabBarAutoHide">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="users_tab_info">
+           <attribute name="title">
+            <string>Общее</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="0">
+             <layout class="QGridLayout" name="gridLayout_2">
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item row="0" column="0">
+               <widget class="QFrame" name="frame_7">
+                <property name="lineWidth">
+                 <number>0</number>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_10">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item row="0" column="0">
+                  <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
+                   <property name="spacing">
+                    <number>6</number>
+                   </property>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="title">
+                      <string>Параметры</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_10">
+                      <property name="sizeConstraint">
+                       <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+                      </property>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_23">
+                        <item>
+                         <widget class="QLabel" name="users_fullname_label">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Полное имя</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_cn">
+                          <property name="inputMethodHints">
+                           <set>Qt::InputMethodHint::ImhNone</set>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>Иванов Иван Иванович</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_24">
+                        <item>
+                         <widget class="QLabel" name="label_2">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Системное имя</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_name">
+                          <property name="inputMethodHints">
+                           <set>Qt::InputMethodHint::ImhNone</set>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="dragEnabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="readOnly">
+                           <bool>true</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string>ii.ivanov</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_25">
+                        <item>
+                         <widget class="QLabel" name="label_11">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Основной IP</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_default_ip">
+                          <property name="inputMask">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="frame">
+                           <bool>true</bool>
+                          </property>
+                          <property name="dragEnabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="placeholderText">
+                           <string>255.255.255.255</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_26">
+                        <item>
+                         <widget class="QLabel" name="label_56">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Пароль</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_pass">
+                          <property name="inputMethodHints">
+                           <set>Qt::InputMethodHint::ImhNoAutoUppercase|Qt::InputMethodHint::ImhNoPredictiveText|Qt::InputMethodHint::ImhSensitiveData</set>
+                          </property>
+                          <property name="inputMask">
+                           <string/>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="frame">
+                           <bool>true</bool>
+                          </property>
+                          <property name="echoMode">
+                           <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+                          </property>
+                          <property name="placeholderText">
+                           <string>MyTopP@ssw0rd</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_show_pass">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="resources.qrc">
+                            <normaloff>:/res/icons/eye_on.png</normaloff>
+                            <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
+                          </property>
+                          <property name="checkable">
+                           <bool>true</bool>
+                          </property>
+                          <property name="autoRepeat">
+                           <bool>false</bool>
+                          </property>
+                          <property name="autoExclusive">
+                           <bool>false</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_27">
+                        <item>
+                         <widget class="QLabel" name="label_12">
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Email</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_email">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>ii.ivanov@unistroyrf.ru</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_28">
+                        <item>
+                         <widget class="QLabel" name="label_10">
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Комментарий</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_comment">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>Энергоресурс, юрист</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_29">
+                        <item>
+                         <widget class="QLabel" name="label_44">
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Telegram id</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_tg_id">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="placeholderText">
+                           <string>912561677</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_30">
+                        <item>
+                         <widget class="QLabel" name="label_55">
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="text">
+                           <string>Telegram code</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QLineEdit" name="le_user_tg_code">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="echoMode">
+                           <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+                          </property>
+                          <property name="placeholderText">
+                           <string>!hahg@21ga</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_show_tg_code">
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="resources.qrc">
+                            <normaloff>:/res/icons/eye_on.png</normaloff>
+                            <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
+                          </property>
+                          <property name="checkable">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QHBoxLayout" name="horizontalLayout_31">
+                        <item>
+                         <widget class="QLabel" name="label_3">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>150</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="baseSize">
+                           <size>
+                            <width>0</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>Статус</string>
+                          </property>
+                          <property name="textFormat">
+                           <enum>Qt::TextFormat::AutoText</enum>
+                          </property>
+                          <property name="scaledContents">
+                           <bool>true</bool>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QCheckBox" name="cb_user_active">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                          <property name="minimumSize">
+                           <size>
+                            <width>150</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="font">
+                           <font>
+                            <pointsize>9</pointsize>
+                            <italic>false</italic>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>Активен</string>
+                          </property>
+                          <property name="checked">
+                           <bool>true</bool>
+                          </property>
+                          <property name="tristate">
+                           <bool>false</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="btn_user_save_params">
+                        <property name="text">
+                         <string>Сохранить</string>
+                        </property>
+                        <property name="default">
+                         <bool>false</bool>
+                        </property>
+                        <property name="flat">
+                         <bool>false</bool>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QGroupBox" name="groupBox_7">
+                   <property name="title">
+                    <string>Политики групп</string>
+                   </property>
+                   <layout class="QGridLayout" name="gridLayout_5">
+                    <item row="0" column="0">
+                     <widget class="QStackedWidget" name="stack_user_policies">
+                      <property name="currentIndex">
+                       <number>0</number>
+                      </property>
+                      <widget class="QWidget" name="page">
+                       <layout class="QGridLayout" name="gridLayout_29">
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <item row="0" column="0">
+                         <widget class="QTableWidget" name="tbl_user_policies">
+                          <property name="enabled">
+                           <bool>true</bool>
+                          </property>
+                          <property name="lineWidth">
+                           <number>100</number>
+                          </property>
+                          <property name="midLineWidth">
+                           <number>50</number>
+                          </property>
+                          <property name="selectionMode">
+                           <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+                          </property>
+                          <property name="selectionBehavior">
+                           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                          </property>
+                          <property name="sortingEnabled">
+                           <bool>false</bool>
+                          </property>
+                          <property name="rowCount">
+                           <number>0</number>
+                          </property>
+                          <property name="columnCount">
+                           <number>10</number>
+                          </property>
+                          <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+                           <bool>false</bool>
+                          </attribute>
+                          <column>
+                           <property name="text">
+                            <string>Доступ</string>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>9</pointsize>
+                             <kerning>true</kerning>
+                            </font>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>IP-адреса</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>USB-фильтр</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Auth-Method</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>OTP-секрет</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Пароль</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Permit-Login</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Can kick</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Kickable</string>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Until</string>
+                           </property>
+                          </column>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="page_2">
+                       <layout class="QGridLayout" name="gridLayout_30">
+                        <property name="sizeConstraint">
+                         <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item row="0" column="0">
+                         <widget class="QTreeWidget" name="tree_user_policies">
+                          <column>
+                           <property name="text">
+                            <string>Название</string>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                          </column>
+                          <column>
+                           <property name="text">
+                            <string>Значение</string>
+                           </property>
+                          </column>
+                          <item>
+                           <property name="text">
+                            <string>Smart</string>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="background">
+                            <brush brushstyle="SolidPattern">
+                             <color alpha="100">
+                              <red>65</red>
+                              <green>68</green>
+                              <blue>82</blue>
+                             </color>
+                            </brush>
+                           </property>
+                           <property name="checkState">
+                            <enum>Checked</enum>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Новый дочерний элемент</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="flags">
+                             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый дочерний элемент</string>
+                            </property>
+                           </item>
+                          </item>
+                          <item>
+                           <property name="text">
+                            <string>Новый элемент</string>
+                           </property>
+                           <item>
+                            <property name="text">
+                             <string>Новый дочерний элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                           <item>
+                            <property name="text">
+                             <string>Новый элемент</string>
+                            </property>
+                           </item>
+                          </item>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QFrame" name="frame_18">
+                      <layout class="QGridLayout" name="gridLayout_21">
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item row="0" column="0">
+                        <widget class="QFrame" name="frame_5">
+                         <layout class="QHBoxLayout" name="horizontalLayout_14">
+                          <property name="spacing">
+                           <number>10</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QPushButton" name="btn_user_policies_create">
+                            <property name="text">
+                             <string>Новая политика</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_user_policies_delete">
+                            <property name="text">
+                             <string>Удалить политику</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_change_view_user_policies">
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/res/icons/strings.png</normaloff>:/res/icons/strings.png</iconset>
+                            </property>
+                            <property name="checkable">
+                             <bool>false</bool>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_show_user_policies">
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/res/icons/eye_on.png</normaloff>
+                              <normalon>:/res/icons/eye_off.png</normalon>:/res/icons/eye_on.png</iconset>
+                            </property>
+                            <property name="checkable">
+                             <bool>true</bool>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QPushButton" name="btn_user_policies_save">
+                         <property name="text">
+                          <string>Сохранить</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="users_tab_usb_policices">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <attribute name="title">
+            <string>Политики USB-портов</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="1">
+             <widget class="QFrame" name="frame">
+              <layout class="QGridLayout" name="gridLayout_9">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_3">
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <item row="0" column="0">
+                <widget class="QTreeWidget" name="tbl_user_ports">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="alternatingRowColors">
+                  <bool>false</bool>
+                 </property>
+                 <property name="selectionMode">
+                  <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+                 </property>
+                 <property name="rootIsDecorated">
+                  <bool>true</bool>
+                 </property>
+                 <property name="itemsExpandable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sortingEnabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="animated">
+                  <bool>true</bool>
+                 </property>
+                 <property name="headerHidden">
+                  <bool>true</bool>
+                 </property>
+                 <attribute name="headerVisible">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="headerCascadingSectionResizes">
+                  <bool>false</bool>
+                 </attribute>
+                 <attribute name="headerHighlightSections">
+                  <bool>false</bool>
+                 </attribute>
+                 <column>
+                  <property name="text">
+                   <string notr="true">1</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QPushButton" name="btn_user_ports_save">
+                 <property name="text">
+                  <string>Сохранить</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <attribute name="title">
+            <string>Активность</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_groups">
@@ -1376,30 +1306,6 @@
                <string>TCP-порт</string>
               </property>
              </column>
-             <item>
-              <property name="text">
-               <string>Unistroy-Region</string>
-              </property>
-              <property name="text">
-               <string>7503</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Smart</string>
-              </property>
-              <property name="text">
-               <string>df</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Sever-Volzh</string>
-              </property>
-              <property name="text">
-               <string>7500</string>
-              </property>
-             </item>
             </widget>
            </item>
            <item>
@@ -1506,68 +1412,44 @@
           </property>
           <widget class="QWidget" name="tab_group_params">
            <attribute name="title">
-            <string>Параметры</string>
+            <string>Общее</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_15">
             <item row="0" column="0">
-             <widget class="QGroupBox" name="groupBox_21">
+             <widget class="QFrame" name="frame_21">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="title">
-               <string/>
-              </property>
               <layout class="QGridLayout" name="gridLayout_8">
-               <property name="verticalSpacing">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <property name="spacing">
                 <number>6</number>
                </property>
-               <item row="3" column="0">
-                <widget class="QGroupBox" name="groupBox">
-                 <layout class="QVBoxLayout" name="verticalLayout_2">
-                  <item>
-                   <widget class="QTreeWidget" name="list_group_usb">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="selectionMode">
-                     <enum>QAbstractItemView::SelectionMode::MultiSelection</enum>
-                    </property>
-                    <column>
-                     <property name="text">
-                      <string>Имя</string>
-                     </property>
-                    </column>
-                    <column>
-                     <property name="text">
-                      <string>VID</string>
-                     </property>
-                    </column>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_group_usb_add">
-                    <property name="text">
-                     <string>Добавить порты</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QPushButton" name="btn_group_usb_remove">
-                    <property name="text">
-                     <string>Удалить порты</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
+               <item row="4" column="0">
+                <widget class="QPushButton" name="btn_group_save">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="text">
+                  <string>Сохранить</string>
+                 </property>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_24">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -1575,18 +1457,12 @@
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="title">
+                  <string>Параметры</string>
+                 </property>
                  <layout class="QVBoxLayout" name="verticalLayout_9">
-                  <property name="spacing">
-                   <number>9</number>
-                  </property>
                   <property name="sizeConstraint">
                    <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
-                  </property>
-                  <property name="topMargin">
-                   <number>5</number>
-                  </property>
-                  <property name="bottomMargin">
-                   <number>5</number>
                   </property>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_32">
@@ -1762,28 +1638,60 @@
                  </layout>
                 </widget>
                </item>
-               <item row="6" column="0">
-                <widget class="QPushButton" name="btn_group_save">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="text">
-                  <string>Сохранить</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_7">
-                 <property name="text">
-                  <string>Настройки</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_6">
-                 <property name="text">
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox">
+                 <property name="title">
                   <string>USB-порты</string>
                  </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <item>
+                   <widget class="QTreeWidget" name="list_group_usb">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="selectionMode">
+                     <enum>QAbstractItemView::SelectionMode::MultiSelection</enum>
+                    </property>
+                    <column>
+                     <property name="text">
+                      <string>Имя</string>
+                     </property>
+                    </column>
+                    <column>
+                     <property name="text">
+                      <string>VID</string>
+                     </property>
+                    </column>
+                   </widget>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout">
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                    <item>
+                     <widget class="QPushButton" name="btn_group_usb_add">
+                      <property name="text">
+                       <string>Добавить порты</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btn_group_usb_remove">
+                      <property name="text">
+                       <string>Удалить порты</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1806,7 +1714,7 @@
       </widget>
       <widget class="QWidget" name="tab_ports">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <attribute name="title">
         <string>USB-порты</string>
@@ -1815,79 +1723,17 @@
         <item row="0" column="1">
          <widget class="QGroupBox" name="groupBox_8">
           <property name="title">
-           <string>Параметры</string>
+           <string>Общее</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_16">
-           <item row="0" column="0">
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="contextMenuPolicy">
-              <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
-             </property>
-             <property name="acceptDrops">
-              <bool>false</bool>
-             </property>
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="groupBox_12">
              <property name="title">
-              <string/>
+              <string>Доступы</string>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-             </property>
-             <property name="flat">
-              <bool>false</bool>
-             </property>
-             <property name="checkable">
-              <bool>false</bool>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_3">
-              <item row="2" column="0">
-               <widget class="QGroupBox" name="groupBox_9">
-                <layout class="QHBoxLayout" name="horizontalLayout_18">
-                 <item>
-                  <widget class="QLabel" name="label_13">
-                   <property name="minimumSize">
-                    <size>
-                     <width>150</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Virtual Port</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="lb_usb_virtual_port">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string>1.21</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QTreeWidget" name="treeWidget">
+             <layout class="QGridLayout" name="gridLayout_17">
+              <item row="0" column="0">
+               <widget class="QTreeWidget" name="list_usb_access">
                 <property name="sortingEnabled">
                  <bool>true</bool>
                 </property>
@@ -1915,23 +1761,155 @@
                 </column>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label">
-                <property name="text">
-                 <string>Доступы</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
+              <item row="1" column="0">
                <widget class="QPushButton" name="btn_usb_save">
                 <property name="text">
                  <string>Сохранить</string>
                 </property>
                </widget>
               </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="contextMenuPolicy">
+              <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
+             </property>
+             <property name="acceptDrops">
+              <bool>false</bool>
+             </property>
+             <property name="title">
+              <string>Параметры</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <item row="0" column="0">
+               <widget class="QFrame" name="frame_11">
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_17">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Имя</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="le_usb_name">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Иксон Девелопмент Ахтямов</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QFrame" name="frame_10">
+                <layout class="QHBoxLayout" name="_2">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_15">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Bus</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lb_usb_bus">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>1.2.1-2.2.4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
               <item row="1" column="0">
-               <widget class="QGroupBox" name="groupBox_5">
+               <widget class="QFrame" name="frame_5">
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_4">
                    <property name="sizePolicy">
@@ -1970,41 +1948,21 @@
                 </layout>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QGroupBox" name="groupBox_10">
-                <layout class="QHBoxLayout" name="horizontalLayout_20">
-                 <item>
-                  <widget class="QLabel" name="label_15">
-                   <property name="minimumSize">
-                    <size>
-                     <width>150</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Bus</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="lb_usb_bus">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string>1.2.1-2.2.4</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
               <item row="4" column="0">
-               <widget class="QGroupBox" name="groupBox_6">
+               <widget class="QFrame" name="frame_6">
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_5">
                    <property name="minimumSize">
@@ -2043,14 +2001,36 @@
                    </item>
                   </widget>
                  </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_usb_group_clear">
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="QIcon::ThemeIcon::EditClear"/>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QGroupBox" name="groupBox_11">
-                <layout class="QHBoxLayout" name="horizontalLayout_21">
+              <item row="2" column="0">
+               <widget class="QFrame" name="frame_9">
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
-                  <widget class="QLabel" name="label_17">
+                  <widget class="QLabel" name="label_13">
                    <property name="minimumSize">
                     <size>
                      <width>150</width>
@@ -2058,20 +2038,20 @@
                     </size>
                    </property>
                    <property name="text">
-                    <string>Имя</string>
+                    <string>Virtual Port</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="le_usb_name">
+                  <widget class="QLabel" name="lb_usb_virtual_port">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
                    <property name="text">
-                    <string>Иксон Девелопмент Ахтямов</string>
+                    <string>1.21</string>
                    </property>
                   </widget>
                  </item>
@@ -2097,7 +2077,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="1" column="0">
-            <widget class="QTreeWidget" name="tree_usb_list">
+            <widget class="QTreeWidget" name="list_usb">
              <property name="sortingEnabled">
               <bool>true</bool>
              </property>
@@ -2113,57 +2093,17 @@
              </column>
              <column>
               <property name="text">
-               <string>Group</string>
+               <string>Группа</string>
               </property>
              </column>
-             <item>
-              <property name="text">
-               <string>Иксон Девелопмент Булатова</string>
-              </property>
-              <property name="text">
-               <string>1.1</string>
-              </property>
-              <property name="text">
-               <string>Smart</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Иксон Девелопмент Ахтямов</string>
-              </property>
-              <property name="text">
-               <string>1.2</string>
-              </property>
-              <property name="text">
-               <string>Smart</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="text">
-               <string>1.3</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </item>
             </widget>
            </item>
            <item row="0" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
-              <widget class="QLineEdit" name="lineEdit_7">
+              <widget class="QLineEdit" name="le_usb_list_search">
                <property name="placeholderText">
                 <string>Поиск</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_8">
-               <property name="text">
-                <string>Найти</string>
                </property>
               </widget>
              </item>

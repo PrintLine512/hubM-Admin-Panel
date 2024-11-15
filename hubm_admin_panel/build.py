@@ -9,7 +9,7 @@ import PyInstaller.__main__
 from hubm_admin_panel.ui.convert_res import convert_res
 from hubm_admin_panel.ui.convert_ui import convert_ui
 
-nsis_path = "C:\\Program Files (x86)\\NSIS"
+nsis_path = 'C:\Program Files (x86)\Inno Setup 6'
 
 current_directory = os.path.abspath(os.path.dirname(__file__))
 previous_dir = os.path.join(current_directory, "..")
@@ -61,9 +61,9 @@ def main(reconvert_ui, reconvert_resource, no_installer):
 
     if not no_installer:
         print("Creating installer...")
-        installer_script_path = os.path.join(previous_dir, "installer_script.nsi")
+        installer_script_path = os.path.join(previous_dir, "installer_script.iss")
         result = subprocess.run(
-            [ os.path.join(nsis_path, 'makensis.exe'), installer_script_path ],
+            [ os.path.join(nsis_path, 'ISCC.exe'), installer_script_path, '/Qp' ],
             capture_output=True,
             text=True,
             cwd=current_directory,

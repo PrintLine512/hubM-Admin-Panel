@@ -131,10 +131,10 @@ class Groups:
         response = (self.sent_params(dict_server))
         if response.status_code == 200:
             QMessageBox.information(self.ui, "Информация",
-                                    f"Группа {self.ui.le_user_name.text()} успешно изменена!")
+                                    f"Группа {self.ui.le_group_name.text()} успешно изменена!")
         else:
             QMessageBox.critical(self.ui, "Ошибка",
-                                 f"Группа не изменена или  изменена с ошибками!\nОшибка: {response.status_code}"
+                                 f"Группа не изменена или изменена с ошибками!\nОшибка: {response.status_code}"
                                  f"\n {response.text}")
 
 
