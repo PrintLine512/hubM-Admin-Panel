@@ -42,11 +42,6 @@ class SelectPort(QDialog):
             QMessageBox.warning(self, "Ошибка", "Выберите хотя бы один USB-порт!")
             return
 
-        #self.selected = []
-        #for item in selected:
-        #    self.selected.append(item.text(1))
-        # Закрываем диалог с флагом успешного завершения
-
         super().accept()
 
 

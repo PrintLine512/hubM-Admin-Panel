@@ -25,7 +25,7 @@ class Ui_win_new_policies(object):
     def setupUi(self, win_new_policies):
         if not win_new_policies.objectName():
             win_new_policies.setObjectName(u"win_new_policies")
-        win_new_policies.resize(525, 663)
+        win_new_policies.resize(525, 711)
         self.gridLayout = QGridLayout(win_new_policies)
         self.gridLayout.setObjectName(u"gridLayout")
         self.groupBox_6 = QGroupBox(win_new_policies)

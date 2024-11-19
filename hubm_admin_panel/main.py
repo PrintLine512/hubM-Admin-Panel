@@ -16,6 +16,7 @@ from packaging import version
 from qdarktheme.qtpy.QtWidgets import QApplication
 
 import utils.utils
+from Usb.master import UsbList
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
@@ -36,7 +37,7 @@ from User.User import User
 from User.CreatePolicies import CreatePolicies
 from User.CreateUser import CreateUser
 from User.UserExport import UserExport
-from Groups.master import Groups, group_search
+from Groups.master import Groups
 
 from ui import launch_dialogs
 from ui.ui_launch import Ui_Launch
@@ -290,6 +291,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.user = User(self)
         self.groups = Groups(self)
+        self.usb_list = UsbList(self)
 
         ### Connections
         self.tabs_general.currentChanged.connect(self.tabs_general_clicked)
@@ -315,6 +317,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.list_users.setColumnWidth(0, 200)
         self.list_groups.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
+
 
         QTimer.singleShot(0, self.resize_custom)
 
@@ -505,12 +508,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except:
             pass
 
-    def group_init(self):
-        # if self.groups is not None:
-        #    print("DELETE")
-        #    del self.groups
-        # self.groups = Groups(self)
-        self.groups.render_groups(self)
 
     def tabs_general_clicked(self, index):
         match index:
@@ -528,6 +525,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 self.groups.refresh()
             case 3:
                 print("Порты")
+                self.usb_list.refresh()
             case 4:
                 print("Логи")
             case _:

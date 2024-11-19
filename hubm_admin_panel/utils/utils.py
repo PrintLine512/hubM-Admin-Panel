@@ -18,6 +18,15 @@ from . import session
 master_password = None
 api_version = "v2"
 
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    )
+
 
 def filter_items(list: "QTreeWidget", query_raw):
     query = query_raw.strip().lower()  # Получаем текст из строки поиска и приводим к нижнему регистру

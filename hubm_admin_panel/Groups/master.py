@@ -24,35 +24,6 @@ def resource_path(relative):
     )
 
 
-def group_search(ui: 'MainWindow'):
-    # clear current selection.
-    ui.list_groups.setCurrentItem(None)
-
-    query = ui.le_search_group.text()
-    if not query:
-        # Empty string, don't search.
-        return
-
-    matching_items = ui.list_groups.findItems(query, Qt.MatchFlag.MatchStartsWith, 0)
-    # matching_items.extend(ui.list_groups.findItems(query, Qt.MatchFlag.MatchStartsWith, 1))
-
-    if matching_items:
-
-        item = matching_items[ 0 ]  # take the first
-        ui.list_groups.setCurrentItem(item)
-        # self.update_user_info(item.text(1))
-    else:
-        matching_items = ui.list_groups.findItems(query, Qt.MatchFlag.MatchContains, 0)
-        # matching_items.extend(ui.list_groups.findItems(query, Qt.MatchFlag.MatchContains, 1))
-
-        if matching_items:
-            item = matching_items[ 0 ]  # take the first
-            ui.list_groups.setCurrentItem(item)
-            # self.update_user_info(item.text(1))
-        # else:
-        #    self.clear_user_info()
-
-
 class Groups:
     def __init__(self, ui: 'MainWindow'):
         self.groups = [ ]
@@ -60,15 +31,15 @@ class Groups:
         self.current_group = None
         # self.update_list(ui)
         # self.render_groups(ui)
-        ui.list_group_usb.setColumnWidth(0, 250)
-        ui.list_groups.currentItemChanged.connect(lambda selected: Groups.render_group(self, selected))
-        ui.btn_group_restart.clicked.connect(lambda: self.action("restart"))
-        ui.btn_group_start.clicked.connect(lambda: self.action("start"))
-        ui.btn_group_stop.clicked.connect(lambda: self.action("stop"))
-        ui.btn_group_usb_add.clicked.connect(self.usb_add)
-        ui.btn_group_usb_remove.clicked.connect(self.usb_remove)
-        ui.btn_refresh_groups_tab.clicked.connect(self.refresh)
-        ui.btn_group_save.clicked.connect(self.save)
+        self.ui.list_group_usb.setColumnWidth(0, 250)
+        self.ui.list_groups.currentItemChanged.connect(lambda selected: self.render_group(selected))
+        self.ui.btn_group_restart.clicked.connect(lambda: self.action("restart"))
+        self.ui.btn_group_start.clicked.connect(lambda: self.action("start"))
+        self.ui.btn_group_stop.clicked.connect(lambda: self.action("stop"))
+        self.ui.btn_group_usb_add.clicked.connect(self.usb_add)
+        self.ui.btn_group_usb_remove.clicked.connect(self.usb_remove)
+        self.ui.btn_refresh_groups_tab.clicked.connect(self.refresh)
+        self.ui.btn_group_save.clicked.connect(self.save)
 
     def __del__(self):
         print(f"{__class__} del")
@@ -230,7 +201,7 @@ class Groups:
 
         if dialog == QMessageBox.StandardButton.Yes:
 
-            group = self.get_group(self.ui.list_groups.currentItem().text(0))
+            group = self.current_group
             response = group.action(action)
 
             if response.status_code == 200:

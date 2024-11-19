@@ -88,6 +88,7 @@ class Ui_win_user_export(object):
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
         self.btns.setOrientation(Qt.Orientation.Horizontal)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
         self.btns.setCenterButtons(False)
 
         self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)

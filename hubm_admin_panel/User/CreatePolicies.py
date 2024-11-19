@@ -64,7 +64,7 @@ class CreatePolicies(QDialog):
             self.ui.gb_usb.setEnabled(True)
             response = api_request(f"servers/{self.ui.le_group.currentText()}", request="full")
             server = json.loads(response.text)
-            for usb in (server[ 'usb_info' ]):
+            for usb in (server[ 'usb_list' ]):
                 item = QtWidgets.QListWidgetItem(self.ui.list_usb)
                 item.setCheckState(QtCore.Qt.CheckState.Unchecked)
 
