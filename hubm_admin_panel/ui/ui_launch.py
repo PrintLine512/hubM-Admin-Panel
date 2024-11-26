@@ -237,8 +237,11 @@ class Ui_Launch(object):
         icon6 = QIcon(QIcon.fromTheme(u"document-properties"))
         self.menu_2.setIcon(icon6)
         Launch.setMenuBar(self.menuBar)
-        QWidget.setTabOrder(self.btn_connect, self.cb_creds)
-        QWidget.setTabOrder(self.cb_creds, self.btn_creds_new)
+        QWidget.setTabOrder(self.btn_connect, self.cb_servers)
+        QWidget.setTabOrder(self.cb_servers, self.cb_creds)
+        QWidget.setTabOrder(self.cb_creds, self.btn_server_new)
+        QWidget.setTabOrder(self.btn_server_new, self.btn_server_delete)
+        QWidget.setTabOrder(self.btn_server_delete, self.btn_creds_new)
         QWidget.setTabOrder(self.btn_creds_new, self.btn_creds_delete)
 
         self.menuBar.addAction(self.menu.menuAction())

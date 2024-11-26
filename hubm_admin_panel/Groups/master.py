@@ -4,10 +4,11 @@ from typing import TYPE_CHECKING, Literal
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
-    QTreeWidgetItem, QMessageBox
+    QTreeWidgetItem, QMessageBox, QSizePolicy
 )
 
 from ui import launch_dialogs
+from ui.main_additional import CheckLabel
 from utils.utils import api_request
 
 if TYPE_CHECKING:
@@ -29,6 +30,11 @@ class Groups:
         self.groups = [ ]
         self.ui = ui
         self.current_group = None
+
+        self.lb_group_active = CheckLabel("Запущена", "Остановлена", False)
+        self.lb_group_active.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        self.ui.frame_group_status.addWidget(self.lb_group_active)
+
         # self.update_list(ui)
         # self.render_groups(ui)
         self.ui.list_group_usb.setColumnWidth(0, 250)
@@ -40,6 +46,8 @@ class Groups:
         self.ui.btn_group_usb_remove.clicked.connect(self.usb_remove)
         self.ui.btn_refresh_groups_tab.clicked.connect(self.refresh)
         self.ui.btn_group_save.clicked.connect(self.save)
+
+        self.ui.list_group_usb.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
     def __del__(self):
         print(f"{__class__} del")
@@ -83,9 +91,12 @@ class Groups:
             QMessageBox.warning(self.ui, 'Управление группой',
                                 f'Сначала выберите группу!')
             return
+        if self.current_group.active:
+            QMessageBox.warning(self.ui, 'Управление группой',
+                                f'руппа должна быть остановлена!')
+            return
         dialog = QMessageBox.question(self.ui, 'Управление группой',
-                                      f'Вы уверены что хотите сохранить изменения?\n'
-                                      f'Группа будет перезапущена.',
+                                      f'Вы уверены что хотите сохранить изменения?\n',
                                       QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                       QMessageBox.StandardButton.Yes)
         if dialog == QMessageBox.StandardButton.No:
@@ -138,7 +149,8 @@ class Groups:
                     name=group[ "name" ],
                     tcp_port=group[ "tcp_port" ],
                     password=group[ "password" ],
-                    usb_list=group["usb_list"]
+                    usb_list=group["usb_list"],
+                    active=group["active"]
                 )
                 self.groups.append(new_group)
         else:
@@ -180,6 +192,7 @@ class Groups:
         self.ui.le_group_login.setText(self.current_group.login)
         self.ui.le_group_password.setText(self.current_group.password)
         self.ui.le_group_ip.setText(self.current_group.ip)
+        self.lb_group_active.setState(True if self.current_group.active else False)
 
         items = [ ]
         for usb in self.current_group.usb_list:
@@ -210,11 +223,12 @@ class Groups:
             elif response.status_code == 500:
                 QMessageBox.warning(self.ui, 'Управление группой',
                                     f"Ошибка: некорректное состояние!\n"
-                                    f"Группа {group.name} уже включена или выключена.")
+                                    f"Группа {group.name} уже находится в этом состояние.")
             else:
                 QMessageBox.critical(self.ui, 'Управление группой',
                                      f"Ошибка: {response.status_code}"
                                      f"\n{response.text}")
+        self.refresh()
 
     def get_group(self, group_name):
         for group in self.groups:
@@ -223,7 +237,7 @@ class Groups:
 
 
 class Group:
-    def __init__(self, id, ip, ip_check, login, name, tcp_port, password, usb_list):
+    def __init__(self, id, ip, ip_check, login, name, tcp_port, password, usb_list, active):
         self.id = id
         self.ip = ip
         self.ip_check = ip_check
@@ -232,6 +246,7 @@ class Group:
         self.tcp_port = tcp_port
         self.password = password
         self.usb_list = usb_list
+        self.active = active
 
     def action(self, action):
         response = api_request(uri=f"servers/{self.name}/{action}", request="full")

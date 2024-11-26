@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hubm-admin-panel"
-version = "v0.0.39"
+version = "v0.0.40"
 description = ""
 authors = ["PrintLine512 <paralet.games@gmail.com>"]
 readme = "README.md"

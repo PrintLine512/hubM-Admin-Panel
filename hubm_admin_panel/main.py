@@ -15,10 +15,13 @@ from cryptography.fernet import InvalidToken
 from packaging import version
 from qdarktheme.qtpy.QtWidgets import QApplication
 
+from ui.main_additional import Notifications
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
 import utils.utils
 from Usb.master import UsbList
 
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QThread, Signal, QSize, QTimer
@@ -39,13 +42,13 @@ from User.CreateUser import CreateUser
 from User.UserExport import UserExport
 from Groups.master import Groups
 
+
 from ui import launch_dialogs
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
 
 from utils.utils import config
 
-reg_key_path = r"Software\printline\hubM_ADMIN_PANEL"
 
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
     running_from_pyinstaller = True
@@ -87,11 +90,6 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-def handle_file_download(file_data):
-    # Обработка загруженного файла
-    with open('run', "wb") as file:
-        file.write(file_data)
-    print("Файл успешно загружен и сохранен!")
 
 class Downloader(QThread):
     no_proxy_handler = ProxyHandler({})
@@ -155,7 +153,7 @@ class DownloadDialog(QDialog):
             sys.exit()
 
 
-def check_version(ui: "QtWidgets.QMainWindow", startup):
+def check_version(ui: "QtWidgets.QMainWindow", startup, notify=False):
     url = f"https://api.github.com/repos/PrintLine512/hubM-Admin-Panel/releases/latest"
     proxies = {
         "http": "",
@@ -178,25 +176,31 @@ def check_version(ui: "QtWidgets.QMainWindow", startup):
 
                 if version.parse(actual_version) > version.parse(panel_version):
 
+                    if notify:
+                        ui.notifications.add_download_notify(url = data[ 'assets' ][ 0 ][ 'browser_download_url' ])
+                        return
+
                     dlg = QMessageBox.question(ui, 'Проверка обновления',
                                                f'Обнаружена новая версия - {actual_version}\nСкачать?',
                                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                                                QMessageBox.StandardButton.Yes)
-                    if dlg == QMessageBox.StandardButton.Yes:
-                        download_path = os.path.join(os.path.expanduser("~"), "Downloads",
-                                                     "hubM Admin Panel Installer.exe")
-                        directory_raw = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
-                        directory = directory_raw[0]
-                        if directory:
-                            url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
-                            print(url)
-                            print(directory)
-                            download_dialog = DownloadDialog(url, directory, ui)
-                            download_dialog.exec()
+                    if dlg == QMessageBox.StandardButton.No:
+                        return
 
-                        else:
-                            QMessageBox.critical(ui, 'Ошибка',
-                                                 'Некорректный путь. Загрузка отменена.')
+                    download_path = os.path.join(os.path.expanduser("~"), "Downloads",
+                                                 "hubM Admin Panel Installer.exe")
+                    directory_raw = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
+                    directory = directory_raw[0]
+                    if directory:
+                        url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
+                        print(url)
+                        print(directory)
+                        download_dialog = DownloadDialog(url, directory, ui)
+                        download_dialog.exec()
+
+                    else:
+                        QMessageBox.critical(ui, 'Ошибка',
+                                             'Некорректный путь. Загрузка отменена.')
                 else:
                     if not startup:
                         QMessageBox.information(ui, 'Информация',
@@ -228,6 +232,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
 
+        self.notifications = Notifications(parent=self.centralwidget)
+
+
 
         ####
         self.btn_refresh_users_tab = QPushButton(self.users_list_layout)
@@ -247,7 +254,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     }
                 """)
         ###
-        self.btn_refresh_groups_tab = QPushButton(self.user_group_list_layout)
+        self.btn_refresh_groups_tab = QPushButton(self.groups_list_layout)
         self.btn_refresh_groups_tab.setFixedSize(16, 16)
         self.btn_refresh_groups_tab.setIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
         self.btn_refresh_groups_tab.setStyleSheet("""
@@ -263,6 +270,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 background-color: #3a4c69;  /* Изменение цвета при нажатии */
                             }
                         """)
+        ###
+        self.btn_refresh_usb_ports_tab = QPushButton(self.usb_ports_list_layout)
+        self.btn_refresh_usb_ports_tab.setFixedSize(16, 16)
+        self.btn_refresh_usb_ports_tab.setIcon(QIcon.fromTheme(QIcon.ThemeIcon.ViewRefresh))
+        self.btn_refresh_usb_ports_tab.setStyleSheet("""
+                                    QPushButton {
+                                        border-radius: 8px;   /* Радиус равен половине ширины и высоты */
+                                        background-color: #202124;  /* Изменение цвета при наведении */
+
+                                    }
+                                    QPushButton:hover {
+                                        background-color: #2d3b53;
+                                    }
+                                    QPushButton:pressed {
+                                        background-color: #3a4c69;  /* Изменение цвета при нажатии */
+                                    }
+                                """)
         ###
         self.btn_information = QPushButton(self)
         self.btn_information.setFixedSize(24, 24)
@@ -289,6 +313,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         ###
         ####
 
+        self.btn_information.clicked.connect(self.notifications.switch_show)
+
         self.user = User(self)
         self.groups = Groups(self)
         self.usb_list = UsbList(self)
@@ -314,23 +340,34 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.btn_group_restart.clicked.connect(self.group_restart)
         ###
 
+
         self.list_users.setColumnWidth(0, 200)
         self.list_groups.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
 
         QTimer.singleShot(0, self.resize_custom)
-
+        #self.timer_check_update = QTimer(self)
+        #self.timer_check_update.timeout.connect(lambda: check_version(self, True, notify=True))
+        #self.timer_check_update.start(60000)
+        #check_version(self, True, notify=True)
 
     def resize_custom(self):
         self.btn_refresh_users_tab.move(self.users_list_layout.width() - self.btn_refresh_users_tab.width(), 4)
-        self.btn_refresh_groups_tab.move(self.user_group_list_layout.width() - self.btn_refresh_groups_tab.width(), 4)
+        self.btn_refresh_groups_tab.move(self.groups_list_layout.width() - self.btn_refresh_groups_tab.width(), 4)
+        self.btn_refresh_usb_ports_tab.move(self.usb_ports_list_layout.width() - self.btn_refresh_usb_ports_tab.width(), 4)
         self.btn_information.move(self.centralwidget.width() - self.btn_information.width(), 3)
-
+        self.notifications.move(self.centralwidget.width() - self.btn_information.width(), 3)
 
 
     def resizeEvent(self, event):
         self.resize_custom()
+        self.notifications.stick_to_parent()
+        self.notifications.adjust()
+
+    def moveEvent(self, event):
+        self.notifications.stick_to_parent()
+        self.notifications.adjust()
 
     def win_user_create(self):
         win_create_user = CreateUser()
@@ -485,16 +522,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def get_class(self):
-        try:
-            all_objects = [ obj for obj in gc.get_objects() if isinstance(obj, Groups) ]
-            for obj in all_objects:
-                print(obj.__class__)
-                refs = gc.get_referrers(obj)
-                print(refs)
-                print(refs.__class__)
-                print(refs.__class__.__name__)
-        except:
-            pass
+        self.notifications.add_notification(icon="info", title="Обновление", content="Обнаружено обновление.\nСкачать?")
+
+        #try:
+        #    all_objects = [ obj for obj in gc.get_objects() if isinstance(obj, Groups) ]
+        #    for obj in all_objects:
+        #        print(obj.__class__)
+        #        refs = gc.get_referrers(obj)
+        #        print(refs)
+        #        print(refs.__class__)
+        #        print(refs.__class__.__name__)
+        #except:
+        #    pass
 
     def get_class2(self):
         try:

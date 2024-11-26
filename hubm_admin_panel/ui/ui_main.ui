@@ -1156,7 +1156,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_14">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="user_group_list_layout">
+         <widget class="QGroupBox" name="groups_list_layout">
           <property name="minimumSize">
            <size>
             <width>350</width>
@@ -1279,6 +1279,9 @@
                 <property name="text">
                  <string>Запустить группу</string>
                 </property>
+                <property name="shortcut">
+                 <string>S</string>
+                </property>
                 <property name="checkable">
                  <bool>false</bool>
                 </property>
@@ -1292,6 +1295,9 @@
                 <property name="text">
                  <string>Выключить группу</string>
                 </property>
+                <property name="shortcut">
+                 <string>D</string>
+                </property>
                 <property name="checkable">
                  <bool>false</bool>
                 </property>
@@ -1304,6 +1310,9 @@
                <widget class="QPushButton" name="btn_group_restart">
                 <property name="text">
                  <string>Перезагрузить группу</string>
+                </property>
+                <property name="shortcut">
+                 <string>R</string>
                 </property>
                 <property name="checkable">
                  <bool>false</bool>
@@ -1382,7 +1391,7 @@
                    <enum>QLayout::SizeConstraint::SetDefaultConstraint</enum>
                   </property>
                   <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_32">
+                   <layout class="QHBoxLayout" name="frame_group_status">
                     <item>
                      <widget class="QLabel" name="label_28">
                       <property name="minimumSize">
@@ -1393,19 +1402,6 @@
                       </property>
                       <property name="text">
                        <string>Статус</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_8">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Нет информации</string>
                       </property>
                      </widget>
                     </item>
@@ -1572,6 +1568,9 @@
                     <property name="selectionMode">
                      <enum>QAbstractItemView::SelectionMode::MultiSelection</enum>
                     </property>
+                    <property name="sortingEnabled">
+                     <bool>true</bool>
+                    </property>
                     <column>
                      <property name="text">
                       <string>Имя</string>
@@ -1649,6 +1648,27 @@
               <string>Доступы</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_17">
+              <item row="2" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="btn_usb_permission_add">
+                  <property name="text">
+                   <string>Добавить доступы</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_usb_permission_remove">
+                  <property name="text">
+                   <string>Удалить доступы</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
               <item row="0" column="0">
                <widget class="QTreeWidget" name="list_usb_access">
                 <property name="selectionMode">
@@ -1687,28 +1707,14 @@
                 </column>
                </widget>
               </item>
-              <item row="2" column="0">
-               <layout class="QHBoxLayout" name="horizontalLayout_2">
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <item>
-                 <widget class="QPushButton" name="btn_usb_permission_add">
-                  <property name="text">
-                   <string>Добавить доступы</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="btn_usb_permission_remove">
-                  <property name="text">
-                   <string>Удалить доступы</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
              </layout>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="btn_usb_save">
+             <property name="text">
+              <string>Сохранить</string>
+             </property>
             </widget>
            </item>
            <item row="0" column="0">
@@ -1747,98 +1753,7 @@
               <bool>false</bool>
              </property>
              <layout class="QGridLayout" name="gridLayout_3">
-              <item row="1" column="0">
-               <widget class="QFrame" name="frame_11">
-                <layout class="QHBoxLayout" name="horizontalLayout_21">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_17">
-                   <property name="minimumSize">
-                    <size>
-                     <width>150</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Имя</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="le_usb_name">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="placeholderText">
-                    <string>Usb Name</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QFrame" name="frame_10">
-                <layout class="QHBoxLayout" name="_2">
-                 <property name="leftMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>0</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="label_15">
-                   <property name="minimumSize">
-                    <size>
-                     <width>150</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>Bus</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLineEdit" name="le_usb_bus">
-                   <property name="enabled">
-                    <bool>true</bool>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="placeholderText">
-                    <string>1.2.1-2.2.4</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="6" column="0">
+              <item row="8" column="0">
                <widget class="QFrame" name="frame_6">
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
                  <property name="leftMargin">
@@ -1892,7 +1807,54 @@
                 </layout>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="2" column="0">
+               <widget class="QFrame" name="frame_11">
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_17">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>USB имя</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="le_usb_name">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Usb Name</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="5" column="0">
                <widget class="QFrame" name="frame_9">
                 <layout class="QHBoxLayout" name="horizontalLayout_18">
                  <property name="leftMargin">
@@ -1962,21 +1924,102 @@
                 </item>
                </layout>
               </item>
+              <item row="6" column="0">
+               <widget class="QFrame" name="frame_10">
+                <layout class="QHBoxLayout" name="_2">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_15">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Bus</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="le_usb_bus">
+                   <property name="enabled">
+                    <bool>true</bool>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="placeholderText">
+                    <string>1.2.1-2.2.4</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QFrame" name="frame_15">
+                <layout class="QHBoxLayout" name="_4">
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_19">
+                   <property name="minimumSize">
+                    <size>
+                     <width>150</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>Устройство</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="lb_usb_device">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Нет информации</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
              </layout>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QPushButton" name="btn_usb_save">
-             <property name="text">
-              <string>Сохранить</string>
-             </property>
             </widget>
            </item>
           </layout>
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QGroupBox" name="lw_users">
+         <widget class="QGroupBox" name="usb_ports_list_layout">
           <property name="maximumSize">
            <size>
             <width>350</width>
@@ -2028,6 +2071,9 @@
              <layout class="QVBoxLayout" name="verticalLayout_7">
               <item>
                <widget class="QPushButton" name="btn_usb_add">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Добавить порт</string>
                 </property>
@@ -2035,6 +2081,9 @@
               </item>
               <item>
                <widget class="QPushButton" name="btn_usb_remove">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="text">
                  <string>Удалить порт</string>
                 </property>
@@ -2052,6 +2101,9 @@
                 <property name="text">
                  <string>Включить порт</string>
                 </property>
+                <property name="shortcut">
+                 <string>S</string>
+                </property>
                </widget>
               </item>
               <item>
@@ -2059,12 +2111,18 @@
                 <property name="text">
                  <string>Выключить порт</string>
                 </property>
+                <property name="shortcut">
+                 <string>D</string>
+                </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="btn_usb_restart">
                 <property name="text">
                  <string>Перезагрузить порт</string>
+                </property>
+                <property name="shortcut">
+                 <string>R</string>
                 </property>
                </widget>
               </item>

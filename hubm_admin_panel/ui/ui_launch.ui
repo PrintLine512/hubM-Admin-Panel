@@ -395,7 +395,10 @@
  </widget>
  <tabstops>
   <tabstop>btn_connect</tabstop>
+  <tabstop>cb_servers</tabstop>
   <tabstop>cb_creds</tabstop>
+  <tabstop>btn_server_new</tabstop>
+  <tabstop>btn_server_delete</tabstop>
   <tabstop>btn_creds_new</tabstop>
   <tabstop>btn_creds_delete</tabstop>
  </tabstops>

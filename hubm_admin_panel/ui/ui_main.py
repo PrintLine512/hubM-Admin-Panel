@@ -660,15 +660,15 @@ class Ui_MainWindow(object):
         self.tab_groups.setEnabled(True)
         self.gridLayout_14 = QGridLayout(self.tab_groups)
         self.gridLayout_14.setObjectName(u"gridLayout_14")
-        self.user_group_list_layout = QGroupBox(self.tab_groups)
-        self.user_group_list_layout.setObjectName(u"user_group_list_layout")
-        self.user_group_list_layout.setMinimumSize(QSize(350, 0))
-        self.user_group_list_layout.setMaximumSize(QSize(350, 16777215))
-        self.verticalLayout_8 = QVBoxLayout(self.user_group_list_layout)
+        self.groups_list_layout = QGroupBox(self.tab_groups)
+        self.groups_list_layout.setObjectName(u"groups_list_layout")
+        self.groups_list_layout.setMinimumSize(QSize(350, 0))
+        self.groups_list_layout.setMaximumSize(QSize(350, 16777215))
+        self.verticalLayout_8 = QVBoxLayout(self.groups_list_layout)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.horizontalLayout_17 = QHBoxLayout()
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.le_search_group = QLineEdit(self.user_group_list_layout)
+        self.le_search_group = QLineEdit(self.groups_list_layout)
         self.le_search_group.setObjectName(u"le_search_group")
         self.le_search_group.setClearButtonEnabled(True)
 
@@ -677,7 +677,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_17)
 
-        self.list_groups = QTreeWidget(self.user_group_list_layout)
+        self.list_groups = QTreeWidget(self.groups_list_layout)
         self.list_groups.setObjectName(u"list_groups")
         self.list_groups.setTabletTracking(False)
         self.list_groups.setTabKeyNavigation(True)
@@ -689,7 +689,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.list_groups)
 
-        self.groupBox_17 = QGroupBox(self.user_group_list_layout)
+        self.groupBox_17 = QGroupBox(self.groups_list_layout)
         self.groupBox_17.setObjectName(u"groupBox_17")
         self.verticalLayout_6 = QVBoxLayout(self.groupBox_17)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -745,7 +745,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.addWidget(self.groupBox_17)
 
 
-        self.gridLayout_14.addWidget(self.user_group_list_layout, 0, 0, 1, 1)
+        self.gridLayout_14.addWidget(self.groups_list_layout, 0, 0, 1, 1)
 
         self.tabs_group = QTabWidget(self.tab_groups)
         self.tabs_group.setObjectName(u"tabs_group")
@@ -775,26 +775,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_9 = QVBoxLayout(self.groupBox_24)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.verticalLayout_9.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
-        self.horizontalLayout_32 = QHBoxLayout()
-        self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
+        self.frame_group_status = QHBoxLayout()
+        self.frame_group_status.setObjectName(u"frame_group_status")
         self.label_28 = QLabel(self.groupBox_24)
         self.label_28.setObjectName(u"label_28")
         self.label_28.setMinimumSize(QSize(150, 0))
 
-        self.horizontalLayout_32.addWidget(self.label_28)
-
-        self.label_8 = QLabel(self.groupBox_24)
-        self.label_8.setObjectName(u"label_8")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy4)
-
-        self.horizontalLayout_32.addWidget(self.label_8)
+        self.frame_group_status.addWidget(self.label_28)
 
 
-        self.verticalLayout_9.addLayout(self.horizontalLayout_32)
+        self.verticalLayout_9.addLayout(self.frame_group_status)
 
         self.horizontalLayout_9 = QHBoxLayout()
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
@@ -890,6 +880,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.list_group_usb.sizePolicy().hasHeightForWidth())
         self.list_group_usb.setSizePolicy(sizePolicy1)
         self.list_group_usb.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+        self.list_group_usb.setSortingEnabled(True)
 
         self.verticalLayout_2.addWidget(self.list_group_usb)
 
@@ -939,19 +930,6 @@ class Ui_MainWindow(object):
         self.groupBox_12.setObjectName(u"groupBox_12")
         self.gridLayout_17 = QGridLayout(self.groupBox_12)
         self.gridLayout_17.setObjectName(u"gridLayout_17")
-        self.list_usb_access = QTreeWidget(self.groupBox_12)
-        self.list_usb_access.setObjectName(u"list_usb_access")
-        self.list_usb_access.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
-        self.list_usb_access.setSortingEnabled(True)
-        self.list_usb_access.setHeaderHidden(False)
-        self.list_usb_access.header().setVisible(True)
-        self.list_usb_access.header().setCascadingSectionResizes(False)
-        self.list_usb_access.header().setHighlightSections(True)
-        self.list_usb_access.header().setProperty(u"showSortIndicator", True)
-        self.list_usb_access.header().setStretchLastSection(True)
-
-        self.gridLayout_17.addWidget(self.list_usb_access, 0, 0, 1, 1)
-
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(-1, 0, -1, -1)
@@ -968,8 +946,26 @@ class Ui_MainWindow(object):
 
         self.gridLayout_17.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
 
+        self.list_usb_access = QTreeWidget(self.groupBox_12)
+        self.list_usb_access.setObjectName(u"list_usb_access")
+        self.list_usb_access.setSelectionMode(QAbstractItemView.SelectionMode.MultiSelection)
+        self.list_usb_access.setSortingEnabled(True)
+        self.list_usb_access.setHeaderHidden(False)
+        self.list_usb_access.header().setVisible(True)
+        self.list_usb_access.header().setCascadingSectionResizes(False)
+        self.list_usb_access.header().setHighlightSections(True)
+        self.list_usb_access.header().setProperty(u"showSortIndicator", True)
+        self.list_usb_access.header().setStretchLastSection(True)
+
+        self.gridLayout_17.addWidget(self.list_usb_access, 0, 0, 1, 1)
+
 
         self.gridLayout_16.addWidget(self.groupBox_12, 1, 0, 1, 1)
+
+        self.btn_usb_save = QPushButton(self.groupBox_8)
+        self.btn_usb_save.setObjectName(u"btn_usb_save")
+
+        self.gridLayout_16.addWidget(self.btn_usb_save, 2, 0, 1, 1)
 
         self.groupBox_2 = QGroupBox(self.groupBox_8)
         self.groupBox_2.setObjectName(u"groupBox_2")
@@ -984,50 +980,6 @@ class Ui_MainWindow(object):
         self.groupBox_2.setCheckable(False)
         self.gridLayout_3 = QGridLayout(self.groupBox_2)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.frame_11 = QFrame(self.groupBox_2)
-        self.frame_11.setObjectName(u"frame_11")
-        self.horizontalLayout_21 = QHBoxLayout(self.frame_11)
-        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
-        self.horizontalLayout_21.setContentsMargins(0, 0, 0, 0)
-        self.label_17 = QLabel(self.frame_11)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_21.addWidget(self.label_17)
-
-        self.le_usb_name = QLineEdit(self.frame_11)
-        self.le_usb_name.setObjectName(u"le_usb_name")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.le_usb_name.sizePolicy().hasHeightForWidth())
-        self.le_usb_name.setSizePolicy(sizePolicy5)
-
-        self.horizontalLayout_21.addWidget(self.le_usb_name)
-
-
-        self.gridLayout_3.addWidget(self.frame_11, 1, 0, 1, 1)
-
-        self.frame_10 = QFrame(self.groupBox_2)
-        self.frame_10.setObjectName(u"frame_10")
-        self._2 = QHBoxLayout(self.frame_10)
-        self._2.setObjectName(u"_2")
-        self._2.setContentsMargins(0, 0, 0, 0)
-        self.label_15 = QLabel(self.frame_10)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setMinimumSize(QSize(150, 0))
-
-        self._2.addWidget(self.label_15)
-
-        self.le_usb_bus = QLineEdit(self.frame_10)
-        self.le_usb_bus.setObjectName(u"le_usb_bus")
-        self.le_usb_bus.setEnabled(True)
-
-        self._2.addWidget(self.le_usb_bus)
-
-
-        self.gridLayout_3.addWidget(self.frame_10, 5, 0, 1, 1)
-
         self.frame_6 = QFrame(self.groupBox_2)
         self.frame_6.setObjectName(u"frame_6")
         self.horizontalLayout_11 = QHBoxLayout(self.frame_6)
@@ -1041,8 +993,11 @@ class Ui_MainWindow(object):
 
         self.combo_usb_group = QComboBox(self.frame_6)
         self.combo_usb_group.setObjectName(u"combo_usb_group")
-        sizePolicy5.setHeightForWidth(self.combo_usb_group.sizePolicy().hasHeightForWidth())
-        self.combo_usb_group.setSizePolicy(sizePolicy5)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.combo_usb_group.sizePolicy().hasHeightForWidth())
+        self.combo_usb_group.setSizePolicy(sizePolicy4)
 
         self.horizontalLayout_11.addWidget(self.combo_usb_group)
 
@@ -1054,7 +1009,28 @@ class Ui_MainWindow(object):
         self.horizontalLayout_11.addWidget(self.btn_usb_group_clear)
 
 
-        self.gridLayout_3.addWidget(self.frame_6, 6, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frame_6, 8, 0, 1, 1)
+
+        self.frame_11 = QFrame(self.groupBox_2)
+        self.frame_11.setObjectName(u"frame_11")
+        self.horizontalLayout_21 = QHBoxLayout(self.frame_11)
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.horizontalLayout_21.setContentsMargins(0, 0, 0, 0)
+        self.label_17 = QLabel(self.frame_11)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setMinimumSize(QSize(150, 0))
+
+        self.horizontalLayout_21.addWidget(self.label_17)
+
+        self.le_usb_name = QLineEdit(self.frame_11)
+        self.le_usb_name.setObjectName(u"le_usb_name")
+        sizePolicy4.setHeightForWidth(self.le_usb_name.sizePolicy().hasHeightForWidth())
+        self.le_usb_name.setSizePolicy(sizePolicy4)
+
+        self.horizontalLayout_21.addWidget(self.le_usb_name)
+
+
+        self.gridLayout_3.addWidget(self.frame_11, 2, 0, 1, 1)
 
         self.frame_9 = QFrame(self.groupBox_2)
         self.frame_9.setObjectName(u"frame_9")
@@ -1074,7 +1050,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.addWidget(self.le_usb_virtual_port)
 
 
-        self.gridLayout_3.addWidget(self.frame_9, 4, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.frame_9, 5, 0, 1, 1)
 
         self.frame_usb_status = QHBoxLayout()
         self.frame_usb_status.setObjectName(u"frame_usb_status")
@@ -1090,23 +1066,62 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addLayout(self.frame_usb_status, 0, 0, 1, 1)
 
+        self.frame_10 = QFrame(self.groupBox_2)
+        self.frame_10.setObjectName(u"frame_10")
+        self._2 = QHBoxLayout(self.frame_10)
+        self._2.setObjectName(u"_2")
+        self._2.setContentsMargins(0, 0, 0, 0)
+        self.label_15 = QLabel(self.frame_10)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setMinimumSize(QSize(150, 0))
+
+        self._2.addWidget(self.label_15)
+
+        self.le_usb_bus = QLineEdit(self.frame_10)
+        self.le_usb_bus.setObjectName(u"le_usb_bus")
+        self.le_usb_bus.setEnabled(True)
+
+        self._2.addWidget(self.le_usb_bus)
+
+
+        self.gridLayout_3.addWidget(self.frame_10, 6, 0, 1, 1)
+
+        self.frame_15 = QFrame(self.groupBox_2)
+        self.frame_15.setObjectName(u"frame_15")
+        self._4 = QHBoxLayout(self.frame_15)
+        self._4.setObjectName(u"_4")
+        self._4.setContentsMargins(0, 0, 0, 0)
+        self.label_19 = QLabel(self.frame_15)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setMinimumSize(QSize(150, 0))
+
+        self._4.addWidget(self.label_19)
+
+        self.lb_usb_device = QLabel(self.frame_15)
+        self.lb_usb_device.setObjectName(u"lb_usb_device")
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.lb_usb_device.sizePolicy().hasHeightForWidth())
+        self.lb_usb_device.setSizePolicy(sizePolicy5)
+
+        self._4.addWidget(self.lb_usb_device)
+
+
+        self.gridLayout_3.addWidget(self.frame_15, 1, 0, 1, 1)
+
 
         self.gridLayout_16.addWidget(self.groupBox_2, 0, 0, 1, 1)
-
-        self.btn_usb_save = QPushButton(self.groupBox_8)
-        self.btn_usb_save.setObjectName(u"btn_usb_save")
-
-        self.gridLayout_16.addWidget(self.btn_usb_save, 2, 0, 1, 1)
 
 
         self.gridLayout_12.addWidget(self.groupBox_8, 0, 1, 1, 1)
 
-        self.lw_users = QGroupBox(self.tab_ports)
-        self.lw_users.setObjectName(u"lw_users")
-        self.lw_users.setMaximumSize(QSize(350, 16777215))
-        self.gridLayout = QGridLayout(self.lw_users)
+        self.usb_ports_list_layout = QGroupBox(self.tab_ports)
+        self.usb_ports_list_layout.setObjectName(u"usb_ports_list_layout")
+        self.usb_ports_list_layout.setMaximumSize(QSize(350, 16777215))
+        self.gridLayout = QGridLayout(self.usb_ports_list_layout)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.list_usb = QTreeWidget(self.lw_users)
+        self.list_usb = QTreeWidget(self.usb_ports_list_layout)
         self.list_usb.setObjectName(u"list_usb")
         self.list_usb.setSortingEnabled(True)
 
@@ -1114,7 +1129,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16 = QHBoxLayout()
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.le_usb_list_search = QLineEdit(self.lw_users)
+        self.le_usb_list_search = QLineEdit(self.usb_ports_list_layout)
         self.le_usb_list_search.setObjectName(u"le_usb_list_search")
 
         self.horizontalLayout_16.addWidget(self.le_usb_list_search)
@@ -1122,17 +1137,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addLayout(self.horizontalLayout_16, 0, 0, 1, 1)
 
-        self.groupBox_4 = QGroupBox(self.lw_users)
+        self.groupBox_4 = QGroupBox(self.usb_ports_list_layout)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.verticalLayout_7 = QVBoxLayout(self.groupBox_4)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.btn_usb_add = QPushButton(self.groupBox_4)
         self.btn_usb_add.setObjectName(u"btn_usb_add")
+        self.btn_usb_add.setEnabled(False)
 
         self.verticalLayout_7.addWidget(self.btn_usb_add)
 
         self.btn_usb_remove = QPushButton(self.groupBox_4)
         self.btn_usb_remove.setObjectName(u"btn_usb_remove")
+        self.btn_usb_remove.setEnabled(False)
 
         self.verticalLayout_7.addWidget(self.btn_usb_remove)
 
@@ -1162,7 +1179,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.groupBox_4, 2, 0, 1, 1)
 
 
-        self.gridLayout_12.addWidget(self.lw_users, 0, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.usb_ports_list_layout, 0, 0, 1, 1)
 
         self.tabs_general.addTab(self.tab_ports, "")
         self.tab_logs = QWidget()
@@ -1312,7 +1329,7 @@ class Ui_MainWindow(object):
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_usb_policices), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432", None))
         self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_users), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
-        self.user_group_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
+        self.groups_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.le_search_group.setText("")
         self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         ___qtreewidgetitem2 = self.list_groups.headerItem()
@@ -1323,12 +1340,20 @@ class Ui_MainWindow(object):
         self.btn_group_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
         self.btn_group_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
         self.btn_group_start.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
+#if QT_CONFIG(shortcut)
+        self.btn_group_start.setShortcut(QCoreApplication.translate("MainWindow", u"S", None))
+#endif // QT_CONFIG(shortcut)
         self.btn_group_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
+#if QT_CONFIG(shortcut)
+        self.btn_group_stop.setShortcut(QCoreApplication.translate("MainWindow", u"D", None))
+#endif // QT_CONFIG(shortcut)
         self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
+#if QT_CONFIG(shortcut)
+        self.btn_group_restart.setShortcut(QCoreApplication.translate("MainWindow", u"R", None))
+#endif // QT_CONFIG(shortcut)
         self.btn_group_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.groupBox_24.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
         self.le_group_name.setText("")
         self.le_group_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Group Name", None))
@@ -1355,27 +1380,29 @@ class Ui_MainWindow(object):
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_groups), QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
         self.groupBox_12.setTitle(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.btn_usb_permission_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.btn_usb_permission_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
         ___qtreewidgetitem4 = self.list_usb_access.headerItem()
         ___qtreewidgetitem4.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
         ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        self.btn_usb_permission_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
-        self.btn_usb_permission_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.btn_usb_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
-        self.le_usb_name.setText("")
-        self.le_usb_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Usb Name", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
-        self.le_usb_bus.setText("")
-        self.le_usb_bus.setPlaceholderText(QCoreApplication.translate("MainWindow", u"1.2.1-2.2.4", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442", None))
         self.combo_usb_group.setCurrentText("")
         self.btn_usb_group_clear.setText("")
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"USB \u0438\u043c\u044f", None))
+        self.le_usb_name.setText("")
+        self.le_usb_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Usb Name", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Virtual Port", None))
         self.le_usb_virtual_port.setText("")
         self.le_usb_virtual_port.setPlaceholderText(QCoreApplication.translate("MainWindow", u"1.1", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
-        self.btn_usb_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.lw_users.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
+        self.le_usb_bus.setText("")
+        self.le_usb_bus.setPlaceholderText(QCoreApplication.translate("MainWindow", u"1.2.1-2.2.4", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.lb_usb_device.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438", None))
+        self.usb_ports_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
         ___qtreewidgetitem5 = self.list_usb.headerItem()
         ___qtreewidgetitem5.setText(2, QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None));
         ___qtreewidgetitem5.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
@@ -1385,8 +1412,17 @@ class Ui_MainWindow(object):
         self.btn_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.btn_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
         self.btn_usb_start.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+#if QT_CONFIG(shortcut)
+        self.btn_usb_start.setShortcut(QCoreApplication.translate("MainWindow", u"S", None))
+#endif // QT_CONFIG(shortcut)
         self.btn_usb_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+#if QT_CONFIG(shortcut)
+        self.btn_usb_stop.setShortcut(QCoreApplication.translate("MainWindow", u"D", None))
+#endif // QT_CONFIG(shortcut)
         self.btn_usb_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
+#if QT_CONFIG(shortcut)
+        self.btn_usb_restart.setShortcut(QCoreApplication.translate("MainWindow", u"R", None))
+#endif // QT_CONFIG(shortcut)
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_ports), QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
         self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_logs), QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438", None))
         self.menu_1.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u043e\u0435", None))

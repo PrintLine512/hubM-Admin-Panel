@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Literal
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QMessageBox, QTreeWidgetItem, QLabel, QSizePolicy
 
+from ui.main_additional import CheckLabel
 from utils.utils import api_request
 from .dialogs import SelectUser
 
@@ -22,40 +23,15 @@ if TYPE_CHECKING:
     from main import MainWindow
 
 
-class CheckLabel(QLabel):
-    def __init__(self, text_on: str, text_off: str, state: bool, parent=None):
-        super().__init__(parent=parent)
-        self.state = None
-        self.text_on = text_on
-        self.text_off = text_off
-        self.setState(state)
-
-
-    def setState(self, state: bool):
-        if state:
-            self.state = state
-            self.setStyleSheet(f"color: green;")
-            self.setText(self.text_on)
-        else:
-            self.state = state
-            self.setStyleSheet(f"color: red;")
-            self.setText(self.text_off)
-
-    def state(self):
-        return self.state
-
-
 class UsbList:
     def __init__(self, ui: 'MainWindow'):
         self.usb_list = [ ]
         self.ui = ui
         self.current_usb = None
-        self.ui.lb_usb_active = CheckLabel("Включен", "Выключен", False)
 
-        # Устанавливаем Expanding policy
-        self.ui.lb_usb_active.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
-        # Добавляем виджет в layout
-        self.ui.frame_usb_status.addWidget(self.ui.lb_usb_active)
+        self.lb_usb_active = CheckLabel("Включен", "Выключен", False)
+        self.lb_usb_active.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        self.ui.frame_usb_status.addWidget(self.lb_usb_active)
 
 
         self.ui.list_usb.setColumnWidth(0, 150)
@@ -70,6 +46,7 @@ class UsbList:
         self.ui.btn_usb_restart.clicked.connect(lambda: self.usb_action("restart"))
         self.ui.btn_usb_start.clicked.connect(lambda: self.usb_action("on"))
         self.ui.btn_usb_stop.clicked.connect(lambda: self.usb_action("off"))
+        self.ui.btn_refresh_usb_ports_tab.clicked.connect(self.refresh)
 
         self.ui.list_usb.sortByColumn(1, Qt.SortOrder.AscendingOrder)
 
@@ -99,7 +76,8 @@ class UsbList:
                     virtual_port=usb[ "virtual_port" ],
                     bus=usb[ "bus" ],
                     name=usb[ "name" ],
-                    users=usb["users"]
+                    users=usb["users"],
+                    device=usb['device']
                 )
                 self.usb_list.append(new_usb)
                 
@@ -138,10 +116,11 @@ class UsbList:
             self.current_usb = self.get_usb(selected.text(1))
 
         self.ui.le_usb_name.setText(self.current_usb.name)
+        self.ui.lb_usb_device.setText(self.current_usb.device)
         self.ui.le_usb_virtual_port.setText(str(self.current_usb.virtual_port))
         self.ui.le_usb_bus.setText(str(self.current_usb.bus))
         #self.ui.cb_usb_active.setCheckState(Qt.CheckState.Checked if self.current_usb.active else Qt.CheckState.Unchecked)
-        self.ui.lb_usb_active.setState(True if self.current_usb.active else False)
+        self.lb_usb_active.setState(True if self.current_usb.active else False)
         self.ui.combo_usb_group.setCurrentText(self.current_usb.server_name)
         usb_access_items = []
         for user in self.current_usb.users:
@@ -194,15 +173,23 @@ class UsbList:
         if self.current_usb is None:
             QMessageBox.warning(self.ui, 'Управление USB-портами',
                                 f'Сначала выберите USB-порт!')
-        response = api_request(uri=f"usb_ports/{self.current_usb.virtual_port}/power?action={action}", method="GET", request="full")
-        if response.status_code == 200:
-            QMessageBox.information(self.ui, "Информация",
-                                    f"USB-порт {self.current_usb.virtual_port} успешно изменен!")
-        else:
-            QMessageBox.critical(self.ui, "Ошибка",
-                                 f"USB-порт {self.current_usb.virtual_port} не изменен или изменен с ошибками!\nОшибка: {response.status_code}"
-                                 f"\n {response.text}")
-        self.refresh()
+            return
+
+        dialog = QMessageBox.question(self.ui, 'Управление USB-портами',
+                                      f'Вы уверены что хотите совершить действие power-{action}?',
+                                      QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+                                      QMessageBox.StandardButton.Yes)
+
+        if dialog == QMessageBox.StandardButton.Yes:
+            response = api_request(uri=f"usb_ports/{self.current_usb.virtual_port}/power?action={action}", method="GET", request="full")
+            if response.status_code == 200:
+                QMessageBox.information(self.ui, "Информация",
+                                        f"Запрос power-{action} успешно обработан!")
+            else:
+                QMessageBox.critical(self.ui, "Ошибка",
+                                     f"Запрос power-{action} не обработан или обработан с ошибками!\nОшибка: {response.status_code}"
+                                     f"\n {response.text}")
+            self.refresh()
 
 
     def usb_save(self):
@@ -211,7 +198,6 @@ class UsbList:
                                 f'Сначала выберите USB-порт!')
         data = {
             "name": self.ui.le_usb_name.text().strip() or None,
-            "active": self.ui.lb_usb_active.state(),
             "virtual_port": self.ui.le_usb_virtual_port.text().strip() or None,
             "bus": self.ui.le_usb_bus.text().strip() or None,
             "server_name": self.ui.combo_usb_group.currentText().strip() or None,
@@ -233,7 +219,7 @@ class UsbList:
 
 
 class Usb:
-    def __init__(self, id, active, server_id, server_name, virtual_port, bus, name, users):
+    def __init__(self, id, active, server_id, server_name, virtual_port, bus, name, users, device):
         self.id = id
         self.active = active
         self.server_id = server_id
@@ -242,3 +228,4 @@ class Usb:
         self.bus = bus
         self.name = name
         self.users = users
+        self.device = device
