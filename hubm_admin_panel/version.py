@@ -1,1 +1,1 @@
-panel_version="v0.0.40"
+panel_version="v0.0.41"
