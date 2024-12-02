@@ -93,7 +93,7 @@ class Groups:
             return
         if self.current_group.active:
             QMessageBox.warning(self.ui, 'Управление группой',
-                                f'руппа должна быть остановлена!')
+                                f'Группа должна быть остановлена!')
             return
         dialog = QMessageBox.question(self.ui, 'Управление группой',
                                       f'Вы уверены что хотите сохранить изменения?\n',

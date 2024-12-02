@@ -232,7 +232,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
 
-        self.notifications = Notifications(parent=self.centralwidget)
+        self.notifications = Notifications(parent=self.centralwidget, ui=self)
+
 
 
 
@@ -295,8 +296,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.icon_info = QIcon()
         self.icon_info.addFile(u":/res/icons/icon-hr.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.icon_info_red = QIcon()
-        self.icon_info.addFile(u":/res/icons/icon-hr-red.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.btn_information.setIcon(self.icon_info)
+        self.icon_info_red.addFile(u":/res/icons/icon-red-hr.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.btn_information_icon_set()
         self.btn_information.setStyleSheet("""
                                     QPushButton {
                                         border-radius: 12px;   /* Радиус равен половине ширины и высоты */
@@ -351,6 +352,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.timer_check_update.timeout.connect(lambda: check_version(self, True, notify=True))
         #self.timer_check_update.start(60000)
         #check_version(self, True, notify=True)
+
+        self.timer_check_errors = QTimer(self)
+        self.timer_check_errors.timeout.connect(self.check_errors)
+        self.timer_check_errors.start(10000)
+        self.check_errors()
+
+    def btn_information_icon_set(self, icon=None):
+        if icon == "red":
+            self.btn_information.setIcon(self.icon_info_red)
+        else:
+            self.btn_information.setIcon(self.icon_info)
+
+    def check_errors(self):
+        response = api_request(f"errors", request="full")
+
+        if response.status_code == 200:
+            errors_raw = json.loads(response.text)
+            usb_errors_raw = errors_raw.get("usb-ports", [ ])
+            usb_errors = [item["virtual_port"] for item in usb_errors_raw if "virtual_port" in item]
+
+            print(usb_errors)
+            if usb_errors:
+                self.notifications.add_usb_error_notify(usb_errors)
+        else:
+            QMessageBox.critical(self, "Ошибка",
+                                 f"Пользователь не добавлен или добавлен с ошибками!\nОшибка: {response.status_code}"
+                                 f"\n {response.text}")
 
     def resize_custom(self):
         self.btn_refresh_users_tab.move(self.users_list_layout.width() - self.btn_refresh_users_tab.width(), 4)
@@ -616,34 +644,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             item = matching_items[ 0 ]
             self.list_users.setCurrentItem(item)
 
-    def search(self):
-        # clear current selection.
-        print("SEARCH")
-        self.list_users.setCurrentItem(None)
 
-        query = self.le_search_user.text()
-        if not query:
-            # Empty string, don't search.
-            return
-
-        matching_items = self.list_users.findItems(query, Qt.MatchFlag.MatchStartsWith, 0)
-        matching_items.extend(self.list_users.findItems(query, Qt.MatchFlag.MatchStartsWith, 1))
-
-        if matching_items:
-
-            item = matching_items[ 0 ]  # take the first
-            self.list_users.setCurrentItem(item)
-            self.update_user_info(item.text(1))
-        else:
-            matching_items = self.list_users.findItems(query, Qt.MatchFlag.MatchContains, 0)
-            matching_items.extend(self.list_users.findItems(query, Qt.MatchFlag.MatchContains, 1))
-
-            if matching_items:
-                item = matching_items[ 0 ]  # take the first
-                self.list_users.setCurrentItem(item)
-                self.update_user_info(item.text(1))
-            else:
-                self.clear_user_info()
 
     class EnumPolicies(Enum):
         access = (0, "bool")
