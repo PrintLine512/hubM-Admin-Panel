@@ -38,6 +38,7 @@ class Ui_Notifications(object):
         self.scroll_area.setSizePolicy(sizePolicy)
         self.scroll_area.setMinimumSize(QSize(420, 0))
         self.scroll_area.setMaximumSize(QSize(420, 16777215))
+        self.scroll_area.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
         self.scroll_area.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
         self.scroll_area.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.scroll_area.setWidgetResizable(False)

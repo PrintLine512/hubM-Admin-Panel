@@ -123,6 +123,8 @@ class Notifications(QWidget):
         self.notification_sound = QSoundEffect()
         self.notification_sound.setSource(QUrl.fromLocalFile(sound))  # Укажите свой файл
         self.notification_sound.setVolume(0.5)
+        #self.ui.scroll_area_contents.focusOutEvent = self.focusOutEvent_n
+        self.ui.scroll_area.focusOutEvent = self.focusOutEvent_n
 
         #self.setWindowOpacity(0.5)
 
@@ -136,11 +138,19 @@ class Notifications(QWidget):
         #self.add_notification(icon="info", title="Обновление", content="Обнаружено обновление.\nСкачать в фоновом режиме?",
         #                      add_button=True, btn_icon="download", btn_text="Скачать")
 
+    def focusOutEvent_n(self, event):
+        """Переопределяем обработчик события потери фокуса."""
+        super().focusOutEvent(event)  # Обрабатываем базовое событие
+        self.switch_show() # Генерируем сигнал
+
     def switch_show(self):
         self.adjust()
         self.stick_to_parent()
         if self.isHidden():
             self.show()
+            self.ui.scroll_area.setFocus()
+            self.ui.scroll_area_contents.setFocus()
+            self.setFocus()
             self.ui_main.btn_information_icon_set()
         else:
             self.hide()
