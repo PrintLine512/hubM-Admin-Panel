@@ -8,13 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, QSize, Qt)
-from PySide6.QtGui import (QFont, QIcon,
-                           QPixmap)
-from PySide6.QtWidgets import (QFrame, QGridLayout, QHBoxLayout,
-                               QLabel, QPushButton, QSizePolicy, QSpacerItem,
-                               QVBoxLayout)
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
+from . import resources_rc
 
 class Ui_Notification(object):
     def setupUi(self, Notification):
@@ -76,8 +80,7 @@ class Ui_Notification(object):
         self.lb_content.setObjectName(u"lb_content")
         sizePolicy.setHeightForWidth(self.lb_content.sizePolicy().hasHeightForWidth())
         self.lb_content.setSizePolicy(sizePolicy)
-        self.lb_content.setAlignment(
-            Qt.AlignmentFlag.AlignLeading | Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
+        self.lb_content.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
         self.lb_content.setWordWrap(True)
 
         self.verticalLayout.addWidget(self.lb_content)
@@ -114,25 +117,27 @@ class Ui_Notification(object):
 
         self.horizontalLayout_3.addWidget(self.btn_close)
 
+
         self.verticalLayout.addLayout(self.horizontalLayout_3)
+
 
         self.horizontalLayout_2.addLayout(self.verticalLayout)
 
+
         self.gridLayout.addWidget(self.horizontalFrame, 0, 4, 1, 1)
+
 
         self.retranslateUi(Notification)
 
         QMetaObject.connectSlotsByName(Notification)
-
     # setupUi
 
     def retranslateUi(self, Notification):
         Notification.setWindowTitle(QCoreApplication.translate("Notification", u"Form", None))
         self.lb_icon.setText("")
-        self.lb_title.setText(
-            QCoreApplication.translate("Notification", u"\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a", None))
-        self.lb_content.setText(
-            QCoreApplication.translate("Notification", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
+        self.lb_title.setText(QCoreApplication.translate("Notification", u"\u0417\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a", None))
+        self.lb_content.setText(QCoreApplication.translate("Notification", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435", None))
         self.btn_2.setText("")
         self.btn_close.setText("")
     # retranslateUi
+

@@ -1,9 +1,9 @@
 import json
 import os
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QMessageBox, QTreeWidgetItem, QSizePolicy
+from PySide6.QtWidgets import QMessageBox, QTreeWidgetItem, QLabel, QSizePolicy
 
 from ui.main_additional import CheckLabel
 from utils.utils import api_request
@@ -19,7 +19,6 @@ def resource_path(relative):
         relative
     )
 
-
 if TYPE_CHECKING:
     from main import MainWindow
 
@@ -33,6 +32,7 @@ class UsbList:
         self.lb_usb_active = CheckLabel("Включен", "Выключен", False)
         self.lb_usb_active.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         self.ui.frame_usb_status.addWidget(self.lb_usb_active)
+
 
         self.ui.list_usb.setColumnWidth(0, 150)
         self.ui.list_usb.setColumnWidth(1, 50)
@@ -76,11 +76,11 @@ class UsbList:
                     virtual_port=usb[ "virtual_port" ],
                     bus=usb[ "bus" ],
                     name=usb[ "name" ],
-                    users=usb[ "users" ],
-                    device=usb[ 'device' ]
+                    users=usb["users"],
+                    device=usb['device']
                 )
                 self.usb_list.append(new_usb)
-
+                
             response = api_request(uri="servers", method="GET", request="full")
             if response.status_code == 200:
                 groups_raw = json.loads(response.text)[ 'servers' ]
@@ -91,8 +91,8 @@ class UsbList:
                 self.ui.combo_usb_group.addItems(groups)
             else:
                 QMessageBox.critical(self.ui, "Ошибка",
-                                     f"Ошибка: {response.status_code}"
-                                     f"\n{response.text}")
+                                 f"Ошибка: {response.status_code}"
+                                 f"\n{response.text}")
         else:
             QMessageBox.critical(self.ui, "Ошибка",
                                  f"Ошибка: {response.status_code}"
@@ -119,12 +119,12 @@ class UsbList:
         self.ui.lb_usb_device.setText(self.current_usb.device)
         self.ui.le_usb_virtual_port.setText(str(self.current_usb.virtual_port))
         self.ui.le_usb_bus.setText(str(self.current_usb.bus))
-        # self.ui.cb_usb_active.setCheckState(Qt.CheckState.Checked if self.current_usb.active else Qt.CheckState.Unchecked)
+        #self.ui.cb_usb_active.setCheckState(Qt.CheckState.Checked if self.current_usb.active else Qt.CheckState.Unchecked)
         self.lb_usb_active.setState(True if self.current_usb.active else False)
         self.ui.combo_usb_group.setCurrentText(self.current_usb.server_name)
-        usb_access_items = [ ]
+        usb_access_items = []
         for user in self.current_usb.users:
-            item = QTreeWidgetItem([ user[ 'user_cn' ], user[ 'user_name' ] ])
+            item = QTreeWidgetItem([user['user_cn'], user['user_name']])
             usb_access_items.append(item)
         self.ui.list_usb_access.addTopLevelItems(usb_access_items)
 
@@ -153,7 +153,7 @@ class UsbList:
         dialog = SelectUser(users)  # Открываем диалог добавления сервера
         if dialog.exec():  # exec() вернет True, если диалог завершен успешно
             for item in dialog.selected:
-                user = QTreeWidgetItem([ item.text(0), item.text(1) ])
+                user = QTreeWidgetItem([item.text(0), item.text(1)])
                 self.ui.list_usb_access.addTopLevelItem(user)
 
     def usb_permission_remove(self):
@@ -181,8 +181,7 @@ class UsbList:
                                       QMessageBox.StandardButton.Yes)
 
         if dialog == QMessageBox.StandardButton.Yes:
-            response = api_request(uri=f"usb_ports/{self.current_usb.virtual_port}/power?action={action}", method="GET",
-                                   request="full")
+            response = api_request(uri=f"usb_ports/{self.current_usb.virtual_port}/power?action={action}", method="GET", request="full")
             if response.status_code == 200:
                 QMessageBox.information(self.ui, "Информация",
                                         f"Запрос power-{action} успешно обработан!")
@@ -191,6 +190,7 @@ class UsbList:
                                      f"Запрос power-{action} не обработан или обработан с ошибками!\nОшибка: {response.status_code}"
                                      f"\n {response.text}")
             self.refresh()
+
 
     def usb_save(self):
         if self.current_usb is None:
@@ -215,6 +215,7 @@ class UsbList:
                                  f"USB-порт {self.current_usb.virtual_port} не изменен или изменен с ошибками!\nОшибка: {response.status_code}"
                                  f"\n {response.text}")
         self.refresh()
+
 
 
 class Usb:

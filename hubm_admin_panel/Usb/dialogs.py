@@ -1,11 +1,13 @@
-from typing import List
-
 from PySide6 import QtGui
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDialog, QMessageBox, QTreeWidgetItem
+from utils.utils import filter_items, resource_path
+
+from typing import List, TYPE_CHECKING
+
+
 
 from ui.ui_select_user import Ui_SelectUser
-from utils.utils import filter_items, resource_path
 
 
 class SelectUser(QDialog):
@@ -23,8 +25,9 @@ class SelectUser(QDialog):
         self.ui.lineEdit.textChanged.connect(lambda: filter_items(self.ui.treeWidget, self.ui.lineEdit.text()))
 
         for user in users:
-            item = QTreeWidgetItem([ user[ 'cn' ], user[ 'name' ] ])
+            item = QTreeWidgetItem([user['cn'], user['name']])
             self.ui.treeWidget.addTopLevelItem(item)
+
 
     def accept(self):
         # Получаем введенные данные

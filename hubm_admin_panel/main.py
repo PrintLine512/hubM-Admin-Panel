@@ -4,6 +4,7 @@ import logging
 import os
 import sys
 import traceback
+
 from urllib.request import urlopen, ProxyHandler, build_opener, install_opener
 
 import pandas as pd
@@ -20,6 +21,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 import utils.utils
 from Usb.master import UsbList
+
 
 from PySide6 import QtWidgets, QtGui
 from PySide6.QtCore import Qt, QThread, Signal, QSize, QTimer
@@ -40,11 +42,13 @@ from User.CreateUser import CreateUser
 from User.UserExport import UserExport
 from Groups.master import Groups
 
+
 from ui import launch_dialogs
 from ui.ui_launch import Ui_Launch
 from ui.ui_main import Ui_MainWindow
 
 from utils.utils import config
+
 
 if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
     running_from_pyinstaller = True
@@ -104,7 +108,7 @@ class Downloader(QThread):
         readBytes = 0
         chunkSize = 1024
         with urlopen(self._url) as r:
-            self.setTotalProgress.emit(int(r.info()[ "Content-Length" ]))
+            self.setTotalProgress.emit(int(r.info()["Content-Length"]))
             with open(self._filename, "wb") as f:
                 while True:
                     chunk = r.read(chunkSize)
@@ -116,11 +120,12 @@ class Downloader(QThread):
         self.succeeded.emit()
 
 
+
 class DownloadDialog(QDialog):
     def __init__(self, download_url, save_path, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Downloading Update")
-        # self.resize(300, 100)
+        #self.resize(300, 100)
         self.save_path = save_path
         layout = QVBoxLayout(self)
 
@@ -172,7 +177,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup, notify=False):
                 if version.parse(actual_version) > version.parse(panel_version):
 
                     if notify:
-                        ui.notifications.add_download_notify(url=data[ 'assets' ][ 0 ][ 'browser_download_url' ])
+                        ui.notifications.add_download_notify(url = data[ 'assets' ][ 0 ][ 'browser_download_url' ])
                         return
 
                     dlg = QMessageBox.question(ui, 'Проверка обновления',
@@ -185,7 +190,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup, notify=False):
                     download_path = os.path.join(os.path.expanduser("~"), "Downloads",
                                                  "hubM Admin Panel Installer.exe")
                     directory_raw = QtWidgets.QFileDialog.getSaveFileName(ui, "Выберите папку", download_path)
-                    directory = directory_raw[ 0 ]
+                    directory = directory_raw[0]
                     if directory:
                         url = data[ 'assets' ][ 0 ][ 'browser_download_url' ]
                         print(url)
@@ -213,6 +218,7 @@ def check_version(ui: "QtWidgets.QMainWindow", startup, notify=False):
         QMessageBox.critical(ui, "Ошибка", f"Проверьте сетевое соединение!\n {e}")
 
 
+
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
 
@@ -220,11 +226,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
 
+
+
         icon_path = resource_path("res/icon.png")
         icon = QtGui.QIcon(icon_path)
         self.setWindowIcon(icon)
 
         self.notifications = Notifications(parent=self.centralwidget, ui=self)
+
+
+
 
         ####
         self.btn_refresh_users_tab = QPushButton(self.users_list_layout)
@@ -330,15 +341,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # self.btn_group_restart.clicked.connect(self.group_restart)
         ###
 
+
         self.list_users.setColumnWidth(0, 200)
         self.list_groups.setColumnWidth(0, 200)
         self.list_users.sortByColumn(0, Qt.SortOrder.AscendingOrder)
 
+
         QTimer.singleShot(0, self.resize_custom)
-        # self.timer_check_update = QTimer(self)
-        # self.timer_check_update.timeout.connect(lambda: check_version(self, True, notify=True))
-        # self.timer_check_update.start(60000)
-        # check_version(self, True, notify=True)
+        #self.timer_check_update = QTimer(self)
+        #self.timer_check_update.timeout.connect(lambda: check_version(self, True, notify=True))
+        #self.timer_check_update.start(60000)
+        #check_version(self, True, notify=True)
 
         self.timer_check_errors = QTimer(self)
         self.timer_check_errors.timeout.connect(self.check_errors)
@@ -357,7 +370,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if response.status_code == 200:
             errors_raw = json.loads(response.text)
             usb_errors_raw = errors_raw.get("usb-ports", [ ])
-            usb_errors = [ item[ "virtual_port" ] for item in usb_errors_raw if "virtual_port" in item ]
+            usb_errors = [item["virtual_port"] for item in usb_errors_raw if "virtual_port" in item]
 
             print(usb_errors)
             if usb_errors:
@@ -370,10 +383,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def resize_custom(self):
         self.btn_refresh_users_tab.move(self.users_list_layout.width() - self.btn_refresh_users_tab.width(), 4)
         self.btn_refresh_groups_tab.move(self.groups_list_layout.width() - self.btn_refresh_groups_tab.width(), 4)
-        self.btn_refresh_usb_ports_tab.move(self.usb_ports_list_layout.width() - self.btn_refresh_usb_ports_tab.width(),
-                                            4)
+        self.btn_refresh_usb_ports_tab.move(self.usb_ports_list_layout.width() - self.btn_refresh_usb_ports_tab.width(), 4)
         self.btn_information.move(self.centralwidget.width() - self.btn_information.width(), 3)
         self.notifications.move(self.centralwidget.width() - self.btn_information.width(), 3)
+
 
     def resizeEvent(self, event):
         self.resize_custom()
@@ -535,10 +548,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                                 f'Версия - {panel_version}\n'
                                 f'@PrintLine512')
 
+
     def get_class(self):
         self.notifications.add_notification(icon="info", title="Обновление", content="Обнаружено обновление.\nСкачать?")
 
-        # try:
+        #try:
         #    all_objects = [ obj for obj in gc.get_objects() if isinstance(obj, Groups) ]
         #    for obj in all_objects:
         #        print(obj.__class__)
@@ -546,7 +560,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #        print(refs)
         #        print(refs.__class__)
         #        print(refs.__class__.__name__)
-        # except:
+        #except:
         #    pass
 
     def get_class2(self):
@@ -560,6 +574,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 print(refs.__class__.__name__)
         except:
             pass
+
 
     def tabs_general_clicked(self, index):
         match index:
@@ -628,6 +643,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             matching_items = self.list_users.findItems(query, Qt.MatchFlag.MatchStartsWith, 1)
             item = matching_items[ 0 ]
             self.list_users.setCurrentItem(item)
+
+
 
     class EnumPolicies(Enum):
         access = (0, "bool")
@@ -768,11 +785,11 @@ class Launch(QtWidgets.QMainWindow, Ui_Launch):
         self.menu_connect.triggered.connect(self.to_connect)
         self.menu_reset_creds.triggered.connect(lambda: (utils.utils.delete_creds(), self.load_creds()))
         self.menu_reset_servers.triggered.connect(lambda: (utils.utils.delete_servers(), self.load_servers()))
-        self.menu_reset_all_profiles.triggered.connect(
-            lambda: (utils.utils.delete_all_profiles(), self.load_creds(), self.load_servers()))
+        self.menu_reset_all_profiles.triggered.connect(lambda: (utils.utils.delete_all_profiles(), self.load_creds(), self.load_servers()))
         self.menu_reset_master_password.triggered.connect(lambda: QMessageBox.information(self, "Информация",
-                                                                                          "Сброс мастер пароля не возможен. Если он был утерян, необходимо удалить профиль к которому он был привязан."))
+                    "Сброс мастер пароля не возможен. Если он был утерян, необходимо удалить профиль к которому он был привязан."))
         self.validator()
+
 
     def validator(self):
         if self.cb_creds.currentText() != "" and self.cb_servers.currentText() != "":

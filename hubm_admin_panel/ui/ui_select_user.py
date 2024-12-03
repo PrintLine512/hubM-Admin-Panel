@@ -8,10 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, Qt)
-from PySide6.QtWidgets import (QAbstractItemView, QDialogButtonBox, QGridLayout, QGroupBox, QLabel, QLineEdit,
-                               QTreeWidget)
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractButton, QAbstractItemView, QApplication, QDialog,
+    QDialogButtonBox, QGridLayout, QGroupBox, QHeaderView,
+    QLabel, QLineEdit, QSizePolicy, QTreeWidget,
+    QTreeWidgetItem, QWidget)
 
 class Ui_SelectUser(object):
     def setupUi(self, SelectUser):
@@ -41,38 +48,31 @@ class Ui_SelectUser(object):
 
         self.gridLayout_2.addWidget(self.lineEdit, 1, 0, 1, 1)
 
+
         self.gridLayout.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.buttonBox = QDialogButtonBox(SelectUser)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Orientation.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel | QDialogButtonBox.StandardButton.Ok)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
 
         self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
+
 
         self.retranslateUi(SelectUser)
         self.buttonBox.accepted.connect(SelectUser.accept)
         self.buttonBox.rejected.connect(SelectUser.reject)
 
         QMetaObject.connectSlotsByName(SelectUser)
-
     # setupUi
 
     def retranslateUi(self, SelectUser):
-        SelectUser.setWindowTitle(QCoreApplication.translate("SelectUser",
-                                                             u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439",
-                                                             None))
+        SelectUser.setWindowTitle(QCoreApplication.translate("SelectUser", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439", None))
         self.groupBox.setTitle("")
         ___qtreewidgetitem = self.treeWidget.headerItem()
-        ___qtreewidgetitem.setText(1, QCoreApplication.translate("SelectUser",
-                                                                 u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f",
-                                                                 None));
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("SelectUser",
-                                                                 u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f",
-                                                                 None));
-        self.label.setText(QCoreApplication.translate("SelectUser",
-                                                      u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439:",
-                                                      None))
-        self.lineEdit.setPlaceholderText(
-            QCoreApplication.translate("SelectUser", u"\u041f\u043e\u0438\u0441\u043a", None))
+        ___qtreewidgetitem.setText(1, QCoreApplication.translate("SelectUser", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("SelectUser", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
+        self.label.setText(QCoreApplication.translate("SelectUser", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439:", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("SelectUser", u"\u041f\u043e\u0438\u0441\u043a", None))
     # retranslateUi
+

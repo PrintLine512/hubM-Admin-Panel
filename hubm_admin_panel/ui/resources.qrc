@@ -1,16 +1,16 @@
 <RCC>
-    <qresource prefix="res">
-        <file>icons/icon-white.png</file>
-        <file>icons/icon-hr.png.png</file>
-        <file>icons/icon-red-hr.png</file>
-        <file>icons/info.png</file>
-        <file>icons/info-red.png</file>
-        <file>image/hub.png</file>
-        <file>image/hub_fill.png</file>
-        <file>icons/strings.png</file>
-        <file>icons/Eye-Slash--Streamline-Heroicons-Outline.png</file>
-        <file>icons/Eye--Streamline-Heroicons-Outline.png</file>
-        <file>icons/eye_off.png</file>
-        <file>icons/eye_on.png</file>
-    </qresource>
+  <qresource prefix="res">
+    <file>icons/icon-white.png</file>
+    <file>icons/icon-hr.png.png</file>
+    <file>icons/icon-red-hr.png</file>
+    <file>icons/info.png</file>
+    <file>icons/info-red.png</file>
+    <file>image/hub.png</file>
+    <file>image/hub_fill.png</file>
+    <file>icons/strings.png</file>
+    <file>icons/Eye-Slash--Streamline-Heroicons-Outline.png</file>
+    <file>icons/Eye--Streamline-Heroicons-Outline.png</file>
+    <file>icons/eye_off.png</file>
+    <file>icons/eye_on.png</file>
+  </qresource>
 </RCC>

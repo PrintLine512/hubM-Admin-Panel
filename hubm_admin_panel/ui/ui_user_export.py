@@ -8,10 +8,16 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, QSize, Qt)
-from PySide6.QtWidgets import (QCheckBox, QDialogButtonBox, QGridLayout, QGroupBox, QHBoxLayout,
-                               QLabel, QSizePolicy)
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QDialog,
+    QDialogButtonBox, QGridLayout, QGroupBox, QHBoxLayout,
+    QLabel, QSizePolicy, QWidget)
 
 class Ui_win_user_export(object):
     def setupUi(self, win_user_export):
@@ -50,6 +56,7 @@ class Ui_win_user_export(object):
 
         self.horizontalLayout.addWidget(self.cb_enable_group_policies)
 
+
         self.gridLayout_3.addWidget(self.groupBox, 0, 0, 1, 1)
 
         self.groupBox_4 = QGroupBox(self.groupBox_6)
@@ -72,39 +79,37 @@ class Ui_win_user_export(object):
 
         self.horizontalLayout_5.addWidget(self.cb_enable_usb_policies)
 
+
         self.gridLayout_3.addWidget(self.groupBox_4, 1, 0, 1, 1)
+
 
         self.gridLayout_2.addLayout(self.gridLayout_3, 0, 0, 1, 2)
 
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
         self.btns.setOrientation(Qt.Orientation.Horizontal)
-        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel | QDialogButtonBox.StandardButton.Ok)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Ok)
         self.btns.setCenterButtons(False)
 
         self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)
 
+
         self.gridLayout.addWidget(self.groupBox_6, 0, 0, 1, 1)
+
 
         self.retranslateUi(win_user_export)
         self.btns.rejected.connect(win_user_export.reject)
         self.btns.accepted.connect(win_user_export.accept)
 
         QMetaObject.connectSlotsByName(win_user_export)
-
     # setupUi
 
     def retranslateUi(self, win_user_export):
-        win_user_export.setWindowTitle(QCoreApplication.translate("win_user_export",
-                                                                  u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439",
-                                                                  None))
+        win_user_export.setWindowTitle(QCoreApplication.translate("win_user_export", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0435\u0439", None))
         self.groupBox_6.setTitle("")
-        self.label_2.setText(QCoreApplication.translate("win_user_export",
-                                                        u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f",
-                                                        None))
+        self.label_2.setText(QCoreApplication.translate("win_user_export", u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f", None))
         self.cb_enable_group_policies.setText("")
-        self.label_3.setText(QCoreApplication.translate("win_user_export",
-                                                        u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432",
-                                                        None))
+        self.label_3.setText(QCoreApplication.translate("win_user_export", u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432", None))
         self.cb_enable_usb_policies.setText("")
     # retranslateUi
+

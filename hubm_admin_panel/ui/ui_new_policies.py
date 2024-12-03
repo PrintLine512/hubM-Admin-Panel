@@ -8,13 +8,18 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QMetaObject, QSize, Qt)
-from PySide6.QtWidgets import (QCheckBox, QComboBox,
-                               QDialogButtonBox, QGridLayout, QGroupBox,
-                               QHBoxLayout, QLabel, QLineEdit, QListView,
-                               QListWidget, QSizePolicy, QSpinBox,
-                               QVBoxLayout, QWidget)
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QComboBox,
+    QDialog, QDialogButtonBox, QGridLayout, QGroupBox,
+    QHBoxLayout, QLabel, QLineEdit, QListView,
+    QListWidget, QListWidgetItem, QSizePolicy, QSpinBox,
+    QVBoxLayout, QWidget)
 
 class Ui_win_new_policies(object):
     def setupUi(self, win_new_policies):
@@ -35,7 +40,7 @@ class Ui_win_new_policies(object):
         self.btns = QDialogButtonBox(self.groupBox_6)
         self.btns.setObjectName(u"btns")
         self.btns.setOrientation(Qt.Orientation.Horizontal)
-        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel | QDialogButtonBox.StandardButton.Save)
+        self.btns.setStandardButtons(QDialogButtonBox.StandardButton.Cancel|QDialogButtonBox.StandardButton.Save)
 
         self.gridLayout_2.addWidget(self.btns, 1, 1, 1, 1)
 
@@ -62,6 +67,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_8.addWidget(self.le_group)
 
+
         self.verticalLayout.addWidget(self.groupBox_7)
 
         self.groupBox = QGroupBox(self.groupBox_6)
@@ -82,6 +88,7 @@ class Ui_win_new_policies(object):
         self.cb_access.setChecked(True)
 
         self.horizontalLayout.addWidget(self.cb_access)
+
 
         self.verticalLayout.addWidget(self.groupBox)
 
@@ -106,6 +113,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_2.addWidget(self.le_ip)
 
+
         self.verticalLayout.addWidget(self.groupBox_2)
 
         self.groupBox_43 = QGroupBox(self.groupBox_6)
@@ -126,6 +134,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_56.addWidget(self.le_pass)
 
+
         self.verticalLayout.addWidget(self.groupBox_43)
 
         self.groupBox_8 = QGroupBox(self.groupBox_6)
@@ -144,6 +153,7 @@ class Ui_win_new_policies(object):
         self.cb_usb_filter.setChecked(True)
 
         self.horizontalLayout_7.addWidget(self.cb_usb_filter)
+
 
         self.verticalLayout.addWidget(self.groupBox_8)
 
@@ -165,6 +175,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_6.addWidget(self.cb_can_kick)
 
+
         self.verticalLayout.addWidget(self.groupBox_5)
 
         self.groupBox_34 = QGroupBox(self.groupBox_6)
@@ -184,6 +195,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_43.addWidget(self.cb_kickable)
 
+
         self.verticalLayout.addWidget(self.groupBox_34)
 
         self.groupBox_42 = QGroupBox(self.groupBox_6)
@@ -200,6 +212,7 @@ class Ui_win_new_policies(object):
         self.le_until.setObjectName(u"le_until")
 
         self.horizontalLayout_55.addWidget(self.le_until)
+
 
         self.verticalLayout.addWidget(self.groupBox_42)
 
@@ -225,6 +238,7 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_9.addWidget(self.list_usb)
 
+
         self.verticalLayout.addWidget(self.gb_usb)
 
         self.groupBox_4 = QGroupBox(self.groupBox_6)
@@ -244,6 +258,7 @@ class Ui_win_new_policies(object):
         self.cb_permit_login.setChecked(False)
 
         self.horizontalLayout_5.addWidget(self.cb_permit_login)
+
 
         self.verticalLayout.addWidget(self.groupBox_4)
 
@@ -268,9 +283,12 @@ class Ui_win_new_policies(object):
 
         self.horizontalLayout_4.addWidget(self.le_authmethod)
 
+
         self.verticalLayout.addWidget(self.groupBox_3)
 
+
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 2)
+
 
         self.gridLayout.addWidget(self.groupBox_6, 0, 0, 1, 1)
 
@@ -290,53 +308,38 @@ class Ui_win_new_policies(object):
         self.btns.rejected.connect(win_new_policies.reject)
 
         QMetaObject.connectSlotsByName(win_new_policies)
-
     # setupUi
 
     def retranslateUi(self, win_new_policies):
-        win_new_policies.setWindowTitle(QCoreApplication.translate("win_new_policies",
-                                                                   u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430",
-                                                                   None))
+        win_new_policies.setWindowTitle(QCoreApplication.translate("win_new_policies", u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430", None))
         self.groupBox_6.setTitle("")
-        self.label.setText(QCoreApplication.translate("win_new_policies",
-                                                      u"* - \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435",
-                                                      None))
-        self.label_3.setText(
-            QCoreApplication.translate("win_new_policies", u"\u0413\u0440\u0443\u043f\u043f\u0430*", None))
-        self.le_group.setPlaceholderText(QCoreApplication.translate("win_new_policies",
-                                                                    u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0433\u0440\u0443\u043f\u043f\u0443...",
-                                                                    None))
-        self.users_fullname_label.setText(
-            QCoreApplication.translate("win_new_policies", u"\u0414\u043e\u0441\u0442\u0443\u043f*", None))
+        self.label.setText(QCoreApplication.translate("win_new_policies", u"* - \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0435 \u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None))
+        self.label_3.setText(QCoreApplication.translate("win_new_policies", u"\u0413\u0440\u0443\u043f\u043f\u0430*", None))
+        self.le_group.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0433\u0440\u0443\u043f\u043f\u0443...", None))
+        self.users_fullname_label.setText(QCoreApplication.translate("win_new_policies", u"\u0414\u043e\u0441\u0442\u0443\u043f*", None))
         self.cb_access.setText("")
-        self.label_2.setText(
-            QCoreApplication.translate("win_new_policies", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430*", None))
+        self.label_2.setText(QCoreApplication.translate("win_new_policies", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430*", None))
         self.le_ip.setText("")
         self.le_ip.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"255.255.255.255", None))
-        self.label_56.setText(
-            QCoreApplication.translate("win_new_policies", u"\u041f\u0430\u0440\u043e\u043b\u044c*", None))
+        self.label_56.setText(QCoreApplication.translate("win_new_policies", u"\u041f\u0430\u0440\u043e\u043b\u044c*", None))
         self.le_pass.setText("")
         self.le_pass.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"MyTopP@ssw0rd", None))
-        self.label_13.setText(
-            QCoreApplication.translate("win_new_policies", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440*", None))
+        self.label_13.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440*", None))
         self.cb_usb_filter.setText("")
         self.label_10.setText(QCoreApplication.translate("win_new_policies", u"Can kick", None))
         self.cb_can_kick.setText("")
         self.label_44.setText(QCoreApplication.translate("win_new_policies", u"Kickable", None))
         self.cb_kickable.setText("")
         self.label_55.setText(QCoreApplication.translate("win_new_policies", u"Until", None))
-        # if QT_CONFIG(tooltip)
-        self.le_until.setToolTip(QCoreApplication.translate("win_new_policies",
-                                                            u"\u0415\u0441\u043b\u0438 \u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e - \u0434\u043e\u0441\u0442\u0443\u043f \u0431\u0443\u0434\u0435\u0442 \u0432\u044b\u0434\u0430\u043d \u0434\u043e 2024 \u0433\u043e\u0434\u0430\n"
-                                                            "                                                        ",
-                                                            None))
-        # endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.le_until.setToolTip(QCoreApplication.translate("win_new_policies", u"\u0415\u0441\u043b\u0438 \u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e - \u0434\u043e\u0441\u0442\u0443\u043f \u0431\u0443\u0434\u0435\u0442 \u0432\u044b\u0434\u0430\u043d \u0434\u043e 2024 \u0433\u043e\u0434\u0430\n"
+"                                                        ", None))
+#endif // QT_CONFIG(tooltip)
         self.le_until.setText("")
         self.le_until.setPlaceholderText(QCoreApplication.translate("win_new_policies", u"YYYY-MM-DD", None))
-        self.label_14.setText(QCoreApplication.translate("win_new_policies",
-                                                         u"USB-\u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430",
-                                                         None))
+        self.label_14.setText(QCoreApplication.translate("win_new_policies", u"USB-\u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430", None))
         self.label_12.setText(QCoreApplication.translate("win_new_policies", u"Permit-Login", None))
         self.cb_permit_login.setText("")
         self.label_11.setText(QCoreApplication.translate("win_new_policies", u"Auth-Method", None))
     # retranslateUi
+
