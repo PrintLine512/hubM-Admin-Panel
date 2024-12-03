@@ -1,22 +1,22 @@
+import base64
 import json
-from typing import Literal, TYPE_CHECKING
+import os
+from typing import Literal
 
 import requests
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QTreeWidget
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.backends import default_backend
 from cryptography.fernet import Fernet
-import base64
-import os
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 from . import config, config_file
 from . import session
 
-
-
 master_password = None
 api_version = "v2"
+
 
 def resource_path(relative):
     return os.path.join(
@@ -63,6 +63,7 @@ def generate_key_from_password(password, salt):
     )
     return base64.urlsafe_b64encode(kdf.derive(password.encode()))
 
+
 # Шифрование данных
 def encrypt_data(data, password):
     salt = os.urandom(16)
@@ -72,27 +73,31 @@ def encrypt_data(data, password):
     # Кодируем соль и зашифрованные данные в base64 для сохранения в JSON
     return base64.b64encode(salt + encrypted_data).decode()
 
+
 # Дешифровка данных
 def decrypt_data(encrypted_data_b64, password):
     # Декодируем из base64 обратно в байты
     encrypted_data = base64.b64decode(encrypted_data_b64)
-    salt = encrypted_data[:16]  # Извлекаем соль
-    encrypted_data = encrypted_data[16:]
+    salt = encrypted_data[ :16 ]  # Извлекаем соль
+    encrypted_data = encrypted_data[ 16: ]
     key = generate_key_from_password(password, salt)
     fernet = Fernet(key)
     return fernet.decrypt(encrypted_data).decode()
 
+
 def delete_servers():
-    config["servers"] = []
+    config[ "servers" ] = [ ]
     write_config()
+
 
 def delete_creds():
-    config["creds"] = []
+    config[ "creds" ] = [ ]
     write_config()
 
+
 def delete_all_profiles():
-    config["servers"] = []
-    config["creds"] = []
+    config[ "servers" ] = [ ]
+    config[ "creds" ] = [ ]
     write_config()
 
 

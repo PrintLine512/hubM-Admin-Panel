@@ -1,507 +1,509 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>win_new_policies</class>
- <widget class="QDialog" name="win_new_policies">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>525</width>
-    <height>711</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Новая политика</string>
-  </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox_6">
-     <property name="title">
-      <string/>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>* - обязательное значение</string>
+    <class>win_new_policies</class>
+    <widget class="QDialog" name="win_new_policies">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>525</width>
+                <height>711</height>
+            </rect>
         </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QDialogButtonBox" name="btns">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+        <property name="windowTitle">
+            <string>Новая политика</string>
         </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Save</set>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0,0,0">
-        <item>
-         <widget class="QGroupBox" name="groupBox_7">
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_8">
-           <item>
-            <widget class="QLabel" name="label_3">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Группа*</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="le_group">
-             <property name="placeholderText">
-              <string>Выберите группу...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QLabel" name="users_fullname_label">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Доступ*</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cb_access">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>IP-адреса*</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="le_ip">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="dragEnabled">
-              <bool>false</bool>
-             </property>
-             <property name="readOnly">
-              <bool>false</bool>
-             </property>
-             <property name="placeholderText">
-              <string>255.255.255.255</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_43">
-          <layout class="QHBoxLayout" name="horizontalLayout_56">
-           <item>
-            <widget class="QLabel" name="label_56">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Пароль*</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="le_pass">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
-             </property>
-             <property name="placeholderText">
-              <string>MyTopP@ssw0rd</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_8">
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <item>
-            <widget class="QLabel" name="label_13">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>USB-фильтр*</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cb_usb_filter">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_5">
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QLabel" name="label_10">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Can kick</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cb_can_kick">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_34">
-          <layout class="QHBoxLayout" name="horizontalLayout_43">
-           <item>
-            <widget class="QLabel" name="label_44">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Kickable</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cb_kickable">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_42">
-          <layout class="QHBoxLayout" name="horizontalLayout_55">
-           <item>
-            <widget class="QLabel" name="label_55">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Until</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="le_until">
-             <property name="toolTip">
-              <string>Если не указано - доступ будет выдан до 2024 года
+        <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_6">
+                    <property name="title">
+                        <string/>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_2">
+                        <item row="1" column="0">
+                            <widget class="QLabel" name="label">
+                                <property name="text">
+                                    <string>* - обязательное значение</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="1" column="1">
+                            <widget class="QDialogButtonBox" name="btns">
+                                <property name="orientation">
+                                    <enum>Qt::Orientation::Horizontal</enum>
+                                </property>
+                                <property name="standardButtons">
+                                    <set>
+                                        QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Save
+                                    </set>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="0" column="0" colspan="2">
+                            <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0,0,0,0,0,0,0">
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_7">
+                                        <property name="flat">
+                                            <bool>false</bool>
+                                        </property>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_8">
+                                            <item>
+                                                <widget class="QLabel" name="label_3">
+                                                    <property name="sizePolicy">
+                                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                            <horstretch>0</horstretch>
+                                                            <verstretch>0</verstretch>
+                                                        </sizepolicy>
+                                                    </property>
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Группа*</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QComboBox" name="le_group">
+                                                    <property name="placeholderText">
+                                                        <string>Выберите группу...</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox">
+                                        <layout class="QHBoxLayout" name="horizontalLayout">
+                                            <item>
+                                                <widget class="QLabel" name="users_fullname_label">
+                                                    <property name="sizePolicy">
+                                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                            <horstretch>0</horstretch>
+                                                            <verstretch>0</verstretch>
+                                                        </sizepolicy>
+                                                    </property>
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Доступ*</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QCheckBox" name="cb_access">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::RightToLeft</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="checked">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_2">
+                                        <property name="flat">
+                                            <bool>false</bool>
+                                        </property>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_2">
+                                            <item>
+                                                <widget class="QLabel" name="label_2">
+                                                    <property name="sizePolicy">
+                                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                            <horstretch>0</horstretch>
+                                                            <verstretch>0</verstretch>
+                                                        </sizepolicy>
+                                                    </property>
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>IP-адреса*</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLineEdit" name="le_ip">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::LeftToRight</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="dragEnabled">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                    <property name="readOnly">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                    <property name="placeholderText">
+                                                        <string>255.255.255.255</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_43">
+                                        <layout class="QHBoxLayout" name="horizontalLayout_56">
+                                            <item>
+                                                <widget class="QLabel" name="label_56">
+                                                    <property name="sizePolicy">
+                                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                            <horstretch>0</horstretch>
+                                                            <verstretch>0</verstretch>
+                                                        </sizepolicy>
+                                                    </property>
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Пароль*</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLineEdit" name="le_pass">
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="echoMode">
+                                                        <enum>QLineEdit::EchoMode::PasswordEchoOnEdit</enum>
+                                                    </property>
+                                                    <property name="placeholderText">
+                                                        <string>MyTopP@ssw0rd</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_8">
+                                        <layout class="QHBoxLayout" name="horizontalLayout_7">
+                                            <item>
+                                                <widget class="QLabel" name="label_13">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>USB-фильтр*</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QCheckBox" name="cb_usb_filter">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::RightToLeft</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="checked">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_5">
+                                        <layout class="QHBoxLayout" name="horizontalLayout_6">
+                                            <item>
+                                                <widget class="QLabel" name="label_10">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Can kick</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QCheckBox" name="cb_can_kick">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::RightToLeft</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="checkable">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                    <property name="checked">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_34">
+                                        <layout class="QHBoxLayout" name="horizontalLayout_43">
+                                            <item>
+                                                <widget class="QLabel" name="label_44">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Kickable</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QCheckBox" name="cb_kickable">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::RightToLeft</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="checked">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_42">
+                                        <layout class="QHBoxLayout" name="horizontalLayout_55">
+                                            <item>
+                                                <widget class="QLabel" name="label_55">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Until</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLineEdit" name="le_until">
+                                                    <property name="toolTip">
+                                                        <string>Если не указано - доступ будет выдан до 2024 года
                                                         </string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="placeholderText">
-              <string>YYYY-MM-DD</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="gb_usb">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
-           <item>
-            <widget class="QLabel" name="label_14">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>USB-устройства</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QListWidget" name="list_usb">
-             <property name="tabKeyNavigation">
-              <bool>true</bool>
-             </property>
-             <property name="isWrapping" stdset="0">
-              <bool>false</bool>
-             </property>
-             <property name="resizeMode">
-              <enum>QListView::ResizeMode::Fixed</enum>
-             </property>
-             <property name="viewMode">
-              <enum>QListView::ViewMode::ListMode</enum>
-             </property>
-             <property name="modelColumn">
-              <number>0</number>
-             </property>
-             <property name="sortingEnabled">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <item>
-            <widget class="QLabel" name="label_12">
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Permit-Login</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="cb_permit_login">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::RightToLeft</enum>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="checked">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="label_11">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>150</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Auth-Method</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="le_authmethod">
-             <property name="maximum">
-              <number>6</number>
-             </property>
-             <property name="value">
-              <number>4</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="placeholderText">
+                                                        <string>YYYY-MM-DD</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="gb_usb">
+                                        <property name="enabled">
+                                            <bool>false</bool>
+                                        </property>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_9">
+                                            <item>
+                                                <widget class="QLabel" name="label_14">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>USB-устройства</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QListWidget" name="list_usb">
+                                                    <property name="tabKeyNavigation">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                    <property name="isWrapping" stdset="0">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                    <property name="resizeMode">
+                                                        <enum>QListView::ResizeMode::Fixed</enum>
+                                                    </property>
+                                                    <property name="viewMode">
+                                                        <enum>QListView::ViewMode::ListMode</enum>
+                                                    </property>
+                                                    <property name="modelColumn">
+                                                        <number>0</number>
+                                                    </property>
+                                                    <property name="sortingEnabled">
+                                                        <bool>true</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_4">
+                                        <property name="enabled">
+                                            <bool>false</bool>
+                                        </property>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_5">
+                                            <item>
+                                                <widget class="QLabel" name="label_12">
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Permit-Login</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QCheckBox" name="cb_permit_login">
+                                                    <property name="layoutDirection">
+                                                        <enum>Qt::LayoutDirection::RightToLeft</enum>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string/>
+                                                    </property>
+                                                    <property name="checked">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QGroupBox" name="groupBox_3">
+                                        <property name="enabled">
+                                            <bool>false</bool>
+                                        </property>
+                                        <layout class="QHBoxLayout" name="horizontalLayout_4">
+                                            <item>
+                                                <widget class="QLabel" name="label_11">
+                                                    <property name="enabled">
+                                                        <bool>false</bool>
+                                                    </property>
+                                                    <property name="sizePolicy">
+                                                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                            <horstretch>0</horstretch>
+                                                            <verstretch>0</verstretch>
+                                                        </sizepolicy>
+                                                    </property>
+                                                    <property name="minimumSize">
+                                                        <size>
+                                                            <width>150</width>
+                                                            <height>0</height>
+                                                        </size>
+                                                    </property>
+                                                    <property name="text">
+                                                        <string>Auth-Method</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSpinBox" name="le_authmethod">
+                                                    <property name="maximum">
+                                                        <number>6</number>
+                                                    </property>
+                                                    <property name="value">
+                                                        <number>4</number>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+        </layout>
     </widget>
-   </item>
-  </layout>
- </widget>
- <tabstops>
-  <tabstop>le_group</tabstop>
-  <tabstop>cb_access</tabstop>
-  <tabstop>le_ip</tabstop>
-  <tabstop>le_pass</tabstop>
-  <tabstop>cb_usb_filter</tabstop>
-  <tabstop>cb_can_kick</tabstop>
-  <tabstop>cb_kickable</tabstop>
-  <tabstop>le_until</tabstop>
-  <tabstop>list_usb</tabstop>
-  <tabstop>cb_permit_login</tabstop>
-  <tabstop>le_authmethod</tabstop>
- </tabstops>
- <resources/>
- <connections>
-  <connection>
-   <sender>btns</sender>
-   <signal>accepted()</signal>
-   <receiver>win_new_policies</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>380</x>
-     <y>643</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btns</sender>
-   <signal>rejected()</signal>
-   <receiver>win_new_policies</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>380</x>
-     <y>643</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+    <tabstops>
+        <tabstop>le_group</tabstop>
+        <tabstop>cb_access</tabstop>
+        <tabstop>le_ip</tabstop>
+        <tabstop>le_pass</tabstop>
+        <tabstop>cb_usb_filter</tabstop>
+        <tabstop>cb_can_kick</tabstop>
+        <tabstop>cb_kickable</tabstop>
+        <tabstop>le_until</tabstop>
+        <tabstop>list_usb</tabstop>
+        <tabstop>cb_permit_login</tabstop>
+        <tabstop>le_authmethod</tabstop>
+    </tabstops>
+    <resources/>
+    <connections>
+        <connection>
+            <sender>btns</sender>
+            <signal>accepted()</signal>
+            <receiver>win_new_policies</receiver>
+            <slot>accept()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>380</x>
+                    <y>643</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>157</x>
+                    <y>274</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>btns</sender>
+            <signal>rejected()</signal>
+            <receiver>win_new_policies</receiver>
+            <slot>reject()</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>380</x>
+                    <y>643</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>286</x>
+                    <y>274</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
 </ui>

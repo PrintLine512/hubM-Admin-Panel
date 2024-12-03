@@ -8,22 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
-    QMetaObject, QObject, QPoint, QRect,
-    QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
-    QCursor, QFont, QFontDatabase, QGradient,
-    QIcon, QImage, QKeySequence, QLinearGradient,
-    QPainter, QPalette, QPixmap, QRadialGradient,
-    QTransform)
-from PySide6.QtWidgets import (QAbstractItemView, QApplication, QCheckBox, QComboBox,
-    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QHeaderView, QLabel, QLayout, QLineEdit,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QStackedWidget, QStatusBar, QTabWidget,
-    QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
-    QVBoxLayout, QWidget)
-from . import resources_rc
+from PySide6.QtCore import (QCoreApplication, QMetaObject, QRect,
+                            QSize, Qt)
+from PySide6.QtGui import (QAction, QFont, QIcon)
+from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox,
+                               QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+                               QLabel, QLayout, QLineEdit,
+                               QMenu, QMenuBar, QPushButton,
+                               QSizePolicy, QStackedWidget, QStatusBar, QTabWidget,
+                               QTableWidget, QTableWidgetItem, QTreeWidget, QTreeWidgetItem,
+                               QVBoxLayout, QWidget)
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -131,9 +126,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_26.addWidget(self.frame_3, 0, 0, 1, 2)
 
-
         self.gridLayout_18.addWidget(self.groupBox_15, 0, 0, 1, 1)
-
 
         self.gridLayout_19.addWidget(self.widget, 0, 1, 1, 1)
 
@@ -150,9 +143,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_22.addWidget(self.groupBox_14, 0, 0, 1, 1)
 
-
         self.gridLayout_19.addWidget(self.widget_2, 0, 0, 1, 1)
-
 
         self.gridLayout_20.addLayout(self.gridLayout_19, 0, 0, 1, 1)
 
@@ -174,7 +165,6 @@ class Ui_MainWindow(object):
         self.le_search_user.setClearButtonEnabled(True)
 
         self.horizontalLayout_57.addWidget(self.le_search_user)
-
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_57)
 
@@ -214,9 +204,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.btn_user_export)
 
-
         self.verticalLayout_3.addWidget(self.groupBox_16)
-
 
         self.gridLayout_6.addWidget(self.users_list_layout, 1, 0, 1, 1)
 
@@ -271,7 +259,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_23.addWidget(self.le_user_cn)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_23)
 
         self.horizontalLayout_24 = QHBoxLayout()
@@ -292,7 +279,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_24.addWidget(self.le_user_name)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_24)
 
         self.horizontalLayout_25 = QHBoxLayout()
@@ -312,7 +298,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addWidget(self.le_user_default_ip)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_25)
 
         self.horizontalLayout_26 = QHBoxLayout()
@@ -327,7 +312,8 @@ class Ui_MainWindow(object):
 
         self.le_user_pass = QLineEdit(self.groupBox)
         self.le_user_pass.setObjectName(u"le_user_pass")
-        self.le_user_pass.setInputMethodHints(Qt.InputMethodHint.ImhNoAutoUppercase|Qt.InputMethodHint.ImhNoPredictiveText|Qt.InputMethodHint.ImhSensitiveData)
+        self.le_user_pass.setInputMethodHints(
+            Qt.InputMethodHint.ImhNoAutoUppercase | Qt.InputMethodHint.ImhNoPredictiveText | Qt.InputMethodHint.ImhSensitiveData)
         self.le_user_pass.setFrame(True)
         self.le_user_pass.setEchoMode(QLineEdit.EchoMode.PasswordEchoOnEdit)
 
@@ -345,7 +331,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_26.addWidget(self.btn_show_pass)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_26)
 
         self.horizontalLayout_27 = QHBoxLayout()
@@ -360,7 +345,6 @@ class Ui_MainWindow(object):
         self.le_user_email.setObjectName(u"le_user_email")
 
         self.horizontalLayout_27.addWidget(self.le_user_email)
-
 
         self.verticalLayout_10.addLayout(self.horizontalLayout_27)
 
@@ -377,7 +361,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_28.addWidget(self.le_user_comment)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_28)
 
         self.horizontalLayout_29 = QHBoxLayout()
@@ -392,7 +375,6 @@ class Ui_MainWindow(object):
         self.le_user_tg_id.setObjectName(u"le_user_tg_id")
 
         self.horizontalLayout_29.addWidget(self.le_user_tg_id)
-
 
         self.verticalLayout_10.addLayout(self.horizontalLayout_29)
 
@@ -417,7 +399,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_30.addWidget(self.btn_show_tg_code)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_30)
 
         self.horizontalLayout_31 = QHBoxLayout()
@@ -435,7 +416,8 @@ class Ui_MainWindow(object):
         self.label_3.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.label_3.setTextFormat(Qt.TextFormat.AutoText)
         self.label_3.setScaledContents(True)
-        self.label_3.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        self.label_3.setAlignment(
+            Qt.AlignmentFlag.AlignLeading | Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_31.addWidget(self.label_3)
 
@@ -454,7 +436,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_31.addWidget(self.cb_user_active)
 
-
         self.verticalLayout_10.addLayout(self.horizontalLayout_31)
 
         self.btn_user_save_params = QPushButton(self.groupBox)
@@ -463,9 +444,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addWidget(self.btn_user_save_params)
 
-
         self.verticalLayout.addWidget(self.groupBox)
-
 
         self.gridLayout_10.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
@@ -512,14 +491,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.btn_show_user_policies)
 
-
         self.gridLayout_21.addWidget(self.frame_5, 0, 0, 1, 1)
 
         self.btn_user_policies_save = QPushButton(self.frame_18)
         self.btn_user_policies_save.setObjectName(u"btn_user_policies_save")
 
         self.gridLayout_21.addWidget(self.btn_user_policies_save, 1, 0, 1, 1)
-
 
         self.gridLayout_5.addWidget(self.frame_18, 1, 0, 1, 1)
 
@@ -592,12 +569,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addWidget(self.stack_user_policies, 0, 0, 1, 1)
 
-
         self.gridLayout_10.addWidget(self.groupBox_7, 2, 0, 1, 1)
 
-
         self.gridLayout_2.addWidget(self.frame_7, 0, 0, 1, 1)
-
 
         self.gridLayout_4.addLayout(self.gridLayout_2, 1, 0, 1, 1)
 
@@ -643,7 +617,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_13.addWidget(self.btn_user_ports_save, 1, 0, 1, 1)
 
-
         self.gridLayout_7.addWidget(self.groupBox_3, 0, 0, 1, 1)
 
         self.tabs_users.addTab(self.users_tab_usb_policices, "")
@@ -673,7 +646,6 @@ class Ui_MainWindow(object):
         self.le_search_group.setClearButtonEnabled(True)
 
         self.horizontalLayout_17.addWidget(self.le_search_group)
-
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_17)
 
@@ -741,9 +713,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_6.addWidget(self.btn_group_restart)
 
-
         self.verticalLayout_8.addWidget(self.groupBox_17)
-
 
         self.gridLayout_14.addWidget(self.groups_list_layout, 0, 0, 1, 1)
 
@@ -783,7 +753,6 @@ class Ui_MainWindow(object):
 
         self.frame_group_status.addWidget(self.label_28)
 
-
         self.verticalLayout_9.addLayout(self.frame_group_status)
 
         self.horizontalLayout_9 = QHBoxLayout()
@@ -798,7 +767,6 @@ class Ui_MainWindow(object):
         self.le_group_name.setObjectName(u"le_group_name")
 
         self.horizontalLayout_9.addWidget(self.le_group_name)
-
 
         self.verticalLayout_9.addLayout(self.horizontalLayout_9)
 
@@ -815,7 +783,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.le_group_port)
 
-
         self.verticalLayout_9.addLayout(self.horizontalLayout_13)
 
         self.horizontalLayout_15 = QHBoxLayout()
@@ -830,7 +797,6 @@ class Ui_MainWindow(object):
         self.le_group_ip.setObjectName(u"le_group_ip")
 
         self.horizontalLayout_15.addWidget(self.le_group_ip)
-
 
         self.verticalLayout_9.addLayout(self.horizontalLayout_15)
 
@@ -848,7 +814,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_19.addWidget(self.le_group_login)
 
-
         self.verticalLayout_9.addLayout(self.horizontalLayout_19)
 
         self.horizontalLayout_22 = QHBoxLayout()
@@ -865,9 +830,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_22.addWidget(self.le_group_password)
 
-
         self.verticalLayout_9.addLayout(self.horizontalLayout_22)
-
 
         self.gridLayout_8.addWidget(self.groupBox_24, 0, 0, 1, 1)
 
@@ -897,12 +860,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.btn_group_usb_remove)
 
-
         self.verticalLayout_2.addLayout(self.horizontalLayout)
 
-
         self.gridLayout_8.addWidget(self.groupBox1, 1, 0, 1, 1)
-
 
         self.gridLayout_15.addWidget(self.frame_21, 0, 0, 1, 1)
 
@@ -943,7 +903,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.btn_usb_permission_remove)
 
-
         self.gridLayout_17.addLayout(self.horizontalLayout_2, 2, 0, 1, 1)
 
         self.list_usb_access = QTreeWidget(self.groupBox_12)
@@ -958,7 +917,6 @@ class Ui_MainWindow(object):
         self.list_usb_access.header().setStretchLastSection(True)
 
         self.gridLayout_17.addWidget(self.list_usb_access, 0, 0, 1, 1)
-
 
         self.gridLayout_16.addWidget(self.groupBox_12, 1, 0, 1, 1)
 
@@ -975,7 +933,8 @@ class Ui_MainWindow(object):
         self.groupBox_2.setMinimumSize(QSize(0, 0))
         self.groupBox_2.setContextMenuPolicy(Qt.ContextMenuPolicy.DefaultContextMenu)
         self.groupBox_2.setAcceptDrops(False)
-        self.groupBox_2.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
+        self.groupBox_2.setAlignment(
+            Qt.AlignmentFlag.AlignLeading | Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignTop)
         self.groupBox_2.setFlat(False)
         self.groupBox_2.setCheckable(False)
         self.gridLayout_3 = QGridLayout(self.groupBox_2)
@@ -1008,7 +967,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.btn_usb_group_clear)
 
-
         self.gridLayout_3.addWidget(self.frame_6, 8, 0, 1, 1)
 
         self.frame_11 = QFrame(self.groupBox_2)
@@ -1029,7 +987,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_21.addWidget(self.le_usb_name)
 
-
         self.gridLayout_3.addWidget(self.frame_11, 2, 0, 1, 1)
 
         self.frame_9 = QFrame(self.groupBox_2)
@@ -1049,7 +1006,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.le_usb_virtual_port)
 
-
         self.gridLayout_3.addWidget(self.frame_9, 5, 0, 1, 1)
 
         self.frame_usb_status = QHBoxLayout()
@@ -1062,7 +1018,6 @@ class Ui_MainWindow(object):
         self.label_4.setMinimumSize(QSize(150, 0))
 
         self.frame_usb_status.addWidget(self.label_4)
-
 
         self.gridLayout_3.addLayout(self.frame_usb_status, 0, 0, 1, 1)
 
@@ -1082,7 +1037,6 @@ class Ui_MainWindow(object):
         self.le_usb_bus.setEnabled(True)
 
         self._2.addWidget(self.le_usb_bus)
-
 
         self.gridLayout_3.addWidget(self.frame_10, 6, 0, 1, 1)
 
@@ -1107,12 +1061,9 @@ class Ui_MainWindow(object):
 
         self._4.addWidget(self.lb_usb_device)
 
-
         self.gridLayout_3.addWidget(self.frame_15, 1, 0, 1, 1)
 
-
         self.gridLayout_16.addWidget(self.groupBox_2, 0, 0, 1, 1)
-
 
         self.gridLayout_12.addWidget(self.groupBox_8, 0, 1, 1, 1)
 
@@ -1133,7 +1084,6 @@ class Ui_MainWindow(object):
         self.le_usb_list_search.setObjectName(u"le_usb_list_search")
 
         self.horizontalLayout_16.addWidget(self.le_usb_list_search)
-
 
         self.gridLayout.addLayout(self.horizontalLayout_16, 0, 0, 1, 1)
 
@@ -1175,9 +1125,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.btn_usb_restart)
 
-
         self.gridLayout.addWidget(self.groupBox_4, 2, 0, 1, 1)
-
 
         self.gridLayout_12.addWidget(self.usb_ports_list_layout, 0, 0, 1, 1)
 
@@ -1228,48 +1176,88 @@ class Ui_MainWindow(object):
         self.stack_user_policies.setCurrentIndex(0)
         self.tabs_group.setCurrentIndex(0)
 
-
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"hubM Admin Panel", None))
-#if QT_CONFIG(tooltip)
+        # if QT_CONFIG(tooltip)
         MainWindow.setToolTip("")
-#endif // QT_CONFIG(tooltip)
-        self.action_6.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435", None))
-        self.action.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0441\u0435\u0440\u0432\u0435\u0440", None))
-        self.btn_check_update.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435", None))
+        # endif // QT_CONFIG(tooltip)
+        self.action_6.setText(QCoreApplication.translate("MainWindow",
+                                                         u"\u041f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u0435",
+                                                         None))
+        self.action.setText(QCoreApplication.translate("MainWindow",
+                                                       u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0441\u0435\u0440\u0432\u0435\u0440",
+                                                       None))
+        self.btn_check_update.setText(QCoreApplication.translate("MainWindow",
+                                                                 u"\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u0435",
+                                                                 None))
         self.action_2.setText(QCoreApplication.translate("MainWindow", u"\u0422\u043e\u043a\u0435\u043d", None))
-        self.btn_check_user_access_group.setText(QCoreApplication.translate("MainWindow", u"\u043a \u0433\u0440\u0443\u043f\u043f\u0435", None))
-        self.btn_check_user_access_port.setText(QCoreApplication.translate("MainWindow", u"\u043a \u043f\u043e\u0440\u0442\u0443", None))
-        self.btn_about_program.setText(QCoreApplication.translate("MainWindow", u"\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435", None))
-        self.btn_reboot_server.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0441\u0435\u0440\u0432\u0435\u0440", None))
-        self.btn_backup_new.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u043a\u043e\u043f\u0438\u044f", None))
-        self.btn_backup_restore.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c", None))
-        self.action_3.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
+        self.btn_check_user_access_group.setText(
+            QCoreApplication.translate("MainWindow", u"\u043a \u0433\u0440\u0443\u043f\u043f\u0435", None))
+        self.btn_check_user_access_port.setText(
+            QCoreApplication.translate("MainWindow", u"\u043a \u043f\u043e\u0440\u0442\u0443", None))
+        self.btn_about_program.setText(
+            QCoreApplication.translate("MainWindow", u"\u041e \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0435",
+                                       None))
+        self.btn_reboot_server.setText(QCoreApplication.translate("MainWindow",
+                                                                  u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0441\u0435\u0440\u0432\u0435\u0440",
+                                                                  None))
+        self.btn_backup_new.setText(
+            QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u043a\u043e\u043f\u0438\u044f",
+                                       None))
+        self.btn_backup_restore.setText(QCoreApplication.translate("MainWindow",
+                                                                   u"\u0412\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c",
+                                                                   None))
+        self.action_3.setText(
+            QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
         self.groupBox_15.setTitle("")
         self.DevButton2.setText(QCoreApplication.translate("MainWindow", u"DevButton2", None))
         self.DevButton1.setText(QCoreApplication.translate("MainWindow", u"DevButton1", None))
         self.groupBox_14.setTitle("")
-        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_dashboard), QCoreApplication.translate("MainWindow", u"\u0414\u0435\u0448\u0431\u043e\u0440\u0434", None))
-        self.users_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
-        self.le_search_user.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_dashboard),
+                                     QCoreApplication.translate("MainWindow",
+                                                                u"\u0414\u0435\u0448\u0431\u043e\u0440\u0434", None))
+        self.users_list_layout.setTitle(QCoreApplication.translate("MainWindow",
+                                                                   u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438",
+                                                                   None))
+        self.le_search_user.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         ___qtreewidgetitem = self.list_users.headerItem()
-        ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        self.groupBox_16.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
-        self.btn_user_create.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c", None))
-        self.btn_user_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
-        self.btn_user_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
-        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
-        self.users_fullname_label.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None))
+        ___qtreewidgetitem.setText(1, QCoreApplication.translate("MainWindow",
+                                                                 u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                                 None));
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow",
+                                                                 u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                                 None));
+        self.groupBox_16.setTitle(QCoreApplication.translate("MainWindow",
+                                                             u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435",
+                                                             None))
+        self.btn_user_create.setText(QCoreApplication.translate("MainWindow",
+                                                                u"\u041d\u043e\u0432\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c",
+                                                                None))
+        self.btn_user_delete.setText(QCoreApplication.translate("MainWindow",
+                                                                u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                                                                None))
+        self.btn_user_export.setText(
+            QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
+        self.groupBox.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
+        self.users_fullname_label.setText(
+            QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None))
         self.le_user_cn.setText("")
-        self.le_user_cn.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None))
+        self.le_user_cn.setPlaceholderText(QCoreApplication.translate("MainWindow",
+                                                                      u"\u0418\u0432\u0430\u043d\u043e\u0432 \u0418\u0432\u0430\u043d \u0418\u0432\u0430\u043d\u043e\u0432\u0438\u0447",
+                                                                      None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                        None))
         self.le_user_name.setText("")
         self.le_user_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ii.ivanov", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"\u041e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 IP", None))
+        self.label_11.setText(
+            QCoreApplication.translate("MainWindow", u"\u041e\u0441\u043d\u043e\u0432\u043d\u043e\u0439 IP", None))
         self.le_user_default_ip.setInputMask("")
         self.le_user_default_ip.setText("")
         self.le_user_default_ip.setPlaceholderText(QCoreApplication.translate("MainWindow", u"255.255.255.255", None))
@@ -1280,10 +1268,15 @@ class Ui_MainWindow(object):
         self.btn_show_pass.setText("")
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.le_user_email.setText("")
-        self.le_user_email.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ii.ivanov@unistroyrf.ru", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439", None))
+        self.le_user_email.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"ii.ivanov@unistroyrf.ru", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow",
+                                                         u"\u041a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439",
+                                                         None))
         self.le_user_comment.setText("")
-        self.le_user_comment.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u042d\u043d\u0435\u0440\u0433\u043e\u0440\u0435\u0441\u0443\u0440\u0441, \u044e\u0440\u0438\u0441\u0442", None))
+        self.le_user_comment.setPlaceholderText(QCoreApplication.translate("MainWindow",
+                                                                           u"\u042d\u043d\u0435\u0440\u0433\u043e\u0440\u0435\u0441\u0443\u0440\u0441, \u044e\u0440\u0438\u0441\u0442",
+                                                                           None))
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"Telegram id", None))
         self.le_user_tg_id.setText("")
         self.le_user_tg_id.setPlaceholderText(QCoreApplication.translate("MainWindow", u"912561677", None))
@@ -1292,26 +1285,40 @@ class Ui_MainWindow(object):
         self.le_user_tg_code.setPlaceholderText(QCoreApplication.translate("MainWindow", u"!hahg@21ga", None))
         self.btn_show_tg_code.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
-        self.cb_user_active.setText(QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u0435\u043d", None))
-        self.btn_user_save_params.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f", None))
-        self.btn_user_policies_create.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430", None))
-        self.btn_user_policies_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0443", None))
+        self.cb_user_active.setText(
+            QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u0435\u043d", None))
+        self.btn_user_save_params.setText(
+            QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow",
+                                                            u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 \u0433\u0440\u0443\u043f\u043f",
+                                                            None))
+        self.btn_user_policies_create.setText(QCoreApplication.translate("MainWindow",
+                                                                         u"\u041d\u043e\u0432\u0430\u044f \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0430",
+                                                                         None))
+        self.btn_user_policies_delete.setText(QCoreApplication.translate("MainWindow",
+                                                                         u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u043b\u0438\u0442\u0438\u043a\u0443",
+                                                                         None))
         self.btn_change_view_user_policies.setText("")
         self.btn_show_user_policies.setText("")
-        self.btn_user_policies_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.btn_user_policies_save.setText(
+            QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
         ___qtablewidgetitem = self.tbl_user_policies.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f", None));
+        ___qtablewidgetitem.setText(
+            QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f", None));
         ___qtablewidgetitem1 = self.tbl_user_policies.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430", None));
+        ___qtablewidgetitem1.setText(
+            QCoreApplication.translate("MainWindow", u"IP-\u0430\u0434\u0440\u0435\u0441\u0430", None));
         ___qtablewidgetitem2 = self.tbl_user_policies.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440", None));
+        ___qtablewidgetitem2.setText(
+            QCoreApplication.translate("MainWindow", u"USB-\u0444\u0438\u043b\u044c\u0442\u0440", None));
         ___qtablewidgetitem3 = self.tbl_user_policies.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Auth-Method", None));
         ___qtablewidgetitem4 = self.tbl_user_policies.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"OTP-\u0441\u0435\u043a\u0440\u0435\u0442", None));
+        ___qtablewidgetitem4.setText(
+            QCoreApplication.translate("MainWindow", u"OTP-\u0441\u0435\u043a\u0440\u0435\u0442", None));
         ___qtablewidgetitem5 = self.tbl_user_policies.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None));
+        ___qtablewidgetitem5.setText(
+            QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u043e\u043b\u044c", None));
         ___qtablewidgetitem6 = self.tbl_user_policies.horizontalHeaderItem(6)
         ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Permit-Login", None));
         ___qtablewidgetitem7 = self.tbl_user_policies.horizontalHeaderItem(7)
@@ -1321,38 +1328,70 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem9 = self.tbl_user_policies.horizontalHeaderItem(9)
         ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"Until", None));
         ___qtreewidgetitem1 = self.tree_user_policies.headerItem()
-        ___qtreewidgetitem1.setText(1, QCoreApplication.translate("MainWindow", u"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435", None));
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435", None));
-        self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_info), QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
+        ___qtreewidgetitem1.setText(1, QCoreApplication.translate("MainWindow",
+                                                                  u"\u0417\u043d\u0430\u0447\u0435\u043d\u0438\u0435",
+                                                                  None));
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow",
+                                                                  u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435",
+                                                                  None));
+        self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_info),
+                                   QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
         self.groupBox_3.setTitle("")
-        self.btn_user_ports_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_usb_policices), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432", None))
-        self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
-        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_users), QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438", None))
-        self.groups_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
+        self.btn_user_ports_save.setText(
+            QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.tabs_users.setTabText(self.tabs_users.indexOf(self.users_tab_usb_policices),
+                                   QCoreApplication.translate("MainWindow",
+                                                              u"\u041f\u043e\u043b\u0438\u0442\u0438\u043a\u0438 USB-\u043f\u043e\u0440\u0442\u043e\u0432",
+                                                              None))
+        self.tabs_users.setTabText(self.tabs_users.indexOf(self.tab), QCoreApplication.translate("MainWindow",
+                                                                                                 u"\u0410\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c",
+                                                                                                 None))
+        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_users), QCoreApplication.translate("MainWindow",
+                                                                                                           u"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u0438",
+                                                                                                           None))
+        self.groups_list_layout.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
         self.le_search_group.setText("")
-        self.le_search_group.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.le_search_group.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         ___qtreewidgetitem2 = self.list_groups.headerItem()
         ___qtreewidgetitem2.setText(1, QCoreApplication.translate("MainWindow", u"TCP-\u043f\u043e\u0440\u0442", None));
-        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        self.groupBox_17.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
-        self.btn_group_new.setText(QCoreApplication.translate("MainWindow", u"\u041d\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430", None))
-        self.btn_group_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
-        self.btn_group_export.setText(QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
-        self.btn_group_start.setText(QCoreApplication.translate("MainWindow", u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
-#if QT_CONFIG(shortcut)
+        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow",
+                                                                  u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                                  None));
+        self.groupBox_17.setTitle(QCoreApplication.translate("MainWindow",
+                                                             u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435",
+                                                             None))
+        self.btn_group_new.setText(QCoreApplication.translate("MainWindow",
+                                                              u"\u041d\u043e\u0432\u0430\u044f \u0433\u0440\u0443\u043f\u043f\u0430",
+                                                              None))
+        self.btn_group_delete.setText(QCoreApplication.translate("MainWindow",
+                                                                 u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443",
+                                                                 None))
+        self.btn_group_export.setText(
+            QCoreApplication.translate("MainWindow", u"\u042d\u043a\u0441\u043f\u043e\u0440\u0442", None))
+        self.btn_group_start.setText(QCoreApplication.translate("MainWindow",
+                                                                u"\u0417\u0430\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443",
+                                                                None))
+        # if QT_CONFIG(shortcut)
         self.btn_group_start.setShortcut(QCoreApplication.translate("MainWindow", u"S", None))
-#endif // QT_CONFIG(shortcut)
-        self.btn_group_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
-#if QT_CONFIG(shortcut)
+        # endif // QT_CONFIG(shortcut)
+        self.btn_group_stop.setText(QCoreApplication.translate("MainWindow",
+                                                               u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443",
+                                                               None))
+        # if QT_CONFIG(shortcut)
         self.btn_group_stop.setShortcut(QCoreApplication.translate("MainWindow", u"D", None))
-#endif // QT_CONFIG(shortcut)
-        self.btn_group_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443", None))
-#if QT_CONFIG(shortcut)
+        # endif // QT_CONFIG(shortcut)
+        self.btn_group_restart.setText(QCoreApplication.translate("MainWindow",
+                                                                  u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0433\u0440\u0443\u043f\u043f\u0443",
+                                                                  None))
+        # if QT_CONFIG(shortcut)
         self.btn_group_restart.setShortcut(QCoreApplication.translate("MainWindow", u"R", None))
-#endif // QT_CONFIG(shortcut)
-        self.btn_group_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.groupBox_24.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
+        # endif // QT_CONFIG(shortcut)
+        self.btn_group_save.setText(
+            QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.groupBox_24.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0430\u0442\u0443\u0441", None))
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None))
         self.le_group_name.setText("")
@@ -1373,21 +1412,43 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem3 = self.list_group_usb.headerItem()
         ___qtreewidgetitem3.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
         ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
-        self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b", None))
-        self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b", None))
-        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params), QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
-        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_access), QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
-        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_groups), QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b", None))
+        self.btn_group_usb_add.setText(QCoreApplication.translate("MainWindow",
+                                                                  u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b",
+                                                                  None))
+        self.btn_group_usb_remove.setText(QCoreApplication.translate("MainWindow",
+                                                                     u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442\u044b",
+                                                                     None))
+        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_params),
+                                   QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
+        self.tabs_group.setTabText(self.tabs_group.indexOf(self.tab_group_access),
+                                   QCoreApplication.translate("MainWindow",
+                                                              u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_groups),
+                                     QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u044b",
+                                                                None))
         self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u041e\u0431\u0449\u0435\u0435", None))
-        self.groupBox_12.setTitle(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
-        self.btn_usb_permission_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
-        self.btn_usb_permission_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.groupBox_12.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0441\u0442\u0443\u043f\u044b", None))
+        self.btn_usb_permission_add.setText(QCoreApplication.translate("MainWindow",
+                                                                       u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b",
+                                                                       None))
+        self.btn_usb_permission_remove.setText(QCoreApplication.translate("MainWindow",
+                                                                          u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f\u044b",
+                                                                          None))
         ___qtreewidgetitem4 = self.list_usb_access.headerItem()
-        ___qtreewidgetitem4.setText(1, QCoreApplication.translate("MainWindow", u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f", None));
-        self.btn_usb_save.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442", None))
+        ___qtreewidgetitem4.setText(1, QCoreApplication.translate("MainWindow",
+                                                                  u"\u0421\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                                  None));
+        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow",
+                                                                  u"\u041f\u043e\u043b\u043d\u043e\u0435 \u0438\u043c\u044f",
+                                                                  None));
+        self.btn_usb_save.setText(
+            QCoreApplication.translate("MainWindow", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.groupBox_2.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u041f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u044b", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow",
+                                                        u"\u041f\u0440\u0438\u043d\u0430\u0434\u043b\u0435\u0436\u0438\u0442",
+                                                        None))
         self.combo_usb_group.setCurrentText("")
         self.btn_usb_group_clear.setText("")
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"USB \u0438\u043c\u044f", None))
@@ -1400,34 +1461,62 @@ class Ui_MainWindow(object):
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Bus", None))
         self.le_usb_bus.setText("")
         self.le_usb_bus.setPlaceholderText(QCoreApplication.translate("MainWindow", u"1.2.1-2.2.4", None))
-        self.label_19.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
-        self.lb_usb_device.setText(QCoreApplication.translate("MainWindow", u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438", None))
-        self.usb_ports_list_layout.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
+        self.label_19.setText(
+            QCoreApplication.translate("MainWindow", u"\u0423\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e",
+                                       None))
+        self.lb_usb_device.setText(QCoreApplication.translate("MainWindow",
+                                                              u"\u041d\u0435\u0442 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438",
+                                                              None))
+        self.usb_ports_list_layout.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0440\u0442\u044b", None))
         ___qtreewidgetitem5 = self.list_usb.headerItem()
-        ___qtreewidgetitem5.setText(2, QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430", None));
+        ___qtreewidgetitem5.setText(2, QCoreApplication.translate("MainWindow", u"\u0413\u0440\u0443\u043f\u043f\u0430",
+                                                                  None));
         ___qtreewidgetitem5.setText(1, QCoreApplication.translate("MainWindow", u"VID", None));
         ___qtreewidgetitem5.setText(0, QCoreApplication.translate("MainWindow", u"\u0418\u043c\u044f", None));
-        self.le_usb_list_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435", None))
-        self.btn_usb_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.btn_usb_remove.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-        self.btn_usb_start.setText(QCoreApplication.translate("MainWindow", u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-#if QT_CONFIG(shortcut)
+        self.le_usb_list_search.setPlaceholderText(
+            QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow",
+                                                            u"\u0412\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435",
+                                                            None))
+        self.btn_usb_add.setText(QCoreApplication.translate("MainWindow",
+                                                            u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043f\u043e\u0440\u0442",
+                                                            None))
+        self.btn_usb_remove.setText(QCoreApplication.translate("MainWindow",
+                                                               u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043f\u043e\u0440\u0442",
+                                                               None))
+        self.btn_usb_start.setText(QCoreApplication.translate("MainWindow",
+                                                              u"\u0412\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442",
+                                                              None))
+        # if QT_CONFIG(shortcut)
         self.btn_usb_start.setShortcut(QCoreApplication.translate("MainWindow", u"S", None))
-#endif // QT_CONFIG(shortcut)
-        self.btn_usb_stop.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-#if QT_CONFIG(shortcut)
+        # endif // QT_CONFIG(shortcut)
+        self.btn_usb_stop.setText(QCoreApplication.translate("MainWindow",
+                                                             u"\u0412\u044b\u043a\u043b\u044e\u0447\u0438\u0442\u044c \u043f\u043e\u0440\u0442",
+                                                             None))
+        # if QT_CONFIG(shortcut)
         self.btn_usb_stop.setShortcut(QCoreApplication.translate("MainWindow", u"D", None))
-#endif // QT_CONFIG(shortcut)
-        self.btn_usb_restart.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u043f\u043e\u0440\u0442", None))
-#if QT_CONFIG(shortcut)
+        # endif // QT_CONFIG(shortcut)
+        self.btn_usb_restart.setText(QCoreApplication.translate("MainWindow",
+                                                                u"\u041f\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u043f\u043e\u0440\u0442",
+                                                                None))
+        # if QT_CONFIG(shortcut)
         self.btn_usb_restart.setShortcut(QCoreApplication.translate("MainWindow", u"R", None))
-#endif // QT_CONFIG(shortcut)
-        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_ports), QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b", None))
-        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_logs), QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438", None))
-        self.menu_1.setTitle(QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u043e\u0435", None))
-        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"\u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b", None))
-        self.menu_2.setTitle(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f", None))
-        self.menu_3.setTitle(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0435 \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435", None))
+        # endif // QT_CONFIG(shortcut)
+        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_ports),
+                                     QCoreApplication.translate("MainWindow", u"USB-\u043f\u043e\u0440\u0442\u044b",
+                                                                None))
+        self.tabs_general.setTabText(self.tabs_general.indexOf(self.tab_logs),
+                                     QCoreApplication.translate("MainWindow", u"\u041b\u043e\u0433\u0438", None))
+        self.menu_1.setTitle(
+            QCoreApplication.translate("MainWindow", u"\u0413\u043b\u0430\u0432\u043d\u043e\u0435", None))
+        self.menu.setTitle(QCoreApplication.translate("MainWindow",
+                                                      u"\u0418\u043d\u0441\u0442\u0440\u0443\u043c\u0435\u043d\u0442\u044b",
+                                                      None))
+        self.menu_2.setTitle(QCoreApplication.translate("MainWindow",
+                                                        u"\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                                                        None))
+        self.menu_3.setTitle(QCoreApplication.translate("MainWindow",
+                                                        u"\u0420\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0435 \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435",
+                                                        None))
     # retranslateUi
-

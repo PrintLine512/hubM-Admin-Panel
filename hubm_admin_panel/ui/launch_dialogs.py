@@ -1,11 +1,12 @@
 import os
 import re
 
-from .ui_select_port import Ui_SelectPort
 from PySide6 import QtGui
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QLabel, QLineEdit, QPushButton, QMessageBox, QFrame, QSpacerItem, \
-    QSizePolicy, QHBoxLayout, QDialogButtonBox, QTreeWidgetItem
+    QSizePolicy, QHBoxLayout, QTreeWidgetItem
+
 from utils.utils import filter_items
+from .ui_select_port import Ui_SelectPort
 
 
 def resource_path(relative):
@@ -16,6 +17,7 @@ def resource_path(relative):
         ),
         relative
     )
+
 
 class SelectPort(QDialog):
     def __init__(self, usb_ports):
@@ -31,9 +33,8 @@ class SelectPort(QDialog):
         self.ui.lineEdit.textChanged.connect(lambda: filter_items(self.ui.treeWidget, self.ui.lineEdit.text()))
 
         for usb_port in usb_ports:
-            item = QTreeWidgetItem([usb_port['name'], usb_port['virtual_port']])
+            item = QTreeWidgetItem([ usb_port[ 'name' ], usb_port[ 'virtual_port' ] ])
             self.ui.treeWidget.addTopLevelItem(item)
-
 
     def accept(self):
         # Получаем введенные данные
@@ -43,7 +44,6 @@ class SelectPort(QDialog):
             return
 
         super().accept()
-
 
 
 class MasterPasswordGetDialog(QDialog):
@@ -104,6 +104,7 @@ class MasterPasswordGetDialog(QDialog):
         # Закрываем диалог с флагом успешного завершения
         super().accept()
 
+
 class MasterPasswordSetDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -161,7 +162,6 @@ class MasterPasswordSetDialog(QDialog):
 
         # Закрываем диалог с флагом успешного завершения
         super().accept()
-
 
 
 class CredDialog(QDialog):

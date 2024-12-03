@@ -52,7 +52,6 @@ class Groups:
     def __del__(self):
         print(f"{__class__} del")
 
-
     def sent_params(self, data):
         response = api_request(f"servers/{self.current_group.name}", {}, json.dumps(data), "PUT", "full")
         return response
@@ -63,12 +62,13 @@ class Groups:
                                 f'Сначала выберите группу!')
             return
         response = api_request(uri=f"usb_ports/free", request="full")
-        usb_ports = [ {'name': item[ 'name' ], 'virtual_port': item[ 'virtual_port' ]} for item in json.loads(response.text) ]
+        usb_ports = [ {'name': item[ 'name' ], 'virtual_port': item[ 'virtual_port' ]} for item in
+                      json.loads(response.text) ]
 
         dialog = launch_dialogs.SelectPort(usb_ports)  # Открываем диалог добавления сервера
         if dialog.exec():  # exec() вернет True, если диалог завершен успешно
             for item in dialog.selected:
-                usb_port = QTreeWidgetItem([item.text(0), item.text(1)])
+                usb_port = QTreeWidgetItem([ item.text(0), item.text(1) ])
                 self.ui.list_group_usb.addTopLevelItem(usb_port)
 
         else:
@@ -119,10 +119,7 @@ class Groups:
                                  f"Группа не изменена или изменена с ошибками!\nОшибка: {response.status_code}"
                                  f"\n {response.text}")
 
-
         self.refresh()
-
-
 
     def refresh(self):
         old_group = self.current_group.name if self.current_group else None
@@ -132,7 +129,6 @@ class Groups:
             match = self.ui.list_groups.findItems(old_group, Qt.MatchFlag.MatchExactly, 0)
             if match:
                 self.ui.list_groups.setCurrentItem(match[ 0 ])
-
 
     def update_list(self):
         print("Updating list")
@@ -149,8 +145,8 @@ class Groups:
                     name=group[ "name" ],
                     tcp_port=group[ "tcp_port" ],
                     password=group[ "password" ],
-                    usb_list=group["usb_list"],
-                    active=group["active"]
+                    usb_list=group[ "usb_list" ],
+                    active=group[ "active" ]
                 )
                 self.groups.append(new_group)
         else:
@@ -170,14 +166,13 @@ class Groups:
         self.ui.list_groups.insertTopLevelItems(0, items)
 
     def get_ui_usb(self):
-        usb_list = []
+        usb_list = [ ]
         if not self.ui.list_group_usb.topLevelItemCount():
             return
         for index in range(self.ui.list_group_usb.topLevelItemCount()):
             usb = self.ui.list_group_usb.topLevelItem(index)
             usb_list.append(usb.text(1))
         return usb_list
-
 
     def render_group(self, selected):
         self.ui.le_group_name.clear()
@@ -196,11 +191,10 @@ class Groups:
 
         items = [ ]
         for usb in self.current_group.usb_list:
-            item = QTreeWidgetItem([ usb["name"], usb["virtual_port"] ])
+            item = QTreeWidgetItem([ usb[ "name" ], usb[ "virtual_port" ] ])
             items.append(item)
 
         self.ui.list_group_usb.insertTopLevelItems(0, items)
-
 
     def action(self, action: Literal[ "start", "stop", "restart" ]):
         if self.current_group is None:

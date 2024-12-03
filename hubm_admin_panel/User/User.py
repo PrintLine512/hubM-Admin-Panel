@@ -63,7 +63,7 @@ class PolicyTableWidgetItem(QTableWidgetItem):
             self.item = QtWidgets.QLineEdit()
             self.item.setFrame(False)
             self.item.setEchoMode((
-                                      QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
+                QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
             self.item.setText(value)
             self.setText(value)
             main.tbl_user_policies.setCellWidget(0, current_column, self.item)
@@ -117,7 +117,7 @@ class PolicyTreeWidgetItem(QTreeWidgetItem):
 
         if self.password_echo:
             self.item.setEchoMode((
-                                      QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
+                QtWidgets.QLineEdit.EchoMode.Normal if password_echo_mode else QtWidgets.QLineEdit.EchoMode.PasswordEchoOnEdit))
 
     def cb_is_checked(self):
         if self.checkbox:
