@@ -353,6 +353,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.timer_check_update.start(60000)
         #check_version(self, True, notify=True)
 
+
         self.timer_check_errors = QTimer(self)
         self.timer_check_errors.timeout.connect(self.check_errors)
         self.timer_check_errors.start(10000)
